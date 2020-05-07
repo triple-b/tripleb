@@ -38,6 +38,10 @@
 		<url-pattern>*.jsu</url-pattern>
 		<url-pattern>*.jpr</url-pattern>
 		<url-pattern>*.jcl</url-pattern>
+		<url-pattern>*.no</url-pattern>
+		<url-pattern>*.eq</url-pattern>
+		<url-pattern>*.eqc</url-pattern>
+		<url-pattern>*.mc</url-pattern>
 	</servlet-mapping>
 	
 	<!-- encodingFilter 등록 -->

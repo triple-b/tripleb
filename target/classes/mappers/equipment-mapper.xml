@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+  <mapper namespace="equipmentMapper">
+  
+  	<resultMap type="Equipment" id="equipmentResultSet">
+	  	<id property="equipmentNo" column="equipment_no" />
+	  	<result property="equipmentName" column="equipment_name" />
+	  	<result property="equipmentStock" column="equipment_stock" />
+		<result property="equipmentRegistDate" column="equipment_registDate" />
+		<result property="equipmentStatus" column="equipment_status" />
+  	</resultMap>
+  
+  	<select id="selectList" resultMap="equipmentResultSet">
+  		select *
+  		from equipment
+  		where equipment_status='Y'
+  	</select>
+  
+  	<select id="updateEquipment" parameterType="Equipment">
+  		update equipment
+  		set 
+  			equipment_name=#{equipmentName},
+  			equipment_stock=#{equipmentStock}
+  			
+  			where equipment_no=#{equipmentNo}
+  	</select>
+  	
+  	<select id="selectEquipment" parameterType="_int" resultMap="equipmentResultSet">
+ 		select *
+  		from equipment
+ 		where equipment_no=#{eno} and equipment_status='Y'
+ 	</select> 
+ 	
+  	<update id="deleteEquiment" parameterType="_int" >
+  		update equipment
+  		set equipment_status='N'
+  		where equipment_no=#{eno}
+  	</update>
+  	
+  	<insert id="insertEquipment" parameterType="Equipment">
+  		insert into equipment
+  		values(seq_NTNO.nextval, #{equipmentName}, #{equipmentStock}, default, default)
+  	</insert>
+  	
+  </mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+  <mapper namespace="machineMapper">
+  
+  	<resultMap type="Machine" id="machineResultSet">
+	  	<id property="mcNo" column="mc_no" />
+	  	<result property="mcName" column="mc_name" />
+	  	<result property="mcExplain" column="mc_explain" />
+		<result property="mcThumbnail" column="mc_thumbnail" />
+		<result property="mcStatus" column="mc_status" />
+		<result property="mcDate" column="mc_date" />
+  	</resultMap>
+  
+  	
+  	<insert id="insertMachine" parameterType="Machine">
+  		insert into machine
+  		values(seq_NTNO.nextval, #{equipmentName}, #{equipmentStock}, default, default)
+  	</insert>
+  	
+  </mapper>

@@ -19,6 +19,12 @@
 		<typeAlias type="com.jh.tripleb.classInfo.model.vo.ClassInfo" alias="ClassInfo"/>
 		<typeAlias type="com.jh.tripleb.suggestions.model.vo.Suggestions" alias="Suggestions"/>
 		<typeAlias type="com.jh.tripleb.product.model.vo.Product" alias="Product"/>
+		<typeAlias type="com.jh.tripleb.notice.model.vo.Notice" alias="Notice"/>
+		<typeAlias type="com.jh.tripleb.equipment.model.vo.Equipment" alias="Equipment"/>
+		<typeAlias type="com.jh.tripleb.equipCheck.model.vo.EquipCheck" alias="EquipCheck"/>
+		<typeAlias type="com.jh.tripleb.equipCheck.model.vo.EquipCheckDto" alias="EquipCheckDto"/>
+		<typeAlias type="com.jh.tripleb.machine.model.vo.Machine" alias="Machine"/>
+		<typeAlias type="com.jh.tripleb.equipCheck.model.vo.EquipDto" alias="EquipDto"/>
 	</typeAliases>
 	
 	<mappers>
@@ -28,6 +34,10 @@
 		<mapper resource="/mappers/suggestions-mapper.xml"/>
 		<mapper resource="/mappers/product-mapper.xml"/>
 		<mapper resource="/mappers/class-mapper.xml"/>
+		<mapper resource="/mappers/notice-mapper.xml"/>
+		<mapper resource="/mappers/equipment-mapper.xml"/>
+		<mapper resource="/mappers/equipcheck-mapper.xml"/>
+		<mapper resource="/mappers/machine-mapper.xml"/>
 	</mappers>
 	
 

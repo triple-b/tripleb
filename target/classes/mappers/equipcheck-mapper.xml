@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+  <mapper namespace="equipcheckMapper">
+  
+  	<resultMap type="Equipcheck" id="equipcheckResultSet">
+	  	<id property="eqCheckNo" column="eqCheck_no" />
+	  	<result property="broken" column="broken" />
+	  	<result property="lost" column="lost" />
+		<result property="mtDate" column="mt_date" />
+		<result property="equipmentNo" column="equipment_no" />
+		<result property="trainerNo" column="trainer_no" />
+  	</resultMap>
+  
+  	<select id="selectEqList" resultType="EquipCheckDto">
+  	select eqcheck_no, broken, lost, mt_date , equipment_no, trainer_no, equipment_name, equipment_stock 
+		from equip_check
+		join equipment using(EQUIPMENT_NO)
+		join trainer using(TRAINER_NO)
+  	</select>
+  
+  	<select id="updateEquipCheck" parameterType="EquipDto"  >
+  		update equip_check
+  		set 
+  			broken=#{broken},
+  			lost=#{lost}  			
+  			where eqCheck_no=#{eqcheckNo}
+  	</select>
+  	
+  	<select id="updateEquip" parameterType="EquipDto" >
+  		update equipment
+  		set 
+  			equipment_name=#{equipmentName},
+  			equipment_stock=#{equipmentStock} 
+  		where equipment_no=#{equipmentNo}
+  	</select>
+  	
+  	<select id="selectEquipCheck" parameterType="_int" resultType="EquipCheckDto">
+ 		select *
+  		from equip_check
+  		join equipment using(EQUIPMENT_NO)
+		join trainer using(TRAINER_NO)
+ 		where eqCheck_no=#{ecno} 
+ 	</select> 
+  
+  <insert id="insertEquipCheck" parameterType="EquipDto">
+  		insert into equipment
+  		values(seq_EQNO.nextval, #{equipmentName}, #{equipmentStock}, default, default)
+
+  	</insert>
+  	
+  	<insert id="insertEquip" parameterType="EquipDto">
+  		insert into equip_check
+  		values(seq_ECNO.nextval, #{lost}, #{broken}, default, #{trainerNo})
+  		
+  	</insert>
+  </mapper>

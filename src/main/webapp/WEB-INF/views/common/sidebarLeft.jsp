@@ -39,11 +39,6 @@
 										 회원관리
 									</a>
 								</li>
-								<li>
-									<a href="">
-										 블랙리스트
-									</a>
-								</li>
 							</ul>
 						</li>
 						<li class="nav-parent">
@@ -99,12 +94,12 @@
 							</a>
 							<ul class="nav nav-children">
 								<li>
-									<a href="">
+									<a href="mcCheck.mc">
 										 시설관리
 									</a>
 								</li>
 								<li>
-									<a href="">
+									<a href="equipChecklist.eq">
 										 비품관리
 									</a>
 								</li>
@@ -114,7 +109,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="">
+									<a href="lockerlist.hlo">
 										 락커관리
 									</a>
 								</li>
@@ -139,13 +134,13 @@
 							</ul>
 						</li>
 						<li class="nav-active">
-							<a href="index.html">
+							<a href="">
 								<i class="fa fa-calendar" aria-hidden="true"></i>
 								<span>일정관리</span>
 							</a>
 						</li>
 						<li class="nav-active">
-							<a href="index.html">
+							<a href="List.no">
 								<i class="fa fa-bullhorn" aria-hidden="true"></i>
 								<span>공지사항</span>
 							</a>
