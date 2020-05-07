@@ -30,7 +30,7 @@
 				</header>
 				<section class="panel">
 						<header class="panel-heading">					
-							<h2 class="panel-title">계약서 리스트입니다.</h2>
+							<h2 class="panel-title">계약서</h2>
 						</header>
 						<div class="panel-body">
 							<table class="table table-bordered table-striped mb-none" id="datatable-details-invocie">

@@ -185,10 +185,10 @@
 											<i class="jstree-icon jstree-ocl"></i>
 											<a class="jstree-anchor" href="#">
 												<i class="jstree-icon jstree-checkbox"></i>
-												<i class="jstree-icon jstree-themeicon fa fa-group jstree-themeicon-custom"></i><span  class="ft20">회원관리</span>										 
+												<i class="jstree-icon jstree-themeicon fa fa-group jstree-themeicon-custom"></i><span class="ft20">회원관리</span>										 
 											</a>
 											<ul role="group" class="jstree-children">
-												<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_1_1" class="jstree-node  jstree-leaf" aria-selected="false">
+												<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_1_1" aria-selected="true">
 													<i class="jstree-icon jstree-ocl"></i>
 													<a class="jstree-anchor" href="#">
 														<i class="jstree-icon jstree-checkbox"></i>
@@ -199,17 +199,17 @@
 														</div>
 													</a>
 												</li>
-												<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_1_2" class="jstree-node  jstree-leaf" aria-selected="false">
-													<i class="jstree-icon jstree-ocl"></i>
-													<a class="jstree-anchor" href="#">
-														<i class="jstree-icon jstree-checkbox"></i>
-														<i class="jstree-icon jstree-themeicon fa fa-file jstree-themeicon-custom"></i>
+										
+												<li role="treeitem-sub" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_1_2" class="jstree-node  jstree-leaf" aria-selected="false">
+													
+													<div class="jstree-anchor" onclick="setPrice();">
 														<div style="width:100px; display: inline-block;">블랙리스트</div>
 														<div style="text-align:right; width:100px; display: inline-block; font-weight:600; text-align:right; margin-right:10px;">
 															<i class="fa fa-krw"></i>500,000
 														</div>
-													</a>
+													</div>
 												</li>
+										
 											</ul>
 										</li>
 										
@@ -221,7 +221,7 @@
 													<span class="ft20">트레이너관리	</span>											 
 											   </a>
 											   	<ul role="group" class="jstree-children" style="">
-													<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_2_1" class="jstree-node  jstree-leaf" aria-selected="false">
+													<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_2_1" price="5000" item="트레이너" class="jstree-node  jstree-leaf" aria-selected="false">
 														<i class="jstree-icon jstree-ocl"></i>
 														<a class="jstree-anchor" href="#">
 															<i class="jstree-icon jstree-checkbox"></i>
@@ -443,5 +443,10 @@
 	<!-- 현재 페이지에서만 사용하는 JSP -->
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jstree/jstree.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.treeview.js"></script>
+	<script>
+		function setPrice() {
+			alert("test");
+		}
+	</script>
 </body>
 </html>

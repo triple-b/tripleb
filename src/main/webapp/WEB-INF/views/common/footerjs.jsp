@@ -33,15 +33,6 @@
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/gauge/gauge.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/snap-svg/snap.svg.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/liquid-meter/liquid.meter.js"></script>
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jqvmap/jquery.vmap.js"></script>
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jqvmap/data/jquery.vmap.sampledata.js"></script>
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jqvmap/maps/jquery.vmap.world.js"></script>
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jqvmap/maps/continents/jquery.vmap.africa.js"></script>
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jqvmap/maps/continents/jquery.vmap.asia.js"></script>
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jqvmap/maps/continents/jquery.vmap.australia.js"></script>
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jqvmap/maps/continents/jquery.vmap.europe.js"></script>
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js"></script>
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/select2/select2.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
