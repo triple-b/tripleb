@@ -16,14 +16,14 @@ public class ExcelServiceImpl implements ExcelService {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	@Autowired
-	private ExcelDao eDao;
+	private ExcelDao xDao;
 	
 	@Override
 	public Map<String, Object> getAllObjects(String target, int targetNo) throws Exception {
 		if(target.equals("invoice")) {
-	    	   return eDao.selectInvocie(sqlSession, targetNo);
+	    	   return xDao.selectInvocie(sqlSession, targetNo);
 	       }else if(target.equals("company")) {
-	    	   return eDao.selectCompany(sqlSession, targetNo);
+	    	   return xDao.selectCompany(sqlSession, targetNo);
 	       }else if(target.equals("item")) {
 	    	   return null;
 	       }else {
@@ -32,7 +32,7 @@ public class ExcelServiceImpl implements ExcelService {
 	}
 	
 	public List<Object> selectListPurchase(String target, int targetNo) throws Exception {
-		return eDao.selectListPurchase(sqlSession, targetNo);
+		return xDao.selectListPurchase(sqlSession, targetNo);
 	}
 
 	/*
