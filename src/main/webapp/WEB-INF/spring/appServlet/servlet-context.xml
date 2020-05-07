@@ -19,7 +19,18 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property value="2" name="order"/>
 	</beans:bean>
+	
+	<!-- AbstractExcelView 클래스를 뷰로 사용하기 위해 BeanNameViewResolver 
+	빈즈 생성 ViewResolver의 우선순위를 위해 order 프로퍼티 사용(작은 value가 우선순위가 높음)
+	ViewResolver가 null 을 리턴하면 다음 순위의 ViewResolver에게 뷰를 요청 -->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">	
+		<beans:property value="1" name="order"/>	
+	</beans:bean>
+
+	<!-- Controller 에서 download 라는 뷰를 호출하면 ExcelView 클래스 처리 -->	
+	<beans:bean class="com.jh.tripleb.common.excel.model.vo.ExcelDownloadInvoice" id="ExcelDownloadInvoice"/>
 	
 	<context:component-scan base-package="com.jh.tripleb" />
 	
