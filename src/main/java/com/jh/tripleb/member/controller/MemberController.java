@@ -110,9 +110,9 @@ public class MemberController {
 			m.setMemberImage(changeName);
 		}
 		
-		int memberBirth = memberYear + memberMonth + memberDay;
+		String memberBirth = Integer.toString(memberYear) + Integer.toString(memberMonth) + Integer.toString(memberDay);
 		
-		m.setMemberBirth(Integer.toString(memberBirth));
+		m.setMemberBirth(memberBirth);
 		
 		int result = mService.insertMember(m);
 		
