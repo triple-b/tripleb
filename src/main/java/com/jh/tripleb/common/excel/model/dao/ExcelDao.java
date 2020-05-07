@@ -6,7 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-@Repository("eDao")
+@Repository("xDao")
 public class ExcelDao {		
 	
 	@SuppressWarnings("unchecked") 

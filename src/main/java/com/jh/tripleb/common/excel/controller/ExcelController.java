@@ -15,14 +15,14 @@ import com.jh.tripleb.common.excel.model.service.ExcelService;
 public class ExcelController {
 	
 	@Autowired
-	private ExcelService eService;
+	private ExcelService xService;
 	
 	@RequestMapping("download.do")
 	public String excelTransform(@RequestParam String target, @RequestParam int targetno, Map<String,Object> ModelMap) throws Exception{
 		
-			Map<String,Object> invoiceList = eService.getAllObjects("invoice", targetno);
-			Map<String,Object> companyList = eService.getAllObjects("company", 1);			
-			List<Object> itemList = eService.selectListPurchase("item", targetno);
+			Map<String,Object> invoiceList = xService.getAllObjects("invoice", targetno);
+			Map<String,Object> companyList = xService.getAllObjects("company", 1);			
+			List<Object> itemList = xService.selectListPurchase("item", targetno);
 		    
 		    ModelMap.put("invoiceList", invoiceList);
 		    ModelMap.put("companyList", companyList);

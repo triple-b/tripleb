@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.jh.tripleb.common.excel.model.dao.ExcelDao;
 
 
-@Service("eService")
+@Service("xService")
 public class ExcelServiceImpl implements ExcelService {
 	
 	@Autowired
