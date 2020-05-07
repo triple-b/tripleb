@@ -35,9 +35,8 @@
 					<!-- start: page -->
 						<div class="row">
 	
-							<div class="conten" style="width: 100%;">
-								
-								
+							<div class="content" style="width: 100%;">
+												
 						
 								<section class="panel">
 									
