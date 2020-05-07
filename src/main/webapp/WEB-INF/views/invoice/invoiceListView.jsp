@@ -56,13 +56,13 @@
                    								<tr class="tr-click" data-url="${ i.invoicePurl }" data-addr="${ i.invoicePaddress }" data-tel="${ i.invoicePphone }" data-status="구매 완료" data-reason="null"> 
                    							</c:otherwise>
                    						</c:choose>											
-										<td data-clickid="${ i.invoiceNo }">${ i.invoicePname }</td>
-										<td class="text-center" data-clickid="${ i.invoiceNo }">${ i.invoiceNumber }</td>
-										<td class="tr-click" data-clickid="${ i.invoiceNo }">${ i.invoiceItemList }</td>
-										<td class="text-right" data-clickid="${ i.invoiceNo }"><fmt:formatNumber value="${ i.invoiceTotalPrice }" pattern="#,###" /></td>
-										<td class="text-center" data-clickid="${ i.invoiceNo }">${ i.invoiceDate }</td>																							
-										<td class="text-center" data-clickid="${ i.invoiceNo }">${ i.invoiceDueDate } ~ <fmt:formatDate value="${ dueDate }" pattern="yyyy-MM-dd"/></td>	
-										</tr>	
+													<td data-clickid="${ i.invoiceNo }">${ i.invoicePname }</td>
+													<td class="text-center" data-clickid="${ i.invoiceNo }">${ i.invoiceNumber }</td>
+													<td class="tr-click" data-clickid="${ i.invoiceNo }">${ i.invoiceItemList }</td>
+													<td class="text-right" data-clickid="${ i.invoiceNo }"><fmt:formatNumber value="${ i.invoiceTotalPrice }" pattern="#,###" /></td>
+													<td class="text-center" data-clickid="${ i.invoiceNo }">${ i.invoiceDate }</td>																							
+													<td class="text-center" data-clickid="${ i.invoiceNo }">${ i.invoiceDueDate } ~ <fmt:formatDate value="${ dueDate }" pattern="yyyy-MM-dd"/></td>	
+												</tr>	
 									</c:forEach>						
 								</tbody>
 							</table>
