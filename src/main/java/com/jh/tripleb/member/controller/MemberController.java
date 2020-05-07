@@ -26,7 +26,7 @@ public class MemberController {
 	@Autowired
 	private MemberService mService;
 	
-	
+	// 주희 임시 수정
 	@RequestMapping("list.ume")
 	public ModelAndView selectListMember(ModelAndView mv) {
 		
