@@ -79,7 +79,7 @@
 
 	<!-- 공통으로 사용하는 js파일 -->
 	<jsp:include page="../common/footerjs.jsp" />
-	<!-- 현재 페이지에서만 사용하는 JSP -->	
+	<!-- 현재 페이지에서만 사용하는 JSP -->
 
 </body>
 </html>

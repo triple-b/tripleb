@@ -55,7 +55,7 @@
 	<!-- Theme Initialization Files -->
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/theme.init.js"></script>
 	
-	
+
 	<!-- Examples -->
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/dashboard/examples.dashboard.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>
