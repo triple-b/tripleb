@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="invoiceMapper">
+
+	<resultMap id="invoiceResultSet" type="Invoice">
+		<id column="INVOICE_NO" property="invoiceNo" />
+		<result column="INVOICE_NUMBER" property="invoiceNumber" />
+		<result column="INVOICE_DATE" property="invoiceDate" />
+		<result column="INVOICE_DUEDATE" property="invoiceDueDate" />
+		<result column="INVOCIE_PNAME" property="invoicePname" />
+		<result column="INVOCIE_PADDRESS" property="invoicePaddress" />
+		<result column="INVOCIE_PPHONE" property="invoicePphone" />
+		<result column="INVOCIE_PEMAIL" property="invoicePemail" />
+		<result column="INVOCIE_PURL" property="invoicePurl" />
+		<result column="INVOCIE_ITEMLIST" property="invoiceItemList" />
+		<result column="INVOICE_TOTALPRICE" property="invoiceTotalPrice" />
+		<result column="INVOICE_STATUS" property="invoiceStatus" />
+		<result column="INVOICE_CANCELDATE" property="invoiceCancelDate" />
+		<result column="INVOICE_CANCELREASON" property="invoiceCancelReason" />
+	</resultMap>
+
+	<!-- 계약서 리스트 조회(장미경) -->
+	<select id="selectListInvoice" resultMap="invoiceResultSet">
+		select *
+		from invoice		
+		order by invoice_no desc
+	</select>
+	
+	<!-- 계약서 상세 조회(장미경) -->
+	<select id="selectInvoice" parameterType="_int" resultMap="invoiceResultSet">
+		select INVOICE_NO, INVOICE_NUMBER, INVOICE_DATE, INVOICE_DUEDATE, INVOCIE_PNAME, 
+		       INVOCIE_PADDRESS, INVOCIE_PPHONE, INVOCIE_PEMAIL, INVOCIE_PURL, INVOCIE_ITEMLIST,
+		       INVOICE_TOTALPRICE, INVOICE_STATUS, INVOICE_CANCELDATE, INVOICE_CANCELREASON		       	           
+		from invoice
+		where INVOICE_NO = #{ino}
+	</select>
+	
+	<!-- 회사정보 조회(장미경) -->
+	<select id="selectCompanyInfo" parameterType="_int" resultType="InvoiceCompanyDto">
+		select COMPANY_NAME, COMPANY_ADDRESS, COMPANY_PHONE, COMPANY_EMAIL, COMPANY_LOGO
+		from companyinfo
+		where COMPANY_NO = #{cno}     
+	</select>
+	
+	<!-- 계약서별 구매정보 조회(장미경) -->
+	<select id="selectListPurchase" parameterType="_int" resultType="InvoicePurchaseDto">
+		select TEMPLATE_ITEMNO, TEMPLATE_PARENTITEMNAME, TEMPLATE_ITEMNAME, TEMPLATE_ITEMDESCRIPTION, 
+		       TEMPLATE_ITEMPRICE, PURCHASE_COUNT
+		from templateinfo t
+		join purchase p using(TEMPLATE_ITEMNO)
+		where p.INVOICE_NO = #{ino} and t.TEMPLATE_STATUS = 'Y'
+        order by t.TEMPLATE_PARENTITEMNAME
+	</select>
+	
+	<!-- 계약서 상세 조회(장미경) : 계약서 엑셀파일 생성시 참조 -->
+	<select id="selectInvoiceMap" parameterType="_int" resultType="hashmap">
+		select INVOICE_NUMBER, INVOICE_DATE, INVOICE_DUEDATE, INVOCIE_PNAME, 
+		       INVOCIE_PADDRESS, INVOCIE_PPHONE, INVOCIE_PEMAIL, INVOCIE_PURL, INVOCIE_ITEMLIST,
+		       INVOICE_TOTALPRICE, INVOICE_STATUS, INVOICE_CANCELDATE, INVOICE_CANCELREASON		       	           
+		from invoice
+		where INVOICE_NO = #{ino}
+	</select>
+	
+	<!-- 회사정보 조회(장미경) : 계약서 엑셀파일 생성시 참조 -->
+	<select id="selectCompanyMap" parameterType="_int" resultType="hashmap">
+		select COMPANY_NAME, COMPANY_ADDRESS, COMPANY_PHONE, COMPANY_EMAIL, COMPANY_LOGO
+		from companyinfo
+		where COMPANY_NO = #{cno}     
+	</select>
+	
+	<!-- 계약서별 구매정보 조회(장미경) : 계약서 엑셀파일 생성시 참조  -->
+	<select id="selectListPurchaseMap" parameterType="_int" resultType="hashmap">
+		select TEMPLATE_ITEMNO, TEMPLATE_PARENTITEMNAME, TEMPLATE_ITEMNAME, TEMPLATE_ITEMDESCRIPTION, 
+		       TEMPLATE_ITEMPRICE, PURCHASE_COUNT
+		from templateinfo t
+		join purchase p using(TEMPLATE_ITEMNO)
+		where p.INVOICE_NO = #{ino} and t.TEMPLATE_STATUS = 'Y'
+        order by t.TEMPLATE_PARENTITEMNAME
+	</select>
+	
+	
+	
+</mapper>

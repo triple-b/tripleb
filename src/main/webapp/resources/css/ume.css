@@ -1,0 +1,135 @@
+
+/* Common Fixes */
+#dataTables_wrapper {
+	position: relative;
+}
+
+#dataTables_wrapper .DTTT.btn-group {
+	display: inline-block !important;
+}
+
+#dataTables_wrapper #datatables-header {
+	margin-bottom: 15px;
+}
+
+#dataTables_wrapper #datatables-header label {
+	font-weight: normal;
+	margin: 0;
+}
+
+#dataTables_wrapper table thead th {
+	padding-right: 21px !important;
+}
+
+#dataTables_wrapper #dataTables_length .select2-container {
+	margin-right: 10px;
+	width: 75px;
+}
+
+@media only screen and (max-width: 991px) {
+	#dataTables_wrapper #dataTables_length {
+		margin-bottom: 15px;
+	}
+
+	#dataTables_wrapper #dataTables_length label {
+		float: none;
+		width: 100%;
+	}
+}
+/* Filter */
+#dataTables_wrapper #dataTables_filter label {
+	width: 50%;
+}
+
+#dataTables_wrapper #dataTables_filter input {
+	width: 100%;
+}
+
+@media only screen and (max-width: 991px) {
+	#dataTables_wrapper #dataTables_filter label {
+		width: 100%;
+	}
+}
+/* Footer */
+#dataTables_wrapper #datatables-footer {
+	margin-top: 15px;
+}
+
+#dataTables_wrapper #datatables-footer #dataTables_info {
+	font-size: 11px;
+	padding-top: 0;
+	margin-top: 6px;
+}
+
+#dataTables_wrapper #datatables-footer #dataTables_paginate .pagination {
+	display: block;
+	margin: 0;
+}
+
+@media only screen and (max-width: 991px) {
+	#dataTables_wrapper #datatables-footer #dataTables_info {
+		margin-bottom: 15px;
+		text-align: center;
+	}
+
+	#dataTables_wrapper #datatables-footer #dataTables_paginate {
+		float: none;
+		text-align: center;
+	}
+
+	#dataTables_wrapper #datatables-footer #dataTables_paginate .pagination {
+		display: inline-block;
+	}
+}
+/* Empty Row */
+#dataTables_wrapper #dataTables_empty {
+	padding: 50px 0;
+	text-align: center;
+}
+
+#dataTables_processing {
+	background: #cccccc;
+	border-radius: 100px;
+	box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.3);
+	color: #FFF;
+	left: 50%;
+	margin-left: -36px;
+	padding: 5px 10px;
+	position: absolute;
+	top: 3px;
+}
+
+@media only screen and (max-width: 991px) {
+	#dataTables_processing {
+		left: auto;
+		margin-left: 0;
+		right: 0;
+	}
+}
+
+.DTTT_Print,
+.DTTT_Print .inner-wrapper,
+.DTTT_Print .content-body,
+.DTTT_Print .panel {
+	background: #FFF !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	top: 0 !important;
+}
+
+.DTTT_Print #dataTables_wrapper .DTTT.btn-group {
+	display: none !important;
+}
+
+.DTTT_Print .DTTT_print_info {
+	background: rgba(255, 255, 255, 0.9);
+	display: block;
+	left: 0;
+	height: 100px;
+	line-height: 100px;
+	position: fixed;
+	font-size: 14px;
+	text-align: center;
+	top: 0;
+	width: 100%;
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="suggestionsMapper">
+
+	<!-- <resultMap id="suggestionsResultSet" type="Suggestions">
+		<id property="sugNo" column="sug_no" />
+		<result property="sugTitle" column="sug_title" />
+		<result property="sugContent" column="sug_content"/>
+		<result property="sugDate" column="sug_date"/>
+		<result property="trainerNo" column="trainer_no"/>
+	</resultMap> -->
+
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from suggestions
+	</select>
+	
+	<select id="selectList" resultType="Suggestions">
+		select sug_no, sug_title, sug_date
+		from suggestions
+		order by 1 desc
+	</select>
+	
+	<insert id="insertSug" parameterType="Suggestions">
+		insert into suggestions
+		values(seq_sgsno.nextval, #{sugTitle}, #{sugContent}, #{sugDate}, #{trainerNo})
+	</insert>
+
+	<select id="selectSug" resultType="Suggestions" parameterType="_int">
+		select *
+		from suggestions
+		where sug_no=#{sugNo}
+	</select>
+	
+	<update id="updateSug" parameterType="Suggestions">
+		update suggestions 
+		set sug_content=#{sugContent}
+		where sug_no=#{sugNo}
+	</update>
+</mapper>

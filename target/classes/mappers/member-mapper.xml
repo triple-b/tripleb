@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+	
+	<select id="selectListMember" resultType="MemberDtoU">
+		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_GENDER, MEMBER_PHONE, MEMBER_ENROLLDATE, MEMBER_TRAINER,
+			   PRODUCT_NAME, MEMPRODUCT_START, MEMPRODUCT_END
+		FROM MEMBER
+		LEFT JOIN MPRODUCT USING (MEMBER_NO)
+		LEFT JOIN PRODUCT USING (PRODUCT_NO)
+		WHERE MEMBER_STATUS='N' AND BLACKLIST_STATUS='N' 
+		ORDER BY 1 DESC
+	</select>
+	
+	<select id="pauseSelectListMember" resultType="MemberDtoU">
+		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_GENDER, MEMBER_PHONE, MEMBER_ENROLLDATE, MEMBER_TRAINER,
+			   PAUSE_START, PAUSE_END, PRODUCT_NAME, MEMPRODUCT_START, MEMPRODUCT_END
+		FROM MEMBER
+		LEFT JOIN MPRODUCT USING (MEMBER_NO)
+		LEFT JOIN PRODUCT USING (PRODUCT_NO)
+		WHERE MEMBER_STATUS='P'
+		ORDER BY 1 DESC
+	</select>
+	
+	<select id="blackSelectListMember" resultType="MemberDtoU">
+		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_GENDER, MEMBER_PHONE, MEMBER_ENROLLDATE, MEMBER_TRAINER,
+			   BLACKLIST_ENROLLDATE, BLACKLIST_CONTENT
+		FROM MEMBER
+		LEFT JOIN MPRODUCT USING (MEMBER_NO)
+		LEFT JOIN PRODUCT USING (PRODUCT_NO)
+		WHERE MEMBER_STATUS='N' AND BLACKLIST_STATUS='Y'
+		ORDER BY 1 DESC
+	</select>
+	
+	<select id="expSelectListMember" resultType="MemberDtoU">
+		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_GENDER, MEMBER_PHONE, MEMBER_ENROLLDATE, MEMBER_TRAINER,
+			   PRODUCT_NAME, MEMPRODUCT_START, MEMPRODUCT_END
+		FROM MEMBER
+		LEFT JOIN MPRODUCT USING (MEMBER_NO)
+		LEFT JOIN PRODUCT USING (PRODUCT_NO)
+		WHERE MEMBER_STATUS='N' AND SYSDATE > MEMPRODUCT_END
+		ORDER BY 1 DESC
+	</select>
+	
+	<select id="detailMember" parameterType="_int" resultType="MemberDtoU">
+		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_GENDER, MEMBER_PHONE, MEMBER_EMAIL, MEMBER_ADDRESS, MEMBER_HEIGHT, 
+			   MEMBER_WEIGHT, MEMBER_NOTE, MEMBER_TRAINER, MEMBER_BIRTH, PAUSE_START, PAUSE_END,
+			   PRODUCT_NAME, MEMPRODUCT_START, MEMPRODUCT_END, LOCKER_NO
+		FROM MEMBER
+		LEFT JOIN MPRODUCT USING (MEMBER_NO)
+		LEFT JOIN PRODUCT USING (PRODUCT_NO)
+		LEFT JOIN LOCKER USING (MEMBER_NO)
+		WHERE MEMBER_NO=#{mno}
+	</select>
+	
+	<update id="updateMember" parameterType="MemberDtoU">
+		update member
+		set member_gender=#{memberGender}, member_email=#{memberEmail}, member_phone=#{memberPhone},
+			member_address=#{memberAddress}, member_height=#{memberHeight}, member_weight=#{memberWeight},
+			member_image=#{memberImage}, member_note=#{memberNote}, member_Birth=#{memberBirth}
+		where member_no=#{memberNo}
+	</update>
+	<update id="deleteMember" parameterType="MemberDtoU">
+		update member
+		set member_status='Y'
+		where member_no=#{chk}
+	</update>
+	
+	<insert id="insertMember" parameterType="MemberDtoU">
+		insert into member
+		values (seq_memno.nextval, #{memberName}, #{memberGender}, #{memberEmail}, #{memberPhone},
+				#{memberAddress}, #{memberHeight}, #{memberWeight}, #{memberImage}, default,
+				#{memberNote}, default, null, null, default, null, #{memberBirth}, null, null)
+	</insert>
+	<update id="blackMember" parameterType="memberDtoU">
+		update member
+		set blacklist_status='Y', blacklist_enrolldate=sysdate, blacklist_content=#{blacklistContent} 
+		where member_no=#{memberNo}
+	</update>
+	<update id="blackCancelMember" parameterType="memberDtoU">
+		update member
+		set blacklist_status='N', blacklist_enrolldate=null, member_Note=#{memberNote}, blacklist_content=null
+		where member_no=#{memberNo}
+	</update>
+	
+	
+	
+</mapper>

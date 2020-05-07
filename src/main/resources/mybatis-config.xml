@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="com.jh.tripleb.trainer.model.vo.Trainer" alias="Trainer"/>
+		<typeAlias type="com.jh.tripleb.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.jh.tripleb.member.model.vo.MemberDtoU" alias="MemberDtoU"/>
+		<typeAlias type="com.jh.tripleb.invoice.model.vo.Invoice" alias="Invoice" />	
+		<typeAlias type="com.jh.tripleb.invoice.model.vo.InvoiceCompanyDto" alias="InvoiceCompanyDto" />
+		<typeAlias type="com.jh.tripleb.invoice.model.vo.InvoicePurchaseDto" alias="InvoicePurchaseDto" />
+		<typeAlias type="com.jh.tripleb.classInfo.model.vo.ClassInfo" alias="ClassInfo"/>
+		<typeAlias type="com.jh.tripleb.suggestions.model.vo.Suggestions" alias="Suggestions"/>
+		<typeAlias type="com.jh.tripleb.product.model.vo.Product" alias="Product"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="/mappers/trainer-mapper.xml"/>
+		<mapper resource="/mappers/member-mapper.xml"/>
+		<mapper resource="/mappers/invoice-mapper.xml" />
+		<mapper resource="/mappers/suggestions-mapper.xml"/>
+		<mapper resource="/mappers/product-mapper.xml"/>
+		<mapper resource="/mappers/class-mapper.xml"/>
+	</mappers>
+	
+
+</configuration>

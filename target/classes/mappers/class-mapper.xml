@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="classMapper">
+
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from classInfo
+		where class_status='Y'
+	</select>
+
+	<select id="selectList" resultType="ClassInfo">
+		select *
+		from classInfo
+		where class_status='Y'
+	</select>
+	
+	<insert id="insertClass" parameterType="ClassInfo">
+		insert into classInfo
+		values(seq_clsno.nextval, default, #{classStDate}, #{classEndDate}, default, #{trainerNo}, seq_prno.nextval, #{className}, #{times}, #{classMaxCount}, #{classContent})
+	</insert>
+</mapper>
