@@ -25,6 +25,7 @@
 		<typeAlias type="com.jh.tripleb.equipCheck.model.vo.EquipCheckDto" alias="EquipCheckDto"/>
 		<typeAlias type="com.jh.tripleb.machine.model.vo.Machine" alias="Machine"/>
 		<typeAlias type="com.jh.tripleb.equipCheck.model.vo.EquipDto" alias="EquipDto"/>
+		<typeAlias type="com.jh.tripleb.calendar.model.vo.Calendar" alias="Calendar"/>
 	</typeAliases>
 	
 	<mappers>
@@ -38,6 +39,7 @@
 		<mapper resource="/mappers/equipment-mapper.xml"/>
 		<mapper resource="/mappers/equipcheck-mapper.xml"/>
 		<mapper resource="/mappers/machine-mapper.xml"/>
+		<mapper resource="/mappers/calendar-mapper.xml"/>
 	</mappers>
 	
 

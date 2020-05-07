@@ -28,18 +28,11 @@
 								<span>홈</span>
 							</a>
 						</li>
-						<li class="nav-parent">
-							<a>
+						<li class="nav-active">
+							<a href="list.ume">
 								<i class="fa fa-group" aria-hidden="true"></i>
 								<span>회원관리</span>
 							</a>
-							<ul class="nav nav-children">
-								<li>
-									<a href="list.ume">
-										 회원관리
-									</a>
-								</li>
-							</ul>
 						</li>
 						<li class="nav-parent">
 							<a>
@@ -134,7 +127,7 @@
 							</ul>
 						</li>
 						<li class="nav-active">
-							<a href="">
+							<a href="list.uca">
 								<i class="fa fa-calendar" aria-hidden="true"></i>
 								<span>일정관리</span>
 							</a>
