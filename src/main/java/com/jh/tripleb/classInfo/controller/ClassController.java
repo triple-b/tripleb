@@ -24,6 +24,7 @@ public class ClassController {
 	public String selectClList(Model model) {
 		int listCount = cService.getListCount();
 		
+		// 깃 좀 그만하자!
 		ArrayList<ClassInfo> list = cService.selectList();
 		
 		return "classInfo/classList";
