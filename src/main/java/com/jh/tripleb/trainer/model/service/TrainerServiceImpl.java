@@ -34,13 +34,13 @@ public class TrainerServiceImpl implements TrainerService{
 	}
 
 	@Override
-	public ArrayList<Trainer> calListTrainer() {
-		return tDao.calListTrainer(sqlSession);
+	public ArrayList<Trainer> listTrainer() {
+		return tDao.listTrainer(sqlSession);
 	}
 
 	@Override
-	public ArrayList<Trainer> onListTrainer() {
-		return tDao.onListTrainer(sqlSession);
+	public Trainer detailTrainer(int tno) {
+		return tDao.detailTrainer(sqlSession, tno);
 	}
 
 

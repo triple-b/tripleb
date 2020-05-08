@@ -38,7 +38,7 @@ public class CalendarController {
 	@RequestMapping("calendar.uca")
 	public ModelAndView CalendarForm(ModelAndView mv) {
 		
-		ArrayList<Trainer> list = tService.calListTrainer();
+		ArrayList<Trainer> list = tService.listTrainer();
 		
 		if(list != null) {
 			mv.addObject("list", list).setViewName("calendar/calendarList");

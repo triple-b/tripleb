@@ -22,16 +22,16 @@
 		where trainer_no=#{trainerNo}
 	</update>
 	
-	<select id="calListTrainer" resultType="Trainer">
-		select *
-		from trainer
-		where trainer_status='Y'
-	</select>
-	
-	<select id="onListTrainer" resultType="Trainer">
+	<select id="listTrainer" resultType="Trainer">
 		SELECT * FROM TRAINER
 		WHERE TRAINER_STATUS='Y'
 		ORDER BY TRAINER_GRADE DESC
+	</select>
+	
+	<select id="detailTrainer" parameterType="_int" resultType="Trainer">
+		SELECT *
+		FROM TRAINER
+		WHERE TRAINER_NO=#{tno} AND TRAINER_STATUS='Y'
 	</select>
   
   

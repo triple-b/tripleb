@@ -7,7 +7,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
+<style>
+	#sideBarDiv>ul>li:hover{cursor:pointer;}
+</style>
 </head>
 <body>
 	<aside id="sidebar-right" class="sidebar-right">
@@ -43,39 +47,54 @@
 								 	<li class="status-offline">
 								 </c:otherwise>
 								</c:choose>
-								<figure class="profile-picture">
-									<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/${ ot.trainerThumbnail }" alt="${ ot.trainerName }" class="img-circle">
-								</figure>
-								<div class="profile-info">
-									<span class="name">${ ot.trainerName } 트레이너 (${ ot.trainerGrade })</span>
-									<span class="title">ON : 
-										<c:choose>
-											<c:when test="${ ot.trainerEcheck eq ot.trainerScheck }">
-												${ ot.trainerScheck }
-											</c:when>
-											<c:otherwise>
-												--
-											</c:otherwise>
-										</c:choose>
-									
-									</span>
-									<span class="title">OFF : 
-										<c:choose>
-											<c:when test="${ ot.trainerEcheck eq ot.trainerScheck }">
-												${ ot.trainerEcheck }
-											</c:when>
-											<c:otherwise>
-												--
-											</c:otherwise>
-										</c:choose>
-									</span>
-								</div>
+										<figure class="profile-picture">
+											<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/${ ot.trainerThumbnail }" alt="${ ot.trainerName }" class="img-circle">
+										</figure>
+										<div class="profile-info">
+											<input type="hidden" name="trainerNo" value="${ ot.trainerNo }">
+											<span class="name">${ ot.trainerName } 트레이너 (${ ot.trainerGrade })</span>
+											<span class="title">ON : 
+												<c:choose>
+													<c:when test="${ ot.trainerEcheck eq ot.trainerScheck }">
+														${ ot.trainerScheck }
+													</c:when>
+													<c:otherwise>
+														--
+													</c:otherwise>
+												</c:choose>
+											
+											</span>
+											<span class="title">OFF : 
+												<c:choose>
+													<c:when test="${ ot.trainerEcheck eq ot.trainerScheck }">
+														${ ot.trainerEcheck }
+													</c:when>
+													<c:otherwise>
+														--
+													</c:otherwise>
+												</c:choose>
+											</span>
+										</div>
 								</li>
 							</c:forEach>
 							
 
 						</ul>
 					</div>
+					<script>
+						$(function(){
+							$("#sideBarDiv ul li").click(function(){
+								
+								$(this).each(function(){
+									var otno = $(this).children().eq(1).children().eq(0).val();
+									
+									location.href="lock.utr?otno=" + otno;
+									
+								})
+							})
+						})
+					</script>
+					
 					
 	
 				</div>

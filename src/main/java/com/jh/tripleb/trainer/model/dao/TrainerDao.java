@@ -15,7 +15,6 @@ public class TrainerDao {
 	}
 	
 	public Trainer changeTrainer(SqlSessionTemplate sqlSession, Trainer t) {
-		
 		return sqlSession.selectOne("trainerMapper.changeTrainer", t);
 	}
 	
@@ -23,12 +22,12 @@ public class TrainerDao {
 		return sqlSession.update("trainerMapper.updateTrainerProfile", t);
 	}
 	
-	public ArrayList<Trainer> calListTrainer(SqlSessionTemplate sqlSession){
-		return (ArrayList)sqlSession.selectList("trainerMapper.calListTrainer");
+	public ArrayList<Trainer> listTrainer(SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("trainerMapper.listTrainer");
 	}
 	
-	public ArrayList<Trainer> onListTrainer(SqlSessionTemplate sqlSession){
-		return (ArrayList)sqlSession.selectList("trainerMapper.onListTrainer");
+	public Trainer detailTrainer(SqlSessionTemplate sqlSession, int tno) {
+		return sqlSession.selectOne("trainerMapper.detailTrainer", tno);
 	}
 
 }

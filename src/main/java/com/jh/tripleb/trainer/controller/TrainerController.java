@@ -35,7 +35,7 @@ public class TrainerController {
 	public ModelAndView loginTrainer(Trainer t, HttpSession session, ModelAndView mv) {
 		
 		Trainer loginUser = tService.loginTrainer(t);
-		ArrayList<Trainer> onTrainer = tService.onListTrainer();
+		ArrayList<Trainer> onTrainer = tService.listTrainer();
 		
 		if(loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
@@ -93,6 +93,20 @@ public class TrainerController {
 			model.addAttribute("msg", "프로필 수정 실패");
 			return "common/errorPage";
 		}
+	}
+	
+	@RequestMapping("lock.utr")
+	public ModelAndView lockPage(int otno, ModelAndView mv) {
+		
+		Trainer t = tService.detailTrainer(otno);
+		
+		if(t != null) {
+			mv.addObject("t", t).setViewName("trainer/lockTrainer");
+		}else {
+			mv.addObject("msg", "트레이너 조회 수정 실패").setViewName("common/errorPage");
+		}
+		
+		return mv;
 	}
 	
 	
