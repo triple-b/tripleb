@@ -29,7 +29,7 @@ public class InvocieController {
 		
 		model.addAttribute("list", list);		
 		
-		return "invoice/invoiceListView";		
+		return "invoice/invoiceListView";
 	}
 	
 	@RequestMapping("detail.miv")
