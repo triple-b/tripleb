@@ -188,28 +188,17 @@ var calendar = $('#calendar').fullCalendar({
         for (var i=0; i<response.length; i++){
         	
         	var evt = {
-        		    "_id": 1,
-        		    "title": "거래처 미팅",
-        		    "description": "Lorem ipsum dolor sit incid idunt ut Lorem ipsum sit.",
-        		    "start": "2020-05-07T09:30",
-        		    "end": "2020-05-07T15:00",
-        		    "type": "카테고리1",
-        		    "username": "다현",
-        		    "backgroundColor": "#D25565",
-        		    "textColor": "#ffffff",
-        		    "allDay": false
-        			/*
-	        	 "_id": 1,
+        		
+	        	 "_id": response[i].calNo,
 	             "title": response[i].calTitle,
 	             "description": response[i].calContent,
 	             "start": response[i].calStart,
 	             "end": response[i].calEnd,
-	             "type": "카테고리1",
-	             "username": "다현",
-	             "backgroundColor": "#D25565",
+	             "type": response[i].calType,
+	             "username": response[i].trainerName,
+	             "backgroundColor": response[i].calColor,
 	             "textColor": "#ffffff",
 	             "allDay":false
-	             */
             
         	};
         console.log(evt);

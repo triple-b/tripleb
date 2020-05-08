@@ -16,7 +16,7 @@
 	
 	<update id="updateTrainerProfile" parameterType="Trainer">
 		update trainer
-		set trainer_phone=#{trainerPhone}, trainer_email=#{trainerEmail},
+		set trainer_nick=#{trainerNick}, trainer_phone=#{trainerPhone}, trainer_email=#{trainerEmail}, 
 		    trainer_address=#{trainerAddress}, trainer_thumbnail=#{trainerThumbnail},
 		    trainer_award=#{trainerAward}
 		where trainer_no=#{trainerNo}
@@ -26,6 +26,12 @@
 		select *
 		from trainer
 		where trainer_status='Y'
+	</select>
+	
+	<select id="onListTrainer" resultType="Trainer">
+		SELECT * FROM TRAINER
+		WHERE TRAINER_STATUS='Y'
+		ORDER BY TRAINER_GRADE DESC
 	</select>
   
   

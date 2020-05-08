@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jh.tripleb.calendar.model.service.CalendarService;
 import com.jh.tripleb.calendar.model.vo.Calendar;
+import com.jh.tripleb.trainer.model.service.TrainerService;
 import com.jh.tripleb.trainer.model.vo.Trainer;
 
 @Controller
@@ -18,26 +20,31 @@ public class CalendarController {
 	
 	@Autowired
 	private CalendarService ucService;
+	@Autowired
+	private TrainerService tService;
 	
 	@ResponseBody
 	@RequestMapping(value="list.uca", produces="application/json; charset=utf-8")
 	public String listCalendar() {
 		
 		ArrayList<Calendar> list = ucService.listCalendar();
-		return new Gson().toJson(list);
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+		
+		return gson.toJson(list);
 	}
 	
 	
 	@RequestMapping("calendar.uca")
 	public ModelAndView CalendarForm(ModelAndView mv) {
-		ArrayList<Trainer> list = TrainerService().calListTrainer();
 		
-		if(list != null) {			
+		ArrayList<Trainer> list = tService.calListTrainer();
+		
+		if(list != null) {
 			mv.addObject("list", list).setViewName("calendar/calendarList");
 		}else {
 			mv.addObject("msg", "일정 조회 실패").setViewName("common/errorPage");
 		}
-		
 		return mv;
 	}
 	

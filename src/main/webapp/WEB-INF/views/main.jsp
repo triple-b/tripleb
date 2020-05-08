@@ -200,13 +200,13 @@
 
 											<div class="widget-profile-info">
 												<div class="profile-picture">
-													<img src="assets/images/!logged-user.jpg">
+													<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/${ loginUser.trainerThumbnail}">
 												</div>
 												<div class="profile-info">
 													<h4 class="name text-semibold">김주희 트레이너</h4>
 													<h5 class="role">사원</h5>
 													<div class="profile-footer">
-														<a href="#">(edit profile)</a>
+														<a href="profileForm.utr">(edit profile)</a>
 													</div>
 												</div>
 											</div>

@@ -13,7 +13,6 @@
 	<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap/css/bootstrap.css" />
 	<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/font-awesome/css/font-awesome.css" />
 	<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/magnific-popup/magnific-popup.css" />
-	<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
 	
 	<!-- Specific Page Vendor CSS -->
 	<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
@@ -55,7 +54,7 @@
 			<div id="userbox" class="userbox">
 				<a href="#" data-toggle="dropdown">
 					<figure class="profile-picture">
-						<img src="${ pageContext.servletContext.contextPath }/resources/assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+						<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/${ loginUser.trainerThumbnail}" alt="Joseph Doe" class="img-circle" data-lock-picture="${ pageContext.servletContext.contextPath }/resources/assets/images/!logged-user.jpg" />
 					</figure>
 					<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
 						<span class="name">${ loginUser.trainerName } 트레이너</span>

@@ -385,22 +385,22 @@ html.dark .pagination > li.active a {
 }
 /* Fullcalendar */
 .fc .fc-widget-header {
-	background: #0088cc;
-	border-color: #0088cc;
+	background: #0f4c81;
+	border-color: #0f4c81;
 }
 
 .fc .fc-header-title h2:before {
-	color: #0088cc;
+	color: #0f4c81;
 }
 
 .fc-event {
-	background: #0088cc;
-	border-color: #0088cc;
+	background: #0f4c81;
+	border-color: #0f4c81;
 }
 
 .fc-event.fc-event-primary {
-	background: #0088cc;
-	border-color: #0088cc;
+	background: #0f4c81;
+	border-color: #0f4c81;
 }
 /* Maps */
 .jqvmap-zoomin,

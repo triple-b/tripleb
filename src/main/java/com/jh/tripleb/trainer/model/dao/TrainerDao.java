@@ -26,5 +26,9 @@ public class TrainerDao {
 	public ArrayList<Trainer> calListTrainer(SqlSessionTemplate sqlSession){
 		return (ArrayList)sqlSession.selectList("trainerMapper.calListTrainer");
 	}
+	
+	public ArrayList<Trainer> onListTrainer(SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("trainerMapper.onListTrainer");
+	}
 
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,11 +31,11 @@
 				</header>
 				<div class="row">
 						<div class="col-md-4 col-lg-3">
-
+							
 							<section class="panel">
 								<div class="panel-body">
 									<div class="thumb-info mb-md">
-										<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/!logged-user.jpg" class="rounded img-responsive" alt="John Doe">
+										<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/${ loginUser.trainerThumbnail}" class="rounded img-responsive" alt="John Doe">
 										<div class="thumb-info-title">
 											<span class="thumb-info-inner">${ loginUser.trainerName }</span>
 											<span class="thumb-info-type">
@@ -64,7 +65,7 @@
 								<div class="tab-content">
 									<div id="edit" class="tab-pane active">
 
-										<form class="form-horizontal" method="get" action="update.utr">
+										<form class="form-horizontal" action="update.utr" method="post" enctype="multipart/form-data">
 											<h4 class="mb-xlg">필수사항</h4>
 											<fieldset>
 											<input type="hidden" name="trainerNo" value="${ loginUser.trainerNo }">
@@ -75,9 +76,24 @@
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="profileAddress">핸드폰</label>
+													<label class="col-md-3 control-label" for="profileBirth">생년월일</label>
 													<div class="col-md-8">
-														<input id="phone" data-plugin-masked-input data-input-mask="999-999-9999" placeholder="123-123-1234"  class="form-control" id="profileAddress" name="trainerPhone" value="${ loginUser.trainerPhone }">
+														<p id="profileBirth" style="margin:0px; padding-top:7px">
+															<fmt:parseDate value="${loginUser.trainerBirth}" var="noticePostDate" pattern="yyyyMMdd"/>
+															<fmt:formatDate value="${noticePostDate}" pattern="yyyy/MM/dd"/>
+														</p>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="profileNick">닉네임</label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" id="profileNick" name="trainerNick" value="${ loginUser.trainerNick }">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="profilePhone">핸드폰</label>
+													<div class="col-md-8">
+														<input id="number" class="form-control" id="profilePhone" name="trainerPhone" value="${ loginUser.trainerPhone }">
 													</div>
 												</div>
 												<div class="form-group">
@@ -87,9 +103,9 @@
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="profileCompany">주소</label>
+													<label class="col-md-3 control-label" for="profileAddress">주소</label>
 													<div class="col-md-8">
-														<input type="text" class="form-control" id="profileCompany" name="trainerAddress" value="${ loginUser.trainerAddress }">
+														<input type="text" class="form-control" id="profileAddress" name="trainerAddress" value="${ loginUser.trainerAddress }">
 													</div>
 												</div>
 												<div class="form-group">
@@ -104,8 +120,7 @@
 															<span class="btn btn-default btn-file">
 																<span class="fileupload-exists">변경</span>
 																<span class="fileupload-new">파일 업로드</span>
-																<input type="file" name="newTrainerThumbnail"/>
-																<input type="hidden" name="trainerThumbnail" value="${ loginUser.trainerThumbnail }">
+																<input type="file" name="newThumbnail"/>
 															</span>
 															<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">초기화</a>
 														</div>
@@ -126,21 +141,6 @@
 												</div>
 											</fieldset>
 											<hr class="dotted tall">
-											<h4 class="mb-xlg">출근번호 변경</h4>
-											<fieldset class="mb-xl">
-												<div class="form-group">
-													<label class="col-md-3 control-label" for="profileNewPassword">새로운 출근번호</label>
-													<div class="col-md-8">
-														<input type="text" class="form-control" id="profileNewPassword">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-md-3 control-label" for="profileNewPasswordRepeat">출근번호 확인</label>
-													<div class="col-md-8">
-														<input type="text" class="form-control" id="profileNewPasswordRepeat">
-													</div>
-												</div>
-											</fieldset>
 											<div class="panel-footer">
 												<div class="row">
 													<div class="col-md-9 col-md-offset-3">

@@ -12,7 +12,6 @@
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap/js/bootstrap.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/nanoscroller/nanoscroller.js"></script>
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/magnific-popup/magnific-popup.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
 	
@@ -46,7 +45,6 @@
 	<!-- Theme Initialization Files -->
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/theme.init.js"></script>
 	
-
 	<!-- Examples -->
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/dashboard/examples.dashboard.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>

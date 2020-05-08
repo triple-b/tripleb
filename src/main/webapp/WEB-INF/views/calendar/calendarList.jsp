@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/uca.css">
 </head>
 <body>
+
 	 <section class="body">
 		<!-- 상단 페이지 -->
 		<jsp:include page="../common/header.jsp" />
@@ -38,13 +39,23 @@
 							<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
 						</div>
 				</header>
-				
-				
+
 				
 			<section class="panel">
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-9">
+							
+							 <!-- 일자 클릭시 메뉴오픈 -->
+						        <div id="contextMenu" class="dropdown clearfix">
+						            <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
+						                style="display:block;position:static;margin-bottom:5px;">
+						                <li><a tabindex="-1" href="#">수업</a></li>
+						                <li><a tabindex="-1" href="#">점검</a></li>
+						                <li class="divider"></li>
+						                <li><a tabindex="-1" href="#" data-role="close">닫기</a></li>
+						            </ul>
+						        </div>
 							
 							      <div id="wrapper">
 							          <div id="loading"></div>
@@ -63,53 +74,71 @@
 							                  </div>
 							                  <div class="modal-body">
 							
-							                      <div class="row">
-							                          <div class="col-xs-12">
-							                              <label class="col-xs-4" for="edit-allDay">하루종일</label>
-							                              <input class='allDayNewEvent' id="edit-allDay" type="checkbox">
-							                          </div>
-							                      </div>
-							
-							                      <div class="row">
-							                          <div class="col-xs-12">
-							                              <label class="col-xs-4" for="edit-title">일정명</label>
-							                              <input class="inputModal" type="text" name="edit-title" id="edit-title"
-							                                  required="required" />
-							                          </div>
-							                      </div>
-							                      <div class="row">
-							                          <div class="col-xs-12">
-							                              <label class="col-xs-4" for="edit-start">시작</label>
-							                              <input class="inputModal" type="text" name="edit-start" id="edit-start" />
-							                          </div>
-							                      </div>
-							                      <div class="row">
-							                          <div class="col-xs-12">
-							                              <label class="col-xs-4" for="edit-end">끝</label>
-							                              <input class="inputModal" type="text" name="edit-end" id="edit-end" />
-							                          </div>
-							                      </div>
-							                      <div class="row">
-							                          <div class="col-xs-12">
-							                              <label class="col-xs-4" for="edit-color">색상</label>
-							                              <select class="inputModal" name="color" id="edit-color">
-							                                  <option value="#D25565" style="color:#D25565;">빨간색</option>
-							                                  <option value="#9775fa" style="color:#9775fa;">보라색</option>
-							                                  <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
-							                                  <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
-							                                  <option value="#f06595" style="color:#f06595;">핑크색</option>
-							                                  <option value="#63e6be" style="color:#63e6be;">연두색</option>
-							                                  <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
-							                                  <option value="#4d638c" style="color:#4d638c;">남색</option>
-							                                  <option value="#495057" style="color:#495057;">검정색</option>
-							                              </select>
-							                          </div>
-							                      </div>
+							                    <div class="row">
+						                            <div class="col-xs-12">
+						                                <label class="col-xs-4" for="edit-allDay">하루종일</label>
+							                            <input class='allDayNewEvent' id="edit-allDay" type="checkbox">
+						                            </div>
+						                        </div>
+						
+						                        <div class="row">
+						                            <div class="col-xs-12">
+						                                <label class="col-xs-4" for="edit-title">일정명</label>
+						                                <div class="col-sm-8" style="padding:0px;">
+							                                <input class="inputModal form-control" type="text" name="edit-title" id="edit-title"
+						                                    required="required" />
+						                                </div>
+						                            </div>
+						                        </div>
+						                        <div class="row">
+						                            <div class="col-xs-12">
+						                                <label class="col-xs-4" for="edit-start">시작</label>
+						                                <div class="col-sm-8" style="padding:0px;">
+						                                	<input class="inputModal form-control" type="text" name="edit-start" id="edit-start" />
+						                                </div>
+						                            </div>
+						                        </div>
+						                        <div class="row">
+						                            <div class="col-xs-12">
+						                                <label class="col-xs-4" for="edit-end">끝</label>
+						                                <div class="col-sm-8" style="padding:0px;">
+							                                <input class="inputModal form-control" type="text" name="edit-end" id="edit-end" />
+						                                </div>
+						                            </div>
+						                        </div>
+						                        <div class="row">
+						                            <div class="col-xs-12">
+						                                <label class="col-xs-4" for="edit-type">구분</label>
+						                                <div class="col-sm-8" style="padding:0px;">
+							                                <select class="inputModal form-control" name="edit-type" id="edit-type">
+							                                    <option value="수업">수업</option>
+							                                    <option value="점검">점검</option>
+							                                </select>
+						                                </div>
+						                            </div>
+						                        </div>
+						                        <div class="row">
+						                            <div class="col-xs-12">
+						                                <label class="col-xs-4" for="edit-color">색상</label>
+						                                <div class="col-sm-8" style="padding:0px;">
+							                                <select class="inputModal form-control" name="color" id="edit-color">
+							                                    <option value="#d2322d" style="color:#d2322d;">빨간색</option>
+							                                    <option value="#e36159" style="color:#e36159;">피치색</option>
+							                                    <option value="#ed9c28" style="color:#ed9c28;">노란색</option>
+							                                    <option value="#47a447" style="color:#47a447;">초록색</option>
+							                                    <option value="#0088cc" style="color:#0088cc;">파란색</option>
+							                                    <option value="#734ba9" style="color:#734ba9;">보라색</option>
+							                                    <option value="#5bc0de" style="color:#5bc0de;">하늘색</option>
+							                                    <option value="#171717" style="color:#171717;">검정색</option>
+							                                </select>
+						                                </div>
+						                            </div>
+						                        </div>t
 							                      <div class="row">
 							                          <div class="col-xs-12">
 							                              <label class="col-xs-4" for="edit-desc">설명</label>
-							                              <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
-							                                  id="edit-desc"></textarea>
+							                              <textarea rows="4" cols="2" class="inputModal form-control" name="edit-desc"
+							                                  id="edit-desc" style="width:66%"></textarea>
 							                          </div>
 							                      </div>
 							                  </div>
@@ -133,17 +162,26 @@
 							          </div>
 							
 							          <div class="panel-body">
-						
-							
-							              <div class="col-lg-6">
-							                  <label for="calendar_view">등록자별</label>
-							                  <div class="input-group">
-							                  <c:forEach items="${ list }" var="t">
-							                      <label class="checkbox-inline"><input class='filter' type="checkbox" value="${ t.trainerName }"
-							                              checked>${ t.trainerName }</label>
-							                   </c:forEach>
-							                  </div>
-							              </div>
+							          
+							          <div class="col-lg-6">
+					                    <label for="calendar_view">구분별</label>
+					                    <div class="input-group">
+					                        <select class="filter" id="type_filter" multiple="multiple">
+					                            <option value="수업">수업</option>
+					                            <option value="점검">점검</option>
+					                        </select>
+					                    </div>
+					                </div>
+
+						              <div class="col-lg-6">
+						                  <label for="calendar_view">등록자별</label>
+						                  <div class="input-group">
+						                  <c:forEach items="${ list }" var="t">
+						                      <label class="checkbox-inline"><input class='filter' type="checkbox" value="${ t.trainerName }"
+						                              checked>${ t.trainerName }</label>
+						                   </c:forEach>
+						                  </div>
+						              </div>
 							
 							          </div>
 							      </div>

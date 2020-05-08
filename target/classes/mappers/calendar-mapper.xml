@@ -3,9 +3,10 @@
 <mapper namespace="calendarMapper">
 
 	<select id="selectListCalendar" resultType="Calendar">
-		select *
-		from calendar
-		where cal_status='N'
+		SELECT CAL_NO, CAL_TITLE, CAL_CONTENT, CAL_START, CAL_END, CAL_STATUS, TRAINER_NAME, CAL_TYPE, CAL_COLOR
+		FROM CALENDAR
+		JOIN TRAINER USING (TRAINER_NO)
+		WHERE CAL_STATUS='N'
 	</select>
 	
 </mapper>

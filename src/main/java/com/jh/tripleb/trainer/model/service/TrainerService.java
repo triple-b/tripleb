@@ -24,5 +24,8 @@ public interface TrainerService {
 	
 	// 1. 캘린더 트레이너 리스트 서비스
 	ArrayList<Trainer> calListTrainer();
+	
+	// 2. 사이드바 트레이너 출근 리스트 서비스
+	ArrayList<Trainer> onListTrainer();
 
 }

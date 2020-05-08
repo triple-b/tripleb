@@ -18,8 +18,6 @@ public class TrainerServiceImpl implements TrainerService{
 	private SqlSessionTemplate sqlSession;
 
 	
-	
-	
 	@Override
 	public Trainer loginTrainer(Trainer t) {
 		return tDao.loginTrainer(sqlSession, t);
@@ -38,6 +36,11 @@ public class TrainerServiceImpl implements TrainerService{
 	@Override
 	public ArrayList<Trainer> calListTrainer() {
 		return tDao.calListTrainer(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Trainer> onListTrainer() {
+		return tDao.onListTrainer(sqlSession);
 	}
 
 

@@ -30,6 +30,6 @@ public class Trainer {
 	private Date trainerEnd;		// 퇴사일
 	private Date trainerScheck;		// 출근시간
 	private Date trainerEcheck;		// 퇴근시간
-	private String trainerThumbnail;// 트레이너 사진
+	private String trainerThumbnail;	// 트레이너 사진
 
 }

@@ -361,7 +361,7 @@
 
 				<!--회원등록 Modal  -->
 				<div id="memberinsert" class="modal-block mfp-hide modal-block-lg">
-					<form id="enrollForm" method="post" action="insert.ume" method="post" enctype="multipart/form-data">
+					<form id="enrollForm" action="insert.ume" method="post" enctype="multipart/form-data">
 						<section class="panel">
 							<header class="panel-heading">
 								<h2 class="panel-title">회원 등록</h2>
