@@ -194,7 +194,7 @@
 													<td>${ p.productName }</td>
 													<td>${ p.memberEnrollDate }</td>
 													<td>${ p.pauseStart }</td>
-													<td>${ p.pauseEnd }</td>
+													<td>${ p.pauseEnd } 끝</td>
 													</tr>
 												</c:forEach>
 											</tbody>
