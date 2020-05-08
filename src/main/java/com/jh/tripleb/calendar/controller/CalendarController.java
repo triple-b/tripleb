@@ -29,7 +29,7 @@ public class CalendarController {
 		return new Gson().toJson(list);
 	}
 	
-	// 임시 수정
+	
 	@RequestMapping("calendar.uca")
 	public ModelAndView CalendarForm(ModelAndView mv) {
 		ArrayList<Trainer> list = tService.calListTrainer();
