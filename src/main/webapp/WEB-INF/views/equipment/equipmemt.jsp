@@ -175,19 +175,18 @@
 											<input type="text" name="equipmentStock" class="form-control" placeholder="" />
 										</div>
 									</div>
-								<hr>
-									
+									<hr>
+								</div>
 							</div>
+							<footer class="panel-footer">
+								<div class="row">
+									<div class="col-md-12 text-right">
+										<button type="submit" class="btn btn-primary">추가</button>
+										<button class="btn btn-default modal-dismiss">취소</button>
+									</div>
+								</div>
+							</footer>
 						</form>
-					</div>
-					<footer class="panel-footer">
-						<div class="row">
-							<div class="col-md-12 text-right">
-								<button type="submit" class="btn btn-primary modal-confirm">추가</button>
-								<button class="btn btn-default modal-dismiss">취소</button>
-							</div>
-						</div>
-					</footer>
 				</section>
 			</div>
 
@@ -223,17 +222,18 @@
 										<input type="text" name="equipmentStock" class="form-control" placeholder="" />
 									</div>
 								</div>
+								
 								<input type="hidden" name="trainerNo" value="${loginUser.trainerNo}"/>
-							</form>
-						</div>
-						<footer class="panel-footer">
-							<div class="row">
-								<div class="col-md-12 text-right">
-									<button type="submit" class="btn btn-primary modal-confirm">등록</button>
-									<button class="btn btn-default modal-dismiss">취소</button>
 								</div>
-							</div>
-						</footer>
+								<footer class="panel-footer">
+									<div class="row">
+										<div class="col-md-12 text-right">
+											<button type="submit" class="btn btn-primary">등록</button>
+											<button class="btn btn-default modal-dismiss">취소</button>
+										</div>
+									</div>
+								</footer>
+							</form>
 					</section>
 				</div>
 		

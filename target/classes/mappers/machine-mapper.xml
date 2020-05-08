@@ -7,15 +7,21 @@
 	  	<id property="mcNo" column="mc_no" />
 	  	<result property="mcName" column="mc_name" />
 	  	<result property="mcExplain" column="mc_explain" />
-		<result property="mcThumbnail" column="mc_thumbnail" />
+		<result property="thumbnail" column="thumbnail" />
 		<result property="mcStatus" column="mc_status" />
 		<result property="mcDate" column="mc_date" />
   	</resultMap>
+  	
+  	<select id="selectList" resultMap="machineResultSet">
+  		select *
+  		from machine
+  		where mc_status='Y'
+  	</select>
   
   	
   	<insert id="insertMachine" parameterType="Machine">
   		insert into machine
-  		values(seq_NTNO.nextval, #{equipmentName}, #{equipmentStock}, default, default)
+  		values(seq_MCNO.nextval, #{mcExplain}, #{thumbnail}, default, default, #{mcName} ,#{thumbChange})
   	</insert>
   	
   </mapper>

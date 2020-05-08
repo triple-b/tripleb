@@ -40,7 +40,7 @@
   	
   	<insert id="insertEquipment" parameterType="Equipment">
   		insert into equipment
-  		values(seq_NTNO.nextval, #{equipmentName}, #{equipmentStock}, default, default)
+  		values(seq_EQNO.nextval, #{equipmentName}, #{equipmentStock}, default, default)
   	</insert>
   	
   </mapper>

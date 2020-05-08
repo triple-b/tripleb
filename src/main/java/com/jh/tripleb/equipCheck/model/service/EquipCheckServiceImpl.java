@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.jh.tripleb.equipCheck.model.dao.EquipCheckDao;
 import com.jh.tripleb.equipCheck.model.vo.EquipCheckDto;
 import com.jh.tripleb.equipCheck.model.vo.EquipDto;
+import com.jh.tripleb.equipment.model.dao.EquipmentDao;
+import com.jh.tripleb.equipment.model.vo.Equipment;
 
 
 
@@ -20,6 +22,8 @@ public class EquipCheckServiceImpl implements EquipCheckService {
 	private SqlSessionTemplate sqlSession;
 	@Autowired
 	private EquipCheckDao ecDao;
+	@Autowired
+	private EquipmentDao eDao;
 	
 	@Override
 	public ArrayList<EquipCheckDto> selectEqList() {
@@ -30,6 +34,12 @@ public class EquipCheckServiceImpl implements EquipCheckService {
 	public int insertEquipCheck(EquipDto ec) {
 		int result1 = ecDao.insertEquip(sqlSession, ec);
 		if(result1 > 0) {
+			 ArrayList<Equipment> list = eDao.selectList(sqlSession);
+
+			 int epno = list.get(0).getEquipmentNo();
+
+			 ec.setEquipmentNo(epno);
+	
 			return ecDao.insertEquipCheck(sqlSession, ec);
 		} else {
 			return  result1;

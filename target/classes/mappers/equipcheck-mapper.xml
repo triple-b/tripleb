@@ -43,15 +43,25 @@
  		where eqCheck_no=#{ecno} 
  	</select> 
   
-  <insert id="insertEquipCheck" parameterType="EquipDto">
+  <insert id="insertEquip" parameterType="EquipDto">
   		insert into equipment
-  		values(seq_EQNO.nextval, #{equipmentName}, #{equipmentStock}, default, default)
+  		values(seq_EQNO.nextval, #{equipmentName}, #{equipmentStock}, SYSDATE, default)
 
   	</insert>
   	
-  	<insert id="insertEquip" parameterType="EquipDto">
+  	<insert id="insertEquipCheck" parameterType="EquipDto">
   		insert into equip_check
-  		values(seq_ECNO.nextval, #{lost}, #{broken}, default, #{trainerNo})
+  		values(seq_ECNO.nextval, #{broken}, #{lost}, default, #{equipmentNo}, #{trainerNo})
   		
   	</insert>
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
   </mapper>

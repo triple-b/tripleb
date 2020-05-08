@@ -8,23 +8,9 @@ public class EquipDto {
 	private String equipmentName;		// 비품명
 	private int equipmentStock;			// 총재고
 	private int equipmentNo;
+	private int trainerNo;
 	public EquipDto() {
 		
-	}
-	public EquipDto(int eqcheckNo, String broken, String lost, String equipmentName, int equipmentStock,
-			int equipmentNo) {
-		super();
-		this.eqcheckNo = eqcheckNo;
-		this.broken = broken;
-		this.lost = lost;
-		this.equipmentName = equipmentName;
-		this.equipmentStock = equipmentStock;
-		this.equipmentNo = equipmentNo;
-	}
-	@Override
-	public String toString() {
-		return "EquipDto [eqcheckNo=" + eqcheckNo + ", broken=" + broken + ", lost=" + lost + ", equipmentName="
-				+ equipmentName + ", equipmentStock=" + equipmentStock + ", equipmentNo=" + equipmentNo + "]";
 	}
 	public int getEqcheckNo() {
 		return eqcheckNo;
@@ -62,5 +48,27 @@ public class EquipDto {
 	public void setEquipmentNo(int equipmentNo) {
 		this.equipmentNo = equipmentNo;
 	}
-
+	public int getTrainerNo() {
+		return trainerNo;
+	}
+	public void setTrainerNo(int trainerNo) {
+		this.trainerNo = trainerNo;
+	}
+	public EquipDto(int eqcheckNo, String broken, String lost, String equipmentName, int equipmentStock,
+			int equipmentNo, int trainerNo) {
+		super();
+		this.eqcheckNo = eqcheckNo;
+		this.broken = broken;
+		this.lost = lost;
+		this.equipmentName = equipmentName;
+		this.equipmentStock = equipmentStock;
+		this.equipmentNo = equipmentNo;
+		this.trainerNo = trainerNo;
+	}
+	@Override
+	public String toString() {
+		return "EquipDto [eqcheckNo=" + eqcheckNo + ", broken=" + broken + ", lost=" + lost + ", equipmentName="
+				+ equipmentName + ", equipmentStock=" + equipmentStock + ", equipmentNo=" + equipmentNo + ", trainerNo="
+				+ trainerNo + "]";
+	}
 }

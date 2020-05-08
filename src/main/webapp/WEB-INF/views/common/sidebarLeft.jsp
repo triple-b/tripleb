@@ -87,7 +87,7 @@
 							</a>
 							<ul class="nav nav-children">
 								<li>
-									<a href="mcCheck.mc">
+									<a href="mcList.mc">
 										 시설관리
 									</a>
 								</li>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -215,10 +216,10 @@
 							<div class="panel-body">
 								<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
 									<div class="panel-body">
-										<table class="table table-bordered table-striped mb-none" id="datatable-default">
+										<table class="table table-bordered table-striped mb-none MachineArea" id="datatable-default">
 											<thead>
 												<tr>
-													<th><input type=""></th>
+													<th></th>
 													<th>No</th>
 													<th>기구명</th>
 													<th class="hidden-phone">등록일짜</th>
@@ -228,14 +229,6 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<th><input type="checkbox"></th>
-													<th>1</th>
-													<th>벤치</th>
-													<th class="hidden-phone">2020-04-23</th>
-													<th class="hidden-phone">이건 이렇케 해서 이렇케 사용하면 이런자극이</th>
-													<th class="hidden-phone">벤치.jap</th>
-												</tr>
 												
 											</tbody>
 										</table>
@@ -270,7 +263,6 @@
 							</header>
 							<div class="panel-body">
 								<form id="insertMachine" method="post" action="insert.mc" enctype="multipart/form-data">
-									
 									<hr>
 									<table align="center">
 										<tr>
@@ -289,16 +281,17 @@
 											<th colspan="2"><textarea rows="5" name="mcExplain" class="form-control" placeholder="기구설명을 작성해주세요.." ></textarea></th>
 										</tr>
 									</table>
-								</form>
-							</div>
-							<footer class="panel-footer">
-								<div class="row">
-									<div class="col-md-12 text-right">
-										<button class="btn btn-primary modal-confirm">등록</button>
-										<button class="btn btn-default modal-dismiss">취소</button>
-									</div>
+								
 								</div>
-							</footer>
+								<footer class="panel-footer">
+									<div class="row">
+										<div class="col-md-12 text-right">
+											<button class="btn btn-primary"  type="submit">등록</button>
+											<button class="btn btn-default modal-dismiss">취소</button>
+										</div>
+									</div>
+								</footer>
+							</form>
 						</section>
 					</div>
 
@@ -472,17 +465,27 @@
 	
 	<script>
 		$(function(){
-			selectMachineList()
+			selectList();
 		});
-		function selectMachineList(){
-			
+		function selectList(){
 				$.ajax({
-					url:"mlist.mc",
-					data:{mcno:${mc.machineNO}},
+					url:"mclist.mc",
 					type:"get",
 					success:function(list){
 						
-						console.log(list);
+						
+						var value = "";
+						$.each(list, function(i, obj){
+							value += "<tr>" +   
+										"<th><input type='checkbox' value=" + obj.mcNo + "></th>" +
+										"<th>" + obj.mcNo + "</th>" +
+										"<th>" + obj.mcName + "</th>" +
+										"<th>" + obj.mcDate + "</th>" +
+										"<th>" + obj.mcExplain + "</th>" +
+										"<th>" + obj.mcThumbnail + "</th>" +
+									 "</tr>"	
+						});
+						$(".MachineArea tbody").html(value);
 						
 					},error:function(){
 						console.log("댓글 리스트 조회용 ajax 통신 실패")
@@ -493,6 +496,7 @@
 				
 			}
 	</script>
+	
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.modals.js"></script>
 </body>
