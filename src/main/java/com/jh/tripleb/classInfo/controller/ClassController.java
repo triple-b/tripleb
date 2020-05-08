@@ -1,6 +1,5 @@
 package com.jh.tripleb.classInfo.controller;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jh.tripleb.classInfo.model.service.ClassService;
 import com.jh.tripleb.classInfo.model.vo.ClassInfo;
@@ -24,7 +22,8 @@ public class ClassController {
 	public String selectClList(Model model) {
 		int listCount = cService.getListCount();
 		
-		// 깃 좀 그만하자!
+		// 깃 좀 그만하자!!
+		
 		ArrayList<ClassInfo> list = cService.selectList();
 		
 		return "classInfo/classList";
