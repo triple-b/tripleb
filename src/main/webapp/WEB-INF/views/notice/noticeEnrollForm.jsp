@@ -75,7 +75,8 @@
 										</tr>
 										<tr>
 											<th><label for="title">작성자</label></th>
-											<td><input type="text" id="title" class="form-control" name="trainerNo" value="${loginUser.trainerName}" readonly></td>
+											<td><input type="text" id="title" class="form-control"  value="${loginUser.trainerName}" readonly></td>
+											<td><input type="hidden" id="title" class="form-control" name="trainerNo" value="${loginUser.trainerNo}" readonly></td>
 										</tr>
 									   
 										<tr>
