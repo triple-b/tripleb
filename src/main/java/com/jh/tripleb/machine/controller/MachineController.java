@@ -22,7 +22,8 @@ import com.jh.tripleb.machine.model.vo.Machine;
 @Controller
 public class MachineController {
 	
-	@Autowired private MachineService mService;
+	@Autowired
+	private MachineService hmService;
 	
 	@RequestMapping("mcList.mc")
 	public String selectMachineList() {
@@ -33,7 +34,7 @@ public class MachineController {
 	@RequestMapping(value="mclist.mc", produces="application/json; charset=utf-8")
 	public String selectList() {
 		
-		ArrayList<Machine> list = mService.selectList();
+		ArrayList<Machine> list = hmService.selectList();
 		
 		Gson gson = new Gson();
 		
@@ -54,7 +55,7 @@ public class MachineController {
 			m.setThumbChange(changeName);
 			m.setThumbnail(mcThumbnail);
 		}
-		int result = mService.insertMachine(m);
+		int result = hmService.insertMachine(m);
 		
 		if(result > 0) {
 			return "redirect:mcList.mc";

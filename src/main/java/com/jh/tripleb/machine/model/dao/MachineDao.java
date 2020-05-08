@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jh.tripleb.machine.model.vo.Machine;
 
-@Repository("mDao")
+@Repository("hmDao")
 public class MachineDao {
 
 	public int insertMachine(SqlSessionTemplate sqlSession, Machine m) {

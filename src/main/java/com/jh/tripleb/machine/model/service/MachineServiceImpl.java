@@ -9,24 +9,24 @@ import org.springframework.stereotype.Service;
 import com.jh.tripleb.machine.model.dao.MachineDao;
 import com.jh.tripleb.machine.model.vo.Machine;
 
-@Service("mService")
+@Service("hmService")
 public class MachineServiceImpl implements MachineService{
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	@Autowired
-	private MachineDao mDao;
+	private MachineDao hmDao;
 	
 	@Override
 	public ArrayList<Machine> selectList() {
 		
-		return mDao.selectList(sqlSession);
+		return hmDao.selectList(sqlSession);
 	}
 
 	@Override
 	public int insertMachine(Machine m) {
 		
-		return mDao.insertMachine(sqlSession,m);
+		return hmDao.insertMachine(sqlSession,m);
 	}
 
 	@Override
