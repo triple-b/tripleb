@@ -20,4 +20,9 @@ public class MachineDao {
 		return (ArrayList)sqlSession.selectList("machineMapper.selectList");
 	}
 
+	public int deleteMachine(SqlSessionTemplate sqlSession, int mcno) {
+		
+		return sqlSession.update("machineMapper.deleteMachine", mcno);
+	}
+
 }

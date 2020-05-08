@@ -31,8 +31,8 @@ public class MachineServiceImpl implements MachineService{
 
 	@Override
 	public int deleteMachine(int mcno) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return hmDao.deleteMachine(sqlSession, mcno);
 	}
 
 }

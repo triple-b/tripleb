@@ -67,6 +67,19 @@ public class MachineController {
 		}
 		}
 	
+		@RequestMapping("delete.mc")
+		public String deleteMachine(int mcno, Model model){
+		     System.out.println(mcno);
+			int result = hmService.deleteMachine(mcno);
+			
+			if(result > 0) { // 삭제 성공
+				return "redirect:mcList.mc";
+			}else { // 삭제 실패
+				model.addAttribute("msg", "기구 삭제 실패!");
+				return "common/errorPage";
+			}
+		}
+	
 		public String saveFile(MultipartFile file, HttpServletRequest request) {
 			
 			String resources = request.getSession().getServletContext().getRealPath("resources");

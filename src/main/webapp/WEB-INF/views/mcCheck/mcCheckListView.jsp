@@ -238,7 +238,7 @@
 							<footer class="panel-footer">
 								<div class="row">
 									<div class="col-md-12 text-right">
-										<button class="btn btn-primary modal-confirm">삭제</button>
+										<button class="btn btn-primary" onclick="deletemc()">삭제</button>
 										<button class="btn btn-default modal-dismiss">취소</button>
 									</div>
 								</div>
@@ -429,7 +429,7 @@
 										<div class="form-group">
 											<label class="col-sm-3 control-label">기구설명</label>
 											<div class="col-sm-9">
-												<textarea rows="5" class="form-control" placeholder="Type your comment..." required></textarea>
+												<input type="text" rows="5" class="form-control" placeholder="Type your comment..." readonly></input>
 											</div>
 										</div>
 									</div>
@@ -477,12 +477,12 @@
 						var value = "";
 						$.each(list, function(i, obj){
 							value += "<tr>" +   
-										"<th><input type='checkbox' value=" + obj.mcNo + "></th>" +
+										"<th><input type='checkbox' name='machinecheck' onclick='oneCheckbox(this)' value=" + obj.mcNo + "></th>" +
 										"<th>" + obj.mcNo + "</th>" +
 										"<th>" + obj.mcName + "</th>" +
 										"<th>" + obj.mcDate + "</th>" +
 										"<th>" + obj.mcExplain + "</th>" +
-										"<th>" + obj.mcThumbnail + "</th>" +
+										"<th>" + obj.thumbnail + "</th>" +
 									 "</tr>"	
 						});
 						$(".MachineArea tbody").html(value);
@@ -497,6 +497,34 @@
 			}
 	</script>
 	
+	<script>
+	
+	var machinecheckID = "";
+		
+    function oneCheckbox(a){
+
+        var obj = document.getElementsByName("machinecheck");
+
+        for(var i=0; i<obj.length; i++){
+
+            if(obj[i] != a){
+
+                obj[i].checked = false;
+
+            }
+
+        }
+        
+        machinecheckID = a.value;
+        
+
+    }
+
+    function deletemc() {
+    	location.href="delete.mc?mcno="+machinecheckID;
+    }
+	
+	</script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.modals.js"></script>
 </body>
