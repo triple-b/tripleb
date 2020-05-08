@@ -127,7 +127,7 @@
 							</ul>
 						</li>
 						<li class="nav-active">
-							<a href="list.uca">
+							<a href="calendar.uca">
 								<i class="fa fa-calendar" aria-hidden="true"></i>
 								<span>일정관리</span>
 							</a>

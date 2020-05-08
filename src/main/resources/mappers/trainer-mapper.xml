@@ -3,25 +3,6 @@
 
   <mapper namespace="trainerMapper">
   
-  	<!-- <resultMap type="Trainer" id="trainerResultSet">
-	  	<id property="trainerNo" column="trainer_no" />
-	  	<result property="trainerName" column="trainer_name" />
-	  	<result property="trainerPwd" column="trainer_pwd" />
-	  	<result property="trainerNick" column="trainer_nick" />
-	  	<result property="trainerBirth" column="trainer_birth" />
-	  	<result property="trainerGender" column="trainer_gender" />
-	  	<result property="trainerPhone" column="trainer_phone" />
-	  	<result property="trainerEmail" column="trainer_email" />
-	  	<result property="trainerAddress" column="trainer_address" />
-	  	<result property="trainerStatus" column="trainer_status" />
-	  	<result property="trainerGrade" column="trainer_grade" />
-	  	<result property="trainerAward" column="trainer_award" />
-	  	<result property="trainerJoin" column="trainer_join" />
-	  	<result property="trainerEnd" column="trainer_end" />
-	  	<result property="trainerScheck" column="trainer_scheck" />
-	  	<result property="trainerEcheck" column="trainer_echeck" />
-	  	<result property="trainerThumbnail" column="trainer_thumbnail" />
-  	</resultMap> -->
   
   	<select id="loginTrainer" parameterType="Trainer" resultType="Trainer">
 		select * from trainer
@@ -40,6 +21,12 @@
 		    trainer_award=#{trainerAward}
 		where trainer_no=#{trainerNo}
 	</update>
+	
+	<select id="calListTrainer" resultType="Trainer">
+		select *
+		from trainer
+		where trainer_status='Y'
+	</select>
   
   
   </mapper>

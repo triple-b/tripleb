@@ -1,5 +1,7 @@
 package com.jh.tripleb.trainer.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +32,12 @@ public class TrainerServiceImpl implements TrainerService{
 	
 	@Override
 	public int updateTrainerProfile(Trainer t) {
-		
 		return tDao.updateTrainerProfile(sqlSession, t);
+	}
+
+	@Override
+	public ArrayList<Trainer> calListTrainer() {
+		return tDao.calListTrainer(sqlSession);
 	}
 
 

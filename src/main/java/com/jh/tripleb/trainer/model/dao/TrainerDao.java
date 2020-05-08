@@ -1,5 +1,7 @@
 package com.jh.tripleb.trainer.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +21,10 @@ public class TrainerDao {
 	
 	public int updateTrainerProfile(SqlSessionTemplate sqlSession, Trainer t) {
 		return sqlSession.update("trainerMapper.updateTrainerProfile", t);
+	}
+	
+	public ArrayList<Trainer> calListTrainer(SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("trainerMapper.calListTrainer");
 	}
 
 }

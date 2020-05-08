@@ -123,6 +123,7 @@ var calendar = $('#calendar').fullCalendar({
     return filtering(event);
 
   },
+	
 
   //주말 숨기기 & 보이기 버튼
   customButtons: {
@@ -162,7 +163,7 @@ var calendar = $('#calendar').fullCalendar({
 
   /* ****************
    *  일정 받아옴 
-   * ************** */
+   * ************** */	
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
@@ -171,14 +172,52 @@ var calendar = $('#calendar').fullCalendar({
         // 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
       },
       success: function (response) {
-        var fixedDate = response.map(function (array) {
+    	  
+    	/*
+        var evnetList = response.map(function (array) {
           if (array.allDay && array.start !== array.end) {
             // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
             array.end = moment(array.end).add(1, 'days');
           }
           return array;
         })
-        callback(fixedDate);
+        */
+    	  
+        var events= [];
+        
+        for (var i=0; i<response.length; i++){
+        	
+        	var evt = {
+        		    "_id": 1,
+        		    "title": "거래처 미팅",
+        		    "description": "Lorem ipsum dolor sit incid idunt ut Lorem ipsum sit.",
+        		    "start": "2020-05-07T09:30",
+        		    "end": "2020-05-07T15:00",
+        		    "type": "카테고리1",
+        		    "username": "다현",
+        		    "backgroundColor": "#D25565",
+        		    "textColor": "#ffffff",
+        		    "allDay": false
+        			/*
+	        	 "_id": 1,
+	             "title": response[i].calTitle,
+	             "description": response[i].calContent,
+	             "start": response[i].calStart,
+	             "end": response[i].calEnd,
+	             "type": "카테고리1",
+	             "username": "다현",
+	             "backgroundColor": "#D25565",
+	             "textColor": "#ffffff",
+	             "allDay":false
+	             */
+            
+        	};
+        console.log(evt);
+        events.push(evt);
+        }
+        callback(events);
+
+        
       }
     });
   },
@@ -324,8 +363,7 @@ var calendar = $('#calendar').fullCalendar({
     }
   },
   eventLimitClick: 'week', //popover
-  navLinks: true,
-  defaultDate: moment('2019-05'), //실제 사용시 삭제
+  navLinks: true, //실제 사용시 삭제
   timeFormat: 'HH:mm',
   defaultTimedEventDuration: '01:00:00',
   editable: true,
