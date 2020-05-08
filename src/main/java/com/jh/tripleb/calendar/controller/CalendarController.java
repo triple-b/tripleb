@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.jh.tripleb.calendar.model.service.CalendarService;
 import com.jh.tripleb.calendar.model.vo.Calendar;
-import com.jh.tripleb.trainer.model.service.TrainerService;
 import com.jh.tripleb.trainer.model.vo.Trainer;
 
 @Controller
@@ -19,7 +18,6 @@ public class CalendarController {
 	
 	@Autowired
 	private CalendarService ucService;
-	private TrainerService tService;
 	
 	@ResponseBody
 	@RequestMapping(value="list.uca", produces="application/json; charset=utf-8")
@@ -32,7 +30,7 @@ public class CalendarController {
 	
 	@RequestMapping("calendar.uca")
 	public ModelAndView CalendarForm(ModelAndView mv) {
-		ArrayList<Trainer> list = tService.calListTrainer();
+		ArrayList<Trainer> list = TrainerService().calListTrainer();
 		
 		if(list != null) {			
 			mv.addObject("list", list).setViewName("calendar/calendarList");
