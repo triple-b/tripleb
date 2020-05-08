@@ -19,11 +19,9 @@
 	
 				<div class="sidebar-right-wrapper">
 	
-					<div class="sidebar-widget widget-friends">
+					<div class="sidebar-widget widget-friends" id="sideBarDiv">
 						<h6>트레이너 출/퇴근 현황</h6>
 						<ul>
-						
-						
 							<c:forEach items="${ onTrainer }" var="ot">
 							
 								<!-- 현재 날짜와 출근 시간 비교 -->
@@ -78,6 +76,7 @@
 
 						</ul>
 					</div>
+					
 	
 				</div>
 			</div>
