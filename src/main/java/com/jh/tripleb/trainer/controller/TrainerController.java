@@ -62,8 +62,7 @@ public class TrainerController {
 			mv.setViewName("common/errorPage");
 		}
 		return mv;
-		
-		
+
 	}
 	
 	@RequestMapping("profileForm.utr")
@@ -74,7 +73,6 @@ public class TrainerController {
 	@RequestMapping("update.utr")
 	public String updateTrainerProfile(Trainer t, HttpSession session, Model model, HttpServletRequest request,
 									@RequestParam(value="newThumbnail", required=false) MultipartFile file) {
-		
 		
 		// 전달된 파일이 있는 경우
 			if(!file.getOriginalFilename().contentEquals("")) {
@@ -116,6 +114,12 @@ public class TrainerController {
 	}
 	
 	
+	
+	
+	
+	
+	
+	// 파일명 수정 메소드
 	public String saveFile(MultipartFile file, HttpServletRequest request) {
 		
 		String resources = request.getSession().getServletContext().getRealPath("resources");

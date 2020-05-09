@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,6 +49,112 @@ public class CalendarController {
 		return mv;
 	}
 	
+	@RequestMapping(value="insert.uca", produces="application/json; charset=utf-8")
+	public String insertCalendar(Calendar c, String start, String end, Model model) {
+		
+		String s = "";
+		String e = "";
+		if(start.length() > 10) { // allDay false 일 때 
+			s = start + ":00";
+			e = end + ":00";
+		}else { // allDay true 일 때 
+			s = start + " 00:00:00";
+			e = end + " 00:00:00";
+		}
+		
+		// String --> TimeStamp 형변환
+		java.sql.Timestamp startDate = java.sql.Timestamp.valueOf(s); 
+		java.sql.Timestamp endDate = java.sql.Timestamp.valueOf(e);
+		
+		c.setCalStart(startDate);
+		c.setCalEnd(endDate);
+		
+		int result = ucService.insertCalendar(c);
+		
+		if(result > 0) {
+			return "redirect:list.uca";
+		}else {
+			model.addAttribute("msg", "일정 등록 실패");
+			return "common/errorPage";
+		}
+
+	}
+	
+	@RequestMapping(value="update.uca", produces="application/json; charset=utf-8")
+	public String updateCalendar(Calendar c, String start, String end, Model model) {
+		
+		String s = "";
+		String e = "";
+		if(start.length() > 10) { // allDay false 일 때 
+			s = start + ":00";
+			e = end + ":00";
+		}else { // allDay false 일 때 
+			s = start + " 00:00:00";
+			e = end + " 00:00:00";
+		}
+		
+		// String --> TimeStamp 형변환
+		java.sql.Timestamp startDate = java.sql.Timestamp.valueOf(s); 
+		java.sql.Timestamp endDate = java.sql.Timestamp.valueOf(e);
+		
+		c.setCalStart(startDate);
+		c.setCalEnd(endDate);
+		
+		int result = ucService.updateCalendar(c);
+		
+		if(result > 0) { // allDay false 일 때 
+			return "redirect:list.uca";
+		}else { // allDay false 일 때 
+			model.addAttribute("msg", "일정 수정 실패");
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping(value="delete.uca", produces="application/json; charset=utf-8")
+	public String deleteCalendar(Calendar c, Model model) {
+		
+		int result = ucService.deleteCalendar(c);
+
+		if(result > 0) { // allDay false 일 때 
+			return "redirect:list.uca";
+		}else { // allDay false 일 때 
+			model.addAttribute("msg", "일정 삭제 실패");
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping(value="dropUpdate.uca", produces="application/json; charset=utf-8")
+	public String dropUpdateCalendar(Calendar c, String start, String end, Model model) {
+		
+		String s = "";
+		String e = "";
+		if(start.length() > 10) { // allDay false 일 때 
+			s = start + ":00";
+			e = end + ":00";
+		}else { // allDay false 일 때 
+			s = start + " 00:00:00";
+			e = end + " 00:00:00";
+		}
+		
+		// String --> TimeStamp 형변환
+		java.sql.Timestamp startDate = java.sql.Timestamp.valueOf(s); 
+		java.sql.Timestamp endDate = java.sql.Timestamp.valueOf(e);
+		
+		c.setCalStart(startDate);
+		c.setCalEnd(endDate);
+		
+		int result = ucService.updateCalendar(c);
+		
+		if(result > 0) {
+			return "redirect:list.uca";
+		}else {
+			model.addAttribute("msg", "일정 수정 실패");
+			return "common/errorPage";
+		}
+		
+	}
 	
 
 }

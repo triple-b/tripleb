@@ -10,22 +10,29 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jh.tripleb.notice.model.service.NoticeService;
+import com.jh.tripleb.notice.model.vo.Notice;
 import com.jh.tripleb.trainer.model.service.TrainerService;
 import com.jh.tripleb.trainer.model.vo.Trainer;
 
 @Controller
 public class MainController {
 	
+	@Autowired 
+	private NoticeService nService;
 	@Autowired
 	private TrainerService tService;
+	
 	
 	@RequestMapping("main.do")
 	public String triplebMain(Model model) {
 		
+		ArrayList<Notice> nlist = nService.mainNotice();
+		
 		model.addAttribute("one", "대충");
 		model.addAttribute("two", "대충");
 		model.addAttribute("three", "대충");
-		model.addAttribute("four", "대충");
+		model.addAttribute("notice", nlist);
 		
 		return "main";
 	}
@@ -33,7 +40,7 @@ public class MainController {
 	
 	public ModelAndView tripleSide(ModelAndView mv, HttpSession session) {
 		
-		ArrayList<Trainer> onTrainer = tService.onListTrainer();
+		ArrayList<Trainer> onTrainer = tService.listTrainer();
 		
 		if(onTrainer != null) {
 			session.setAttribute("onTrainer", onTrainer);

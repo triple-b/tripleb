@@ -173,35 +173,54 @@ var calendar = $('#calendar').fullCalendar({
       },
       success: function (response) {
     	  
-    	/*
+    	
         var evnetList = response.map(function (array) {
           if (array.allDay && array.start !== array.end) {
-            // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
             array.end = moment(array.end).add(1, 'days');
           }
           return array;
         })
-        */
+
     	  
         var events= [];
         
+        var dayTime = "";
+        var realTime = "";
+        
         for (var i=0; i<response.length; i++){
         	
-        	var evt = {
-        		
-	        	 "_id": response[i].calNo,
-	             "title": response[i].calTitle,
-	             "description": response[i].calContent,
-	             "start": response[i].calStart,
-	             "end": response[i].calEnd,
-	             "type": response[i].calType,
-	             "username": response[i].trainerName,
-	             "backgroundColor": response[i].calColor,
-	             "textColor": "#ffffff",
-	             "allDay":false
-            
-        	};
-        console.log(evt);
+        	dayTime = response[i].calStart;
+        	realTime = dayTime.substring(11,13);
+        	var evt = {};
+        	
+        	if(realTime == "00"){        		
+        		evt = {
+        				"_id": response[i].calNo,
+        				"title": response[i].calTitle,
+        				"description": response[i].calContent,
+        				"start": response[i].calStart,
+        				"end": response[i].calEnd,
+        				"type": response[i].calType,
+        				"username": response[i].trainerName,
+        				"backgroundColor": response[i].calColor,
+        				"textColor": "#ffffff",
+        				"allDay":true
+        		};
+        	}else{
+        		evt = {
+        				"_id": response[i].calNo,
+        				"title": response[i].calTitle,
+        				"description": response[i].calContent,
+        				"start": response[i].calStart,
+        				"end": response[i].calEnd,
+        				"type": response[i].calType,
+        				"username": response[i].trainerName,
+        				"backgroundColor": response[i].calColor,
+        				"textColor": "#ffffff",
+        				"allDay":false
+        		};
+        	}
+        	
         events.push(evt);
         }
         callback(events);
@@ -259,16 +278,21 @@ var calendar = $('#calendar').fullCalendar({
 
     // 드랍시 수정된 날짜반영
     var newDates = calDateWhenDragnDrop(event);
-
     //드롭한 일정 업데이트
     $.ajax({
-      type: "get",
-      url: "",
+      type: "post",
+      url: "dropUpdate.uca",
       data: {
-        //...
+      	calNo : event._id,
+        calTitle : event.title,
+        calContent : event.description,
+        start : newDates.startDate,
+        end : newDates.endDate,
+        calType : event.type,
+        calColor : event.backgroundColor
       },
       success: function (response) {
-        alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
+        
       }
     });
 

@@ -22,4 +22,11 @@ public interface NoticeService {
 	
 	// 5. 공지사항 수정용 서비스
 	int updateNotice(Notice n);
+	
+	/**
+	 * 메인용 공지사항 리스트
+	 * @author 김주
+	 * @return		조회된 공지사항 리스트 최신 5개
+	 */
+	ArrayList<Notice> mainNotice();
 }

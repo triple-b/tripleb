@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,6 @@
 								<header class="panel-heading">
 									<div class="panel-actions">
 										<a href="#" class="fa fa-caret-down"></a>
-										<a href="#" class="fa fa-times"></a>
 									</div>
 					
 									<h2 class="panel-title">상품별 평균 현황 (월별)</h2>
@@ -53,7 +53,6 @@
 								<header class="panel-heading">
 									<div class="panel-actions">
 										<a href="#" class="fa fa-caret-down"></a>
-										<a href="#" class="fa fa-times"></a>
 									</div>
 			
 									<h2 class="panel-title">달성률 (월별)</h2>
@@ -189,7 +188,6 @@
 								<header class="panel-heading">
 									<div class="panel-actions">
 										<a href="#" class="fa fa-caret-down"></a>
-										<a href="#" class="fa fa-times"></a>
 									</div>
 
 									<h2 class="panel-title">일정</h2>
@@ -248,7 +246,6 @@
 								<header class="panel-heading">
 									<div class="panel-actions">
 										<a href="#" class="fa fa-caret-down"></a>
-										<a href="#" class="fa fa-times"></a>
 									</div>
 
 									<h2 class="panel-title">공지사항</h2>
@@ -260,21 +257,13 @@
 												<div id="collapse1One" class="accordion-body collapse in">
 													<div class="panel-body">
 														<ul class="widget-todo-list">
-															<li>
-																<p class="todo-label" for="todoListItem1"><span>Lorem ipsum dolor sit amet</span></p>
-															</li>
-															<li>
-																<p class="todo-label" for="todoListItem1"><span>Lorem ipsum dolor sit amet</span></p>
-															</li>
-															<li>
-																<p class="todo-label" for="todoListItem1"><span>Lorem ipsum dolor sit amet</span></p>
-															</li>
-															<li>
-																<p class="todo-label" for="todoListItem1"><span>Lorem ipsum dolor sit amet</span></p>
-															</li>
-															<li>
-																<p class="todo-label" for="todoListItem1"><span>Lorem ipsum dolor sit amet</span></p>
-															</li>
+
+															<c:forEach items="${ notice }" var="n">
+																<p class="todo-label" for="todoListItem1"><span id="mNoticeNo" style="display:none">${ n.noticeNo}</span> ${ n.noticeTitle }</p>
+															</c:forEach>
+															<c:if test="${ empty notice }">
+																<p class="todo-label" for="todoListItem1"><span>작성된 공지사항이 없습니다.</span></p>
+															</c:if>
 														</ul>
 													</div>
 												</div>

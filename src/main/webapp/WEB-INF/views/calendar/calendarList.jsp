@@ -80,13 +80,24 @@
 							                            <input class='allDayNewEvent' id="edit-allDay" type="checkbox">
 						                            </div>
 						                        </div>
-						
 						                        <div class="row">
 						                            <div class="col-xs-12">
 						                                <label class="col-xs-4" for="edit-title">일정명</label>
 						                                <div class="col-sm-8" style="padding:0px;">
 							                                <input class="inputModal form-control" type="text" name="edit-title" id="edit-title"
 						                                    required="required" />
+						                                </div>
+						                            </div>
+						                        </div>
+												<div class="row">
+						                            <div class="col-xs-12">
+						                                <label class="col-xs-4" for="edit-title">트레이너</label>
+						                                <div class="col-sm-8" style="padding:0px;">
+						                                  <select class="inputModal form-control" name="name" id="username">
+							                                <c:forEach items="${ list }" var="t">
+								                                <option value="${ t.trainerNo }">${ t.trainerName }</option>
+							                                </c:forEach>
+							                                </select>
 						                                </div>
 						                            </div>
 						                        </div>
@@ -133,7 +144,7 @@
 							                                </select>
 						                                </div>
 						                            </div>
-						                        </div>t
+						                        </div>
 							                      <div class="row">
 							                          <div class="col-xs-12">
 							                              <label class="col-xs-4" for="edit-desc">설명</label>

@@ -23,4 +23,19 @@ public class CalendarServiceImpl implements CalendarService {
 		return ucDao.listCalendar(sqlSession);
 	}
 
+	@Override
+	public int insertCalendar(Calendar c) {
+		return ucDao.insertCalendar(sqlSession, c);
+	}
+
+	@Override
+	public int updateCalendar(Calendar c) {
+		return ucDao.updateCalendar(sqlSession, c);
+	}
+
+	@Override
+	public int deleteCalendar(Calendar c) {
+		return ucDao.deleteCalendar(sqlSession, c);
+	}
+
 }

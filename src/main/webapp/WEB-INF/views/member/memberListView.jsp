@@ -137,6 +137,7 @@
 								<section class="panel">
 									<header class="panel-heading">
 										<div class="panel-btn" style="margin-bottom:10px;">
+											<a class="mb-xs mt-xs mr-xs modal-basic btn btn-default" href="" style="float:right"> 일시정지 해제 </a>
 											<a class="mb-xs mt-xs mr-xs modal-basic btn btn-default btn_memDel" href="#memberDel" style="color:red; float:right"> 회원 삭제 </a>
 
 										</div>
@@ -513,19 +514,22 @@
 										<div class="panel-body">
 											
 											<div class="form-group">
-											
-											<div class="form-group">
 												<label class="col-sm-3 control-label">회원 이름 <span class="required">*</span></label>
 												<div class="col-sm-9">
 													<input type="text" name="fullname" class="form-control" placeholder="김주희" required readonly/>
 												</div>
 											</div>
-											
-												<label class="col-md-3 control-label" for="inputSuccess">회원권 일시정지</label>
+											<div class="form-group">
+												<label class="col-md-3 control-label" for="inputSuccess">일시정지 기간</label>
 												<div class="col-md-6">
 													<input type="number" id="inlineCheckbox3" class="form-control" min="1" max="30" placeholder="ex) 7" required> 
 												</div>
-											
+											</div>
+											<div class="form-group">
+												<label class="col-md-3 control-label" for="inputSuccess">시작일</label>
+												<div class="col-md-6">
+													<input type="date" class="form-control" required>
+												</div>
 											</div>
 
 	
@@ -587,7 +591,7 @@
 					<form id="blackCancelModal" method="post" action="blackCancel.ume">
 						<section class="panel">
 						<header class="panel-heading">
-							<h2 class="panel-title">회원 블랙리스트 등록</h2>
+							<h2 class="panel-title">회원 블랙리스트 해제</h2>
 						</header>
 						<div class="panel-body">
 							<div class="modal-wrapper">

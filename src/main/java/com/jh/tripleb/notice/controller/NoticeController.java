@@ -21,7 +21,7 @@ public class NoticeController {
 		
 		ArrayList<Notice> list = nService.selectList();
 		
-		model.addAttribute("list",list);
+		model.addAttribute("list", list);
 	
 		return "notice/noticeListView";		
 	}

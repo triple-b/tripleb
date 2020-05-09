@@ -1,6 +1,7 @@
 var eventModal = $('#eventModal');
 
 var modalTitle = $('.modal-title');
+var username = $('#username');
 var editAllDay = $('#edit-allDay');
 var editTitle = $('#edit-title');
 var editStart = $('#edit-start');
@@ -30,19 +31,18 @@ var newEvent = function (start, end, eventType) {
     addBtnContainer.show();
     modifyBtnContainer.hide();
     eventModal.modal('show');
-
+    
     //새로운 일정 저장버튼 클릭
     $('#save-event').unbind();
     $('#save-event').on('click', function () {
 
         var eventData = {
-            _id: eventId,
             title: editTitle.val(),
             start: editStart.val(),
             end: editEnd.val(),
             description: editDesc.val(),
             type: editType.val(),
-            username: '사나',
+            username: username.val(),
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
             allDay: false
@@ -74,18 +74,23 @@ var newEvent = function (start, end, eventType) {
         eventModal.find('input, textarea').val('');
         editAllDay.prop('checked', false);
         eventModal.modal('hide');
-
+        console.log(eventData);
         //새로운 일정 저장
         $.ajax({
-            type: "get",
-            url: "",
+            type: "post",
+            url: "insert.uca",
             data: {
-                //.....
+                calTitle : eventData.title,
+                calContent : eventData.description,
+                start : eventData.start,
+                end : eventData.end,
+                calType : eventData.type,
+                calColor : eventData.backgroundColor,
+                trainerNo : eventData.username
             },
             success: function (response) {
-                //DB연동시 중복이벤트 방지를 위한
-                //$('#calendar').fullCalendar('removeEvents');
-                //$('#calendar').fullCalendar('refetchEvents');
+                $('#calendar').fullCalendar('removeEvents');
+                $('#calendar').fullCalendar('refetchEvents');
             }
         });
     });

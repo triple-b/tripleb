@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import com.jh.tripleb.trainer.model.vo.Trainer;
 
+/**
+ * @author 김주
+ *
+ */
 public interface TrainerService {
 	
 	
@@ -44,6 +48,8 @@ public interface TrainerService {
 	 * @return			처리된 행의 개수
 	 */
 	Trainer detailTrainer(int tno);
+	
+	
 
 
 

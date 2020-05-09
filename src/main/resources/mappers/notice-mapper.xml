@@ -17,6 +17,7 @@
   		select *
   		from notice
   		where notice_status='Y'
+  		ORDER BY 1 desc
   	</select>
   	
   	<insert id="insertNotice" parameterType="Notice">
@@ -42,5 +43,17 @@
   			notice_content=#{noticeContent}
   		where notice_no=#{noticeNo}
   	</update>
+  	
+  <select id="mainNotice" resultType="Notice">
+  		SELECT *
+		FROM (
+		    select ROWNUM NNUM, A.*
+		    from (select *
+		            from notice
+		            where notice_status='Y'
+		            ORDER BY NOTICE_DATE DESC) A )
+		WHERE NNUM BETWEEN 1 AND 7
+  	</select>
+  	
   </mapper>
 

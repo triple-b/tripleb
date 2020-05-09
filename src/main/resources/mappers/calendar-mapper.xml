@@ -3,10 +3,26 @@
 <mapper namespace="calendarMapper">
 
 	<select id="selectListCalendar" resultType="Calendar">
-		SELECT CAL_NO, CAL_TITLE, CAL_CONTENT, CAL_START, CAL_END, CAL_STATUS, TRAINER_NAME, CAL_TYPE, CAL_COLOR
+		SELECT CAL_NO, CAL_TITLE, CAL_CONTENT, CAL_START, CAL_END, CAL_STATUS, TRAINER_NAME, CAL_TYPE, CAL_COLOR, TRAINER_NO
 		FROM CALENDAR
 		JOIN TRAINER USING (TRAINER_NO)
 		WHERE CAL_STATUS='N'
 	</select>
+	<insert id="insertCalendar" parameterType="Calendar">
+		INSERT INTO CALENDAR
+		VALUES (SEQ_CALNO.NEXTVAL, #{calTitle}, #{calContent}, #{calStart}, #{calEnd}, DEFAULT, #{trainerNo}, #{calType}, #{calColor})
+	</insert>
+	<update id="updateCalendar" parameterType="Calendar">
+		UPDATE CALENDAR
+		SET CAL_TITLE=#{calTitle}, CAL_CONTENT=#{calContent}, CAL_START=#{calStart}, 
+			CAL_END=#{calEnd}, CAL_TYPE=#{calType}, CAL_COLOR=#{calColor}
+		WHERE CAL_NO=#{calNo}
+	</update>
+	
+	<update id="deleteCalendar" parameterType="Calendar">
+		UPDATE CALENDAR
+		SET CAL_STATUS='Y'
+		WHERE CAL_NO=#{calNo}
+	</update>
 	
 </mapper>

@@ -47,4 +47,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return nDao.updateNotice(sqlSession, n);
 	}
 
+	@Override
+	public ArrayList<Notice> mainNotice() {
+		return nDao.mainNotice(sqlSession);
+	}
+
 }

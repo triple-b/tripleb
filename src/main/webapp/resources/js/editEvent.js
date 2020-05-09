@@ -80,13 +80,20 @@ var editEvent = function (event, element, view) {
 
         //일정 업데이트
         $.ajax({
-            type: "get",
-            url: "",
+        	type: "post",
+        	url: "update.uca",
             data: {
-                //...
+            	calNo : event._id,
+                calTitle : event.title,
+                calContent : event.description,
+                start : event.start,
+                end : event.end,
+                calType : event.type,
+                calColor : event.backgroundColor,
+                trainerName : event.username
             },
             success: function (response) {
-                alert('수정되었습니다.')
+                alert('수정되었습니다.');
             }
         });
 
@@ -99,16 +106,18 @@ $('#deleteEvent').on('click', function () {
     $('#deleteEvent').unbind();
     $("#calendar").fullCalendar('removeEvents', $(this).data('id'));
     eventModal.modal('hide');
-
+    
+    var calNo = $(this).data('id');
+    
     //삭제시
     $.ajax({
-        type: "get",
-        url: "",
+        type: "post",
+        url: "delete.uca",
         data: {
-            //...
+        	calNo : calNo
         },
         success: function (response) {
-            alert('삭제되었습니다.');
+
         }
     });
 

@@ -50,7 +50,7 @@ $(function(){
 	$('.btn_memblack_cancel').click(function(){
 		if($("input:checkbox[name=checkRow]:checked").length > 1){
 			
-			$('.btn_memBlack').addClass('modal-dismiss');
+			$('.btn_memblack_cancel').addClass('modal-dismiss');
 			alert("등록하실 1명의 회원만 선택해주세요.");
 			
 		}else if($("input:checkbox[name=checkRow]:checked").length == 1){

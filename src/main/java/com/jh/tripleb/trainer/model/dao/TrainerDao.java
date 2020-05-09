@@ -29,5 +29,8 @@ public class TrainerDao {
 	public Trainer detailTrainer(SqlSessionTemplate sqlSession, int tno) {
 		return sqlSession.selectOne("trainerMapper.detailTrainer", tno);
 	}
-
+	
+	public int tnoTrainer(SqlSessionTemplate sqlSession, String tname) {
+		return sqlSession.selectOne("trainerMapper.tnoTrainer", tname);
+	}
 }
