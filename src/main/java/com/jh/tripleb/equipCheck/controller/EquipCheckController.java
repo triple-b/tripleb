@@ -16,7 +16,8 @@ import com.jh.tripleb.equipment.model.vo.Equipment;
 
 @Controller
 public class EquipCheckController {
-	 @Autowired private EquipmentService eService;
+	@Autowired 
+	private EquipmentService eService;
 	@Autowired 
 	private EquipCheckService ecService;
 	

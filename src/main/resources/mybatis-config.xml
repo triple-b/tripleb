@@ -26,6 +26,9 @@
 		<typeAlias type="com.jh.tripleb.machine.model.vo.Machine" alias="Machine"/>
 		<typeAlias type="com.jh.tripleb.equipCheck.model.vo.EquipDto" alias="EquipDto"/>
 		<typeAlias type="com.jh.tripleb.calendar.model.vo.Calendar" alias="Calendar"/>
+		<typeAlias type="com.jh.tripleb.mcManagement.model.vo.McManagement" alias="McManagement"/>
+		<typeAlias type="com.jh.tripleb.mcManagement.model.vo.McManagementDto" alias="McManagementDto"/>
+		<typeAlias type="com.jh.tripleb.mcAllCheck.model.vo.mcAllCheck" alias="mcAllCheck"/>
 	</typeAliases>
 	
 	<mappers>
@@ -40,6 +43,8 @@
 		<mapper resource="/mappers/equipcheck-mapper.xml"/>
 		<mapper resource="/mappers/machine-mapper.xml"/>
 		<mapper resource="/mappers/calendar-mapper.xml"/>
+		<mapper resource="/mappers/mcManagement-mapper.xml"/>
+		<mapper resource="/mappers/mcAllCheck-mapper.xml"/>
 	</mappers>
 	
 

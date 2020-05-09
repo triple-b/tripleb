@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+  <mapper namespace="mcAllCheckMapper">
+  	
+  	<resultMap type="mcAllCheck" id="mcAllCheckResultSet">
+	  	<id property="machinAllChkNo" column="machin_allChkNo" />
+	  	<result property="machineTitle" column="machine_title" />
+	  	<result property="machineChkDate" column="machine_chkDate" />
+		<result property="trainerNo" column="trainer_no" />
+  	</resultMap>
+  
+  <select id="selectList" resultMap="mcAllCheckResultSet">
+  		select *
+  		from  mc_all_check
+  		ORDER BY 1 desc
+  	</select>
+  	
+  	
+  
+  
+  
+  </mapper>

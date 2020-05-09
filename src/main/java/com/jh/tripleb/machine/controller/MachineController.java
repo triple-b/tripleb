@@ -25,10 +25,7 @@ public class MachineController {
 	@Autowired
 	private MachineService hmService;
 	
-	@RequestMapping("mcList.mc")
-	public String selectMachineList() {
-		return "mcCheck/mcCheckListView";
-	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value="mclist.mc", produces="application/json; charset=utf-8")
@@ -37,12 +34,21 @@ public class MachineController {
 		ArrayList<Machine> list = hmService.selectList();
 		
 		Gson gson = new Gson();
-		
-		
+
 		return  gson.toJson(list);
 	}
 	
-
+//	@ResponseBody
+//	@RequestMapping(value="mclist.hmc", produces="application/json; charset=utf-8")
+//	public String selectlist() {
+//		
+//		ArrayList<Machine> list = hmService.selectList();
+//		
+//		Gson gson = new Gson();
+//
+//		return  gson.toJson(list);
+//	}
+	
 	@RequestMapping("insert.mc")
 	public String insertMachine(Machine m, 
 								@RequestParam(value="uploadFile", required=false)MultipartFile file, HttpServletRequest request, Model model) {
@@ -100,6 +106,8 @@ public class MachineController {
 			}
 			  return changeName;
 		}
+		
+		
 	}
 	
 

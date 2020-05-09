@@ -42,6 +42,8 @@
 		<url-pattern>*.eq</url-pattern>
 		<url-pattern>*.eqc</url-pattern>
 		<url-pattern>*.mc</url-pattern>
+		<url-pattern>*.mcm</url-pattern>
+		<url-pattern>*.hmc</url-pattern>
 	</servlet-mapping>
 	
 	<!-- encodingFilter 등록 -->

@@ -98,17 +98,12 @@
 							
 							<li class="right" data-sort-source data-sort-id="media-gallery" style="margin-top: 8px;">
 								<ul class="nav nav-pills nav-pills-primary">
-									
-									<li class="active">
-										<a class="modal-with-form btn btn-default"  style="float:right" href="#modalForm">등록</a>
-									</li>
+
 									<li>
 										<a class="modal-with-form btn btn-default"  style="float:right" href="#modalForm1">수정</a>
-										
 									</li>
 									<li>
-										<a class="modal-with-form btn btn-default"  style="float:right" href="#modalForm6">삭제</a>
-										
+										<button class="modal-with-form btn btn-default"  style="float:right" onclick="deletemcm()">삭제</button>
 									</li>
 									
 								</ul>
@@ -125,28 +120,34 @@
 						</header>
 						<div class="panel-body">
 							<div class="row mg-files" data-sort-destination data-sort-id="media-gallery">
-								<div class="isotope-item document col-sm-6 col-md-4 col-lg-3">
-									<div class="thumbnail">
-										<div class="thumb-preview">
-											<a class="thumb-image" href="assets/images/projects/project-1.jpg"></a>
-												<img src="assets/images/projects/project-1.jpg" class="img-responsive" alt="Project">
-											</a>
-											<div class="mg-thumb-options">
-												
-												<div class="mg-toolbar">
-													<div class="mg-option checkbox-custom checkbox-inline">
-														<input type="checkbox" id="file_1" value="1">
-														<label for="file_1">SELECT</label>
+								<table class="Mcmanagement-table" id="Mcmanagement-list">
+									<c:forEach items="${list}" var="m">
+										<div class="isotope-item document col-sm-6 col-md-4 col-lg-3" id="Mcmanagementtlqkf">
+											<div class="thumbnail">
+												<div class="thumb-preview">
+													<input type="hidden" value="${m.machineNo}" >
+													<a class="thumb-image" href="assets/images/projects/project-1.jpg"></a>
+														<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/${m.thumbChange}" class="img-responsive" alt="Project">
+													</a>
+													<div class="mg-thumb-options">
+														
+														<div class="mg-toolbar">
+															<div class="mg-option checkbox-custom checkbox-inline">
+																<input type="checkbox" id="file_1" name="machinecheck1" onclick="twoCheckbox(this)" value="${m.machineNo}">
+																<label for="file_1">SELECT</label>
+															</div>
+														</div>
+														<h5 class="mg-title text-semibold">${m.mcName}</h5>
 													</div>
-													
+													<div class="mg-description">
+														<small class="pull-left text-muted">${m.machineNo}</small>
+														<small class="pull-right text-muted">${m.machineRegistDate}</small>
+													</div>						
 												</div>
 											</div>
 										</div>
-										<h5 class="mg-title text-semibold">1<small>벤치프레스</small></h5>
-									
-									</div>
-								</div>
-								
+									</c:forEach>
+								</table>
 							</div>
 							
 						</div>
@@ -155,6 +156,7 @@
 				</main>	
 			<!-- 오른쪽 content 페이지 -->
 		</div>
+		
 		<!--/ 전체 레이어 -->
 		<!-- 기구 관리 등록 -->
 					<section class="panel">
@@ -238,6 +240,7 @@
 							<footer class="panel-footer">
 								<div class="row">
 									<div class="col-md-12 text-right">
+										<button class="btn btn-primary" onclick="insertmcm()">등록</button>
 										<button class="btn btn-primary" onclick="deletemc()">삭제</button>
 										<button class="btn btn-default modal-dismiss">취소</button>
 									</div>
@@ -433,16 +436,16 @@
 											</div>
 										</div>
 									</div>
-								</form>
-							</div>
-							<footer class="panel-footer">
-								<div class="row">
-									<div class="col-md-12 text-right">
-										<button class="btn btn-primary modal-confirm">등록</button>
-										<button class="btn btn-default modal-dismiss">취소</button>
-									</div>
 								</div>
-							</footer>
+								<footer class="panel-footer">
+									<div class="row">
+										<div class="col-md-12 text-right">
+											<button class="btn btn-primary modal-confirm">등록</button>
+											<button class="btn btn-default modal-dismiss">취소</button>
+										</div>
+									</div>
+								</footer>
+							</form>
 						</section>
 					</div>
 			</section>
@@ -455,13 +458,6 @@
 	<!-- 공통으로 사용하는 JSP -->
 	<jsp:include page="../common/footerjs.jsp" />
 	<!-- 현재 페이지에서만 사용하는 JSP -->
-	<script>
-		$(function(){
-			$("#datatable-default tbody tr").click(function(){
-				location.href="detail.no?nno=" + $(this).children().eq(0).text();
-			});
-		});
-	</script>
 	
 	<script>
 		$(function(){
@@ -497,6 +493,8 @@
 			}
 	</script>
 	
+	
+	
 	<script>
 	
 	var machinecheckID = "";
@@ -516,14 +514,43 @@
         }
         
         machinecheckID = a.value;
-        
-
     }
-
+    
+    function deletemcm() {
+    	location.href="delete.mcm?mano="+machinecheckNo;
+    }
     function deletemc() {
-    	location.href="delete.mc?mcno="+machinecheckID;
+    	location.href="delete.mcm?mcno="+machinecheckID;
+    }
+    function insertmcm() {
+    	location.href="insert.mcm?mcno="+machinecheckID;
     }
 	
+	var machinecheckNo = "";
+	
+    function twoCheckbox(a){
+
+        var obj = document.getElementsByName("machinecheck1");
+
+        for(var i=0; i<obj.length; i++){
+
+            if(obj[i] != a){
+
+                obj[i].checked = false;
+
+            }
+
+        }
+        
+        machinecheckNo = a.value;
+    }
+	</script>
+	<script>
+		$(function(){
+			$("#Mcmanagementtlqkf").click(function(){
+				location.href="select.mcm?mano=" + $(this).children().children().children().eq(0).val();
+			});
+		});
 	</script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.modals.js"></script>
