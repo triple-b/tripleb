@@ -21,14 +21,14 @@
   
   	
   	<insert id="insertMachine" parameterType="Machine">
-  		insert into machine
-  		values(seq_MCNO.nextval, #{mcName}, #{mcExplain}, #{thumbnail}, default, default, #{thumbChange})
+  		  		insert into machine
+  				values(seq_MCNO.nextval, #{mcName}, #{mcExplain}, #{thumbnail}, #{thumbChange},default, default)
   	</insert>
   	
   	<update id="deleteMachine" parameterType="_int" >
   		update machine
   		set mc_status='N'
-  		where mc_no=#{mcno}
+  		where mc_no=#{mcNo}
   	</update>
   	
   </mapper>

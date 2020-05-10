@@ -6,6 +6,38 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
+<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<!-- Web Fonts  -->
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/font-awesome/css/font-awesome.css" />
+		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/magnific-popup/magnific-popup.css" />
+		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
+
+		<!-- Specific Page Vendor CSS -->
+		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/select2/select2.css" />
+		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/stylesheets/theme.css" />
+
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/stylesheets/skins/default.css" />
+
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/stylesheets/theme-custom.css">
+
+		<!-- Head Libs -->
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/modernizr/modernizr.js"></script>
+
+
+
 <style>
 				.ggggg{
 					display: flex;
@@ -532,6 +564,56 @@
 						</section>
 					</div>
 			</section>
+			
+			<!-- 기구 고장 등록 -->
+					<section class="panel">
+
+						<!-- Modal Form -->
+						<div id="modalForm3" class="modal-block modal-block-primary mfp-hide">
+							<section class="panel">
+								<header class="panel-heading">
+									<h1 class="panel-title">시설기구고장등록</h1>
+								</header>
+								<div class="panel-body">
+									<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
+										
+										<hr>
+										<div class="Machine">
+											<div class="form-group">
+												<label class="col-sm-3 control-label">No</label>
+												<div class="col-sm-9">
+													<input type="text" name="Quantity" class="form-control" placeholder="" />
+												</div>
+											</div>
+										
+											
+											<div class="form-group">
+												<label class="col-sm-3 control-label">기구명</label>
+												<div class="col-sm-9">
+													<input type="text" name="Quantity" class="form-control" placeholder="" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-3 control-label">기구고장설명</label>
+												<div class="col-sm-9">
+													<textarea rows="5" class="form-control" placeholder="Type your comment..." required></textarea>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+								<footer class="panel-footer">
+									<div class="row">
+										<div class="col-md-12 text-right">
+											<button class="btn btn-primary modal-confirm">완료</button>
+											<button class="btn btn-default modal-dismiss">취소</button>
+										</div>
+									</div>
+								</footer>
+							</section>
+						</div>
+
+				</section>
 		
 		
 		<!-- 오른쪽 사이드 바 -->
@@ -637,5 +719,59 @@
 	</script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.modals.js"></script>
+	
+	<!-- Vendor -->
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery/jquery.js"></script>
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap/js/bootstrap.js"></script>
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/nanoscroller/nanoscroller.js"></script>
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/magnific-popup/magnific-popup.js"></script>
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+		
+		<!-- Specific Page Vendor -->
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/select2/select2.js"></script>
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+		
+		<!-- Theme Base, Components and Settings -->
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/theme.js"></script>
+		
+		<!-- Theme Custom -->
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/theme.custom.js"></script>
+		
+		<!-- Theme Initialization Files -->
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/theme.init.js"></script>
+
+
+		<!-- Examples -->
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.row.with.details.js"></script>
+		<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.tabletools.js"></script>
+			<!-- Vendor -->
+			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery/jquery.js"></script>
+			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap/js/bootstrap.js"></script>
+			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/nanoscroller/nanoscroller.js"></script>
+			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/magnific-popup/magnific-popup.js"></script>
+			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+			
+			<!-- Specific Page Vendor -->
+			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/pnotify/pnotify.custom.js"></script>
+			
+			<!-- Theme Base, Components and Settings -->
+			<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/theme.js"></script>
+			
+			<!-- Theme Custom -->
+			<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/theme.custom.js"></script>
+			
+			<!-- Theme Initialization Files -->
+			<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/theme.init.js"></script>
+	
+	
+			<!-- Examples -->
+			<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.modals.js"></script>
 </body>
 </html>

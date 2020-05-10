@@ -13,7 +13,7 @@
   
   	<insert id="insertMcManagement" parameterType="McManagement">
   		insert into mc_management
-    	values(SEQ_MEMNO.nextval, default, default, default, (case mcNo when mcNo = mcNo then #{mcNo}))
+    	values(SEQ_MEMNO.nextval, default, default, default, #{mcNo})
   	</insert>
   	
   	<select id="selectList" resultType="McManagementDto">

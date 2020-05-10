@@ -38,13 +38,18 @@ public class McmanagementController {
 
      }
 	@RequestMapping("mcList.mcm")
-	public String selectList(Model model) {		
+	public String selectList(String type, Model model) {		
 		
 		ArrayList<McManagement> list = mcmService.selectList();
 		
 		model.addAttribute("list",list);
 	
-		return "mcCheck/mcCheckListView";		
+		if(type.equals("leftmenu")) {
+			return "mcCheck/mcCheckListView";		
+		}else {
+			return "mcCheck/mcAllCheckList";		
+		}
+		
 	}
 	
 	@RequestMapping("delete.mcm")

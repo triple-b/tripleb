@@ -520,7 +520,7 @@
     	location.href="delete.mcm?mano="+machinecheckNo;
     }
     function deletemc() {
-    	location.href="delete.mcm?mcno="+machinecheckID;
+    	location.href="delete.mc?mcno="+machinecheckID;
     }
     function insertmcm() {
     	location.href="insert.mcm?mcno="+machinecheckID;
