@@ -111,6 +111,8 @@ public class TrainerController {
 		
 		Trainer t = tService.detailTrainer(otno);
 		
+		System.out.println(otno);
+		
 		if(t != null) {
 			mv.addObject("t", t).setViewName("trainer/lockTrainer");
 		}else {

@@ -18,5 +18,7 @@ public class TemplateInfo {
 	private String templateItemName;		// 서비스항목 이름
 	private String templateItemDescription; // 서비스항목 설명
 	private int templateItemPrice;			// 서비스항목 가격
+	private String templateParentName;		// 상위 서비스 항목 이름
+	private String templateIcon;			// 서비스 항목 아이콘
 
 }

@@ -87,7 +87,7 @@
 							</a>
 							<ul class="nav nav-children">
 								<li>
-									<a href="mcList.mcm">
+									<a href="mcList.mcm?type=leftmenu">
 										 시설관리
 									</a>
 								</li>
@@ -145,7 +145,7 @@
 							</a>
 							<ul class="nav nav-children">
 								<li>
-									<a href="templateset.do">
+									<a href="list.mtp">
 										 템플릿설정
 									</a>
 								</li>

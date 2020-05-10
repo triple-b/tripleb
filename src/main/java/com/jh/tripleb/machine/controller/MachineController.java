@@ -64,7 +64,7 @@ public class MachineController {
 		int result = hmService.insertMachine(m);
 		
 		if(result > 0) {
-			return "redirect:mcList.mc";
+			return "redirect:mcList.mcm";
 		}else { //기구 등록 실패
 			
 			model.addAttribute("msg", "기구 등록 실패!");
@@ -75,11 +75,11 @@ public class MachineController {
 	
 		@RequestMapping("delete.mc")
 		public String deleteMachine(int mcno, Model model){
-		     System.out.println(mcno);
+		     
 			int result = hmService.deleteMachine(mcno);
 			
 			if(result > 0) { // 삭제 성공
-				return "redirect:mcList.mc";
+				return "redirect:mcList.mcm";
 			}else { // 삭제 실패
 				model.addAttribute("msg", "기구 삭제 실패!");
 				return "common/errorPage";

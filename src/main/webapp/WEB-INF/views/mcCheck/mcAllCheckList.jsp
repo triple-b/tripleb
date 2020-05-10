@@ -94,7 +94,7 @@
 									<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
 										
 										<div class="form-group">
-											<label class="col-sm-3 control-label">점검내용 요약</label>
+											<label class="col-sm-3 control-label">점검제목</label>
 											<div class="col-sm-9">
 												<textarea rows="5" class="form-control" placeholder="Type your comment..." required></textarea>
 											</div>
