@@ -16,7 +16,6 @@ import lombok.ToString;
 @ToString
 public class ClassInfo {
 	
-	// 깃 그만
 	private int classNo;		// 수업번호
 	private int classCount;		// 수강생수 주희 : null로 되어 있는데 필수 입력 사항인 듯 하여 우선 int로 해두었습니다 아리송..
 	private Date classStDate;	// 수업 시작일
@@ -28,6 +27,9 @@ public class ClassInfo {
 	private String times;		// 주 2회, 3회
 	private int classMaxCount;	// 최대 수강생수
 	private String classContent;// 수업 내용
+	private String weekDay;		// 주중, 주말
 	
+	private String trainerName; // 수업 강사명
+	private String confirmerName; // 결재자이름
 
 }
