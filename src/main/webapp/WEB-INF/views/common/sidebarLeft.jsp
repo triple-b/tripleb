@@ -87,7 +87,7 @@
 							</a>
 							<ul class="nav nav-children">
 								<li>
-									<a href="mcList.mcm">
+									<a href="mcList.mcm?type=leftmenu">
 										 시설관리
 									</a>
 								</li>
