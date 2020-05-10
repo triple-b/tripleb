@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+	table tr{
+		width:100%;
+	}
+</style>
 </head>
 <body>
 	<section class="body">
@@ -24,7 +29,7 @@
 			<!-- 오른쪽 content 페이지 : 메뉴 선택시 수정되는 부분 -->
 			<section role="main" class="content-body">
 				<header class="page-header">
-					<h2>마이 페이지</h2>
+					<h2>상품관리</h2>
 					<div class="right-wrapper pull-right">				
 						<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
 					</div>
@@ -38,7 +43,7 @@
 	                        <section class="panel">
 	                            <header class="panel-heading">
 	                                <div class="panel-btn" style="margin-bottom: 1%;">
-	                                    <button class="modal-with-form btn btn-default" style="float:right; margin-right: 1%;" href="#modalFormC">삭제</button>
+	                                    <button class="modal-with-form btn btn-default" style="float:right; margin-right: 1%;" href="#modalFormD">삭제</button>
 	                                    <button id="registModal" class="modal-with-form btn btn-default" style="float:right; margin-right: 1%; background:#0088cc; color:white; border:1px solid #0088cc;" href="#modalFormR">등록</button>
 	                                </div>	
 	                                <h2 class="panel-title">상품관리</h2>				
@@ -63,44 +68,45 @@
 	                                <!-- /member 정보 -->
 	                                
 	                                <!-- 회원권, pt권 리스트 -->
-	                                <div class="pricing-table" style="margin-top:5%">
-	                                	<table style="width:100%;">
-	                                		<tr style="width:100%;">
-	                                			<td>
-					                                <c:forEach items="${ list }" var="p">
-						                                <c:if test="${ p.productCategory eq '회원권' }">
-						                                    <div class="col-lg-2 col-sm-6">
-						                                        <div class="plan">
-						                                            <h3 style="background: darkgoldenrod;"><input type="checkbox" style="float: left;">${ p.productName }<span>${ p.productPrice }￦</span></h3>
-						                                            <a class="btn btn-lg btn-primary" href="#">결제</a>
-						                                        </div>
-						                                    </div>
-						                                </c:if>
-					                                </c:forEach>
-	                                			</td>
-	                                		</tr>
-	                                		<tr style="width:100%;">
-	                                			<td>
-					                                <c:forEach items="${ list }" var="p">
-						                                <c:if test="${ p.productCategory eq 'PT권' }">
-						                                    <div class="col-lg-2">
-						                                        <div class="plan">
-						                                            <h3 style="background: #e36159;"><input type="checkbox" style="float: left;">${ p.productName }<span>${ p.productPrice }￦</span></h3>
-						                                            <a class="btn btn-lg btn-primary" href="#">결제</a>
-						                                            <ul>
-						                                                <li><b>${ p.weekDay }</b></li>
-						                                                <li><b>${ p.morAfter }</b></li>
-						                                                <li><b>${ p.times }</b></li>
-						                                            </ul>
-						                                        </div>
-						                                    </div>
-						                                </c:if>
-					                                </c:forEach>
-	                                			</td>
-	                                		</tr>
-		                                </table>
-		                            </div>
-	                                <!-- /회원권, pt권 리스트 -->
+                                    <div class="pricing-table" style="margin-top:5%">
+                                       <table style="width:100%;">
+                                          <tr style="width:100%;">
+                                             <td>
+                                                <c:forEach items="${ list }" var="p">
+                                                   <c:if test="${ p.productCategory eq '회원권' }">
+                                                       <div class="col-lg-2 col-sm-6">
+                                                           <div class="plan">
+                                                               <h3 style="background: darkgoldenrod;"><input type="checkbox"  data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<span>${ p.productPrice }￦</span></h3>
+                                                               <a class="btn btn-lg btn-primary" href="#">결제</a>
+                                                           </div>
+                                                       </div>
+                                                   </c:if>
+                                                </c:forEach>
+                                             </td>
+                                          </tr>
+                                          <tr style="width:100%;">
+                                             <td>
+                                                <c:forEach items="${ list }" var="p">
+                                                   <c:if test="${ p.productCategory eq 'PT권' }">
+                                                       <div class="col-lg-2">
+                                                           <div class="plan">
+                                                               <h3 style="background: #e36159;"><input type="checkbox" data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<br>(${ p.productDays }  일)<span>${ p.productPrice }￦</span></h3>
+                                                               <a class="btn btn-lg btn-primary" href="#">결제</a>
+                                                               <ul>
+                                                                   <li><b>${ p.weekDay }</b></li>
+                                                                   <li><b>${ p.morAfter }</b></li>
+                                                                   <li><b>${ p.times }</b></li>
+                                                               </ul>
+                                                           </div>
+                                                       </div>
+                                                   </c:if>
+                                                </c:forEach>
+                                             </td>
+                                          </tr>
+                                       </table>
+                                   </div>
+                                   <!-- /회원권, pt권 리스트 -->
+
 	
 	                            </div>
 	                        </section>
@@ -115,6 +121,7 @@
 		</div>
 		<!--/ 전체 레이어 -->
 		
+		<!-- 회원 검색리스트 ajax -->
 		<script>
 			$(function(){
 				$("#searchModal").click(function(){
@@ -260,7 +267,7 @@
 	     <!-- /등록 모달폼 -->
 	     
 	     <!-- 삭제 모달폼 -->
-		 <div id="modalFormC" class="modal-block modal-block-primary mfp-hide">
+		 <div id="modalFormD" class="modal-block modal-block-primary mfp-hide">
 			<section class="panel">
 			   <header class="panel-heading" style="background: #0f4c81;">
 			   </header>
@@ -272,8 +279,8 @@
 			   <footer class="panel-footer">
 				  <div class="row">
 					 <div class="col-md-12 text-right" style="text-align: center;">
-						<button class="btn btn-primary modal-confirm">확인</button>
-						<button class="btn btn-default modal-dismiss">취소</button>
+						<button id="deleteBtn" class="btn btn-primary modal-confirm">확인</button>
+						<button class="btn btn-default modal-dismiss" style="margin-left:2%">취소</button>
 					 </div>
 				  </div>
 			   </footer>
@@ -281,6 +288,7 @@
 		 </div>
 		 <!-- /삭제 모달폼 -->
 	     
+	     <!-- 회원정보 ajax -->
 		<script>
 			$(function(){
 				$("#memSubmit").click(function(){
@@ -353,6 +361,40 @@
 			});
 		</script>
 		
+		<!-- 삭제 ajax -->
+		<script>
+			$(function(){
+				$("#deleteBtn").click(function(){
+					var checkArr = new Array();
+					
+					/* var checkVal = $("input[name=proCheck]:checked").val(); */
+					
+					$("input[name=checkPro]:checked").each(function(){
+						checkArr.push($(this).attr("data-proNum"));
+					});
+					
+					console.log(checkArr);
+					$.ajax({
+						url:"delete.jpr",
+						data:{checkArr:checkArr},
+						type:"post",
+						success:function(result){
+							if(result > 0){
+								location.href= "productList.jpr";
+							}else{
+								return "common/errorPage";
+							}
+						},
+						error:function(){
+							console.log("통신실패");
+						}
+					});
+				});
+			});
+					
+		</script>
+		
+		<!-- 체크박스 선택 and 선택해제 -->
 		
 		<!-- 오른쪽 사이드 바 -->
 		<jsp:include page="../common/sidebarRight.jsp" />		
