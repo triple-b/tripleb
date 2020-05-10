@@ -38,4 +38,8 @@ public class ProductDao {
 	public int insertPro(SqlSessionTemplate sqlSession, Product p) {
 		return sqlSession.insert("productMapper.insertPro", p);
 	}
+	
+	public int deletePro(SqlSessionTemplate sqlSession, int checkArr) {
+		return sqlSession.update("productMapper.deletePro", checkArr);
+	}
 }

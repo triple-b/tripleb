@@ -42,4 +42,10 @@
 		insert into product
 		values(seq_prno.nextval, #{productName}, #{productPrice}, #{productCategory}, #{productDays}, 'Y', #{weekDay}, #{morAfter}, #{times})
 	</insert>
+	
+	<update id="deletePro" parameterType="_int">
+		update product
+		set product_status='N'
+		where product_no = #{productNo}
+	</update> 
 </mapper>

@@ -52,4 +52,9 @@ public class ProductServiceImpl implements ProductService{
 	public int insertPro(Product p) {
 		return pDao.insertPro(sqlSession, p);
 	}
+
+	@Override
+	public int deletePro(int checkArr) {
+		return pDao.deletePro(sqlSession, checkArr);
+	}
 }
