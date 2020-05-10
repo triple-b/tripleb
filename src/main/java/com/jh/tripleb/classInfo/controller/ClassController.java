@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jh.tripleb.approve.model.vo.Approve;
 import com.jh.tripleb.classInfo.model.service.ClassService;
 import com.jh.tripleb.classInfo.model.vo.ClassInfo;
+import com.jh.tripleb.product.model.vo.Product;
 
 @Controller
 public class ClassController {
@@ -24,21 +28,56 @@ public class ClassController {
 		
 		ArrayList<ClassInfo> list = cService.selectList();
 		
+		model.addAttribute("list", list);
+		
 		return "classInfo/classList";
 	}
 	
-	
-//	@RequestMapping(value="insertClass.jcl" , produces="application/json; charset=utf-8")
 	@RequestMapping("insertClass.jcl")
 	public String insertClass(ClassInfo cl, HttpServletRequest request, Model model) {
 		
 		int result = cService.insertClass(cl);
-		System.out.println(result);
+		
 		if(result > 0) {
-			return "";
+			
+			return "redirect:approveList.jcl";
 		}else {
 			model.addAttribute("msg", "등록실패");
 			return "common/errorPage";
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="proList.jcl", produces = "application/json; charset=utf-8")
+	public ArrayList<Product> proList(Product p) {
+		
+		int listCount = cService.getpListCount();
+		
+		ArrayList<Product> list = cService.selectpList();
+		
+		return list;
+	}
+		
+	@RequestMapping("approveList.jcl")
+	public String selectAgrList(Model model) {
+		
+		ArrayList<ClassInfo> alist = cService.selectaList();
+		
+		model.addAttribute("alist", alist);
+		
+		return "approve/approveList";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "delete.jcl", produces = "application/json; charset=utf-8")
+	public int deleteCl(@RequestParam(value="checkArr[]") String[] checkArr) {
+
+		int result = 0;
+		
+		for(int i = 0; i<checkArr.length; i++) {
+			result = cService.deleteCl(Integer.parseInt(checkArr[i]));
+		}
+		
+		return result;
 	}
 }
