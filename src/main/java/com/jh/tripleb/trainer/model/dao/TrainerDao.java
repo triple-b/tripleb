@@ -10,10 +10,6 @@ import com.jh.tripleb.trainer.model.vo.Trainer;
 @Repository("tDao")
 public class TrainerDao {
 	
-	public Trainer loginTrainer(SqlSessionTemplate sqlSession, Trainer t) {
-		return sqlSession.selectOne("trainerMapper.loginTrainer", t);
-	}
-	
 	public Trainer changeTrainer(SqlSessionTemplate sqlSession, Trainer t) {
 		return sqlSession.selectOne("trainerMapper.changeTrainer", t);
 	}

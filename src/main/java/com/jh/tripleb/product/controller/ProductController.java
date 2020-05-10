@@ -3,11 +3,13 @@ package com.jh.tripleb.product.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -86,5 +88,18 @@ public class ProductController {
 			return "common/errorPage";
 		}
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="delete.jpr", produces = "application/json; charset=utf-8")
+	public int deletePro(@RequestParam(value="checkArr[]") String[] checkArr) {
+		
+		int result = 0;
+		
+		for(int i = 0; i<checkArr.length; i++) {
+			result = pService.deletePro(Integer.parseInt(checkArr[i]));
+		}
+		
+		return result;
 	}
 }

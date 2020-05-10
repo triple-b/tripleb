@@ -6,8 +6,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jh.tripleb.approve.model.vo.Approve;
 import com.jh.tripleb.classInfo.model.dao.ClassDao;
 import com.jh.tripleb.classInfo.model.vo.ClassInfo;
+import com.jh.tripleb.product.model.vo.Product;
 
 @Service("cService")
 public class ClassServiceImpl implements ClassService{
@@ -32,7 +34,31 @@ public class ClassServiceImpl implements ClassService{
 	public int insertClass(ClassInfo cl) {
 		return cDao.insertClass(sqlSession, cl);
 	}
+
+	@Override
+	public int insertApp(Approve a) {
+		return cDao.insertApp(sqlSession, a);
+	}
 	
-	
+	@Override
+	public int getpListCount() {
+		return cDao.getpListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Product> selectpList() {
+		return cDao.selectpList(sqlSession);
+	}
+
+	@Override
+	public ArrayList<ClassInfo> selectaList() {
+		return cDao.selectaList(sqlSession);
+	}
+
+	@Override
+	public int deleteCl(int checkArr) {
+		return cDao.deleteCl(sqlSession, checkArr);
+	}
+
 
 }

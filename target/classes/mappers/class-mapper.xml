@@ -10,13 +10,40 @@
 	</select>
 
 	<select id="selectList" resultType="ClassInfo">
-		select *
+		select class_no, class_count, class_stdate, class_enddate, class_status, trainer_no, product_no, class_name, times, class_maxcount, class_content, weekday, trainer_name
 		from classInfo
+		join trainer using(trainer_no)
 		where class_status='Y'
+		order by class_no desc
 	</select>
 	
 	<insert id="insertClass" parameterType="ClassInfo">
 		insert into classInfo
-		values(seq_clsno.nextval, default, #{classStDate}, #{classEndDate}, default, #{trainerNo}, seq_prno.nextval, #{className}, #{times}, #{classMaxCount}, #{classContent})
+		values(seq_clsno.nextval, 0, #{classStDate}, #{classEndDate}, default, #{trainerNo}, #{productNo}, #{className}, #{times}, #{classMaxCount}, #{classContent}, #{weekDay})
 	</insert>
+	
+	<select id="getpListCount" resultType="_int">
+		select count(*)
+		from product
+		where product_status='Y'
+	</select>
+	
+	<select id="selectpList" resultType="Product">
+		select product_no, product_name, product_days, times, weekDay
+		from product
+		where product_status='Y' and product_category='PT권'
+	</select>
+	
+	<select id="selectaList" resultType="ClassInfo">
+		select class_no, class_name, trainer_name, class_stDate, class_endDate, class_status
+		from classInfo
+		join trainer using(trainer_no)
+		where not class_status in('D')
+	</select>
+	
+	<update id="deleteCl" parameterType="ClassInfo">
+		update classInfo
+		set class_status='D'
+		where class_no=#{classNo}
+	</update>
 </mapper>

@@ -93,7 +93,7 @@ var editEvent = function (event, element, view) {
                 trainerName : event.username
             },
             success: function (response) {
-                alert('수정되었습니다.');
+
             }
         });
 

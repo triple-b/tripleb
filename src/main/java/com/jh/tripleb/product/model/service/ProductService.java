@@ -20,4 +20,6 @@ public interface ProductService {
 	Member selectImg(int memberNo);
 	
 	int insertPro(Product p);
+	
+	int deletePro(int checkArr);
 }
