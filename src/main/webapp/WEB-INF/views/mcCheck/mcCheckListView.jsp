@@ -126,7 +126,7 @@
 											<div class="thumbnail">
 												<div class="thumb-preview">
 													<input type="hidden" value="${m.machineNo}" >
-													<a class="thumb-image" href="assets/images/projects/project-1.jpg"></a>
+													<a class="thumb-image" href="${ pageContext.servletContext.contextPath }/resources/assets/images/projects/project-1.jpg"></a>
 														<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/${m.thumbChange}" class="img-responsive" alt="Project">
 													</a>
 													<div class="mg-thumb-options">
@@ -153,9 +153,11 @@
 						</div>
 						
 					</section>
-				</main>	
+				
+			</section>
 			<!-- 오른쪽 content 페이지 -->
 		</div>
+		
 		
 		<!--/ 전체 레이어 -->
 		<!-- 기구 관리 등록 -->
