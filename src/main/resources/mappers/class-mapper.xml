@@ -29,7 +29,7 @@
 	</select>
 	
 	<select id="selectpList" resultType="Product">
-		select product_no, product_name, product_days, times
+		select product_no, product_name, product_days, times, weekDay
 		from product
 		where product_status='Y' and product_category='PT권'
 	</select>

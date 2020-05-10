@@ -226,7 +226,7 @@
 						var value = "";
 												
 						for(var i in list){
-							value += '<option name="productNo" value="' + list[i].productNo + '">' + list[i].productName + '(' + list[i].productDays + '일, ' + list[i].times + ')</option>';
+							value += '<option name="productNo" value="' + list[i].productNo + '">' + list[i].productName + '(' + list[i].productDays + '일, ' + list[i].times + ', ' + list[i].weekDay + ')</option>';
 						}
 						
 						$("#proListDiv").html(value);

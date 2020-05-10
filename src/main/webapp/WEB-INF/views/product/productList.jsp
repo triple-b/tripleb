@@ -42,10 +42,12 @@
 	                    <div class="innerOuter" style="margin-top:-5%">
 	                        <section class="panel">
 	                            <header class="panel-heading">
-	                                <div class="panel-btn" style="margin-bottom: 1%;">
-	                                    <button class="modal-with-form btn btn-default" style="float:right; margin-right: 1%;" href="#modalFormD">삭제</button>
-	                                    <button id="registModal" class="modal-with-form btn btn-default" style="float:right; margin-right: 1%; background:#0088cc; color:white; border:1px solid #0088cc;" href="#modalFormR">등록</button>
-	                                </div>	
+	                            	<c:if test="${ loginUser.trainerGrade eq 'M' }">
+		                                <div class="panel-btn" style="margin-bottom: 1%;">
+		                                    <button class="modal-with-form btn btn-default" style="float:right; margin-right: 1%;" href="#modalFormD">삭제</button>
+		                                    <button id="registModal" class="modal-with-form btn btn-default" style="float:right; margin-right: 1%; background:#0088cc; color:white; border:1px solid #0088cc;" href="#modalFormR">등록</button>
+		                                </div>	
+	                                </c:if>
 	                                <h2 class="panel-title">상품관리</h2>				
 	                            </header>
 	                            <div class="panel-body">

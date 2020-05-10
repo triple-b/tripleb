@@ -55,7 +55,7 @@
 						                                    <th>시작일</th>
 						                                    <th>종료일</th>
 						                                    <th>결재상태</th>
-						                                   	<c:if test="${ loginUser.trainerGrade eq 'T' }">
+						                                   	<c:if test="${ loginUser.trainerGrade eq 'M' }">
 						                                    	<th>결재자</th>
 						                                    	<th></th>
 						                                    </c:if>
@@ -81,7 +81,7 @@
 					                                 				</c:when>
 					                                 			</c:choose>
 					                                 			<%-- <td>${ cl.classStatus }</td> --%>
-					                                 			<c:if test="${ loginUser.trainerGrade eq 'T' }">
+					                                 			<c:if test="${ loginUser.trainerGrade eq 'M' }">
 					                                 				<c:choose>
 					                                 					<c:when test="${ cl.classStatus ne 'N' }">
 					                                 						<td>${ loginUser.trainerName }</td>
