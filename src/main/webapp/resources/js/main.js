@@ -1,3 +1,7 @@
+$(function(){
+	$('button').addClass('btn');
+})
+
 var draggedEventIsAllDay;
 var activeInactiveWeekends = true;
 
@@ -220,6 +224,8 @@ var calendar = $('#calendar').fullCalendar({
         				"allDay":false
         		};
         	}
+        	
+        	console.log(events);
         	
         events.push(evt);
         }

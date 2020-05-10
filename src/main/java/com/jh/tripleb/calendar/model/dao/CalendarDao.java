@@ -25,4 +25,5 @@ public class CalendarDao {
 	public int deleteCalendar(SqlSessionTemplate sqlSession, Calendar c) {
 		return sqlSession.update("calendarMapper.deleteCalendar", c);
 	}
+	
 }

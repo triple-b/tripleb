@@ -42,8 +42,12 @@
 
 				
 			<section class="panel">
+						<header class="panel-heading">					
+							<h2 class="panel-title">일정관리</h2>
+						</header>
 					<div class="panel-body">
 						<div class="row">
+							
 							<div class="col-md-9">
 							
 							 <!-- 일자 클릭시 메뉴오픈 -->
@@ -52,6 +56,8 @@
 						                style="display:block;position:static;margin-bottom:5px;">
 						                <li><a tabindex="-1" href="#">수업</a></li>
 						                <li><a tabindex="-1" href="#">점검</a></li>
+						                <li><a tabindex="-1" href="#">행사</a></li>
+						                <li><a tabindex="-1" href="#">기타</a></li>
 						                <li class="divider"></li>
 						                <li><a tabindex="-1" href="#" data-role="close">닫기</a></li>
 						            </ul>
@@ -124,6 +130,8 @@
 							                                <select class="inputModal form-control" name="edit-type" id="edit-type">
 							                                    <option value="수업">수업</option>
 							                                    <option value="점검">점검</option>
+							                                    <option value="행사">행사</option>
+							                                    <option value="기타">기타</option>
 							                                </select>
 						                                </div>
 						                            </div>
@@ -166,24 +174,47 @@
 							          </div><!-- /.modal-dialog -->
 							      </div><!-- /.modal -->
 							
-							      <div class="panel panel-default">
+								</div>
+								
+								<div class="col-md-3">
 							
-							          <div class="panel-heading">
+							<div class="panel panel-default">
+							
+							     <div class="panel-heading">
 							              <h3 class="panel-title">필터</h3>
 							          </div>
 							
 							          <div class="panel-body">
 							          
-							          <div class="col-lg-6">
+							          <div class="col-lg-12" style="margin-bottom:20px">
 					                    <label for="calendar_view">구분별</label>
-					                    <div class="input-group">
-					                        <select class="filter" id="type_filter" multiple="multiple">
-					                            <option value="수업">수업</option>
-					                            <option value="점검">점검</option>
-					                        </select>
-					                    </div>
-					                </div>
-
+						                    <div class="input-group">
+						                        <select class="filter" id="type_filter" multiple="multiple" style="width:280px;">
+			                            			<option value="수업">수업</option>
+				                                    <option value="점검">점검</option>
+				                                    <option value="행사">행사</option>
+				                                    <option value="기타">기타</option>
+						                        </select>
+						                    </div>
+					                   </div>
+					                	
+					                	
+						                <div class="col-lg-12">
+							                  <label for="calendar_view">트레이너별</label>
+							                  <div class="input-group">
+							                  	<ul class="nav nav-children" style="font-size:15px;">
+							                  <c:forEach items="${ list }" var="t">
+							                  <li style="padding-bottom:10px;">
+							                      <label class="checkbox-inline">
+							                      	<input class='filter' type="checkbox" value="${ t.trainerName }"checked>
+							                      ${ t.trainerName }
+							                      </label>
+							                   </li>
+							                   </c:forEach>
+							                  	</ul>
+							                  </div>
+							              </div>
+									<!-- 
 						              <div class="col-lg-6">
 						                  <label for="calendar_view">등록자별</label>
 						                  <div class="input-group">
@@ -193,20 +224,18 @@
 						                   </c:forEach>
 						                  </div>
 						              </div>
+						             -->
 							
 							          </div>
 							      </div>
 							      <!-- /.filter panel -->
-
-
-														
-								</div>
+							      
+							</div>
 								
 							</div>
 						</div>	
 					</section>
 			
-				
 				
 				
 				

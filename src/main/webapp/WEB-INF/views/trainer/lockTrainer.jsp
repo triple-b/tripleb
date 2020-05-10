@@ -41,10 +41,11 @@
 		<div class="center-sign">
 			<div class="panel panel-sign">
 				<div class="panel-body">
-					<form action="login.utr" method="post">
+					<form action="change.utr" method="post">
 						<div class="current-user text-center">
 							<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/${ t.trainerThumbnail }" alt="${ t.trainerName }" class="img-circle user-image" />
 							<h2 class="user-name text-dark m-none">${ t.trainerName }</h2>
+							<input type="hidden" name="trainerNo" value="${ t.trainerNo }">
 							<p class="user-email m-none">트레이너</p>
 						</div>
 						<div class="form-group mb-lg">

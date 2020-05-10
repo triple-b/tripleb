@@ -17,12 +17,6 @@ public class TrainerServiceImpl implements TrainerService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	
-	@Override
-	public Trainer loginTrainer(Trainer t) {
-		return tDao.loginTrainer(sqlSession, t);
-	}
-
 	@Override
 	public Trainer changeTrainer(Trainer t) {
 		return tDao.changeTrainer(sqlSession, t);

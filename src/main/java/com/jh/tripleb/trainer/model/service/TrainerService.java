@@ -11,24 +11,16 @@ import com.jh.tripleb.trainer.model.vo.Trainer;
 public interface TrainerService {
 	
 	
-	// 트레이너 전체 리스트
+	// 트레이너 전체 리스트 (로그인 리스트도 불러옴)
 	/**
 	 * @author 김주
 	 * @return			전체 트레이너의 전체 정보
 	 */
 	ArrayList<Trainer> listTrainer();
 	
-	// 트레이너 로그인용 서비스
-	/**
-	 * @param t			트레이너의 출근번호 담긴 트레이너 객체
-	 * @author 김주
-	 * @return			조회된 트레이너의 정보
-	 */
-	Trainer loginTrainer(Trainer t);
-	
 	// 트레이너 변경 서비스
 	/**
-	 * @param t			---------------- 김주 다시 볼 파트 (로그인트레이너랑 다른 게 뭔지?)
+	 * @param t			트레이너 번호 + 비밀번호 가 담긴 객체 정보
 	 * @return
 	 */
 	Trainer changeTrainer(Trainer t);

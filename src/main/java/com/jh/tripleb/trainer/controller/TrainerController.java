@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,9 @@ public class TrainerController {
 	@Autowired
 	private TrainerService tService;
 	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
 	@RequestMapping("loginForm.utr")
 	public String loginForm() {
 		return "trainer/loginTrainer";
@@ -34,17 +38,26 @@ public class TrainerController {
 	@RequestMapping("login.utr")
 	public ModelAndView loginTrainer(Trainer t, HttpSession session, ModelAndView mv) {
 		
-		Trainer loginUser = tService.loginTrainer(t);
+		ArrayList<Trainer> list = tService.listTrainer();
 		ArrayList<Trainer> onTrainer = tService.listTrainer();
 		
-		if(loginUser != null) {
-			session.setAttribute("loginUser", loginUser);
+		if(list != null) {
+			for(Trainer loginUser : list) {
+	
+				if(bcryptPasswordEncoder.matches(t.getTrainerPwd(), loginUser.getTrainerPwd())){
+					session.setAttribute("loginUser", loginUser);
+				}
+			}
+			
 			session.setAttribute("onTrainer", onTrainer);
 			mv.setViewName("redirect:/");
-		}else {
+			
+		}else { // 로그인 실패
+			
 			mv.addObject("msg", "로그인 실패");
 			mv.setViewName("common/errorPage");
 		}
+			
 		return mv;
 		
 	}
@@ -54,7 +67,7 @@ public class TrainerController {
 		
 		Trainer loginUser = tService.changeTrainer(t);
 		
-		if(loginUser != null) {
+		if(loginUser != null && bcryptPasswordEncoder.matches(t.getTrainerPwd(), loginUser.getTrainerPwd())) {
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("redirect:/");
 		}else {
