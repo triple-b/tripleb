@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jh.tripleb.mcManagement.model.service.McmanagementService;
 import com.jh.tripleb.mcManagement.model.vo.McManagement;
 import com.jh.tripleb.mcManagement.model.vo.McManagementDto;
-import com.jh.tripleb.notice.model.vo.Notice;
+
 
 @Controller
 public class McmanagementController {
@@ -29,7 +29,7 @@ public class McmanagementController {
         int result = mcmService.insertMcManagement(mcm);
         
         if(result > 0) {
-           return "redirect:mcList.mc";
+           return "redirect:mcList.mcm?type=leftmenu";
         }else {
            model.addAttribute("msg", "기구 등록 실패!");
            return "common/errorPage";
@@ -38,7 +38,7 @@ public class McmanagementController {
 
      }
 	@RequestMapping("mcList.mcm")
-	public String selectList(String type, Model model) {		
+	public String selectList(String type, Model model) {
 		
 		ArrayList<McManagement> list = mcmService.selectList();
 		
@@ -47,7 +47,7 @@ public class McmanagementController {
 		if(type.equals("leftmenu")) {
 			return "mcCheck/mcCheckListView";		
 		}else {
-			return "mcCheck/mcAllCheckList";		
+			return "mcCheck/mcAllCheckList";
 		}
 		
 	}
@@ -58,7 +58,7 @@ public class McmanagementController {
 		int result = mcmService.deleteMcManagement(mano);
 		
 		if(result > 0) { // 삭제 성공
-			return "redirect:mcList.mc";
+			return "redirect:mcList.mc?type=leftmenu";
 		}else { // 삭제 실패
 			model.addAttribute("msg", "기구관리 삭제 실패!");
 			return "common/errorPage";

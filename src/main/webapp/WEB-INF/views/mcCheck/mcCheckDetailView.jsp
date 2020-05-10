@@ -9,29 +9,10 @@
 
 
 <!-- Mobile Metas -->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-		<!-- Web Fonts  -->
-		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
-
-		<!-- Vendor CSS -->
-		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap/css/bootstrap.css" />
-		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/font-awesome/css/font-awesome.css" />
-		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/magnific-popup/magnific-popup.css" />
-		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
 
 		<!-- Specific Page Vendor CSS -->
 		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/select2/select2.css" />
-		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
 
-		<!-- Theme CSS -->
-		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/stylesheets/theme.css" />
-
-		<!-- Skin CSS -->
-		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/stylesheets/skins/default.css" />
-
-		<!-- Theme Custom CSS -->
-		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/stylesheets/theme-custom.css">
 
 		<!-- Head Libs -->
 		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/modernizr/modernizr.js"></script>
@@ -158,7 +139,7 @@
 											<div class="thumbnail">
 												<div class="thumb-preview">
 													<input type="hidden" value="${m.machineNo}" >
-													<a class="thumb-image" href="assets/images/projects/project-1.jpg"></a>
+													<a class="thumb-image" href="${ pageContext.servletContext.contextPath }/resources/assets/images/projects/project-1.jpg">
 														<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/${m.thumbChange}" class="img-responsive" alt="Project">
 													</a>
 													<div class="mg-thumb-options">
@@ -174,7 +155,7 @@
 													<div class="mg-description">
 														<small class="pull-left text-muted">${m.machineNo}</small>
 														<small class="pull-right text-muted">${m.machineRegistDate}</small>
-													</div>	
+													</div>						
 												</div>
 											</div>
 										</div>
@@ -185,95 +166,97 @@
 						</div>
 						
 					</section>
-				</main>	
+					
+						<!-- 기구 상태창 -->
+				    <menu id="content-menu" class="inner-menu" role="menu" style="right:0; left: auto; width: 329.9px; margin-top: 52px;">
+					     <div class="nano">
+					         <div class="nano-content">
+					             
+					             <div class="inner-menu-toggle-inside">
+					                 <a href="#" class="inner-menu-collapse">
+					                     <i class="fa fa-chevron-up visible-xs-inline"></i><i class="fa fa-chevron-left hidden-xs-inline"></i> Hide Options
+					                 </a>
+					                 <a href="#" class="inner-menu-expand" data-open="inner-menu">
+					                     Show Options <i class="fa fa-chevron-down"></i>
+					                 </a>
+					             </div>
+					             <div class="inner-menu-content">
+					                 <h1 class="lockerNum">기구 상태</h1>
+					                 <img class="machin" src="http://placehold.it/300x200" alt="">
+					                 <hr class="separator" />
+					                 <div class="form-group">
+					                     <div class="row">
+					                         <label class="col-xs-12 control-label" for="longitude">회원명</label>
+					                         <div class="col-xs-12">
+					                             <input id="mapid" name="mapid" class="form-control" value="회원명" type="text" data-builder-field="mapid">
+					                         </div>
+					                     </div>
+					                 </div>
+					
+					                 <hr class="separator" />
+					
+					                 <p class="title">Machine Center</p>
+					                 
+					                     <div class="form-group">
+					                         <div class="form-group">
+					                             <div class="row">
+					                                 <label class="col-xs-12 control-label" for="longitude">기구NO</label>
+					                                 <div class="col-xs-12">
+					                                     <input id="mapid" name="mapid" class="form-control" value="1" type="text" data-builder-field="mapid">
+					                                 </div>
+					                             </div>
+					                         </div>
+					                     </div>
+					                     
+					                     <div class="form-group">
+					                         <div class="row">
+					                             <label class="col-xs-12 control-label" for="longitude">기구명</label>
+					                             <div class="col-xs-12">
+					                                 <input id="mapid" name="mapid" class="form-control" value="벤치프레스" type="text" data-builder-field="mapid">
+					                             </div>
+					                         </div>
+					                     </div>
+					
+					                     <div class="form-group">
+					                         <div class="row">
+					                             <label class="col-xs-12 control-label" for="longitude">등록 날짜</label>
+					                             <div class="col-xs-12">
+					                                 <input id="mapid" name="mapid" class="form-control" value="2020-04-23" type="text" data-builder-field="mapid">
+					                             </div>
+					                         </div>
+					                     </div>
+					
+					                     <div class="form-group">
+					                         <div class="row">
+					                             <label class="col-xs-12 control-label" for="longitude">고장상태</label>
+					                             <div class="col-xs-12">
+					                                 <input id="mapid" name="mapid" class="form-control" value="벤치 어디가 어느부분이 아파파파파파" type="text" data-builder-field="mapid">
+					                             </div>
+					                         </div>
+					                     </div>
+					                     
+					                     <hr class="separator" />
+					
+					                     <div class="form-group">
+					                         <ul id="MarkersList" class="list-markers list-unstyled mb-lg hidden"></ul>
+					                         <div class="row">
+					                             <div class="col-sm-6">
+					                                 <a class="modal-with-form btn btn-primary"  style="width: 117.24px;" href="#modalForm3">고장</a>
+					                             </div>
+					                         </div>
+					                     </div>
+					                     <hr class="separator" />
+					             	</div>
+					                 
+					         </div>
+					     </div>
+					 </menu>
+					
+			</section>
 			<!-- 오른쪽 content 페이지 -->
 		</div>
-		<menu id="content-menu" class="inner-menu" role="menu" style="right:0; left: auto; width: 329.9px; margin-top: 52px;">
-					<div class="nano">
-						<div class="nano-content">
-							<div class="inner-menu-toggle-inside">
-								<a href="#" class="inner-menu-collapse">
-									<i class="fa fa-chevron-up visible-xs-inline"></i><i class="fa fa-chevron-left hidden-xs-inline"></i> Hide Options
-								</a>
-								<a href="#" class="inner-menu-expand" data-open="inner-menu">
-									Show Options <i class="fa fa-chevron-down"></i>
-								</a>
-							</div>
-							<div class="inner-menu-content">
-								<h1 class="lockerNum">기구 상태</h1>
-								<img class="machin" src="http://placehold.it/300x200" alt="">
-								<hr class="separator" />
-								<div class="form-group">
-									<div class="row">
-										<label class="col-xs-12 control-label" for="longitude">회원명</label>
-										<div class="col-xs-12">
-											<input id="mapid" name="mapid" class="form-control" value="회원명" type="text" data-builder-field="mapid">
-										</div>
-									</div>
-								</div>
-
-								<hr class="separator" />
-
-								<p class="title">Machine Center</p>
-								
-								<div class="form-group">
-									<div class="form-group">
-										<div class="row">
-											<label class="col-xs-12 control-label" for="longitude">기구NO</label>
-											<div class="col-xs-12">
-												<input id="mapid" name="mapid" class="form-control" value="1" type="text" data-builder-field="mapid">
-											</div>
-										</div>
-									</div>
-									
-									<div class="form-group">
-										<div class="row">
-											<label class="col-xs-12 control-label" for="longitude">기구명</label>
-											<div class="col-xs-12">
-												<input id="mapid" name="mapid" class="form-control" value="벤치프레스" type="text" data-builder-field="mapid">
-											</div>
-										</div>
-									</div>
-	
-									<div class="form-group">
-										<div class="row">
-											<label class="col-xs-12 control-label" for="longitude">등록 날짜</label>
-											<div class="col-xs-12">
-												<input id="mapid" name="mapid" class="form-control" value="2020-04-23" type="text" data-builder-field="mapid">
-											</div>
-										</div>
-									</div>
-	
-									<div class="form-group">
-										<div class="row">
-											<label class="col-xs-12 control-label" for="longitude">고장상태</label>
-											<div class="col-xs-12">
-												<input id="mapid" name="mapid" class="form-control" value="벤치 어디가 어느부분이 아파파파파파" type="text" data-builder-field="mapid">
-											</div>
-										</div>
-									</div>
-									
-									<hr class="separator" />
-
-									<div class="form-group">
-										<ul id="MarkersList" class="list-markers list-unstyled mb-lg hidden">
-										</ul>
-	
-										<div class="row">
-											
-											<div class="col-sm-6">
-												<a class="modal-with-form btn btn-primary"  style="width: 117.24px;" href="#modalForm3">고장</a>
-											</div>
-										</div>
-									</div>
-	
-									<hr class="separator" />
-							</div>
-						</div>
-					</div>
-				</menu>
 		<!--/ 전체 레이어 -->
-		<!-- 기구 관리 등록 -->
+	<!-- 기구 관리 등록 -->
 					<section class="panel">
 
 						<!-- Modal Form -->
@@ -379,8 +362,8 @@
 							<header class="panel-heading">
 								<h1 class="panel-title">기구종류등록</h1>
 							</header>
+						<form id="insertMachine" method="post" action="insert.mc" enctype="multipart/form-data">
 							<div class="panel-body">
-								<form id="insertMachine" method="post" action="insert.mc" enctype="multipart/form-data">
 									<hr>
 									<table align="center">
 										<tr>
@@ -529,8 +512,8 @@
 							<header class="panel-heading">
 								<h1 class="panel-title">시설기구등록</h1>
 							</header>
+						<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
 							<div class="panel-body">
-								<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
 									<div class="form-group mt-lg">
 										<label class="col-sm-3 control-label">기구명</label>
 										<div class="col-sm-9">
@@ -547,7 +530,7 @@
 										<div class="form-group">
 											<label class="col-sm-3 control-label">기구설명</label>
 											<div class="col-sm-9">
-												<input type="text" rows="5" class="form-control" placeholder="Type your comment..." readonly></input>
+												<input type="text" class="form-control" placeholder="Type your comment..." readonly></input>
 											</div>
 										</div>
 									</div>
@@ -717,61 +700,9 @@
 			});
 		});
 	</script>
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.modals.js"></script>
-	
-	<!-- Vendor -->
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery/jquery.js"></script>
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap/js/bootstrap.js"></script>
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/nanoscroller/nanoscroller.js"></script>
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/magnific-popup/magnific-popup.js"></script>
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
-		
-		<!-- Specific Page Vendor -->
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/select2/select2.js"></script>
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
-		
-		<!-- Theme Base, Components and Settings -->
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/theme.js"></script>
-		
-		<!-- Theme Custom -->
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/theme.custom.js"></script>
-		
-		<!-- Theme Initialization Files -->
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/theme.init.js"></script>
-
-
-		<!-- Examples -->
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.row.with.details.js"></script>
-		<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.tabletools.js"></script>
-			<!-- Vendor -->
-			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery/jquery.js"></script>
-			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
-			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap/js/bootstrap.js"></script>
 			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/nanoscroller/nanoscroller.js"></script>
-			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/magnific-popup/magnific-popup.js"></script>
-			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
-			
-			<!-- Specific Page Vendor -->
-			<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/pnotify/pnotify.custom.js"></script>
-			
-			<!-- Theme Base, Components and Settings -->
-			<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/theme.js"></script>
-			
-			<!-- Theme Custom -->
-			<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/theme.custom.js"></script>
-			
-			<!-- Theme Initialization Files -->
-			<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/theme.init.js"></script>
+					<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/maps/examples.map.builder.js"></script>
 	
 	
-			<!-- Examples -->
-			<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.modals.js"></script>
 </body>
 </html>

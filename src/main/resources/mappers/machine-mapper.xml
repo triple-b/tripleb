@@ -22,7 +22,7 @@
   	
   	<insert id="insertMachine" parameterType="Machine">
   		  		insert into machine
-  				values(seq_MCNO.nextval, #{mcName}, #{mcExplain}, #{thumbnail}, #{thumbChange},default, default)
+  				values(seq_MCNO.nextval, #{mcName}, #{mcExplain}, #{thumbnail}, #{thumbChange}, default, default)
   	</insert>
   	
   	<update id="deleteMachine" parameterType="_int" >

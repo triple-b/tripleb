@@ -64,7 +64,7 @@ public class MachineController {
 		int result = hmService.insertMachine(m);
 		
 		if(result > 0) {
-			return "redirect:mcList.mcm";
+			return "redirect:mcList.mcm?type=leftmenu";
 		}else { //기구 등록 실패
 			
 			model.addAttribute("msg", "기구 등록 실패!");
@@ -79,7 +79,7 @@ public class MachineController {
 			int result = hmService.deleteMachine(mcno);
 			
 			if(result > 0) { // 삭제 성공
-				return "redirect:mcList.mcm";
+				return "redirect:mcList.mcm?type=leftmenu";
 			}else { // 삭제 실패
 				model.addAttribute("msg", "기구 삭제 실패!");
 				return "common/errorPage";
@@ -91,20 +91,21 @@ public class MachineController {
 			String resources = request.getSession().getServletContext().getRealPath("resources");
 			String savePath = resources + "\\upload_files\\";
 			
-			String mcThumbnail = file.getOriginalFilename(); // 원본명 
+			String originName = file.getOriginalFilename();
 			
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			String currentTime = sdf.format(new Date());
-			String ext =mcThumbnail.substring(mcThumbnail.lastIndexOf("."));
+			String ext = originName.substring(originName.lastIndexOf("."));
 			
 			String changeName = currentTime + ext;
 			
-			try {
-				file.transferTo(new File(savePath + currentTime)); // 서버에 업로드 시키는 구문
-			} catch (IllegalStateException | IOException e) {
-				e.printStackTrace();
-			}
-			  return changeName;
+				try {
+					file.transferTo(new File(savePath + changeName));
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}
+				
+			return changeName;
 		}
 		
 		

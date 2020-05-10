@@ -111,30 +111,20 @@
 																	<thead>
 																		<tr>
 																			<th></th>
-																			<th><input type="checkbox"></th>
+																			<th>기구번호</th>
 																			<th>점검기구</th>
 																			<th>점검부위</th>
 																		</tr>
 																	</thead>
 																	<tbody>
-																		<tr>
-																			<td>1</td>
-																			<td><input type="checkbox"></td>
-																			<td><label class="col-sm-3 control-label">벤치</label></td>
-																			<td><textarea rows="5" class="form-control" placeholder="Type your comment..." ></textarea></td>
-																		</tr>
-																		<tr>
-																			<td>2</td>
-																			<td><input type="checkbox"></td>
-																			<td><label class="col-sm-3 control-label">파워렉</label></td>
-																			<td><textarea rows="5" class="form-control" placeholder="Type your comment..." ></textarea></td>
-																		</tr>
-																		<tr>
-																			<td>3</td>
-																			<td><input type="checkbox"></td>
-																			<td><label class="col-sm-3 control-label">턱걸이바</label></td>
-																			<td><textarea rows="5" class="form-control" placeholder="Type your comment..." ></textarea></td>
-																		</tr>
+																		<c:forEach items="${list}" var="m">
+																			<tr>
+																				<td><input type="checkbox"></td>
+																				<td>${m.machineNo}</td>
+																				<td><label class="col-sm-3 control-label">${m.mcName}</label></td>
+																				<td><textarea rows="5" class="form-control" placeholder="Type your comment..." ></textarea></td>
+																			</tr>
+																		</c:forEach>	
 																	</tbody>
 																</table>
 															</div>
