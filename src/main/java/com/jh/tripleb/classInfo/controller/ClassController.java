@@ -80,4 +80,12 @@ public class ClassController {
 		
 		return result;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="classDetail.jcl", produces = "application/json; charset=utf-8")
+	public ClassInfo clDetail(int classNo, HttpServletRequest request, Model model) {
+		ClassInfo c = cService.clDetail(classNo);
+		
+		return c;
+	}
 }

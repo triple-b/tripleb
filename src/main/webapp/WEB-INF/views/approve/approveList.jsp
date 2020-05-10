@@ -213,7 +213,6 @@
 				type:"post",
 				success:function(data){
 					var value = "";
-					console.log(data);
 					
 					value += '<div class="form-group">' +
 								'<input name="trainerNo" type="hidden" value="' + data.trainerNo + '">' +

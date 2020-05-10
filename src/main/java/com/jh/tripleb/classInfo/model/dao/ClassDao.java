@@ -43,4 +43,8 @@ public class ClassDao {
 	public int deleteCl(SqlSessionTemplate sqlSession, int checkArr) {
 		return sqlSession.update("classMapper.deleteCl", checkArr);
 	}
+	
+	public ClassInfo clDetail(SqlSessionTemplate sqlSession, int classNo) {
+		return sqlSession.selectOne("classMapper.clDetail", classNo);
+	}
 }

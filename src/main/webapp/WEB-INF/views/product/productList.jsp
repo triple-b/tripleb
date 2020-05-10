@@ -42,7 +42,7 @@
 	                    <div class="innerOuter" style="margin-top:-5%">
 	                        <section class="panel">
 	                            <header class="panel-heading">
-	                            	<c:if test="${ loginUser.trainerGrade eq 'M' }">
+	                            	<c:if test="${ loginUser.trainerGrade ne 'N' }">
 		                                <div class="panel-btn" style="margin-bottom: 1%;">
 		                                    <button class="modal-with-form btn btn-default" style="float:right; margin-right: 1%;" href="#modalFormD">삭제</button>
 		                                    <button id="registModal" class="modal-with-form btn btn-default" style="float:right; margin-right: 1%; background:#0088cc; color:white; border:1px solid #0088cc;" href="#modalFormR">등록</button>

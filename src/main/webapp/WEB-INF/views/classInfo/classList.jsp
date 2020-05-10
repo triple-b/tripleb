@@ -69,7 +69,11 @@
 	                                            <table>
 	                                                <tr>
 	                                                    <td width="80px"><h4>수업명 : </h4></td>
-														<th width="400px" style = "cursor:pointer;"><h4><a class="modal-with-form" href="#modalFormB">${ cl.className }</a></h4></th>
+														<th width="400px" style = "cursor:pointer;" class="classDetail">
+															<h4>
+																<button style="background:white; border:0px" class="modal-with-form" href="#modalFormDe" onclick="classDetailFn(${ cl.classNo })">${ cl.className }</button>
+															</h4>
+														</th>
 														<td><input name="checkCl1" type="checkbox" data-clNum="${ cl.classNo }" id="checkCl1" style="float:right"></td>
 	                                                </tr>
 	                                                <tr>
@@ -187,7 +191,29 @@
 		</div>
 		<!--/ 전체 레이어 -->
 		
-		<!-- 삭제 모달폼 -->
+		<!-- 상세정보 모달폼-->
+		<div id="modalFormDe" class="modal-block modal-block-primary mfp-hide">
+			<section class="panel">
+			   <header class="panel-heading" style="background: #0f4c81;">
+				  <h2 class="panel-title" style="color: white;">수업상세정보</h2>
+			   </header>
+			   <div class="panel-body">
+				  <form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
+						      
+				  </form>
+			   </div>
+			   <footer class="panel-footer">
+				  <div class="row">
+					 <div class="col-md-12 text-right">
+						<button class="btn btn-default modal-dismiss">확인</button>
+					 </div>
+				  </div>
+			   </footer>
+			</section>
+		 </div>
+		 <!-- /상세정보 모달폼 -->
+			 
+		 <!-- 삭제 모달폼 -->
 		 <div id="modalFormD" class="modal-block modal-block-primary mfp-hide">
 			<section class="panel">
 			   <header class="panel-heading" style="background: #0f4c81;">
@@ -236,6 +262,80 @@
 					}
 				});
 			
+			});
+		});
+	</script>
+	<!-- /ajax -->
+	
+	<!-- 수업 상세조회 ajax -->
+	<script>
+		var classDetailFn = function(rowKey){
+			var val1 = rowKey;
+			console.log("클릭");
+			console.log(val1);
+			
+			$.ajax({
+				url:"classDetail.jcl",
+				data:{classNo:val1},
+				type:"post",
+				success:function(data){
+					var value = "";
+					
+					value += '<div class="form-group">' +
+									'<label class="col-sm-2 control-label">수업명 : </label>' +
+									'<div class="col-sm-9">' +
+									   '<label class="col-sm-6" style="margin-top:1.5%">' + data.className + '</label>' +
+									'</div>' +
+								'</div>' +
+								'<div class="form-group">' +
+									'<label class="col-sm-2 control-label">강사명 : </label>' +
+									'<div class="col-sm-9">' +
+									   '<label class="col-sm-3" style="margin-top:1.5%">' + data.trainerName + '</label>' +
+									'</div>' +
+								 '</div>' +
+								 '<div class="form-group">' +
+									'<label class="col-sm-2 control-label">시작일 : </label>' +
+									'<div class="col-sm-9">' +
+									   '<label class="col-sm-3" style="margin-top:1.5%">' + data.classStDate + '</label>' +
+									'</div>' +
+								 '</div>' +
+								 '<div class="form-group">' +
+									'<label class="col-sm-2 control-label">종료일 : </label>' +
+									'<div class="col-sm-9">' +
+									   '<label class="col-sm-3" style="margin-top:1.5%">' + data.classEndDate + '</label>' +
+									'</div>' +
+								 '</div>' +
+								 '<div class="form-group">' + 
+									'<label class="col-sm-2 control-label">수강인원 : </label>' +
+									'<div class="col-sm-9">' +
+									   '<label class="col-sm-3" style="margin-top:1.5%">' + '<button id="stuListBtn1" class="modal-with-form" style="background:white; color:#777; border:0px" href="#modalFormSt">' + data.classCount + '/' + data.classMaxCount + '</button>' + '</label>' +
+									'</div>' +
+								 '</div>' +
+								 '<div class="form-group">' +
+									  '<label class="col-sm-2 control-label">수업내용 : </label>' +
+									  '<div class="col-sm-9">' +
+										 '<p class="col-sm-6" style="margin-top:1.5%">' +
+											 data.classContent +
+										'</p>' +
+									  '</div>' +
+								 '</div>';
+						 
+					$("#demo-form").html(value);
+							 
+				},
+				error:function(){
+					console.log("통신실패");
+				}
+			});
+		}
+	</script>
+	<!-- /ajax -->
+	
+	<!-- 수강생리스트 ajax -->
+	<script>
+		$(function(){
+			$("#stuListBtn1").click(function(){
+				
 			});
 		});
 	</script>

@@ -46,4 +46,11 @@
 		set class_status='D'
 		where class_no=#{classNo}
 	</update>
+	
+	<select id="clDetail" resultType="ClassInfo">
+		select class_no, trainer_name, class_name, class_stDate, class_endDate, class_count, class_maxCount, class_content
+		from classInfo
+		join trainer using(trainer_no)
+		where class_no=#{classNo}
+	</select>
 </mapper>

@@ -23,4 +23,6 @@ public interface ClassService {
 	ArrayList<ClassInfo> selectaList();
 	
 	int deleteCl(int checkArr);
+	
+	ClassInfo clDetail(int classNo);
 }

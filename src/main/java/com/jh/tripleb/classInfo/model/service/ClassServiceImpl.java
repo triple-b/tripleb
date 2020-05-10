@@ -60,5 +60,10 @@ public class ClassServiceImpl implements ClassService{
 		return cDao.deleteCl(sqlSession, checkArr);
 	}
 
+	@Override
+	public ClassInfo clDetail(int classNo) {
+		return cDao.clDetail(sqlSession, classNo);
+	}
+
 
 }
