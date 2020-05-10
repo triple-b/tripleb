@@ -3,7 +3,6 @@ package com.jh.tripleb.product.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.jh.tripleb.classInfo.model.vo.ClassInfo;
 import com.jh.tripleb.member.model.vo.Member;
 import com.jh.tripleb.product.model.service.ProductService;
 import com.jh.tripleb.product.model.vo.Product;
@@ -101,5 +101,13 @@ public class ProductController {
 		}
 		
 		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="clList.jpr", produces = "application/json; charset=utf-8")
+	public ArrayList<ClassInfo> selectcList(int productNo){
+		ArrayList<ClassInfo> list = pService.selectcList(productNo);
+		
+		return list;
 	}
 }

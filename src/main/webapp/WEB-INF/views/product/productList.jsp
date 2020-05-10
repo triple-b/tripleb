@@ -93,7 +93,7 @@
                                                        <div class="col-lg-2">
                                                            <div class="plan">
                                                                <h3 style="background: #e36159;"><input type="checkbox" data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<br>(${ p.productDays }  일)<span>${ p.productPrice }￦</span></h3>
-                                                               <a class="btn btn-lg btn-primary" href="#">결제</a>
+                                                               <button id="payListBtn1" class="btn btn-lg btn-primary modal-with-form" href="#modalFormCList" onclick="paymentFn(${p.productNo})">결제</button>
                                                                <ul>
                                                                    <li><b>${ p.weekDay }</b></li>
                                                                    <li><b>${ p.morAfter }</b></li>
@@ -268,6 +268,33 @@
 		 </div>
 	     <!-- /등록 모달폼 -->
 	     
+	     
+	     <!-- 수업리스트 모달폼-->
+         <div id="modalFormCList" class="modal-block modal-block-primary mfp-hide">
+            <section class="panel">
+	            <header class="panel-heading" style="background: #0f4c81;">
+	                <h2 class="panel-title" style="color: white;">결제</h2>
+	            </header>
+	            <div class="panel-body">
+	                <form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
+		                <c:if test="${ cl.classCount eq cl.classMaxCount }">
+			                    
+		                </c:if>
+	                </form>
+		            <footer class="panel-footer">
+		                <div class="row">
+		                    <div class="col-md-12 text-right">
+		                        <button class="btn btn-default modal-dismiss" type="button">결제</button>
+		                        <button class="btn btn-default modal-dismiss" type="button">취소</button>
+		                    </div>
+		                </div>
+		            </footer>
+	            </div>
+            </section>
+        </div>
+        <!-- /수업리스트 모달폼 -->					
+	     
+	     
 	     <!-- 삭제 모달폼 -->
 		 <div id="modalFormD" class="modal-block modal-block-primary mfp-hide">
 			<section class="panel">
@@ -290,6 +317,7 @@
 		 </div>
 		 <!-- /삭제 모달폼 -->
 	     
+	     
 	     <!-- 회원정보 ajax -->
 		<script>
 			$(function(){
@@ -309,7 +337,8 @@
 								value += '<div class="summary">' +
 										 	'<h4 class="title">회원정보</h4>' +
 										 		'<div class="info">' +
-										 			'<form action="">' +
+										 			'<form>' +
+										 				'<input type="hidden" id="memberNo1" value="' + data.memberNo + '">' +
 												 		'<table>' +
 															'<tr>' +
 								                                '<th>이름 : </th>' +
@@ -363,13 +392,73 @@
 			});
 		</script>
 		
+		
+		<!-- 수업리스트 ajax -->
+		<script>
+			var paymentFn = function(rowKey){
+				var val1 = rowKey;
+				console.log(rowKey);
+				var memNo = $("#memberNo1").val();
+				console.log("memberNo : " + memNo);
+				
+				$.ajax({
+					url:"clList.jpr",
+					data:{productNo:val1},
+					type:"post",
+					success:function(list){
+						console.log(list);	
+						console.log("memberNo : " + memNo);
+						var value = "";
+						
+						for(var i in list){
+							value += '<section class="panel panel-featured-left panel-featured-primary" style="width:90%;">' +
+					                     '<div class="panel-body">' +
+					                        '<div class="widget-summary">' +
+					                            '<table>' +
+					                                '<tr>' +
+					                                    '<td width="80px"><h4>수업명 : </h4></td>' +
+														 '<th width="400px">' +
+															 '<h4>' + list[i].className + '</h4>' +
+														 '</th>' +
+														 '<td><input type="radio" name="classCheck" id="classCheck"></td>' +
+								                     '</tr>' +
+								                     '<tr>' +
+					                                    '<td width="60px">수업시간 : </td>' +
+														 '<th width="400px">' + list[i].weekDay + '</th>' +
+														 '<td></td>' +
+					                                '</tr>' +
+					                                '<tr>' +
+					                                    '<td width="60px">수업횟수 : </td>' +
+														'<th width="400px">' + list[i].times + '</th>' +
+														'<td></td>' +
+					                                '</tr>' +
+					                                '<tr>' +
+					                                    '<td width="60px">담당자 : </td>' +
+														'<th width="400px">' + list[i].trainerName + '트레이너</th>' +
+														'<td></td>' +
+					                                '</tr>' +
+					                            '</table>' +
+					                        '</div>' +
+										'</div>' +
+					               '</section>';
+						}
+						
+						$("#demo-form").html(value);
+					},
+					error:function(){
+						console.log("통신실패");
+					}
+				});
+			}
+		</script>
+		<!-- /ajax -->
+		
+		
 		<!-- 삭제 ajax -->
 		<script>
 			$(function(){
 				$("#deleteBtn").click(function(){
 					var checkArr = new Array();
-					
-					/* var checkVal = $("input[name=proCheck]:checked").val(); */
 					
 					$("input[name=checkPro]:checked").each(function(){
 						checkArr.push($(this).attr("data-proNum"));

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.jh.tripleb.classInfo.model.vo.ClassInfo;
 import com.jh.tripleb.member.model.vo.Member;
 import com.jh.tripleb.product.model.vo.Product;
 
@@ -41,5 +42,9 @@ public class ProductDao {
 	
 	public int deletePro(SqlSessionTemplate sqlSession, int checkArr) {
 		return sqlSession.update("productMapper.deletePro", checkArr);
+	}
+	
+	public ArrayList<ClassInfo> selectcList(SqlSessionTemplate sqlSession, int productNo){
+		return (ArrayList)sqlSession.selectList("productMapper.selectcList", productNo);
 	}
 }

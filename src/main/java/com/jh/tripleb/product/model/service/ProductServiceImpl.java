@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jh.tripleb.classInfo.model.vo.ClassInfo;
 import com.jh.tripleb.member.model.vo.Member;
 import com.jh.tripleb.product.model.dao.ProductDao;
 import com.jh.tripleb.product.model.vo.Product;
@@ -56,5 +57,10 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public int deletePro(int checkArr) {
 		return pDao.deletePro(sqlSession, checkArr);
+	}
+
+	@Override
+	public ArrayList<ClassInfo> selectcList(int productNo) {
+		return pDao.selectcList(sqlSession, productNo);
 	}
 }

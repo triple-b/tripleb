@@ -48,4 +48,11 @@
 		set product_status='N'
 		where product_no = #{productNo}
 	</update> 
+	
+	<select id="selectcList" resultType="ClassInfo">
+		select class_no, class_name, class_status, weekDay, times, trainer_name
+		from classInfo
+		join trainer using(trainer_no)
+		where product_no=#{productNo} and class_status='Y'
+	</select>
 </mapper>
