@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="templateMapper">
+
+	<!-- 템플릿 리스트중 최상위 리스트 조회(장미경) -->
+	<select id="selectParentList" resultType="TemplateInfo">
+		select TEMPLATE_ITEMNO, TEMPLATE_ITEMNAME 
+		from templateinfo
+		where TEMPLATE_STATUS = 'Y' and TEMPLATE_PARENTITEMNO = 0
+		order by TEMPLATE_PARENTITEMNO, TEMPLATE_ITEMNO
+	</select>
+
+	<!-- 템플릿 전체 리스트 조회(장미경) -->
+	<select id="selectListTemplate" resultType="TemplateInfo">
+		select TEMPLATE_ITEMNO, TEMPLATE_PARENTITEMNO, TEMPLATE_ITEMNAME, TEMPLATE_ITEMDESCRIPTION, TEMPLATE_ITEMPRICE, TEMPLATE_ICON
+		from templateinfo
+		where TEMPLATE_STATUS = 'Y'
+		order by TEMPLATE_PARENTITEMNO, TEMPLATE_ITEMNO
+	</select>
+  
+</mapper>

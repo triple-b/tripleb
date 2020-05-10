@@ -145,7 +145,7 @@
 							</a>
 							<ul class="nav nav-children">
 								<li>
-									<a href="templateset.do">
+									<a href="list.mtp">
 										 템플릿설정
 									</a>
 								</li>

@@ -1,11 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>TemplateSetting</title>
 	<style>
+		.item-price {
+			color: #756f6f; 
+			padding: 2px; 
+		}
 		.pricing-table-template {
 			/* margin: 25px 0; */
 			padding-left: 0;
@@ -146,7 +150,7 @@
 		}
 		.panel-body-template {
    			background: #fdfdfd;   
-   			height: 510px;
+   			height: 540px;
 			/*display:inline-block*/
 		}
 	</style>
@@ -179,228 +183,15 @@
 								<p class="panel-subtitle">구매할 서비스를 선택해주세요</p>
 							</header>
 							<div class="panel-body-template">
-								<div id="treeCheckbox" class="jstree jstree-2 jstree-default" role="tree" aria-activedescendant="j2">
+								<div id="treeAjaxJSON" class="jstree jstree-4 jstree-default" role="tree">
 									<ul class="jstree-container-ul jstree-children">
-										<li role="treeitem" data-jstree="{ &quot;icon&quot; : &quot;fa fa-group&quot; }" aria-expanded="true" id="j2_1" class="jstree-node jstree-open" aria-selected="false">
+										<li class="jstree-initial-node jstree-loading jstree-leaf jstree-last">
 											<i class="jstree-icon jstree-ocl"></i>
 											<a class="jstree-anchor" href="#">
-												<i class="jstree-icon jstree-checkbox"></i>
-												<i class="jstree-icon jstree-themeicon fa fa-group jstree-themeicon-custom"></i><span class="ft20">회원관리</span>										 
+												
+												
 											</a>
-											<ul role="group" class="jstree-children">
-												<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_1_1" aria-selected="true">
-													<i class="jstree-icon jstree-ocl"></i>
-													<a class="jstree-anchor" href="#">
-														<i class="jstree-icon jstree-checkbox"></i>
-														<i class="jstree-icon jstree-themeicon fa fa-file jstree-themeicon-custom"></i>
-														<div style="width:100px; display: inline-block;">회원관리</div>
-														<div style="text-align:right; width:100px; display: inline-block; font-weight:600; text-align:right; margin-right:10px;">
-															<i class="fa fa-krw"></i>500,000
-														</div>
-													</a>
-												</li>
-										
-												<li role="treeitem-sub" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_1_2" class="jstree-node  jstree-leaf" aria-selected="false">
-													
-													<div class="jstree-anchor" onclick="setPrice();">
-														<div style="width:100px; display: inline-block;">블랙리스트</div>
-														<div style="text-align:right; width:100px; display: inline-block; font-weight:600; text-align:right; margin-right:10px;">
-															<i class="fa fa-krw"></i>500,000
-														</div>
-													</div>
-												</li>
-										
-											</ul>
 										</li>
-										
-										<li role="treeitem" data-jstree="{ &quot;icon&quot; : &quot;fa fa-user&quot; }" aria-expanded="true" id="j2_2" class="jstree-node  jstree-open" aria-selected="false">
-												<i class="jstree-icon jstree-ocl"></i>
-												<a class="jstree-anchor" href="#">
-													<i class="jstree-icon jstree-checkbox"></i>
-													<i class="jstree-icon jstree-themeicon fa fa-user jstree-themeicon-custom"></i>
-													<span class="ft20">트레이너관리	</span>											 
-											   </a>
-											   	<ul role="group" class="jstree-children" style="">
-													<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_2_1" price="5000" item="트레이너" class="jstree-node  jstree-leaf" aria-selected="false">
-														<i class="jstree-icon jstree-ocl"></i>
-														<a class="jstree-anchor" href="#">
-															<i class="jstree-icon jstree-checkbox"></i>
-															<i class="jstree-icon jstree-themeicon fa fa-file-text jstree-themeicon-custom"></i>
-															<div style="width:100px; display: inline-block;">트레이너현황</div>
-															<div style="text-align:right; width:100px; display: inline-block; font-weight:600; text-align:right; margin-right:10px;">
-																<i class="fa fa-krw"></i>500,000
-															</div>
-														</a>
-													</li>
-													<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_2_2" class="jstree-node  jstree-leaf" aria-selected="false">
-														<i class="jstree-icon jstree-ocl"></i>
-														<a class="jstree-anchor" href="#">
-															<i class="jstree-icon jstree-checkbox"></i>
-															<i class="jstree-icon jstree-themeicon fa fa-file jstree-themeicon-custom"></i>
-															<div style="width:100px; display: inline-block;">수강생관리</div>
-															<div style="text-align:right; width:100px; display: inline-block; font-weight:600; text-align:right; margin-right:10px;">
-																<i class="fa fa-krw"></i>500,000
-															</div>
-														</a>
-													</li>
-													<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_2_3" class="jstree-node  jstree-leaf" aria-selected="false">
-														<i class="jstree-icon jstree-ocl"></i>
-														<a class="jstree-anchor" href="#">
-															<i class="jstree-icon jstree-checkbox"></i>
-															<i class="jstree-icon jstree-themeicon fa fa-file jstree-themeicon-custom"></i>
-															<div style="width:100px; display: inline-block;">수업관리</div>
-															<div style="text-align:right; width:100px; display: inline-block; font-weight:600; font-weight:600; margin-right:10px;">
-																<i class="fa fa-krw"></i>500,000
-															</div>
-														</a>
-													</li>
-													<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_2_4" class="jstree-node  jstree-leaf jstree-last" aria-selected="false">
-														<i class="jstree-icon jstree-ocl"></i>
-														<a class="jstree-anchor" href="#">
-															<i class="jstree-icon jstree-checkbox"></i>
-															<i class="jstree-icon jstree-themeicon fa fa-file jstree-themeicon-custom"></i>
-															<div style="width:100px; display: inline-block;">건의사항</div>
-															<div style="text-align:right; width:100px; display: inline-block; font-weight:600; margin-right:10px;">
-																<i class="fa fa-krw"></i>50,000
-															</div>
-														</a>
-													</li>
-												</ul>
-											</li>
-											<li role="treeitem" data-jstree="{ &quot;icon&quot; : &quot;fa fa-list-ul&quot; }" aria-expanded="true" id="j2_3" class="jstree-node jstree-open" aria-selected="false">
-												<i class="jstree-icon jstree-ocl"></i>
-												<a class="jstree-anchor" href="#">
-													<i class="jstree-icon jstree-checkbox"></i>
-													<i class="jstree-icon jstree-themeicon fa fa-list-ul jstree-themeicon-custom"></i>
-													<span class="ft20">서비스관리</span>																						 
-											   </a>
-											   <ul role="group" class="jstree-children" style="">
-												<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_3_1" class="jstree-node  jstree-leaf" aria-selected="false">
-													<i class="jstree-icon jstree-ocl"></i>
-													<a class="jstree-anchor" href="#">
-														<i class="jstree-icon jstree-checkbox"></i>
-														<i class="jstree-icon jstree-themeicon fa fa-file jstree-themeicon-custom"></i>
-														<div style="width:100px; display: inline-block;">상품관리</div>
-														<div style="text-align:right; width:100px; display: inline-block; font-weight:600; text-align:right; margin-right:10px;">
-															<i class="fa fa-krw"></i>500,000
-														</div>
-													</a>
-												</li>
-												<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_3_2" class="jstree-node  jstree-leaf" aria-selected="false">
-													<i class="jstree-icon jstree-ocl"></i>
-													<a class="jstree-anchor" href="#">
-														<i class="jstree-icon jstree-checkbox"></i>
-														<i class="jstree-icon jstree-themeicon fa fa-file jstree-themeicon-custom"></i>
-														<div style="width:100px; display: inline-block;">PT회원관리</div>
-														<div style="text-align:right; width:100px; display: inline-block; font-weight:600; text-align:right; margin-right:10px;">
-															<i class="fa fa-krw"></i>500,000
-														</div>
-													</a>
-												</li>
-											</ul>
-											</li>
-											<li role="treeitem" data-jstree="{ &quot;icon&quot; : &quot;fa fa-building-o&quot; }" aria-expanded="true" id="j2_4" class="jstree-node jstree-open" aria-selected="false">
-												<i class="jstree-icon jstree-ocl"></i>
-												<a class="jstree-anchor" href="#">
-													<i class="jstree-icon jstree-checkbox"></i>
-													<i class="jstree-icon jstree-themeicon fa fa-building-o jstree-themeicon-custom"></i>
-													<span class="ft20">시설관리</span>												 
-											   </a>
-											   <ul role="group" class="jstree-children" style="">
-												<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_4_1" class="jstree-node  jstree-leaf" aria-selected="false">
-													<i class="jstree-icon jstree-ocl"></i>
-													<a class="jstree-anchor" href="#">
-														<i class="jstree-icon jstree-checkbox"></i>
-														<i class="jstree-icon jstree-themeicon fa fa-file jstree-themeicon-custom"></i>
-														<div style="width:100px; display: inline-block;">시설관리</div>
-														<div style="text-align:right; width:100px; display: inline-block; font-weight:600; text-align:right; margin-right:10px;">
-															<i class="fa fa-krw"></i>500,000
-														</div>
-													</a>
-												</li>
-												<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_4_2" class="jstree-node  jstree-leaf" aria-selected="false">
-													<i class="jstree-icon jstree-ocl"></i>
-													<a class="jstree-anchor" href="#">
-														<i class="jstree-icon jstree-checkbox"></i>
-														<i class="jstree-icon jstree-themeicon fa fa-file jstree-themeicon-custom"></i>
-														<div style="width:100px; display: inline-block;">비품관리</div>
-														<div style="text-align:right; width:100px; display: inline-block; font-weight:600; text-align:right; margin-right:10px;">
-															<i class="fa fa-krw"></i>500,000
-														</div>
-													</a>
-												</li>
-												<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_4_3" class="jstree-node  jstree-leaf" aria-selected="false">
-													<i class="jstree-icon jstree-ocl"></i>
-													<a class="jstree-anchor" href="#">
-														<i class="jstree-icon jstree-checkbox"></i>
-														<i class="jstree-icon jstree-themeicon fa fa-file jstree-themeicon-custom"></i>
-														<div style="width:100px; display: inline-block;">시설점검</div>
-														<div style="text-align:right; width:100px; display: inline-block; font-weight:600; font-weight:600; margin-right:10px;">
-															<i class="fa fa-krw"></i>500,000
-														</div>
-													</a>
-												</li>
-												<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_4_4" class="jstree-node  jstree-leaf jstree-last" aria-selected="false">
-													<i class="jstree-icon jstree-ocl"></i>
-													<a class="jstree-anchor" href="#">
-														<i class="jstree-icon jstree-checkbox"></i>
-														<i class="jstree-icon jstree-themeicon fa fa-file jstree-themeicon-custom"></i>
-														<div style="width:100px; display: inline-block;">락커관리</div>
-														<div style="text-align:right; width:100px; display: inline-block; font-weight:600; margin-right:10px;">
-															<i class="fa fa-krw"></i>50,000
-														</div>
-													</a>
-												</li>
-											</ul>
-											</li>
-											<li role="treeitem" data-jstree="{ &quot;icon&quot; : &quot;fa fa-bar-chart-o&quot; }" aria-expanded="true" id="j2_5" class="jstree-node jstree-open" aria-selected="false">
-												<i class="jstree-icon jstree-ocl"></i>
-												<a class="jstree-anchor" href="#">
-													<i class="jstree-icon jstree-checkbox"></i>
-													<i class="jstree-icon jstree-themeicon fa fa-bar-chart-o jstree-themeicon-custom"></i>
-													<span class="ft20">매출관리</span>											 
-												</a>
-												<ul role="group" class="jstree-children" style="">
-													<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_5_1" class="jstree-node  jstree-leaf" aria-selected="false">
-														<i class="jstree-icon jstree-ocl"></i>
-														<a class="jstree-anchor" href="#">
-															<i class="jstree-icon jstree-checkbox"></i>
-															<i class="jstree-icon jstree-themeicon fa fa-file jstree-themeicon-custom"></i>
-															<div style="width:100px; display: inline-block;">매출현항</div>
-															<div style="text-align:right; width:100px; display: inline-block; font-weight:600; text-align:right; margin-right:10px;">
-																<i class="fa fa-krw"></i>500,000
-															</div>
-														</a>
-													</li>
-													<li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" id="j2_5_2" class="jstree-node  jstree-leaf" aria-selected="false">
-														<i class="jstree-icon jstree-ocl"></i>
-														<a class="jstree-anchor" href="#">
-															<i class="jstree-icon jstree-checkbox"></i>
-															<i class="jstree-icon jstree-themeicon fa fa-file jstree-themeicon-custom"></i>
-															<div style="width:100px; display: inline-block;">매출통계</div>
-															<div style="text-align:right; width:100px; display: inline-block; font-weight:600; text-align:right; margin-right:10px;">
-																<i class="fa fa-krw"></i>500,000
-															</div>
-														</a>
-													</li>
-												</ul>
-											</li>
-											<li role="treeitem" data-jstree="{ &quot;icon&quot; : &quot;fa fa-calendar&quot; }" aria-expanded="false" id="j2_6" class="jstree-node jstree-closed" aria-selected="false">
-												<i class="jstree-icon jstree-ocl"></i>
-												<a class="jstree-anchor" href="#">
-													<i class="jstree-icon jstree-checkbox"></i>
-													<i class="jstree-icon jstree-themeicon fa fa-calendar jstree-themeicon-custom"></i>
-													<span class="ft20">일정관리</span>												 
-												</a>
-											</li>
-											<li role="treeitem" data-jstree="{ &quot;icon&quot; : &quot;fa fa-bullhorn&quot; }" aria-expanded="false" id="j2_7" class="jstree-node  jstree-last jstree-closed" aria-selected="false">
-												<i class="jstree-icon jstree-ocl"></i>
-												<a class="jstree-anchor" href="#">
-													<i class="jstree-icon jstree-checkbox"></i>
-													<i class="jstree-icon jstree-themeicon fa fa-bullhorn jstree-themeicon-custom"></i>
-													<span class="ft20">공지사항</span>												 
-												</a>
-											</li>
 									</ul>
 								</div>		
 							</div>
@@ -410,20 +201,15 @@
 					<!-- 구매 가격 -->
 					<div class="pricing-table-template">
 						<div class="col-lg-4">
-							<div class="plan">
-								<h3>Price List<span><i class="fa fa-krw"></i><strong>5,800,000</strong> <a style="font-size:10px"> (월사용료)</a></span></h3>				
+							<div class="plan" style="height:620px;">
+								<h3>Price List<span><strong id="totalprice" class="item-price">0</strong>원<a style="font-size:12px"> (월사용료)</a></span></h3>				
 								<a class="btn btn-lg btn-primary" style="margin:10px 0 0 0; padding-top: 0px;padding-bottom: 5px;border-top-width: 5px;" href="#">미리보기</a>
 								<a class="btn btn-lg btn-primary" style="margin:10px 0 0 0; padding-top: 0px;padding-bottom: 5px;border-top-width: 5px;" href="#">구매하기</a>
 								<ul>
-									<li>회원관리 <i class="fa fa-krw"></i><b>1,000,000</b></li>
-									<li>트레이너관리 <i class="fa fa-krw"></i><b>1,500,000</b></li>
-									<li>서비스관리 <i class="fa fa-krw"></i><b>2,000,000</b></li>
-									<li>시설관리 <i class="fa fa-krw"></i><b>0</b></li>
-									<li>매출관리 <i class="fa fa-krw"></i><b>0</b></li>
-									<li>일정관리 <i class="fa fa-krw"></i><b>1,200,000</b></li>
-									<li>공지사항 <i class="fa fa-krw"></i><b>100,000</b></li>
+									<c:forEach items="${ list }" var="i">			
+										<li class="item-price">${ i.templateItemName } : <strong id="item${ i.templateItemNo }">0</strong>원</li>
+									</c:forEach>
 								</ul>
-								<p style="height:10px"></p>
 							</div>
 						</div>
 					</div>
@@ -442,11 +228,7 @@
 	<jsp:include page="../common/footerjs.jsp" />
 	<!-- 현재 페이지에서만 사용하는 JSP -->
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jstree/jstree.js"></script>
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.treeview.js"></script>
-	<script>
-		function setPrice() {
-			alert("test");
-		}
-	</script>
+	<script src="${ pageContext.servletContext.contextPath }/resources/js/templateInfo.js"></script>
+	
 </body>
 </html>
