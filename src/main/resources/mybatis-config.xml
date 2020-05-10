@@ -29,6 +29,7 @@
 		<typeAlias type="com.jh.tripleb.mcManagement.model.vo.McManagement" alias="McManagement"/>
 		<typeAlias type="com.jh.tripleb.mcManagement.model.vo.McManagementDto" alias="McManagementDto"/>
 		<typeAlias type="com.jh.tripleb.mcAllCheck.model.vo.mcAllCheck" alias="mcAllCheck"/>
+		<typeAlias type="com.jh.tripleb.approve.model.vo.Approve" alias="Approve"/>
 	</typeAliases>
 	
 	<mappers>
@@ -45,6 +46,7 @@
 		<mapper resource="/mappers/calendar-mapper.xml"/>
 		<mapper resource="/mappers/mcManagement-mapper.xml"/>
 		<mapper resource="/mappers/mcAllCheck-mapper.xml"/>
+		<mapper resource="/mappers/approve-mapper.xml"/>
 	</mappers>
 	
 
