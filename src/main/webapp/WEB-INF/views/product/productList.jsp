@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
 	table tr{
 		width:100%;
@@ -79,7 +80,7 @@
                                                        <div class="col-lg-2 col-sm-6">
                                                            <div class="plan">
                                                                <h3 style="background: darkgoldenrod;"><input type="checkbox"  data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<span>${ p.productPrice }￦</span></h3>
-                                                               <a class="btn btn-lg btn-primary" href="#">결제</a>
+                                                               <button id="payMentNm1" class="btn btn-lg btn-primary" onclick="payment2Fn(${p.productNo})">결제</button>
                                                            </div>
                                                        </div>
                                                    </c:if>
@@ -92,7 +93,7 @@
                                                    <c:if test="${ p.productCategory eq 'PT권' }">
                                                        <div class="col-lg-2">
                                                            <div class="plan">
-                                                               <h3 style="background: #e36159;"><input type="checkbox" data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<br>(${ p.productDays }  일)<span>${ p.productPrice }￦</span></h3>
+                                                               <h3 style="background: #e36159;"><input type="checkbox" data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<br>(${ p.productDays }  일)<span id="productPrice1">${ p.productPrice }￦</span></h3>
                                                                <button id="payListBtn1" class="btn btn-lg btn-primary modal-with-form" href="#modalFormCList" onclick="paymentFn(${p.productNo})">결제</button>
                                                                <ul>
                                                                    <li><b>${ p.weekDay }</b></li>
@@ -277,14 +278,14 @@
 	            </header>
 	            <div class="panel-body">
 	                <form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
-		                <c:if test="${ cl.classCount eq cl.classMaxCount }">
-			                    
-		                </c:if>
+		                
+		                
+		                
 	                </form>
 		            <footer class="panel-footer">
 		                <div class="row">
 		                    <div class="col-md-12 text-right">
-		                        <button class="btn btn-default modal-dismiss" type="button">결제</button>
+		                        <button class="btn btn-primary modal-dismiss" type="button" onclick="payMentPT()">결제</button>
 		                        <button class="btn btn-default modal-dismiss" type="button">취소</button>
 		                    </div>
 		                </div>
@@ -399,48 +400,56 @@
 				var val1 = rowKey;
 				console.log(rowKey);
 				var memNo = $("#memberNo1").val();
-				console.log("memberNo : " + memNo);
+				
 				
 				$.ajax({
 					url:"clList.jpr",
 					data:{productNo:val1},
 					type:"post",
 					success:function(list){
-						console.log(list);	
-						console.log("memberNo : " + memNo);
 						var value = "";
 						
 						for(var i in list){
-							value += '<section class="panel panel-featured-left panel-featured-primary" style="width:90%;">' +
-					                     '<div class="panel-body">' +
-					                        '<div class="widget-summary">' +
-					                            '<table>' +
-					                                '<tr>' +
-					                                    '<td width="80px"><h4>수업명 : </h4></td>' +
-														 '<th width="400px">' +
-															 '<h4>' + list[i].className + '</h4>' +
-														 '</th>' +
-														 '<td><input type="radio" name="classCheck" id="classCheck"></td>' +
-								                     '</tr>' +
-								                     '<tr>' +
-					                                    '<td width="60px">수업시간 : </td>' +
-														 '<th width="400px">' + list[i].weekDay + '</th>' +
-														 '<td></td>' +
-					                                '</tr>' +
-					                                '<tr>' +
-					                                    '<td width="60px">수업횟수 : </td>' +
-														'<th width="400px">' + list[i].times + '</th>' +
-														'<td></td>' +
-					                                '</tr>' +
-					                                '<tr>' +
-					                                    '<td width="60px">담당자 : </td>' +
-														'<th width="400px">' + list[i].trainerName + '트레이너</th>' +
-														'<td></td>' +
-					                                '</tr>' +
-					                            '</table>' +
-					                        '</div>' +
-										'</div>' +
-					               '</section>';
+							if(list[i].classCount < list[i].classMaxCount){
+								value +=  '<section class="panel panel-featured-left panel-featured-primary" style="width:90%;">' +
+							                     '<div class="panel-body">' +
+							                        '<div class="widget-summary">' +
+							                            '<table>' +
+							                                '<tr>' +
+							                                    '<td width="80px"><h4>수업명 : </h4></td>' +
+																 '<th width="400px">' +
+																	 '<h4>' + list[i].className + '</h4>' +
+																 '</th>' +
+																 '<td><input type="radio" name="classCheck" id="classCheck1" value="' + list[i].classNo + '"></td>' +
+										                     '</tr>' +
+										                     '<tr>' +
+							                                    '<td width="60px">수업시간 : </td>' +
+																 '<th width="400px">' + list[i].weekDay + '</th>' +
+																 '<td></td>' +
+							                                '</tr>' +
+							                                '<tr>' +
+							                                    '<td width="60px">수업횟수 : </td>' +
+																'<th width="400px">' + list[i].times + '</th>' +
+																'<td></td>' +
+							                                '</tr>' +
+							                                '<tr>' +
+							                                    '<td width="60px">담당자 : </td>' +
+																'<th width="400px">' + '<input type="hidden" id="classCheck2" value="' + list[i].trainerName + '">' + list[i].trainerName + '트레이너</th>' +
+																'<td></td>' +
+							                                '</tr>' +
+							                            '</table>' +
+							                        '</div>' +
+												'</div>' +
+							               '</section>';
+							}else{
+								value += '<section class="panel panel-featured-left panel-featured-primary" style="width:90%;">' +
+						                     '<div class="panel-body">' +
+						                        '<div class="widget-summary">' +
+						                        	'<p> 등록 가능한 수업이 없습니다. </p>' +
+						                        '</div>' +
+											 '</div>' +
+							             '</section>';
+							}
 						}
 						
 						$("#demo-form").html(value);
@@ -449,6 +458,168 @@
 						console.log("통신실패");
 					}
 				});
+			}
+		</script>
+		<!-- /ajax -->
+		
+		<!-- PT결제 ajax -->
+		<script>
+			function payMentPT(){
+				var mem1 = $("#memberNo1").val();
+				
+				var classNo = $("#classCheck1").val();
+				var cl2 = $("#classCheck2").val();
+				console.log("회원번호 : " + mem1);
+				console.log("수업번호 : " + classNo);
+				
+				$.ajax({
+					url:"selectPro1.jpr",
+					data:{classNo:classNo},
+					type:"post",
+					success:function(data){
+						var value = data;
+						$.ajax({
+							url:"selectMem1.jpr",
+							data:{memNo:mem1},
+							type:"post",
+							success:function(data){
+								var memVal = data;
+								console.log("상품번호 : " + value.productNo);
+								console.log("상품가격 : " + value.productPrice);
+								console.log("수업번호 : " + classNo);
+								console.log("강사명 : " + cl2);
+								
+								var IMP = window.IMP;
+								IMP.init('imp45214918');
+								
+								IMP.request_pay({
+								    pg : 'inicis',
+								    pay_method : 'card',
+								    merchant_uid : 'merchant_' + new Date().getTime(),
+								    name : value.productName,
+								    amount : value.productPrice,
+								    buyer_email : memVal.memberEmail,
+								    buyer_name : memVal.memberName,
+								    buyer_tel : memVal.memberPhone,
+								    buyer_addr : memVal.memberAddress,
+								    buyer_postcode : '123-456',
+								    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+								}, function(rsp) {
+								    if ( rsp.success ) {
+								        var msg = '결제가 완료되었습니다.';
+								        msg += '고유ID : ' + rsp.imp_uid;
+								        msg += '상점 거래ID : ' + rsp.merchant_uid;
+								        msg += '결제 금액 : ' + rsp.paid_amount;
+								        msg += '카드 승인번호 : ' + rsp.apply_num;
+								        
+								        location.href="insertPay.jpr?memberNo=" + memVal.memberNo + "&productNo=" + value.productNo + "&price=" + value.productPrice + "&classNo=" + classNo; // member -> 담당트레이너 update  1.payInfo 테이블 insert  classInfo count+1   mproduct insert
+								    } else {
+								        var msg = '결제에 실패하였습니다.';
+								        msg += '에러내용 : ' + rsp.error_msg;
+								    }
+								    alert(msg);
+								});
+							},
+							error:function(){
+								console.log("mem 통신실패");
+							}
+						});
+					},
+					error:function(){
+						console.log("pro 통신실패");
+					}
+				});
+			}
+		</script>
+		<!-- /ajax -->
+		
+		
+		<!-- 일반회원권 결제 ajax -->
+		<script>
+			var payment2Fn = function(rowkey){
+				var mem2 = $("#memberNo1").val();
+				var pNum = rowkey
+				
+				// 날짜포맷 지정하는 함수
+				function dateToYYYYMMDD(date)
+				{
+				    function pad(num) {
+				        num = num + '';
+				        return num.length < 2 ? '0' + num : num;
+				    }
+				    return date.getFullYear() + '-' + pad(date.getMonth()+1) + '-' + pad(date.getDate());
+				}
+				 
+				var currDate = new Date(); // 현재 날짜
+				var prevDate = new Date(new Date().setMonth(new Date().getMonth()-1)); // 한달전 날짜
+				
+				// YYYY-MM-DD로 형식변환
+				var prevMon = dateToYYYYMMDD(prevDate);
+				var currMon = dateToYYYYMMDD(currDate);
+				
+			
+				console.log(mem2);
+				console.log(pNum);
+				
+				
+				$.ajax({
+					url:"selectPro2.jpr",
+					data:{productNo:pNum},
+					type:"post",
+					success:function(data){
+						var product2 = data;
+						
+						$.ajax({
+							url:"selectMem2.jpr",
+							data:{memberNo:mem2},
+							type:"post",
+							success:function(data){
+								var memInfo = data;
+								
+								var IMP = window.IMP;
+								IMP.init('imp45214918');
+								
+								IMP.request_pay({
+								    pg : 'inicis',
+								    pay_method : 'card',
+								    merchant_uid : 'merchant_' + new Date().getTime(),
+								    name : product2.productName,
+								    amount : product2.productPrice,
+								    buyer_email : memInfo.memberEmail,
+								    buyer_name : memInfo.memberName,
+								    buyer_tel : memInfo.memberPhone,
+								    buyer_addr : memInfo.memberAddress,
+								    buyer_postcode : '123-456',
+								    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+								}, function(rsp) {
+								    if ( rsp.success ) {
+								        var msg = '결제가 완료되었습니다.';
+								        msg += '고유ID : ' + rsp.imp_uid;
+								        msg += '상점 거래ID : ' + rsp.merchant_uid;
+								        msg += '결제 금액 : ' + rsp.paid_amount;
+								        msg += '카드 승인번호 : ' + rsp.apply_num;
+								        
+								        var nextDate = new Date(new Date().setMonth(new Date().getMonth()+(product2.productDays)/30)); // 한달후 날짜
+								        var nextMon = dateToYYYYMMDD(nextDate);
+								        console.log(nextMon);
+								        location.href="insertPayNm.jpr?memberNo=" + memInfo.memberNo + "&productNo=" + product2.productNo + "&productPrice=" + product2.productPrice + "&productDays=" + product2.productDays + "&sysdate1=" + nextMon; // member -> 담당트레이너 update  1.payInfo 테이블 insert  classInfo count+1   mproduct insert
+								    } else {
+								        var msg = '결제에 실패하였습니다.';
+								        msg += '에러내용 : ' + rsp.error_msg;
+								    }
+								    alert(msg);
+								});
+							},
+							error:function(){
+								console.log("통신실패");
+							}
+						});
+					},
+					error:function(){
+						console.log("통신실패");
+					}
+				});
+				
 			}
 		</script>
 		<!-- /ajax -->

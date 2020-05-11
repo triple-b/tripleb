@@ -31,6 +31,8 @@
 		<typeAlias type="com.jh.tripleb.mcAllCheck.model.vo.mcAllCheck" alias="mcAllCheck"/>
 		<typeAlias type="com.jh.tripleb.approve.model.vo.Approve" alias="Approve"/>
 		<typeAlias type="com.jh.tripleb.templateinfo.model.vo.TemplateInfo" alias="TemplateInfo" />
+		<typeAlias type="com.jh.tripleb.payInfo.model.vo.PayInfo" alias="PayInfo" />
+		<typeAlias type="com.jh.tripleb.mProduct.model.vo.MProduct" alias="MProduct" />
 	</typeAliases>
 	
 	<mappers>
@@ -49,6 +51,8 @@
 		<mapper resource="/mappers/mcAllCheck-mapper.xml"/>
 		<mapper resource="/mappers/approve-mapper.xml"/>
 		<mapper resource="mappers/template-mapper.xml" />
+		<mapper resource="mappers/payInfo-mapper.xml"/>
+		<mapper resource="mappers/mProduct-mapper.xml"/>
 	</mappers>
 	
 

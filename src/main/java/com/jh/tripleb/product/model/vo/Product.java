@@ -22,5 +22,5 @@ public class Product {
 	private String weekDay;			// 주중, 주말
 	private String morAfter;		// 오전, 오후
 	private String times;			// 주 2회, 3회
-
+	
 }

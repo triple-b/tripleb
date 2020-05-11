@@ -20,5 +20,5 @@ public class MProduct {
 	private Date memProductEnd;		// 종료일
 	private int memberNo;			// 회원번호
 	private int productNo;			// 상품권번호
-
+	
 }

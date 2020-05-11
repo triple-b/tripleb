@@ -32,5 +32,7 @@ public class Member {
 	private String memberStatus;		// 회원 상태 (N:유지 Y:탈퇴)
 	private String memberTrainer;		// 담당 트레이너
 	private int memberBirth;			// 회원생년월일
+	
+	private String trainerName;			// 트레이너 이름
 
 }

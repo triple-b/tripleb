@@ -31,5 +31,6 @@ public class ClassInfo {
 	
 	private String trainerName; // 수업 강사명
 	private String confirmerName; // 결재자이름
+	private String memberNo;		// 수강생번호
 
 }
