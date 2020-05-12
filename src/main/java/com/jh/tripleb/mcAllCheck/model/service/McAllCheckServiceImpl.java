@@ -27,14 +27,7 @@ public class McAllCheckServiceImpl implements McAllCheckService {
 	@SuppressWarnings("unused")
 	@Override
 	public int insertMcAllCheck(mcAllCheckDto m) {
-		
-		//System.out.println(m.getMachineNoList());
-		//System.out.println(m.getMachineChkContentList());
-		
-		//hashMap<String, String> hmap = new HashMap<>();
-		
-		//List<String> list = new ArrayList();
-		
+
 		ArrayList<Integer> arrayList = new ArrayList<>();
 		
 		
@@ -49,7 +42,7 @@ public class McAllCheckServiceImpl implements McAllCheckService {
 		}
 		
 		for(int i : arrayList)   {
-            System.out.println("값 : " + i );
+            //System.out.println("값 : " + i );
         }
 				
 		String[] mContent = m.getMachineChkContentList().split(",");
@@ -62,9 +55,9 @@ public class McAllCheckServiceImpl implements McAllCheckService {
 			ArrayList<mcAllCheck> list = macDao.selectList(sqlSession); // 여러개가 돌아옴
 			//mcAllCheckDto 
 			
-			System.out.println(list);
+			//System.out.println(list);
 		
-			System.out.println("m. : " + list.get(0).getMachinAllChkNo());
+			//System.out.println("m. : " + list.get(0).getMachinAllChkNo());
 			
 			int macno = list.get(0).getMachinAllChkNo();  
 		

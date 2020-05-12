@@ -35,4 +35,9 @@ public class McmanagementDao {
 	public ArrayList<McManagement> selectList2(SqlSessionTemplate sqlSession){
 		return (ArrayList)sqlSession.selectList("mcManagementMapper.selectList2");
 	}
+
+	public int updateMachine(SqlSessionTemplate sqlSession, McManagementDto m) {
+		
+		return sqlSession.update("mcManagementMapper.updateMachine",m);
+	}
 }

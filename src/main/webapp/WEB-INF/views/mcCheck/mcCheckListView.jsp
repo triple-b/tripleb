@@ -378,14 +378,18 @@
 											<div class="form-group">
 												<label class="col-sm-3 control-label">기구명</label>
 												<div class="col-sm-9">
-													<input id="mcName" ype="text" name="mcName" class="form-control"  placeholder="" />
+													<input id="mcName" type="text" name="mcName" class="form-control"  placeholder="" />
 												</div>
 											</div>
 											
 											<div class="form-group">
 												<label class="col-sm-3 control-label">첨부파일</label>
 												<div class="col-sm-9">
-													<input type="file" id="thumbnail" name="thumbnail" class="form-control" />
+													<input type="file" id="upfile" name="reUploadFile" class="form-control" />
+													현재 업로드된 파일 :<h6 id ="thumbChange"></h6>
+													
+													<input type="hidden" name="thumbnail" id="thumbnail">
+													<input type="hidden" name="thumbChange" id="thumbChange">
 												</div>
 											</div>
 											
@@ -535,9 +539,9 @@
     function updatemcm() {
     	location.href="update.mcm?mano="+machinecheckNo;
     }
-    /* function updateSelect(){
+    function updateSelect(){
     	location.href="update.mcm?mano="+machinecheckNo;
-    } */
+    } 
     
 	var machinecheckNo = "";
 	

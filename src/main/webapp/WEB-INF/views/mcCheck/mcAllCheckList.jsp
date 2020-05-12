@@ -96,7 +96,7 @@
 										<div class="form-group">
 											<label class="col-sm-3 control-label">점검제목</label>
 											<div class="col-sm-9">
-												<input type="text" class="form-control" name="machineTitle" value="제목을 작성해주세요" required/>
+												<input type="text" class="form-control" name="machineTitle" placeholder="제목을 작성해주세요" required/>
 												<input type="hidden" class="form-control" name="trainerNo" value="${loginUser.trainerNo}" readonly>
 												<input type="text" class="form-control" name="machineNoList" value="" readonly>
 												<input type="text" class="form-control" name="machineChkContentList" value="" readonly>

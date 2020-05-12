@@ -20,5 +20,6 @@ public class TemplateInfo {
 	private int templateItemPrice;			// 서비스항목 가격
 	private String templateParentName;		// 상위 서비스 항목 이름
 	private String templateIcon;			// 서비스 항목 아이콘
+	private String templateLinkpage;		// 미리보기시 연결할 페이지		
 
 }

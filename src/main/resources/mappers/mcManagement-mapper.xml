@@ -43,4 +43,14 @@
 		join mc_management using(mc_no)
 		where machine_status = 'Y'
   	</select>
+  	
+  	<update id="updateMachine" parameterType="McManagementDto">
+  		update machine
+  		set mc_name=#{mcName},
+		     mc_explain=#{mcExplain},
+		     thumbnail=#{thumbnail},
+		     thumbChange=#{thumbChange},
+		where machine_no=#{machineNo}
+  	</update>
+  	
   </mapper>

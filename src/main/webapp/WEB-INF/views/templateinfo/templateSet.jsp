@@ -183,7 +183,7 @@
 								<p class="panel-subtitle">구매할 서비스를 선택해주세요</p>
 							</header>
 							<div class="panel-body-template">
-								<div id="treeAjaxJSON" class="jstree jstree-4 jstree-default" role="tree">
+								<div id="menuTree" class="jstree jstree-4 jstree-default" role="tree">
 									<ul class="jstree-container-ul jstree-children">
 										<li class="jstree-initial-node jstree-loading jstree-leaf jstree-last">
 											<i class="jstree-icon jstree-ocl"></i>
@@ -203,7 +203,7 @@
 						<div class="col-lg-4">
 							<div class="plan" style="height:620px;">
 								<h3>Price List<span><strong id="totalprice" class="item-price">0</strong>원<a style="font-size:12px"> (월사용료)</a></span></h3>				
-								<a class="btn btn-lg btn-primary" style="margin:10px 0 0 0; padding-top: 0px;padding-bottom: 5px;border-top-width: 5px;" href="#">미리보기</a>
+								<a class="btn btn-lg btn-primary" style="margin:10px 0 0 0; padding-top: 0px;padding-bottom: 5px;border-top-width: 5px;" href="javascript:window.open('http://localhost:8888/tripleb/preview.mpv','new')">미리보기</a>
 								<a class="btn btn-lg btn-primary" style="margin:10px 0 0 0; padding-top: 0px;padding-bottom: 5px;border-top-width: 5px;" href="#">구매하기</a>
 								<ul>
 									<c:forEach items="${ list }" var="i">			
@@ -229,6 +229,6 @@
 	<!-- 현재 페이지에서만 사용하는 JSP -->
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jstree/jstree.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/js/templateInfo.js"></script>
-	
+
 </body>
 </html>

@@ -31,6 +31,10 @@
 		<typeAlias type="com.jh.tripleb.mcAllCheck.model.vo.mcAllCheck" alias="mcAllCheck"/>
 		<typeAlias type="com.jh.tripleb.approve.model.vo.Approve" alias="Approve"/>
 		<typeAlias type="com.jh.tripleb.templateinfo.model.vo.TemplateInfo" alias="TemplateInfo" />
+			<typeAlias type="com.jh.tripleb.payInfo.model.vo.PayInfo" alias="PayInfo" />
+		<typeAlias type="com.jh.tripleb.mProduct.model.vo.MProduct" alias="MProduct" />
+		<typeAlias type="com.jh.tripleb.student.model.vo.Student" alias="Student"/>
+		<typeAlias type="com.jh.tripleb.student.model.vo.StudentDtoJ" alias="StudentDtoJ"/>
 		<typeAlias type="com.jh.tripleb.mcAllCheck.model.vo.mcAllCheckDto" alias="mcAllCheckDto"/>
 	</typeAliases>
 	

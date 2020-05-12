@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
 <mapper namespace="templateMapper">
 
 	<!-- 템플릿 리스트중 최상위 리스트 조회(장미경) -->
@@ -16,6 +17,21 @@
 		from templateinfo
 		where TEMPLATE_STATUS = 'Y'
 		order by TEMPLATE_PARENTITEMNO, TEMPLATE_ITEMNO
+	</select>
+	
+	<!--  미리보기시 선택한 항목중 최상위 항목만 조회 (장미경)-->
+	<select id="selectParent" parameterType="_int" resultType="TemplateInfo">
+		select TEMPLATE_ITEMNO, TEMPLATE_PARENTITEMNO, TEMPLATE_ITEMNAME, TEMPLATE_ITEMPRICE, TEMPLATE_ICON, TEMPLATE_LINKPAGE 
+		from templateinfo
+		where TEMPLATE_STATUS = 'Y' and TEMPLATE_ITEMNO =#{tno}
+	</select>
+	
+	<!--  미리보기시 선택한 항목중 하위항목 조회 (장미경)-->
+	<select id="selectSubList" parameterType="_int" resultType="TemplateInfo">
+		select TEMPLATE_ITEMNO, TEMPLATE_PARENTITEMNO, TEMPLATE_ITEMNAME, TEMPLATE_ITEMPRICE, TEMPLATE_ICON, TEMPLATE_LINKPAGE 
+		from templateinfo
+		where TEMPLATE_STATUS = 'Y' and TEMPLATE_PARENTITEMNO = #{tno}
+		order by TEMPLATE_ITEMNO
 	</select>
   
 </mapper>

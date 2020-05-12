@@ -17,19 +17,19 @@
 	<select id="getMember" resultType="Member">
 		select member_no, member_name, member_phone, member_address, member_birth
 		from Member
-		where member_name=#{name}
+		where not member_status in('Y') and member_name=#{name}
 	</select>
 	
 	<select id="countMem" resultType="_int">
 		select count(*)
 		from member
-		where member_name=#{ name }
+		where not member_status in('Y') and member_name=#{ name }
 	</select>
 	
 	<select id="selectMem" resultType="Member">
 		select member_no, member_name, member_phone, member_address, member_image, member_birth
 		from Member
-		where member_no = #{memberNo}
+		where not member_status in('Y') and member_no = #{memberNo}
 	</select>
 	
 	<select id="selectImg" resultType="Member">
@@ -48,4 +48,77 @@
 		set product_status='N'
 		where product_no = #{productNo}
 	</update> 
+	
+	<select id="selectcList" resultType="ClassInfo">
+		select class_no, class_name, class_status, weekDay, times, trainer_name, class_count, class_maxCount
+		from classInfo
+		join trainer using(trainer_no)
+		where product_no=#{productNo} and class_status='Y'
+	</select>
+
+	<!-- PT 결제 -->
+	<select id="selectPro1" resultType="Product">
+		select *
+		from product
+		join classInfo using(product_no)
+		where class_no=#{classNo}
+	</select>
+	
+	<select id="selectMem1" resultType="Member">
+		select *
+		from member
+		where member_no=#{memNo}
+	</select>
+	
+	<insert id="insertPay" parameterType="PayInfo">
+		insert into payInfo
+		values(seq_payno.nextval, #{payType}, default, #{payPrice}, #{memberNo}, #{productNo})
+	</insert>
+	
+	<update id="updateCl" parameterType="ClassInfo">
+		update classInfo
+		set class_count = class_count+1
+		where class_no = #{classNo} and class_maxcount > class_count
+	</update>
+	
+	<update id="updateMem" parameterType="Member">
+		update member
+		set member_trainer = #{memberTrainer}
+		where member_no = #{memberNo}
+	</update>
+	
+	<insert id="insertMpro" parameterType="MProduct">
+		insert into mProduct
+		values(seq_mpno.nextval, sysdate, #{memProductEnd}, #{memberNo}, #{productNo})
+	</insert>
+	
+	<insert id="insertStu" parameterType="Student">
+		insert into student
+		values(#{memberNo}, #{classNo})
+	</insert>
+	<!-- /PT 결제 -->
+	
+	<!-- 일반회원권 결제 -->
+	<select id="selectPro2" resultType="Product">
+		select *
+		from product
+		where product_no=#{productNo}
+	</select>
+	
+	<select id="selectMem2" resultType="Member">
+		select *
+		from member
+		where member_no=#{memberNo}
+	</select>
+	
+	<insert id="insertPay2" parameterType="PayInfo">
+		insert into payInfo
+		values(seq_payno.nextval, #{payType}, default, #{payPrice}, #{memberNo}, #{productNo})
+	</insert>
+	
+	<insert id="insertMpro2" parameterType="MProduct">
+		insert into mProduct
+		values(seq_mpno.nextval, sysdate, #{memProductEnd} , #{memberNo}, #{productNo})
+	</insert>
+	<!-- /일반회원권 결제 -->
 </mapper>

@@ -1,10 +1,10 @@
-package com.jh.tripleb.payinfo.controller;
+package com.jh.tripleb.payInfo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class PayinfoController {
+public class PayInfoController {
 	
 	@RequestMapping("saleslist.do")
 	public String selectList() {		

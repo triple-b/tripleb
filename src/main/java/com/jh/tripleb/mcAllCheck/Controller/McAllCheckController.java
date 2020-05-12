@@ -49,9 +49,9 @@ public class McAllCheckController {
 	@RequestMapping("insert.hmc")
 	public String insertMcAllCheck(mcAllCheckDto m, Model model) {
 		
-		System.out.println("insertMcAllCheck");
-		System.out.println(m.getMachineNoList());  
-		System.out.println(m.getMachineChkContentList());
+		//System.out.println("insertMcAllCheck");
+		//System.out.println(m.getMachineNoList());  
+		//System.out.println(m.getMachineChkContentList());
 
 		int result = macService.insertMcAllCheck(m);
 		

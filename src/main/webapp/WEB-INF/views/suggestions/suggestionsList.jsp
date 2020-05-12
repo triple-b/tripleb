@@ -17,7 +17,7 @@
 </style>
 </head>
 <body>
-<section class="body">
+	<section class="body">
 		<!-- 상단 페이지 -->
 		<jsp:include page="../common/header.jsp" />
 		<!--/ 상단 페이지 -->
@@ -43,7 +43,7 @@
                     <br><br>
                     <div class="innerOuter" style="margin-top:-5%">
                 
-                    <section class="panel">
+                    <section class="panel" style="margin-top:2%">
                         <header class="panel-heading">
 							<div class="panel-btn" style="margin-bottom: 1%;">
 								<c:if test="${ !empty loginUser }">

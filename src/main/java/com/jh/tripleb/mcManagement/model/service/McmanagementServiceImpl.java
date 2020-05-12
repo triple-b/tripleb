@@ -31,12 +31,6 @@ public class McmanagementServiceImpl implements McmanagementService{
 	}
 
 	@Override
-	public int updateMcManagement(McManagement mc) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int deleteMcManagement(int mano) {
 		
 		return mcmDao.deleteMcManagement(sqlSession,mano);
@@ -57,6 +51,12 @@ public class McmanagementServiceImpl implements McmanagementService{
 	@Override
 	public ArrayList<McManagement> selectList2() {
 		return mcmDao.selectList2(sqlSession);
+	}
+
+	@Override
+	public int updateMachine(McManagementDto m) {
+		
+		return mcmDao.updateMachine(sqlSession, m);
 	}
 
 

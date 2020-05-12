@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="studentMapper">
+
+	<select id="selectList" resultType="StudentDtoJ">
+		select member_no, member_name, member_birth, member_phone, member_gender, blackList_status, 
+		       member_enrollDate, class_name, member_trainer, memproduct_start, memproduct_end
+		from student
+		join mproduct using(member_no)
+		join member using(member_no)
+		join classInfo using(class_no)
+		where member_status='N' and blackList_status='N'
+		order by 1 desc
+	</select>
+
+</mapper>

@@ -1,12 +1,20 @@
 package com.jh.tripleb.mcManagement.Controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -106,4 +114,64 @@ public class McmanagementController {
 
 		return  gson.toJson(mc);
 	}
+	
+	@RequestMapping("update.mcm")
+	public ModelAndView updateMachine(McManagementDto m, HttpServletRequest request, ModelAndView mv,
+									 @RequestParam(value="reUploadFile", required=false) MultipartFile file) {
+	//새로 넘어온 첨부파일이 있을 경우
+	if(file.getOriginalFilename().equals("")) {
+		
+		// 새로 넘어온 첨부파일도 있고 뿐만아니라 기존의 첨부파일이 있었을 경우
+		if(m.getThumbnail() !=null) {
+			deleteFile(m.getThumbChange(), request);
+		}
+		String thumbChange = saveFile(file, request);
+		String thumbnail = file.getOriginalFilename();
+		
+		m.setThumbChange(thumbChange);
+		m.setThumbnail(thumbnail);
+	
+	}
+	int result = mcmService.updateMachine(m);
+	
+	if(result > 0) {
+		mv.setViewName("redirect:mcList.mcm?type=leftmenu");
+	}else {
+		mv.addObject("msg", "유효한 게시글 아님!").setViewName("common/errorPage");
+	}
+	
+	return mv;
+	}
+
+	
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
+		
+		String resources = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = resources + "\\upload_files\\";
+		
+		String originName = file.getOriginalFilename();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String currentTime = sdf.format(new Date());
+		String ext = originName.substring(originName.lastIndexOf("."));
+		
+		String changeName = currentTime + ext;
+		
+			try {
+				file.transferTo(new File(savePath + changeName));
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+			
+		return changeName;
+	}
+	
+	// 전달받은 파일명을 찾아서 삭제시키는 메소드 (공유해서 쓸수 있게끔 따로 빼줌)
+		public void deleteFile(String fileName, HttpServletRequest request) {
+			String resources = request.getSession().getServletContext().getRealPath("resources");
+			String savePath = resources + "\\upload_files\\";
+			
+			File deleteFile = new File(savePath + fileName);
+			deleteFile.delete();
+		}
 }
