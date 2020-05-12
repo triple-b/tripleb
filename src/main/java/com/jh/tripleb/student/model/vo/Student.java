@@ -14,6 +14,6 @@ import lombok.ToString;
 public class Student {
 	
 	private int memberNo;		// 회원번호
-	private int trainerNo;		// 트레이너번호
+	private int classNo;		// 트레이너번호
 
 }

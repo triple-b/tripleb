@@ -74,8 +74,8 @@
 									</a>
 								</li>
 								<li>
-									<a href="">
-										 PT회원관리
+									<a href="student.jst">
+										 PT회원목록
 									</a>
 								</li>
 							</ul>

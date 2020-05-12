@@ -21,6 +21,7 @@ import com.jh.tripleb.member.model.vo.Member;
 import com.jh.tripleb.payInfo.model.vo.PayInfo;
 import com.jh.tripleb.product.model.service.ProductService;
 import com.jh.tripleb.product.model.vo.Product;
+import com.jh.tripleb.student.model.vo.Student;
 
 @Controller
 public class ProductController {
@@ -149,8 +150,6 @@ public class ProductController {
 		
 		cl = cService.clDetail(classNo);
 		
-		System.out.println(cl);
-		
 		m.setMemberTrainer(cl.getTrainerName());
 		 
 		if(result > 0) {
@@ -167,7 +166,13 @@ public class ProductController {
 			
 			int result4 = pService.insertMpro(mp);
 			
-			return "redirect:productList.jpr";
+			Student stu = new Student();
+			stu.setMemberNo(memberNo);
+			stu.setClassNo(classNo);
+			
+			int result5 = pService.insertStu(stu);
+			
+			return "redirect:student.jst";
 		}else {
 			model.addAttribute("msg", "결제실패");
 			return "common/errorPage";
@@ -186,7 +191,6 @@ public class ProductController {
 	public int updateMem(Member m) {
 		int result3 = pService.updateMem(m);
 		
-		System.out.println(result3);
 		return result3;
 	}
 	

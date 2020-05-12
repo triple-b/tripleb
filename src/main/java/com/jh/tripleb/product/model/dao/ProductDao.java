@@ -10,6 +10,7 @@ import com.jh.tripleb.mProduct.model.vo.MProduct;
 import com.jh.tripleb.member.model.vo.Member;
 import com.jh.tripleb.payInfo.model.vo.PayInfo;
 import com.jh.tripleb.product.model.vo.Product;
+import com.jh.tripleb.student.model.vo.Student;
 
 @Repository("pDao")
 public class ProductDao {
@@ -88,5 +89,9 @@ public class ProductDao {
 	
 	public int insertMpro2(SqlSessionTemplate sqlSession, MProduct mp2) {
 		return sqlSession.insert("productMapper.insertMpro2", mp2);
+	}
+	
+	public int insertStu(SqlSessionTemplate sqlSession, Student stu) {
+		return sqlSession.insert("productMapper.insertStu", stu);
 	}
 }

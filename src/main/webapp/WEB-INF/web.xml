@@ -39,6 +39,7 @@
 		<url-pattern>*.jpr</url-pattern>
 		<url-pattern>*.jcl</url-pattern>
 		<url-pattern>*.jap</url-pattern>
+		<url-pattern>*.jst</url-pattern>
 		<url-pattern>*.no</url-pattern>
 		<url-pattern>*.eq</url-pattern>
 		<url-pattern>*.eqc</url-pattern>

@@ -7,6 +7,7 @@ import com.jh.tripleb.mProduct.model.vo.MProduct;
 import com.jh.tripleb.member.model.vo.Member;
 import com.jh.tripleb.payInfo.model.vo.PayInfo;
 import com.jh.tripleb.product.model.vo.Product;
+import com.jh.tripleb.student.model.vo.Student;
 
 public interface ProductService {
 
@@ -47,4 +48,6 @@ public interface ProductService {
 	int insertPay2(PayInfo pay2);
 	
 	int insertMpro2(MProduct mp2);
+	
+	int insertStu(Student stu);
 }

@@ -12,6 +12,7 @@ import com.jh.tripleb.member.model.vo.Member;
 import com.jh.tripleb.payInfo.model.vo.PayInfo;
 import com.jh.tripleb.product.model.dao.ProductDao;
 import com.jh.tripleb.product.model.vo.Product;
+import com.jh.tripleb.student.model.vo.Student;
 
 @Service("pService")
 public class ProductServiceImpl implements ProductService{
@@ -114,6 +115,11 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public int insertMpro2(MProduct mp2) {
 		return pDao.insertMpro2(sqlSession, mp2);
+	}
+
+	@Override
+	public int insertStu(Student stu) {
+		return pDao.insertStu(sqlSession, stu);
 	}
 
 

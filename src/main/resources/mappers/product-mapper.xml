@@ -17,19 +17,19 @@
 	<select id="getMember" resultType="Member">
 		select member_no, member_name, member_phone, member_address, member_birth
 		from Member
-		where member_name=#{name}
+		where not member_status in('Y') and member_name=#{name}
 	</select>
 	
 	<select id="countMem" resultType="_int">
 		select count(*)
 		from member
-		where member_name=#{ name }
+		where not member_status in('Y') and member_name=#{ name }
 	</select>
 	
 	<select id="selectMem" resultType="Member">
 		select member_no, member_name, member_phone, member_address, member_image, member_birth
 		from Member
-		where member_no = #{memberNo}
+		where not member_status in('Y') and member_no = #{memberNo}
 	</select>
 	
 	<select id="selectImg" resultType="Member">
@@ -90,6 +90,11 @@
 	<insert id="insertMpro" parameterType="MProduct">
 		insert into mProduct
 		values(seq_mpno.nextval, sysdate, #{memProductEnd}, #{memberNo}, #{productNo})
+	</insert>
+	
+	<insert id="insertStu" parameterType="Student">
+		insert into student
+		values(#{memberNo}, #{classNo})
 	</insert>
 	<!-- /PT 결제 -->
 	

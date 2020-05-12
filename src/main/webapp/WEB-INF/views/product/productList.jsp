@@ -37,7 +37,7 @@
 				</header>
 				
 				<!-- start page -->
-	            <div class="row">
+	            <div class="row" style="margin-top: 4%;">
 	                <div class="content">
 	                    <br><br>
 	                    <div class="innerOuter" style="margin-top:-5%">
@@ -185,7 +185,7 @@
 	                    
 	                    </tbody>
                     </table>
-		            <footer class="panel-footer">
+		            <footer class="panel-footer" style="margin-top:2%">
 		                <div class="row">
 		                    <div class="col-md-12 text-right">
 		                        <button id="memSubmit" class="btn btn-default modal-dismiss" type="button">확인</button>
@@ -207,20 +207,20 @@
 			   <div class="panel-body">
 				  <form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate" method="post" action="insertPro.jpr">
 				  	<div class="form-group">
-						<label class="col-sm-2 control-label">상품종류</label>
+						<label class="col-sm-2 control-label">상품종류<span class="required">*</span></label>
 						<div class="col-sm-9" style="margin-top:1%">
 						   <input type="radio" name="productCategory" id="productCategory" value="회원권" required/> 회원권
 						   <input type="radio" name="productCategory" id="productCategory" value="PT권" style="margin-left:3%" required/> PT권 
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label">상품이름</label>
+						<label class="col-sm-2 control-label">상품이름<span class="required">*</span></label>
 						<div class="col-sm-9">
 						   <input type="text" name="productName" id="productName" class="form-control" required/>
 						</div>
 					 </div>
 					 <div class="form-group">
-						<label class="col-sm-2 control-label">금액</label>
+						<label class="col-sm-2 control-label">금액<span class="required">*</span></label>
 						<div class="col-sm-4">
 						   <input type="text" name="productPrice" id="productPrice" class="form-control" required style="width:60%"/>
 						</div>
@@ -278,7 +278,6 @@
 	            </header>
 	            <div class="panel-body">
 	                <form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
-		                
 		                
 		                
 	                </form>
@@ -411,6 +410,9 @@
 						
 						for(var i in list){
 							if(list[i].classCount < list[i].classMaxCount){
+								console.log("list[i].classCount = " + list[i].classCount);
+								console.log("list[i].classMaxCount = " + list[i].classMaxCount);
+								
 								value +=  '<section class="panel panel-featured-left panel-featured-primary" style="width:90%;">' +
 							                     '<div class="panel-body">' +
 							                        '<div class="widget-summary">' +
@@ -441,14 +443,6 @@
 							                        '</div>' +
 												'</div>' +
 							               '</section>';
-							}else{
-								value += '<section class="panel panel-featured-left panel-featured-primary" style="width:90%;">' +
-						                     '<div class="panel-body">' +
-						                        '<div class="widget-summary">' +
-						                        	'<p> 등록 가능한 수업이 없습니다. </p>' +
-						                        '</div>' +
-											 '</div>' +
-							             '</section>';
 							}
 						}
 						
@@ -599,7 +593,7 @@
 								        msg += '결제 금액 : ' + rsp.paid_amount;
 								        msg += '카드 승인번호 : ' + rsp.apply_num;
 								        
-								        var nextDate = new Date(new Date().setMonth(new Date().getMonth()+(product2.productDays)/30)); // 한달후 날짜
+								        var nextDate = new Date(new Date().setMonth(new Date().getMonth()+product2.productDays/30)); // 한달후 날짜
 								        var nextMon = dateToYYYYMMDD(nextDate);
 								        console.log(nextMon);
 								        location.href="insertPayNm.jpr?memberNo=" + memInfo.memberNo + "&productNo=" + product2.productNo + "&productPrice=" + product2.productPrice + "&productDays=" + product2.productDays + "&sysdate1=" + nextMon; // member -> 담당트레이너 update  1.payInfo 테이블 insert  classInfo count+1   mproduct insert
