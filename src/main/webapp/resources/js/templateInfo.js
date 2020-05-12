@@ -4,7 +4,7 @@
  */
 
 (function( $ ) {
-	$('#treeAjaxJSON').jstree({
+	$('#menuTree').jstree({
 		core:{
 			check_callback: true,
 			data:{
@@ -21,25 +21,25 @@
 			'file' : {
 				'icon' : 'fa fa-file-text'
 			},
-	    	'member' : {
+	    	'fa fa-group' : {
 				'icon' : 'fa fa-group'
 			},
-			'trainer' : {
+			'fa fa-user' : {
 				'icon' : 'fa fa-user'
 			},
-			'service' : {
+			'fa fa-list-ul' : {
 				'icon' : 'fa fa-list-ul'
 			},
-			'facility' : {
+			'fa fa-building-o' : {
 				'icon' : 'fa fa-building-o'
 			},
-			'sales' : {
+			'fa fa-bar-chart-o' : {
 				'icon' : 'fa fa-bar-chart-o'
 			},
-			'calendar' : {
+			'fa fa-calendar' : {
 				'icon' : 'fa fa-calendar'
 			},
-			'notice' : {
+			'fa fa-bullhorn' : {
 				'icon' : 'fa fa-bullhorn'
 			}					
 		},
@@ -61,21 +61,24 @@ ArrayPrice.push(0);
 ArrayPrice.push(0);
 ArrayPrice.push(0);
 
-$('#treeAjaxJSON').on("changed.jstree", function (e, data) {
-	console.log(data.selected);
+var menuList = "";
+
+$('#menuTree').on("changed.jstree", function (e, data) {
+	//console.log(data.selected);
 	//["8-1-300000", "10-2-300000", "1-0-0", "9-1-200000"]
 	//["8-1-300000", "10-2-300000", "1-0-0", "9-1-200000", "6-0-500000"]
 	//item1 itemno-parentitmeno-가격
-	var ArrayCheck = new Array();	//Array선언
+	var ArrayCheck = new Array();	//Array선언	
+	var ArrayMenuList = new Array();
 	setItemPrice()					// 가격 초기화
 	var CheckArr = data.selected;	
 					
-	for(var i=0; i<CheckArr.length; i++){
-		console.log(CheckArr[i]);
+	for(var i=0; i<CheckArr.length; i++){	
 		var selectStr = CheckArr[i];				
 		ArrayCheck = selectStr.split("-");
 		
-		//if ((ArrayCheck[1] == "0") && (ArrayCheck[2] != "0")) {
+		ArrayMenuList.push(ArrayCheck[0]);
+		
 		if (ArrayCheck[1] == "0") {
 			var idx = Number(ArrayCheck[0])-1		
 			var pre_price = ArrayPrice[idx];
@@ -85,22 +88,22 @@ $('#treeAjaxJSON').on("changed.jstree", function (e, data) {
 		}else {
 			var idx = Number(ArrayCheck[1])-1					
 			var pre_price = ArrayPrice[idx];
-			//console.log(pre_price);
 			var next_price = pre_price + Number(ArrayCheck[2]);
-			//console.log(next_price);
 			ArrayPrice[idx] = next_price;
 			$("#item" + ArrayCheck[1]).text(numberFormat(ArrayPrice[idx]));
-		}				
-
+		}
+		
 	}	
 	
 	// 전체금액 계산
-	console.log(ArrayPrice);
 	var totalPrice = 0;		 
 	for (var i=0; i < ArrayPrice.length; i++ ) {
 		totalPrice += ArrayPrice[i];
 	}
 	$("#totalprice").text(numberFormat(totalPrice));
+	
+	// 선택한 메뉴리스트  값 저장(미리보기페이지에서 사용)
+	menuList = ArrayMenuList.join(",");	
 	
 });
 

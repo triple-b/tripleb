@@ -19,6 +19,15 @@ public class TemplateDao {
 		return (ArrayList)sqlSession.selectList("templateMapper.selectListTemplate");
 	}
 	
+	public TemplateInfo selectParent(SqlSessionTemplate sqlSession, int tid) {
+		System.out.println("검색아이디 : " + tid);
+		return sqlSession.selectOne("templateMapper.selectParent", tid);
+	}
+	
+	public ArrayList<TemplateInfo> selectSubList(SqlSessionTemplate sqlSession, int tid) {
+		System.out.println("하위항목 부모 아이디 : " + tid);
+		return (ArrayList)sqlSession.selectList("templateMapper.selectSubList", tid);
+	}
 	
 
 }

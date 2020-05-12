@@ -3,8 +3,6 @@ package com.jh.tripleb.templateinfo.controller;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.jh.tripleb.templateinfo.model.service.TemplateService;
 import com.jh.tripleb.templateinfo.model.vo.TemplateInfo;
+import com.jh.tripleb.templateinfo.model.vo.TemplateInfoDto;
 
 @Controller
 public class TemplateController {
@@ -80,6 +79,17 @@ public class TemplateController {
 		Gson gson = new Gson();
 		
 		return gson.toJson(treelist);
+	}
+
+	@ResponseBody
+	@RequestMapping(value="list.mpv", produces="application/json; charset=utf-8")
+	public String selectMenuList(String mlist) {	
+		
+		ArrayList<TemplateInfoDto> list = mtService.selectMenuList(mlist);
+		
+		Gson gson = new Gson();	
+		
+		return gson.toJson(list);
 	}
 	
 }
