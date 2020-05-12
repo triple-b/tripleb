@@ -45,7 +45,7 @@
 							<header class="panel-heading">
 								
 								<div div class="panel-btn" style="margin-bottom:10px;">
-									<a class="modal-with-form btn btn-primary" style="float: right;"  href="#modalForm">점검</a>
+									<button class="modal-with-form btn btn-primary" id="checkOutBtn1" style="float: right;"  href="#modalForm">점검</button>
 								</div>
 						
 								<h1 class="panel-title">시설점검</h1>
@@ -62,7 +62,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${list}" var="ma">
+										<c:forEach items="${List}" var="ma">
 											<tr>
 												<td>${ma.machinAllChkNo}</td>
 												<td>${ma.trainerNo}</td>
@@ -90,17 +90,20 @@
 								<header class="panel-heading">
 									<h1 class="panel-title">시설점검작성</h1>
 								</header>
+								
 								<div class="panel-body">
-									<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
-										
+									<form id="demo-form" action="insert.hmc" method="post" class="form-horizontal mb-lg" novalidate="novalidate">	
 										<div class="form-group">
 											<label class="col-sm-3 control-label">점검제목</label>
 											<div class="col-sm-9">
-												<textarea rows="5" class="form-control" placeholder="Type your comment..." required></textarea>
+												<input type="text" class="form-control" name="machineTitle" value="제목을 작성해주세요" required/>
+												<input type="hidden" class="form-control" name="trainerNo" value="${loginUser.trainerNo}" readonly>
+												<input type="text" class="form-control" name="machineNoList" value="" readonly>
+												<input type="text" class="form-control" name="machineChkContentList" value="" readonly>
 											</div>
 										</div>
 										<hr>
-										<div class="Machine">
+										
 											<div class="Machine">
 												<div class="col-md-6" style="width: 100%;">
 													<section class="panel">
@@ -116,15 +119,9 @@
 																			<th>점검부위</th>
 																		</tr>
 																	</thead>
-																	<tbody>
-																		<c:forEach items="${list}" var="m">
-																			<tr>
-																				<td><input type="checkbox"></td>
-																				<td>${m.machineNo}</td>
-																				<td><label class="col-sm-3 control-label">${m.mcName}</label></td>
-																				<td><textarea rows="5" class="form-control" placeholder="Type your comment..." ></textarea></td>
-																			</tr>
-																		</c:forEach>	
+																	<tbody id="ajaxForm1">
+																			
+	
 																	</tbody>
 																</table>
 															</div>
@@ -133,17 +130,17 @@
 												</div>
 												
 											</div>
-										</div>
-									</form>
+										
 								</div>
 								<footer class="panel-footer">
 									<div class="row">
 										<div class="col-md-12 text-right">
-											<button class="btn btn-primary modal-confirm">등록</button>
+											<button class="btn btn-primary " onclick="goRegMcCheck()">등록</button>
 											<button class="btn btn-default modal-dismiss">취소</button>
 										</div>
 									</div>
 								</footer>
+								</form>
 							</section>
 						</div>
 				</section>
@@ -161,6 +158,118 @@
 			});
 		});
 	</script>
+	
+	<script>
+	/* $(function(){
+		$("#checkOutBtn1").click(function(){
+			location.href="mcList.mcm?type=others"
+		});
+	}); 
+	
+	var machinecheckID = "";
+	
+    function oneCheckbox(a){
+
+        var obj = document.getElementsByName("machinecheck");
+
+        for(var i=0; i<obj.length; i++){
+
+            if(obj[i] != a){
+
+                obj[i].checked = false;
+
+            }
+
+        }
+        
+        machinecheckID = a.value;
+    }
+	
+	function inserthmc() {
+    	location.href="insert.hmc?macno="+machinecheckID;
+    }*/
+	</script>
+	
+	<!-- other way -->
+	<script>
+		$(function(){
+			$("#checkOutBtn1").click(function(){
+				$.ajax({
+					url:"mcList2.mcm",
+					data:{},
+					type:"post",
+					success:function(list){
+						
+						var value = "";
+						
+						for(var i in list){
+							
+							value += '<tr>' +
+										'<td><input type="checkbox" name="machineNo" value="'+ list[i].machineNo +'"></td>' +
+										'<td>' + list[i].machineNo + '</td>' +
+										'<td>' + list[i].mcName + '</td>' +
+										'<td><input type="text" name="mContent' + list[i].machineNo + '" class="form-control" placeholder="Type your comment..." ></textarea></td>' +
+									'</tr>';
+						}
+						
+						$("#ajaxForm1").html(value);
+					},
+					error:function(){
+						console.log("통신실패");
+					}
+				});
+			});
+		});
+	</script>
+	
+	
+	<script >
+	function goRegMcCheck(){
+		
+	      //var machineTitle = $('input[name="machineTitle"]').val();
+	      //var machinecheck = $('input:checkbox[name="machinecheck"]').value;
+	      //var trainerNo =  $('input[name="trainerNo"]').val();
+	      	 			       	     
+	      var ArrayContent = new Array();
+	      var ArrayMachineNo = new Array();
+	      
+	      $("input[name=machineNo]:checked").each(function(i){
+	 
+	         var mContent = $('input[name="mContent' + $(this).val() + '"]').val();
+	      
+	         ArrayContent.push(mContent);      
+	         ArrayMachineNo.push($(this).val());
+
+	      });
+
+	      var ContentList = ArrayContent.join(",");
+	      var idList = ArrayMachineNo.join(",");
+	      
+	   
+	      
+	      $('input[name="machineChkContentList"]').val(ContentList);
+	      $('input[name="machineNoList"]').val(idList);
+      
+	      
+	     $("demo-form").submit();
+	      
+	   /*   
+	      var $newForm = $('<form></form>'); 
+	      $newForm.attr("method", "post");
+	      $newForm.attr("action", "insert.hmc");
+	      $newForm.appendTo('body')
+
+		  $newForm.append($("<input/>", {type:"hidden", name:"machineTitle", value:machineTitle}));
+		  $newForm.append($("<input/>", {type:"hidden", name:"machineNoList", value:idList}));
+		  $newForm.append($("<input/>", {type:"hidden", name:"machineChkContentList", value:ContentList}));
+		  $newForm.append($("<input/>", {type:"hidden", name:"trainerNo", value:trainerNo}));
+		  
+		  $newForm.submit();
+		  */
+		
+	}
+	</script>
+	
 	
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.modals.js"></script>

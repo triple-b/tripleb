@@ -54,6 +54,11 @@ public class McmanagementServiceImpl implements McmanagementService{
 		return 0;
 	}
 
+	@Override
+	public ArrayList<McManagement> selectList2() {
+		return mcmDao.selectList2(sqlSession);
+	}
+
 
 
 

@@ -31,6 +31,7 @@
 		<typeAlias type="com.jh.tripleb.mcAllCheck.model.vo.mcAllCheck" alias="mcAllCheck"/>
 		<typeAlias type="com.jh.tripleb.approve.model.vo.Approve" alias="Approve"/>
 		<typeAlias type="com.jh.tripleb.templateinfo.model.vo.TemplateInfo" alias="TemplateInfo" />
+		<typeAlias type="com.jh.tripleb.mcAllCheck.model.vo.mcAllCheckDto" alias="mcAllCheckDto"/>
 	</typeAliases>
 	
 	<mappers>

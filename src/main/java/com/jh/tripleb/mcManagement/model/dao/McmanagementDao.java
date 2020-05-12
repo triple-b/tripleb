@@ -32,4 +32,7 @@ public class McmanagementDao {
 		return sqlSession.selectOne("mcManagementMapper.selectMcManagement", mano);
 	}
 
+	public ArrayList<McManagement> selectList2(SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("mcManagementMapper.selectList2");
+	}
 }

@@ -167,9 +167,9 @@
 						
 					</section>
 					
-						<!-- 기구 상태창 -->
+					<!-- 기구 상태창 -->
 				    <menu id="content-menu" class="inner-menu" role="menu" style="right:0; left: auto; width: 329.9px; margin-top: 52px;">
-					     <div class="nano">
+					     <div class="nano has-scrollbar">
 					         <div class="nano-content">
 					             
 					             <div class="inner-menu-toggle-inside">
@@ -197,16 +197,16 @@
 					
 					                 <p class="title">Machine Center</p>
 					                 
-					                     <div class="form-group">
-					                         <div class="form-group">
-					                             <div class="row">
-					                                 <label class="col-xs-12 control-label" for="longitude">기구NO</label>
-					                                 <div class="col-xs-12">
-					                                     <input id="mapid" name="mapid" class="form-control" value="1" type="text" data-builder-field="mapid">
-					                                 </div>
-					                             </div>
-					                         </div>
-					                     </div>
+				                   
+				                         <div class="form-group">
+				                             <div class="row">
+				                                 <label class="col-xs-12 control-label" for="longitude">기구NO</label>
+				                                 <div class="col-xs-12">
+				                                     <input id="mapid" name="mapid" class="form-control" value="1" type="text" data-builder-field="mapid">
+				                                 </div>
+				                             </div>
+				                         </div>
+					                     
 					                     
 					                     <div class="form-group">
 					                         <div class="row">
@@ -235,7 +235,7 @@
 					                         </div>
 					                     </div>
 					                     
-					                     <hr class="separator" />
+					                     <hr class="separator"/>
 					
 					                     <div class="form-group">
 					                         <ul id="MarkersList" class="list-markers list-unstyled mb-lg hidden"></ul>
@@ -246,8 +246,8 @@
 					                         </div>
 					                     </div>
 					                     <hr class="separator" />
-					             	</div>
-					                 
+					             
+					                 </div>
 					         </div>
 					     </div>
 					 </menu>

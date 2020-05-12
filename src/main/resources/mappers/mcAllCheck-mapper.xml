@@ -4,20 +4,37 @@
   <mapper namespace="mcAllCheckMapper">
   	
   	<resultMap type="mcAllCheck" id="mcAllCheckResultSet">
-	  	<id property="machinAllChkNo" column="machin_allChkNo" />
-	  	<result property="machineTitle" column="machine_title" />
-	  	<result property="machineChkDate" column="machine_chkDate" />
-		<result property="trainerNo" column="trainer_no" />
+	  	<id property="machinAllChkNo" column="MACHINE_ALLCHKNO" />
+	  	<result property="machineTitle" column="MACHINE_TITLE" />
+	  	<result property="machineChkDate" column="MACHINE_CHECKDATE" /> 
+		<result property="trainerNo" column="TRAINER_NO" />
+  	</resultMap>
+  	
+  	<resultMap type="mcAllCheckDto" id="mcAllCheckDtoResultSet">
+	  	<id property="machinAllChkNo" column="MACHINE_ALLCHKNO" />
+	  	<result property="machineTitle" column="MACHINE_TITLE" />
+	  	<result property="machineChkDate" column="MACHINE_CHECKDATE" />
+	  	<result property="trainerNo" column="TRAINER_NO" />
+	  	<result property="machineChkNo" column="MACHINE_CHKNO" />
+		<result property="machineChkContent" column="MACHINE_CHECKCONTENT" />
+		<result property="machineNo" column="MACHINE_NO" />
   	</resultMap>
   
   <select id="selectList" resultMap="mcAllCheckResultSet">
-  		select *
+  		select MACHINE_ALLCHKNO, MACHINE_TITLE, MACHINE_CHECKDATE, TRAINER_NO
   		from  mc_all_check
-  		ORDER BY 1 desc
+  		ORDER BY MACHINE_ALLCHKNO desc
   	</select>
   	
-  	
+  <insert id="insertMcAllCheck" parameterType="mcAllCheckDto">
+  		insert into mc_all_check
+  		values(SEQ_MACNO.nextval , #{machineTitle}, default, #{trainerNo})
+  </insert>
   
+  <insert id="insertMcCheck" parameterType="mcAllCheckDto">
+  	insert into mc_check
+  	values(SEQ_MCNO.nextval,#{machineChkContent},#{machineNo},#{machineAllChkNo} )
   
+  </insert>
   
   </mapper>

@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jh.tripleb.mcAllCheck.model.service.McAllCheckService;
 import com.jh.tripleb.mcAllCheck.model.vo.mcAllCheck;
+import com.jh.tripleb.mcAllCheck.model.vo.mcAllCheckDto;
+import com.jh.tripleb.notice.model.vo.Notice;
 
 
 @Controller
@@ -23,9 +25,9 @@ public class McAllCheckController {
 	@RequestMapping("mcCheck.hmc")
 	public String selectList(Model model) {
 		
-		ArrayList<mcAllCheck> list = macService.selectList();
+		ArrayList<mcAllCheck> List = macService.selectList();
 		
-		model.addAttribute("list",list);
+		model.addAttribute("List",List);
 		
 		return "mcCheck/mcAllCheckList";
 	}
@@ -44,4 +46,23 @@ public class McAllCheckController {
 		
 		return mv;
 	}
+	@RequestMapping("insert.hmc")
+	public String insertMcAllCheck(mcAllCheckDto m, Model model) {
+		
+		System.out.println("insertMcAllCheck");
+		System.out.println(m.getMachineNoList());  
+		System.out.println(m.getMachineChkContentList());
+
+		int result = macService.insertMcAllCheck(m);
+		
+		System.out.println(result);		
+		
+		if(result > 0) {
+			return "redirect:mcCheck.hmc";
+		}else { 		
+			model.addAttribute("msg", "시설점검관리 작성 실패!");
+			return "common/errorPage";
+		}
+		
+}
 }

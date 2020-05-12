@@ -7,58 +7,58 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-				.ggggg{
-					display: flex;
-					-ms-flex-wrap: wrap;
-					flex-wrap: wrap;
-					
-					box-sizing: border-box;
-					
-					
-				}	
-				.machin-rightbar{
-					border-radius:2px;
-					position:absolute;
-					right:0px;
-					height:calc(-20px + 100%);
-					width:18%;
-					padding:15px;
-					margin:10px;
-					box-sizing:border-box;
-					overflow:hidden;
-					color:white;
-					background-color: #044f67;
-					margin-top: 0px;
-				}
-				.zzz{
-					margin: 12px;
-				}
-				.locker-main{
-					height: 1398.800px;
-					width: 102%;
-					background-image: none;
-					background-position-x: 0%;
-					background-position-y: 0%;
-					background-repeat: repeat;
-					background-attachment: scroll;
-					background-clip: border-box;
-					background-origin: padding-box;
-					background-size: auto;
-					background-color: rgb(242, 242, 242);
-				}
-				.inner-toolbar>ul>li>select{
-				width:120px;
-					outline:none;
-					font-size:10pt;
-					float:left;
-					color:white;
-					
-					background:#2e2e2e;
-					margin:10px;
-					margin-left:20px;
-					border:1px solid #ffffff;
-				}
-			</style>
+	.ggggg{
+		display: flex;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		
+		box-sizing: border-box;
+		
+		
+	}	
+	.machin-rightbar{
+		border-radius:2px;
+		position:absolute;
+		right:0px;
+		height:calc(-20px + 100%);
+		width:18%;
+		padding:15px;
+		margin:10px;
+		box-sizing:border-box;
+		overflow:hidden;
+		color:white;
+		background-color: #044f67;
+		margin-top: 0px;
+	}
+	.zzz{
+		margin: 12px;
+	}
+	.locker-main{
+		height: 1398.800px;
+		width: 102%;
+		background-image: none;
+		background-position-x: 0%;
+		background-position-y: 0%;
+		background-repeat: repeat;
+		background-attachment: scroll;
+		background-clip: border-box;
+		background-origin: padding-box;
+		background-size: auto;
+		background-color: rgb(242, 242, 242);
+	}
+	.inner-toolbar>ul>li>select{
+	width:120px;
+		outline:none;
+		font-size:10pt;
+		float:left;
+		color:white;
+		
+		background:#2e2e2e;
+		margin:10px;
+		margin-left:20px;
+		border:1px solid #ffffff;
+	}
+</style>
 </head>
 <body>
 <section class="body">
@@ -100,7 +100,7 @@
 								<ul class="nav nav-pills nav-pills-primary">
 
 									<li>
-										<a class="modal-with-form btn btn-default"  style="float:right" href="#modalForm1">수정</a>
+										<button class="modal-with-form btn btn-default"  style="float:right" href="#modalForm1" onclick="updateSelect();">수정</button>
 									</li>
 									<li>
 										<button class="modal-with-form btn btn-default"  style="float:right" onclick="deletemcm()">삭제</button>
@@ -122,13 +122,15 @@
 							<div class="row mg-files" data-sort-destination data-sort-id="media-gallery">
 								<table class="Mcmanagement-table" id="Mcmanagement-list">
 									<c:forEach items="${list}" var="m">
-										<div class="isotope-item document col-sm-6 col-md-4 col-lg-3" id="Mcmanagementtlqkf">
+										<div class="isotope-item document col-sm-6 col-md-4 col-lg-3">
 											<div class="thumbnail">
 												<div class="thumb-preview">
-													<input type="hidden" value="${m.machineNo}" >
-													<a class="thumb-image" href="${ pageContext.servletContext.contextPath }/resources/assets/images/projects/project-1.jpg"></a>
-														<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/${m.thumbChange}" class="img-responsive" alt="Project">
-													</a>
+													<div id="Mcmanagementtlqkf">
+														<input id="machineNo1"  type="hidden" value="${m.machineNo}" >
+														<a class="thumb-image" href="${ pageContext.servletContext.contextPath }/resources/assets/images/projects/project-1.jpg"></a>
+															<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/${m.thumbChange}" class="img-responsive" alt="Project">
+														</a>
+													</div>
 													<div class="mg-thumb-options">
 														
 														<div class="mg-toolbar">
@@ -363,42 +365,47 @@
 									<h1 class="panel-title">시설기구수정</h1>
 								</header>
 								<div class="panel-body">
-									<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
-										
-										<hr>
-										<div class="Machine">
-											
-											
-											<div class="form-group">
-												<label class="col-sm-3 control-label">수정날짜</label>
+									<form id="demo-form-machineList" class="form-horizontal mb-lg-machineList18" novalidate="novalidate" method="post" action="update.mcm" enctype="multipart/form-data">
+										<div class="form-group">
+												<label class="col-sm-3 control-label">수정할 기구번호</label>
 												<div class="col-sm-9">
-													<input type="text" name="Quantity" class="form-control" placeholder="" />
+													<input type="text" name="machineNo" id="machineNo" class="form-control"  placeholder="" readonly />
 												</div>
 											</div>
+										<hr>
+										<div class="Machine">
 											
 											<div class="form-group">
 												<label class="col-sm-3 control-label">기구명</label>
 												<div class="col-sm-9">
-													<input type="text" name="Quantity" class="form-control" placeholder="" />
+													<input id="mcName" ype="text" name="mcName" class="form-control"  placeholder="" />
 												</div>
 											</div>
+											
+											<div class="form-group">
+												<label class="col-sm-3 control-label">첨부파일</label>
+												<div class="col-sm-9">
+													<input type="file" id="thumbnail" name="thumbnail" class="form-control" />
+												</div>
+											</div>
+											
 											<div class="form-group">
 												<label class="col-sm-3 control-label">기구설명</label>
 												<div class="col-sm-9">
-													<textarea rows="5" class="form-control" placeholder="Type your comment..." required></textarea>
+													<textarea rows="5" class="form-control" name="mcExplain" id="mcExplain" placeholder="Type your comment..." required></textarea>
 												</div>
 											</div>
 										</div>
+										<footer class="panel-footer">
+											<div class="row">
+												<div class="col-md-12 text-right">
+													<button class="btn btn-primary modal-confirm"onclick="updatemcm()">수정</button>
+													<button class="btn btn-default modal-dismiss">취소</button>
+												</div>
+											</div>
+										</footer>
 									</form>
 								</div>
-								<footer class="panel-footer">
-									<div class="row">
-										<div class="col-md-12 text-right">
-											<button class="btn btn-primary modal-confirm">수정</button>
-											<button class="btn btn-default modal-dismiss">취소</button>
-										</div>
-									</div>
-								</footer>
 							</section>
 						</div>
 
@@ -495,8 +502,6 @@
 			}
 	</script>
 	
-	
-	
 	<script>
 	
 	var machinecheckID = "";
@@ -527,7 +532,13 @@
     function insertmcm() {
     	location.href="insert.mcm?mcno="+machinecheckID;
     }
-	
+    function updatemcm() {
+    	location.href="update.mcm?mano="+machinecheckNo;
+    }
+    /* function updateSelect(){
+    	location.href="update.mcm?mano="+machinecheckNo;
+    } */
+    
 	var machinecheckNo = "";
 	
     function twoCheckbox(a){
@@ -546,15 +557,41 @@
         
         machinecheckNo = a.value;
     }
+    
+    function updateSelect(){
+    	var value1 = machinecheckNo;
+    	
+    	
+    	
+    	$.ajax({
+    		url:"selectMc1.mcm",
+    		data:{mano:value1},
+    		type:"post",
+    		success:function(mc){
+    			console.log(mc);
+    			var value = "";
+    				$("#mcName").val(mc.mcName);
+    				$("#machineNo").val(mc.machineNo);
+    				$("#mcExplain").val(mc.mcExplain);
+    				$("#thumbChange").val(mc.thumbChange);
+    				$("#thumbnail").val(mc.thumbnail);
+    				
+    		},
+    		error:function(){
+    			console.log("머신 상세정보 통신실패");
+    		}
+    	});
+    }
 	</script>
 	<script>
 		$(function(){
 			$("#Mcmanagementtlqkf").click(function(){
-				location.href="select.mcm?mano=" + $(this).children().children().children().eq(0).val();
+				location.href="select.mcm?mano=" + $(this).children().eq(0).val();
 			});
 		});
 	</script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.modals.js"></script>
+	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/pages/examples.mediagallery.js" ></script>
 </body>
 </html>

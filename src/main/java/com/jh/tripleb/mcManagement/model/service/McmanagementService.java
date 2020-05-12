@@ -26,4 +26,5 @@ public interface McmanagementService {
 	//6.기구관리 고장 처리
 	int delMcManagement(int mano);
 	
+	ArrayList<McManagement> selectList2();
 }

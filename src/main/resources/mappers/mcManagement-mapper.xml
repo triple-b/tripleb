@@ -37,4 +37,10 @@
 		where machine_no=#{mano} and machine_status = 'Y'
  	</select> 
   	
+  	<select id="selectList2" resultType="McManagementDto">
+  		SELECT *
+		FROM machine
+		join mc_management using(mc_no)
+		where machine_status = 'Y'
+  	</select>
   </mapper>

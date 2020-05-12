@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.jh.tripleb.machine.model.vo.Machine;
 import com.jh.tripleb.mcManagement.model.service.McmanagementService;
 import com.jh.tripleb.mcManagement.model.vo.McManagement;
 import com.jh.tripleb.mcManagement.model.vo.McManagementDto;
@@ -45,12 +48,26 @@ public class McmanagementController {
 		model.addAttribute("list",list);
 	
 		if(type.equals("leftmenu")) {
+			
 			return "mcCheck/mcCheckListView";		
 		}else {
+			
 			return "mcCheck/mcAllCheckList";
 		}
 		
 	}
+
+	@ResponseBody
+	@RequestMapping(value="mcList2.mcm", produces="application/json; charset=utf-8")
+	public String selectList2(){
+		
+		ArrayList<McManagement> list = mcmService.selectList2();
+	
+		Gson gson = new Gson();
+		
+		return gson.toJson(list);
+	}
+	
 	
 	@RequestMapping("delete.mcm")
 	public String deleteMcManagement(int mano, Model model) {
@@ -58,7 +75,7 @@ public class McmanagementController {
 		int result = mcmService.deleteMcManagement(mano);
 		
 		if(result > 0) { // 삭제 성공
-			return "redirect:mcList.mc?type=leftmenu";
+			return "redirect:mcList.mcm?type=leftmenu";
 		}else { // 삭제 실패
 			model.addAttribute("msg", "기구관리 삭제 실패!");
 			return "common/errorPage";
@@ -70,7 +87,7 @@ public class McmanagementController {
 		McManagementDto mc = mcmService.selectMcManagement(mano);
 
 		if(mc !=null) {
-			mv.addObject("mc", mc).setViewName("mcCheck/mcCheckDetailView");
+			mv.addObject("mc", mc).setViewName("redirect:mcList.mcm?type=leftmenu");
 		}else {
 			mv.addObject("msg", "유효한 게시글 아님!").setViewName("common/errorPage");
 		}
@@ -78,4 +95,15 @@ public class McmanagementController {
 		return mv;
 	}
 	
+	
+	@ResponseBody
+	@RequestMapping(value="selectMc1.mcm", produces="application/json; charset=utf-8")
+	public String selectMachine(int mano) {
+		
+		McManagementDto mc = mcmService.selectMcManagement(mano);
+		
+		Gson gson = new Gson();
+
+		return  gson.toJson(mc);
+	}
 }

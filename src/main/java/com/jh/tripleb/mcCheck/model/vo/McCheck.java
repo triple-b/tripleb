@@ -14,8 +14,8 @@ import lombok.ToString;
 @ToString
 public class McCheck {
 	
-	private int machineChkNo;			// 기구점검번호
+	private int machineChkNo;			// 기구상세점검번호
 	private String machineChkContent;	// 기구점검내용
 	private int machineNo;				// 기구번호
-	private int trainerNo;				// 트레이너번호
+	private int machineAllChkNo;		// 기구점검번호
 }

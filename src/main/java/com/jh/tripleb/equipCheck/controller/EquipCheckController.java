@@ -118,7 +118,7 @@ public ModelAndView updateEquipCheck(EquipDto ec ,ModelAndView mv) {
 @RequestMapping("insert.epc")
 public String insertEquipCheck(EquipDto ec,Model model) {
 	
-	System.out.println(ec);
+	
 	
 	int result = ecService.insertEquipCheck(ec);
 	
