@@ -1,11 +1,15 @@
 package com.jh.tripleb.common.excel.model.vo;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +35,10 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFPicture;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.document.AbstractXlsxView;
+
+import com.jh.tripleb.invoice.model.vo.Invoice;
 
 public class ExcelDownloadInvoice  extends AbstractXlsxView {
 
@@ -45,11 +52,12 @@ public class ExcelDownloadInvoice  extends AbstractXlsxView {
 		HashMap<String, String> companyList = (HashMap<String, String>) model.get("companyList");
 		@SuppressWarnings("unchecked")
 		List<HashMap<String, String>> itemList = (List<HashMap<String, String>>) model.get("itemList");
-		
+		String target = (String) model.get("target");		
+				
 		DateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String invoiceDate = sdFormat.format(invoiceList.get("INVOICE_DATE"));	
 		String dueDate = sdFormat.format(invoiceList.get("INVOICE_DUEDATE"));
-		String excelName = invoiceList.get("INVOCIE_PNAME") + "_" + String.valueOf(invoiceList.get("INVOICE_NUMBER")) + ".xlsx"; 
+		String excelName = "invoice_" + String.valueOf(invoiceList.get("INVOICE_NUMBER")) + ".xlsx"; 
 		
 		// 로고이미지 셋팅
 		String resources = request.getSession().getServletContext().getRealPath("resources");
@@ -464,15 +472,32 @@ public class ExcelDownloadInvoice  extends AbstractXlsxView {
 		}else {
 			cell.setCellValue(new BigDecimal(valueAsString).doubleValue());
 		}
-										
-        //헤더정보에 파일명 설정	
-		try { 		
-			response.setHeader("Content-Disposition", "attachement; filename=\"" + 
-					java.net.URLEncoder.encode(excelName, "UTF-8") + "\";charset=\"UTF-8\""); 		
-		} catch (UnsupportedEncodingException e) { 
-			e.printStackTrace();
-		}		
-	}
+		
+		if(target.equals("invoicemail")) {
+			// 계약서 생성 후 발송인 경우 서버에 저장 및 메일 발송처리
+			String savePath = resources + "\\upload_files\\invoice\\";		
+			
+			// 실제로 저장될 파일 풀 경로
+			File file = new File(savePath + excelName);
+			
+			// 엑셀 파일을 만듬
+			FileOutputStream fileOutput = new FileOutputStream(file);
 
+			workbook.write(fileOutput);
+			fileOutput.close();
+			
+			// 메일발송  
+			String emailParam = "?rcv=" + invoiceList.get("INVOCIE_PEMAIL") + "&fname=" + excelName;
+			response.sendRedirect(request.getContextPath() + "/sendmail.mtp" + emailParam);
+		}else {
+			 // 계약서 열람 후 생성인 경우 사용자가 전달 받도록 처리(헤더정보에 파일명 설정)		
+			try { 		
+				response.setHeader("Content-Disposition", "attachement; filename=\"" + 
+						java.net.URLEncoder.encode(excelName, "UTF-8") + "\";charset=\"UTF-8\""); 		
+			} catch (UnsupportedEncodingException e) { 
+				e.printStackTrace();
+			}					
+		}
+	}	
 
 }

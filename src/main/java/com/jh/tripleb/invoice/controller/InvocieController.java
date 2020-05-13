@@ -55,4 +55,19 @@ public class InvocieController {
 				
 	}
 	
+	// 계약서 저장 및 메일발송(계약서 첨부)
+	@RequestMapping("insert.miv")
+	public String insertInvocie(Invoice i, Model model) {
+		
+		int result = iService.insertInvocie(i);
+		
+		if(result > 0) {				
+			// 계약서 엑셀파일로 저장				
+			return "redirect:download.do?target=invoicemail&targetno=" + result;				
+		}else {				
+			model.addAttribute("msg", "계약서 저장 실패");
+			return "common/errorPage";			
+		}		
+	}
+	
 }
