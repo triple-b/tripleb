@@ -54,7 +54,7 @@
 			<div id="userbox" class="userbox">
 				<a href="#" data-toggle="dropdown">
 					<figure class="profile-picture">
-						<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/${ loginUser.trainerThumbnail}" alt="Joseph Doe" class="img-circle" data-lock-picture="${ pageContext.servletContext.contextPath }/resources/assets/images/!logged-user.jpg" />
+						<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/${ loginUser.trainerThumbnail }" class="img-circle" data-lock-picture="${ pageContext.servletContext.contextPath }/resources/assets/images/!logged-user.jpg" />
 					</figure>
 					<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
 						<span class="name">${ loginUser.trainerName } 트레이너</span>

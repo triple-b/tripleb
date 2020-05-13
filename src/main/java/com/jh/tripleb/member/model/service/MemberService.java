@@ -30,8 +30,11 @@ public interface MemberService{
 	int pauseMember(MemberDtoU mto);
 	// 12. 회원권 종료일 증가 (주)
 	int addDate(MemberDtoU mto);
-	// 13. 일시정지 상태 변경 (주)
+	// 13. 리스트 조회 시 일시정지 상태 변경 (주)
 	int pauseLate(int mno);
+	// 14. 일시정지 해제(주)
+	int pauseCancelMember(MemberDtoU mto);
+	
 	
 
 }

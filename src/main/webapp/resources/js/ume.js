@@ -47,6 +47,33 @@ $(function(){
 	
 	})
 	
+	// 회원 일시정지 해제
+	
+		$(".btn_memPauseCancel").click(function(){
+		
+		
+		if($("input:checkbox[name=checkRow]:checked").length > 1){
+			
+			$('.btn_memPauseCancel').addClass('modal-dismiss');
+			alert("일시정지 하실 1명의 회원만 선택해주세요.");
+			
+		}else if($("input:checkbox[name=checkRow]:checked").length == 1){
+			
+			var mname = $("input:checkbox[name=checkRow]:checked").parent().next().next().children().text();
+			$("#pauseCancleMemberName").attr("value", mname);
+			
+			var pcno = $("input:checkbox[name=checkRow]:checked").val();
+			$("#pauseCancleMemberNo").attr("value", pcno);
+			
+			
+		}else{
+			$('.btn_memPauseCancel').addClass('modal-dismiss');
+			alert("일시정지할 회원을 선택해주세요.");
+		}
+	
+	
+	})
+	
 	
 	// 회원 블랙리스트
 	
@@ -96,6 +123,8 @@ $(function(){
 	    var data = table.row( this ).data();
 	    var mno = data[1];
 	    
+	    console.log(mno);
+	    
 	    gen = data[4];
 		
 		$.ajax({
@@ -105,20 +134,13 @@ $(function(){
 			cashe:false,
 			success:function(member){
 				var trainer = "";
-				var sDate = "";
-				var eDate = "";
 				
-				if(member.memProductStart == ""){
-					
-					var sDate = member.memProductStart.split(/, | /);
-					var eDate = member.memProductEnd.split(/, | /);
-					
-					// string형 날짜 "YYYY"년 "MM"월 "DD"일로 변경
-					startDate = sDate[2] + "년 " + sDate[0] + " " + sDate[1] + "일";
-					endDate = eDate[2] + "년 " + eDate[0] + " " + eDate[1] + "일";
+				if(member.memProductStart == undefined){
+					startDate = "0000-00-00";
+					endDate = "0000-00-00";
 				}else{
-					startDate = "00-00-00";
-					endDate = "00-00-00";
+					startDate = member.memProductStart;
+					endDate = member.memProductEnd;
 				}
 				
 				if(member.memberTrainer != null){
@@ -155,8 +177,8 @@ $(function(){
 				$('#memPEnd').text(endDate);			
 				
 				if(member.pauseStart == undefined){
-					$('#pStart').text("00-00-00");
-					$('#pEnd').text("00-00-00");
+					$('#pStart').text("0000-00-00");
+					$('#pEnd').text("0000-00-00");
 				}else{
 					$('#pStart').text(member.pauseStart);
 					$('#pEnd').text(member.pauseEnd);

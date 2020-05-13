@@ -40,6 +40,7 @@ public class MemberDtoU {
 	private int lockerNo;				// 락커 번호
 	
 	private int pauseDate;				// 일시정지 일자
+	private Date pauseCancelDate;		// 일시정지 해제 시작일
 	
 
 /*	

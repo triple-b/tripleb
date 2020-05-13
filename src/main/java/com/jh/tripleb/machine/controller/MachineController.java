@@ -32,10 +32,9 @@ public class MachineController {
 	public String selectList() {
 		
 		ArrayList<Machine> list = hmService.selectList();
-		
 		Gson gson = new Gson();
 
-		return  gson.toJson(list);
+		return gson.toJson(list);
 	}
 	
 //	@ResponseBody

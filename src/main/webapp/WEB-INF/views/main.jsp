@@ -201,7 +201,7 @@
 													<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/${ loginUser.trainerThumbnail}">
 												</div>
 												<div class="profile-info">
-													<h4 class="name text-semibold">김주희 트레이너</h4>
+													<h4 class="name text-semibold">${loginUser.trainerName } 트레이너</h4>
 													<h5 class="role">
 														<c:choose>
 															<c:when test="${ loginUser.trainerGrade eq 'N'}">

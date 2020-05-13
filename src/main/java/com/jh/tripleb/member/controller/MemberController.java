@@ -17,9 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jh.tripleb.member.model.service.MemberService;
 import com.jh.tripleb.member.model.vo.MemberDtoU;
-import com.jh.tripleb.trainer.model.vo.Trainer;
 
 @Controller
 public class MemberController {
@@ -66,8 +66,10 @@ public class MemberController {
 	public String detailMember(int mno) throws IOException {
 		
 		MemberDtoU m = mService.detailMember(mno);
-		
-		return new Gson().toJson(m);			
+
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+	      
+	    return gson.toJson(m);		
 
 	}
 	
@@ -118,7 +120,7 @@ public class MemberController {
 	
 	@RequestMapping("insert.ume")
 	public String insertMember(MemberDtoU m, HttpServletRequest request, Model model,
-			int memberYear, int memberMonth, int memberDay, @RequestParam(value="uploadFile", required=false) MultipartFile file) {
+			String memberYear, String memberMonth, String memberDay, @RequestParam(value="uploadFile", required=false) MultipartFile file) {
 		
 		if(!file.getOriginalFilename().contentEquals("")) {
 			String changeName = saveFile(file, request); // 실제로 업로드된 파일명
@@ -126,7 +128,7 @@ public class MemberController {
 			m.setMemberImage(changeName);
 		}
 		
-		String memberBirth = Integer.toString(memberYear) + Integer.toString(memberMonth) + Integer.toString(memberDay);
+		String memberBirth = memberYear + memberMonth + memberDay;
 		
 		m.setMemberBirth(memberBirth);
 		
@@ -192,6 +194,21 @@ public class MemberController {
 			model.addAttribute("msg", "일시정지 할 수 없는 회원입니다.");
 			return "common/errorPage";
 		}
+		
+	}
+	
+	@RequestMapping("pauseCancel.ume")
+	public String pauseCancelMember(MemberDtoU m, Model model) {
+		
+		int result = mService.pauseCancelMember(m);
+		
+		if(result > 0) {
+			return "redirect:list.ume";
+		}else {
+			model.addAttribute("msg", "일시정지 해제 할 수 없는 회원입니다.");
+			return "common/errorPage";
+		}
+		
 		
 	}
 	
