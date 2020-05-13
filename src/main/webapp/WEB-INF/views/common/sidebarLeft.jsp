@@ -46,7 +46,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="">
+									<a href="#" onclick="trainerNoFn(${loginUser.trainerNo})">
 										 휴가관리
 									</a>
 								</li>
@@ -166,5 +166,13 @@
 		</div>
 	
 	</aside>
+	
+	<script>
+		var trainerNoFn = function(rowkey){
+			var trainerNo = rowkey;
+			
+			location.href="vacation.jva?trainerNo=" + trainerNo;
+		}
+	</script>
 </body>
 </html>

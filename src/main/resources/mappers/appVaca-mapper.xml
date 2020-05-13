@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="appVacaMapper">
+
+	<select id="avDetail" resultType="Vacation">
+		select trainer_name, vac_no, vac_stDate, vac_endDate, vac_cause
+		from vacation
+		join trainer using(trainer_no)
+		where vac_no=#{vacNo}
+	</select>
+
+	<insert id="insertAppVc" parameterType="AppVaca">
+		insert into appVaca
+		values(seq_appno.nextval, sysdate, sysdate, 'Y', #{appVacComment}, #{vacNo}, #{confirmerNo}, #{trainerNo})
+	</insert>
+	
+	<update id="updateVaca" parameterType="Vacation">
+		update vacation 
+		set vac_status = 'Y'
+		where vac_no = #{vacNo}
+	</update>
+	
+	<insert id="insertAppVc2" parameterType="AppVaca">
+		insert into appVaca
+		values(seq_appno.nextval, sysdate, sysdate, 'R', #{appVacComment}, #{vacNo}, #{confirmerNo}, #{trainerNo})
+	</insert>
+	
+	<update id="updateVaca2" parameterType="Vacation">
+		update vacation 
+		set vac_status = 'R'
+		where vac_no = #{vacNo}
+	</update>
+</mapper>
