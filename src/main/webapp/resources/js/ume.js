@@ -123,7 +123,6 @@ $(function(){
 	    var data = table.row( this ).data();
 	    var mno = data[1];
 	    
-	    console.log(mno);
 	    
 	    gen = data[4];
 		
@@ -136,8 +135,8 @@ $(function(){
 				var trainer = "";
 				
 				if(member.memProductStart == undefined){
-					startDate = "0000-00-00";
-					endDate = "0000-00-00";
+					startDate = " ";
+					endDate = " ";
 				}else{
 					startDate = member.memProductStart;
 					endDate = member.memProductEnd;
@@ -147,12 +146,20 @@ $(function(){
 					trainer = member.memberTrainer + " 트레이너";
 				}
 				
+				
 				switch(gen){
 				case "여" : $("#mgFemale").prop('checked', true), 
 							$("#mgMale").prop('checked', false); break;
 				case "남" : $("#mgMale").prop('checked', true),
 							$("#mgFemale").prop('checked', false); break;
 				}
+				
+				$("#memberMonth option").each(function(){
+					if($(this).val() == member.memberBirth.substring(2, 4)){
+						$(this).prop("selected", true);
+					}
+				});
+				
 
 				$('.mNo').attr("value", member.memberNo);
 				$('.mName').attr("value", member.memberName);
@@ -161,6 +168,11 @@ $(function(){
 				$('.mAddress').attr("value", member.memberAddress);
 				$('.mHeight').attr("value", member.memberHeight);
 				$('.mWeight').attr("value", member.memberWeight);
+			
+				
+				$('#memberYear').attr("value", member.memberBirth.substring(0, 2));
+				$('#memberDay').attr("value", member.memberBirth.substring(4, 6));
+			
 				
 				if(member.memberNote == null){
 					$('#mNote').text("");
@@ -177,8 +189,8 @@ $(function(){
 				$('#memPEnd').text(endDate);			
 				
 				if(member.pauseStart == undefined){
-					$('#pStart').text("0000-00-00");
-					$('#pEnd').text("0000-00-00");
+					$('#pStart').text(" ");
+					$('#pEnd').text(" ");
 				}else{
 					$('#pStart').text(member.pauseStart);
 					$('#pEnd').text(member.pauseEnd);
@@ -190,7 +202,5 @@ $(function(){
 		})
 
 	});
-	
-	
 	
 });

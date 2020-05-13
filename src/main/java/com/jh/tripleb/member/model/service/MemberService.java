@@ -34,6 +34,8 @@ public interface MemberService{
 	int pauseLate(int mno);
 	// 14. 일시정지 해제(주)
 	int pauseCancelMember(MemberDtoU mto);
+	// 15. 일시정지 해제 시 상품권 기간 감소 서비스 (주_
+	int pauseCanceladdDate(MemberDtoU mto);
 	
 	
 

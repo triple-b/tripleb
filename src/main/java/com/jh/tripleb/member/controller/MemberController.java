@@ -186,7 +186,7 @@ public class MemberController {
 		if(result > 0) {
 			int result2 = mService.addDate(m);	// 상품권 종료일 증가
 				if(result2 > 0) {
-					return "redirect:list.ume";					
+					return "redirect:list.ume";
 				}
 				model.addAttribute("msg", "존재하는 상품권이 없습니다.");
 				return "common/errorPage";
@@ -200,15 +200,24 @@ public class MemberController {
 	@RequestMapping("pauseCancel.ume")
 	public String pauseCancelMember(MemberDtoU m, Model model) {
 		
-		int result = mService.pauseCancelMember(m);
+		MemberDtoU mem = mService.detailMember(m.getMemberNo()); // 상세정보 조회
+		
+		long sub = mem.getPauseEnd().getTime() - m.getPauseCancelDate().getTime(); // 날짜간 빼기
+		
+		int pauseDate = (int)sub / ( 24*60*60*1000); // 일시정지 변경되는 기간
+		
+		m.setPauseDate(pauseDate);
+
+		int result = mService.pauseCancelMember(m); // 회원 일시정지 상태 변경 서비스
+
 		
 		if(result > 0) {
+			int result2 = mService.pauseCanceladdDate(m);
 			return "redirect:list.ume";
 		}else {
 			model.addAttribute("msg", "일시정지 해제 할 수 없는 회원입니다.");
 			return "common/errorPage";
 		}
-		
 		
 	}
 	
