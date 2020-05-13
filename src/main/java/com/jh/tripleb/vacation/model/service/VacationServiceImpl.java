@@ -2,6 +2,8 @@ package com.jh.tripleb.vacation.model.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

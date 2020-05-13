@@ -3,6 +3,7 @@ package com.jh.tripleb.vacation.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jh.tripleb.trainer.model.vo.Trainer;
 import com.jh.tripleb.vacation.model.service.VacationService;
 import com.jh.tripleb.vacation.model.vo.Vacation;
 
@@ -22,7 +24,13 @@ public class VacationController {
 	private VacationService vService;
 	
 	@RequestMapping("vacation.jva")
-	public String selectList(int trainerNo, Model model) {
+	public String selectList(HttpSession session, Model model) {
+		
+		
+		
+		Trainer t = (Trainer) session.getAttribute("loginUser"); 
+		
+		int trainerNo = t.getTrainerNo();
 		
 		ArrayList<Vacation> list = vService.selectList(trainerNo);
 		

@@ -2,6 +2,8 @@ package com.jh.tripleb.vacation.model.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import com.jh.tripleb.vacation.model.vo.Vacation;
 
 public interface VacationService {

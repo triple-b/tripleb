@@ -46,7 +46,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="#" onclick="trainerNoFn(${loginUser.trainerNo})">
+									<a href="vacation.jva">
 										 휴가관리
 									</a>
 								</li>
