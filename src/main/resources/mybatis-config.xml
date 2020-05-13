@@ -31,29 +31,36 @@
 		<typeAlias type="com.jh.tripleb.mcAllCheck.model.vo.mcAllCheck" alias="mcAllCheck"/>
 		<typeAlias type="com.jh.tripleb.approve.model.vo.Approve" alias="Approve"/>
 		<typeAlias type="com.jh.tripleb.templateinfo.model.vo.TemplateInfo" alias="TemplateInfo" />
-			<typeAlias type="com.jh.tripleb.payInfo.model.vo.PayInfo" alias="PayInfo" />
+		<typeAlias type="com.jh.tripleb.payInfo.model.vo.PayInfo" alias="PayInfo" />
 		<typeAlias type="com.jh.tripleb.mProduct.model.vo.MProduct" alias="MProduct" />
 		<typeAlias type="com.jh.tripleb.student.model.vo.Student" alias="Student"/>
 		<typeAlias type="com.jh.tripleb.student.model.vo.StudentDtoJ" alias="StudentDtoJ"/>
 		<typeAlias type="com.jh.tripleb.mcAllCheck.model.vo.mcAllCheckDto" alias="mcAllCheckDto"/>
+		<typeAlias type="com.jh.tripleb.vacation.model.vo.Vacation" alias="Vacation"/>
+      	<typeAlias type="com.jh.tripleb.appVaca.model.vo.AppVaca" alias="AppVaca"/>
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="/mappers/trainer-mapper.xml"/>
-		<mapper resource="/mappers/member-mapper.xml"/>
-		<mapper resource="/mappers/invoice-mapper.xml" />
-		<mapper resource="/mappers/suggestions-mapper.xml"/>
-		<mapper resource="/mappers/product-mapper.xml"/>
-		<mapper resource="/mappers/class-mapper.xml"/>
-		<mapper resource="/mappers/notice-mapper.xml"/>
-		<mapper resource="/mappers/equipment-mapper.xml"/>
-		<mapper resource="/mappers/equipcheck-mapper.xml"/>
-		<mapper resource="/mappers/machine-mapper.xml"/>
-		<mapper resource="/mappers/calendar-mapper.xml"/>
-		<mapper resource="/mappers/mcManagement-mapper.xml"/>
-		<mapper resource="/mappers/mcAllCheck-mapper.xml"/>
-		<mapper resource="/mappers/approve-mapper.xml"/>
-		<mapper resource="mappers/template-mapper.xml" />
+		  <mapper resource="/mappers/trainer-mapper.xml"/>
+	      <mapper resource="/mappers/member-mapper.xml"/>
+	      <mapper resource="/mappers/invoice-mapper.xml" />
+	      <mapper resource="/mappers/suggestions-mapper.xml"/>
+	      <mapper resource="/mappers/product-mapper.xml"/>
+	      <mapper resource="/mappers/class-mapper.xml"/>
+	      <mapper resource="/mappers/notice-mapper.xml"/>
+	      <mapper resource="/mappers/equipment-mapper.xml"/>
+	      <mapper resource="/mappers/equipcheck-mapper.xml"/>
+	      <mapper resource="/mappers/machine-mapper.xml"/>
+	      <mapper resource="/mappers/calendar-mapper.xml"/>
+	      <mapper resource="/mappers/mcManagement-mapper.xml"/>
+	      <mapper resource="/mappers/mcAllCheck-mapper.xml"/>
+	      <mapper resource="/mappers/approve-mapper.xml"/>
+	      <mapper resource="mappers/template-mapper.xml" />
+	      <mapper resource="mappers/payInfo-mapper.xml"/>
+	      <mapper resource="mappers/mProduct-mapper.xml"/>
+	      <mapper resource="mappers/student-mapper.xml"/>   
+	      <mapper resource="mappers/vacation-mapper.xml"/>
+	      <mapper resource="mappers/appVaca-mapper.xml"/>
 	</mappers>
 	
 
