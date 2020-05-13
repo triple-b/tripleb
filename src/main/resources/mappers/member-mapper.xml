@@ -92,6 +92,11 @@
 		set memproduct_end=to_date(#{pauseStart})+#{pauseDate}
 		where member_no=#{memberNo}
 	</update>
+	<update id="pauseLate" parameterType="_int">
+		update member
+		set member_status='N'
+		where member_no=#{memberNo}
+	</update>
 	
 	
 	

@@ -42,9 +42,6 @@ public class TrainerController {
 		ArrayList<Trainer> list = tService.listTrainer();
 		ArrayList<Trainer> onTrainer = tService.listTrainer();
 		
-		System.out.println(bcryptPasswordEncoder.encode("강보람"));
-		System.out.println(bcryptPasswordEncoder.encode("대충"));
-		
 		if(list != null) {
 			for(Trainer loginUser : list) {
 	

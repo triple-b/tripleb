@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.jh.tripleb.member.model.service.MemberService;
 import com.jh.tripleb.member.model.vo.MemberDtoU;
+import com.jh.tripleb.trainer.model.vo.Trainer;
 
 @Controller
 public class MemberController {
@@ -35,8 +36,24 @@ public class MemberController {
 		ArrayList<MemberDtoU> elist = mService.expSelectListMember(); // 만료회원
 		ArrayList<MemberDtoU> blist = mService.blackSelectListMember(); // 블랙리스트회원
 		
+
+		Date date = new Date(); // 오늘 날짜
+		
+		Date yesterday = new Date ( date.getTime ( ) - (long) ( 1000 * 60 * 60 * 24 ) ); // 어제날짜
+
+
+		
 		if(list != null) { // 조회 성공
 			mv.addObject("list", list).addObject("plist", plist).addObject("elist", elist).addObject("blist", blist).setViewName("member/memberListView");
+			for(MemberDtoU p : plist) {
+				
+				int compare = p.getPauseEnd().compareTo(yesterday);
+				
+				if(compare < 0) { // 일시정지 지난 회원
+					int result = mService.pauseLate(p.getMemberNo());
+				}
+			}
+			
 		}else {	// 조회 실패
 			mv.addObject("msg", "회원 전체 조회 실패").setViewName("common/errorPage");
 		}
@@ -52,7 +69,6 @@ public class MemberController {
 		
 		return new Gson().toJson(m);			
 
-		
 	}
 	
 	@RequestMapping("update.ume")
@@ -163,7 +179,7 @@ public class MemberController {
 	@RequestMapping("pause.ume")
 	public String pauseMember(MemberDtoU m, Model model) {
 
-		int result = mService.pauseMember(m);
+		int result = mService.pauseMember(m); // 일시정지로 변경
 		
 		if(result > 0) {
 			int result2 = mService.addDate(m);	// 상품권 종료일 증가
