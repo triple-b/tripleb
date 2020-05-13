@@ -22,5 +22,7 @@ public class AppVaca {
 	private String appVacComment;	// 결재 의견
 	private int vacNo;				// 휴가 번호
 	private int confirmerNo;		// 결재자 번호
+	private int trainerNo;			// 트레이너 번호
 
+	private String confirmerName;		// 결재자이름
 }

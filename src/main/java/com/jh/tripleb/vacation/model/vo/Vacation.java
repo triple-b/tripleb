@@ -18,8 +18,8 @@ public class Vacation {
 	private Date vacStDate;		// 휴가시작일
 	private Date vacEndDate;	// 휴가종료일
 	private String vacCause;	// 휴가 사유
-	private String varStatus;	// 휴가 상태 (Y:유지, N:취소)
+	private String vacStatus;	// 휴가 상태 (Y:유지, N:취소)
 	private int trainerNo;		// 트레이너 번호
 	
-
+	private String trainerName; // 트레이너 이름
 }

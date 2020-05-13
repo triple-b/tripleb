@@ -39,6 +39,7 @@
 		from classInfo
 		join trainer using(trainer_no)
 		where not class_status in('D')
+		order by class_no desc
 	</select>
 	
 	<update id="deleteCl" parameterType="ClassInfo">
