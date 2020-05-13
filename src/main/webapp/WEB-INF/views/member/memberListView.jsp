@@ -61,7 +61,7 @@
 								<header class="panel-heading">
 									<div class="panel-btn" style="margin-bottom:10px;">
 										<a class="mb-xs mt-xs mr-xs modal-basic btn btn-default btn_memBlack" href="#memberblack" style="float:right; margin-right:10px;">블랙리스트 등록 </a>
-										<a class="mb-xs mt-xs mr-xs modal-basic btn btn-default" href="#memberpause" style="float:right">회원 일시정지 </a>
+										<a class="mb-xs mt-xs mr-xs modal-basic btn btn-default btn_memPause" href="#memberpause" style="float:right">회원 일시정지 </a>
 										<a class="mb-xs mt-xs mr-xs modal-basic btn btn-default btn_memDel" href="#memberDel" style="color:red; float:right">회원 삭제 </a>
 										<a class="mb-xs mt-xs mr-xs modal-basic btn btn-primary" href="#memberinsert" style="float:right" >회원 등록 </a>
 									</div>
@@ -228,7 +228,7 @@
 													<th>연락처</th>
 													<th>회원권</th>
 													<th>등록일</th>
-													<th></th>
+													<th>시작일</th>
 													<th>종료일</th>	
 												</tr>
 											</thead>
@@ -503,7 +503,7 @@
 
 				<!-- 회원 일시정지 Modal -->
 				<div id="memberpause" class="modal-block mfp-hide">
-					<form id="" method="post" action="" enctype="">
+					<form method="post" action="pause.ume">
 						<section class="panel">
 							<header class="panel-heading">
 								<h2 class="panel-title">회원 일시정지</h2>
@@ -514,25 +514,19 @@
 										<div class="panel-body">
 											
 											<div class="form-group">
-												<label class="col-sm-3 control-label">회원 이름 <span class="required">*</span></label>
-												<div class="col-sm-9">
-													<input type="text" name="fullname" class="form-control" placeholder="김주희" required readonly/>
-												</div>
-											</div>
-											<div class="form-group">
 												<label class="col-md-3 control-label" for="inputSuccess">일시정지 기간</label>
 												<div class="col-md-6">
-													<input type="number" id="inlineCheckbox3" class="form-control" min="1" max="30" placeholder="ex) 7" required> 
+													<input type="hidden" id="pauseMemberNo" name="memberNo" />
+													<input type="number" id="inlineCheckbox3" name="pauseDate" class="form-control" min="1" max="30" placeholder="ex) 7" required> 
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-md-3 control-label" for="inputSuccess">시작일</label>
 												<div class="col-md-6">
-													<input type="date" class="form-control" required>
+													<input type="date" class="form-control" name="pauseStart" required>
 												</div>
 											</div>
 
-	
 										</div>
 									</div>
 								</div>
@@ -683,7 +677,7 @@
 									
 
 									<div class="form-group">
-										<label class="col-md-3 control-label">회원권 기간</label>
+										<label class="col-md-3 control-label">수강권 기간</label>
 										<div class="col-md-6">
 											<div class="input-daterange input-group">
 												<p class="form-control" id="memPStart"></p>

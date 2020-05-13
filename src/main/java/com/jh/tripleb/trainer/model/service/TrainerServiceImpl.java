@@ -37,6 +37,16 @@ public class TrainerServiceImpl implements TrainerService{
 		return tDao.detailTrainer(sqlSession, tno);
 	}
 
+	@Override
+	public Trainer searchPhone(String phone) {
+		return tDao.searchPhone(sqlSession, phone);
+	}
+
+	@Override
+	public int changePwd(Trainer t) {
+		return tDao.changePwd(sqlSession, t);
+	}
+
 
 
 }

@@ -24,6 +24,30 @@ $(function(){
 	
 	});
 	
+	// 회원 일시정지
+	$(".btn_memPause").click(function(){
+		
+		
+		if($("input:checkbox[name=checkRow]:checked").length > 1){
+			
+			$('.btn_memPause').addClass('modal-dismiss');
+			alert("일시정지 하실 1명의 회원만 선택해주세요.");
+			
+		}else if($("input:checkbox[name=checkRow]:checked").length == 1){
+			
+			var pno = $("input:checkbox[name=checkRow]:checked").val();
+			$("#pauseMemberNo").attr("value", pno);
+			
+			
+		}else{
+			$('.btn_memPause').addClass('modal-dismiss');
+			alert("일시정지할 회원을 선택해주세요.");
+		}
+	
+	
+	})
+	
+	
 	// 회원 블랙리스트
 	
 	$(".btn_memBlack").click(function(){
@@ -51,7 +75,7 @@ $(function(){
 		if($("input:checkbox[name=checkRow]:checked").length > 1){
 			
 			$('.btn_memblack_cancel').addClass('modal-dismiss');
-			alert("등록하실 1명의 회원만 선택해주세요.");
+			alert("취소하실 1명의 회원만 선택해주세요.");
 			
 		}else if($("input:checkbox[name=checkRow]:checked").length == 1){
 			
@@ -60,7 +84,7 @@ $(function(){
 			
 		}else{
 			$('.btn_memblack_cancel').addClass('modal-dismiss');
-			alert("등록하실 회원을 선택해주세요.");
+			alert("취소하실 회원을 선택해주세요.");
 		}
 	});
 	

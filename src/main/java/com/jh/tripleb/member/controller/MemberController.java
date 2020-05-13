@@ -160,6 +160,25 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping("pause.ume")
+	public String pauseMember(MemberDtoU m, Model model) {
+
+		int result = mService.pauseMember(m);
+		
+		if(result > 0) {
+			int result2 = mService.addDate(m);	// 상품권 종료일 증가
+				if(result2 > 0) {
+					return "redirect:list.ume";					
+				}
+				model.addAttribute("msg", "존재하는 상품권이 없습니다.");
+				return "common/errorPage";
+		}else {
+			model.addAttribute("msg", "일시정지 할 수 없는 회원입니다.");
+			return "common/errorPage";
+		}
+		
+	}
+	
 	
 	
 	

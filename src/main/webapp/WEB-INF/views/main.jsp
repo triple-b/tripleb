@@ -202,7 +202,19 @@
 												</div>
 												<div class="profile-info">
 													<h4 class="name text-semibold">김주희 트레이너</h4>
-													<h5 class="role">사원</h5>
+													<h5 class="role">
+														<c:choose>
+															<c:when test="${ loginUser.trainerGrade eq 'N'}">
+															사원
+															</c:when>
+															<c:when test="${ loginUser.trainerName eq 'T'}">
+															팀장
+															</c:when>
+															<c:otherwise>
+															대표
+															</c:otherwise>
+														</c:choose>
+													</h5>
 													<div class="profile-footer">
 														<a href="profileForm.utr">(edit profile)</a>
 													</div>
@@ -288,5 +300,9 @@
 
 	<!-- jsp파일들 -->
 	<jsp:include page="common/footerjs.jsp" />
+	<!-- mainJs -->
+	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/morris/morris.js"></script>
+	<script src="${ pageContext.servletContext.contextPath }/resources/js/mainDashBoard.js"></script>
+	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/dashboard/examples.dashboard.js"></script>
 </body>
 </html>

@@ -176,7 +176,7 @@
 							
 								</div>
 								
-								<div class="col-md-3">
+							<div class="col-md-3">
 							
 							<div class="panel panel-default">
 							
@@ -186,10 +186,10 @@
 							
 							          <div class="panel-body">
 							          
-							          <div class="col-lg-12" style="margin-bottom:20px">
+							          <div style="margin-bottom:20px">
 					                    <label for="calendar_view">구분별</label>
-						                    <div class="input-group">
-						                        <select class="filter" id="type_filter" multiple="multiple" style="width:280px;">
+						                    <div class="input-group" style="width:100%;">
+						                        <select class="filter" id="type_filter" multiple="multiple" style="width:98%;">
 			                            			<option value="수업">수업</option>
 				                                    <option value="점검">점검</option>
 				                                    <option value="행사">행사</option>
@@ -214,17 +214,6 @@
 							                  	</ul>
 							                  </div>
 							              </div>
-									<!-- 
-						              <div class="col-lg-6">
-						                  <label for="calendar_view">등록자별</label>
-						                  <div class="input-group">
-						                  <c:forEach items="${ list }" var="t">
-						                      <label class="checkbox-inline"><input class='filter' type="checkbox" value="${ t.trainerName }"
-						                              checked>${ t.trainerName }</label>
-						                   </c:forEach>
-						                  </div>
-						              </div>
-						             -->
 							
 							          </div>
 							      </div>

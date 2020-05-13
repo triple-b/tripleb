@@ -26,6 +26,10 @@ public interface MemberService{
 	int blackMember(MemberDtoU mto);
 	// 10. 블랙리스트 해제 (주)
 	int blackCancelMember(MemberDtoU mto);
+	// 11. 일시정지 등록 (주)
+	int pauseMember(MemberDtoU mto);
+	// 12. 회원권 종료일 증가 (주)
+	int addDate(MemberDtoU mto);
 	
 
 }

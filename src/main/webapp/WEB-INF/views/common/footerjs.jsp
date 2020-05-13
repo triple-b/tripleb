@@ -28,7 +28,7 @@
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/flot/jquery.flot.resize.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jquery-sparkline/jquery.sparkline.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/raphael/raphael.js"></script>
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/morris/morris.js"></script>
+<%-- 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/morris/morris.js"></script> --%>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/gauge/gauge.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/snap-svg/snap.svg.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/liquid-meter/liquid.meter.js"></script>
@@ -46,11 +46,8 @@
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/theme.init.js"></script>
 	
 	<!-- Examples -->
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/dashboard/examples.dashboard.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.row.with.details.js"></script>
-	
-	<!-- mainJs -->
-	<script src="${ pageContext.servletContext.contextPath }/resources/js/mainDashBoard.js"></script>
+
 </body>
 </html>

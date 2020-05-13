@@ -103,7 +103,7 @@ var editEvent = function (event, element, view) {
 // 삭제버튼
 $('#deleteEvent').on('click', function () {
     
-    $('#deleteEvent').unbind();
+   // $('#deleteEvent').unbind();
     $("#calendar").fullCalendar('removeEvents', $(this).data('id'));
     eventModal.modal('hide');
     
@@ -117,7 +117,7 @@ $('#deleteEvent').on('click', function () {
         	calNo : calNo
         },
         success: function (response) {
-
+        	
         }
     });
 

@@ -59,12 +59,17 @@
 					<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
 						<span class="name">${ loginUser.trainerName } 트레이너</span>
 						<span class="role">
-						<c:if test="${ loginUser.trainerGrade eq 'N' }">
-						사원
-						</c:if>
-						<c:if test="${ loginUser.trainerGrade eq 'T' }">
-						팀장
-						</c:if>
+							<c:choose>
+								<c:when test="${ loginUser.trainerGrade eq 'N'}">
+								사원
+								</c:when>
+								<c:when test="${ loginUser.trainerName eq 'T'}">
+								팀장
+								</c:when>
+								<c:otherwise>
+								대표
+								</c:otherwise>
+							</c:choose>
 						</span>
 					</div>
 	

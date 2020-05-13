@@ -41,6 +41,23 @@ public interface TrainerService {
 	 */
 	Trainer detailTrainer(int tno);
 	
+	/** 1_1. 핸드폰번호 찾기 서비스
+	 * @param phone		전달 받은 트레이너 핸드폰 번호
+	 * @author 김주
+	 * @return			조회된 트레이너 객체
+	 */
+	Trainer searchPhone(String phone);
+	
+
+	/** 1_2. 비밀번호 변경
+	 * @param t			변경할 비밀번호, 트레이너 번호
+	 * @author 김주
+	 * @return			처리된 행의 개수
+	 */
+	int changePwd(Trainer t);
+	
+	
+	
 	
 
 

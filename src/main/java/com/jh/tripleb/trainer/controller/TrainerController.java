@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -41,6 +42,9 @@ public class TrainerController {
 		ArrayList<Trainer> list = tService.listTrainer();
 		ArrayList<Trainer> onTrainer = tService.listTrainer();
 		
+		System.out.println(bcryptPasswordEncoder.encode("강보람"));
+		System.out.println(bcryptPasswordEncoder.encode("대충"));
+		
 		if(list != null) {
 			for(Trainer loginUser : list) {
 	
@@ -54,7 +58,7 @@ public class TrainerController {
 			
 		}else { // 로그인 실패
 			
-			mv.addObject("msg", "로그인 실패");
+			mv.addObject("msg", "출근번호가 다릅니다. 다시 입력해주세요.");
 			mv.setViewName("common/errorPage");
 		}
 			
@@ -71,8 +75,9 @@ public class TrainerController {
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("redirect:/");
 		}else {
-			mv.addObject("msg", "로그인 실패");
+			mv.addObject("msg", "출근번호가 다릅니다. 다시 입력해주세요.");
 			mv.setViewName("common/errorPage");
+			
 		}
 		return mv;
 
@@ -84,7 +89,7 @@ public class TrainerController {
 	}
 	
 	@RequestMapping("update.utr")
-	public String updateTrainerProfile(Trainer t, HttpSession session, Model model, HttpServletRequest request,
+	public String updateTrainerProfile(Trainer t, HttpSession session, Model model, HttpServletRequest request, String detailAddress,
 									@RequestParam(value="newThumbnail", required=false) MultipartFile file) {
 		
 		// 전달된 파일이 있는 경우
@@ -92,11 +97,18 @@ public class TrainerController {
 				String changeName = saveFile(file, request); // 실제로 업로드된 파일명
 				t.setTrainerThumbnail(changeName);
 			}
-				
+			
+			t.setTrainerAddress(t.getTrainerAddress() + " " + detailAddress);
+			
+			System.out.println(t);
+
 		int result = tService.updateTrainerProfile(t);
 		
 		
 		if(result > 0) {
+
+			ArrayList<Trainer> onTrainer = tService.listTrainer();
+			session.setAttribute("onTrainer", onTrainer);
 			session.setAttribute("loginUser", tService.changeTrainer(t));
 			return "redirect:profileForm.utr";
 			
@@ -111,8 +123,6 @@ public class TrainerController {
 		
 		Trainer t = tService.detailTrainer(otno);
 		
-		System.out.println(otno);
-		
 		if(t != null) {
 			mv.addObject("t", t).setViewName("trainer/lockTrainer");
 		}else {
@@ -120,6 +130,59 @@ public class TrainerController {
 		}
 		
 		return mv;
+	}
+	
+	@RequestMapping("searchForm.utr")
+	public String serachForm() {
+		return "trainer/recoverPTrainer";
+	}
+	
+	@RequestMapping("searchPhone.utr")
+	public ModelAndView searchPhone(String phone, ModelAndView mv) {
+		
+		Trainer t = tService.searchPhone(phone);
+		
+		if(t != null) {
+			mv.addObject("t", t).setViewName("trainer/recoverPwdTrainer");
+		}else {
+			mv.addObject("msg", "트레이너 조회 수정 실패").setViewName("common/errorPage");
+		}
+		
+		return mv;
+		
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping("pwdCheck.utr")
+	public String pwdSearch(String pwd) {
+			
+		ArrayList<Trainer> list = tService.listTrainer();
+
+		int result = 0;
+			for(Trainer t : list) {
+				if(bcryptPasswordEncoder.matches(pwd, t.getTrainerPwd())){		
+					result = 1;
+				}
+			}
+			return String.valueOf(result);
+
+	}
+	
+	
+	
+	@RequestMapping("changePwd.utr")
+	public String changePwd(Trainer t, String newPwd) {
+		
+		String encPwd = bcryptPasswordEncoder.encode(newPwd);
+		
+		
+		t.setTrainerPwd(encPwd);
+		int result = tService.changePwd(t);
+		
+
+		return "redirect:/";
+
 	}
 	
 	

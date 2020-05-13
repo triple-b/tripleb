@@ -385,8 +385,8 @@ html.dark .pagination > li.active a {
 }
 /* Fullcalendar */
 .fc .fc-widget-header {
-	background: #0f4c81;
-	border-color: #0f4c81;
+	background: #0088cc;
+	border-color: #0088cc;
 }
 
 .fc .fc-header-title h2:before {

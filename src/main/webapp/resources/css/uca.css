@@ -227,10 +227,6 @@ body {
   background: none;
 }
 
-select.filter {
-  width: 500px !important;
-}
-
 .popover {
   background: #fff !important;
   color: #2E2F34;

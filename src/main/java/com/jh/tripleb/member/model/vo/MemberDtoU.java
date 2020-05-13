@@ -2,6 +2,17 @@ package com.jh.tripleb.member.model.vo;
 
 import java.sql.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class MemberDtoU {
 	
 	private int memberNo;				// 회원번호
@@ -28,8 +39,10 @@ public class MemberDtoU {
 	private Date memProductEnd;			// 회원권 종료일
 	private int lockerNo;				// 락커 번호
 	
-
+	private int pauseDate;				// 일시정지 일자
 	
+
+/*	
 	public MemberDtoU() {}
 
 
@@ -411,6 +424,8 @@ public class MemberDtoU {
 				+ ", toString()=" + super.toString() + "]";
 	}
 
+
+*/
 
 
 

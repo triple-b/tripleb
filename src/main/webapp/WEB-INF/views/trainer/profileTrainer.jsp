@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <!-- 프로필 업로드 css -->
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/bootstrap-fileupload/bootstrap-fileupload.min.css" />
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </head>
 <body>
 
@@ -39,12 +40,17 @@
 										<div class="thumb-info-title">
 											<span class="thumb-info-inner">${ loginUser.trainerName }</span>
 											<span class="thumb-info-type">
-											<c:if test="${ loginUser.trainerGrade eq 'N'}">
-											사원
-											</c:if>
-											<c:if test="${ loginUser.trainerName eq 'T'}">
-											팀장
-											</c:if>
+											<c:choose>
+												<c:when test="${ loginUser.trainerGrade eq 'N'}">
+												사원
+												</c:when>
+												<c:when test="${ loginUser.trainerName eq 'T'}">
+												팀장
+												</c:when>
+												<c:otherwise>
+												대표
+												</c:otherwise>
+											</c:choose>
 											</span>
 										</div>
 									</div>
@@ -59,7 +65,10 @@
 							<div class="tabs">
 								<ul class="nav nav-tabs tabs-primary">
 									<li class="active">
-										<a href="#edit" data-toggle="tab">Edit</a>
+										<a href="#edit" data-toggle="tab">프로필</a>
+									</li>
+									<li>
+										<a href="searchForm.utr">출근번호 수정</a>
 									</li>
 								</ul>
 								<div class="tab-content">
@@ -93,7 +102,7 @@
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="profilePhone">핸드폰</label>
 													<div class="col-md-8">
-														<input id="number" class="form-control" id="profilePhone" name="trainerPhone" value="${ loginUser.trainerPhone }">
+														<input id="text" class="form-control" id="profilePhone" name="trainerPhone" value="${ loginUser.trainerPhone }">
 													</div>
 												</div>
 												<div class="form-group">
@@ -104,9 +113,60 @@
 												</div>
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="profileAddress">주소</label>
-													<div class="col-md-8">
-														<input type="text" class="form-control" id="profileAddress" name="trainerAddress" value="${ loginUser.trainerAddress }">
+														<div class="col-md-8">
+															<div class="col-sm-5" style="padding:0px;">
+																<input type="text" class="form-control" id="profileAddress" name="trainerAddress" value="${ loginUser.trainerAddress }">
+															</div>
+															<div class="col-sm-4">
+																<input type="text" class="form-control" id="detailAddress" name="detailAddress" placeholder="상세주소">
+															</div>
+														<div class="col-sm-3" style="padding:0px;">
+															<input type="button" class="btn btn-default" onclick="addressSearch()" value="주소 검색"><br>
+														</div>
+													<span id="guide" style="color:#999"></span>
 													</div>
+													<script>
+														function addressSearch(){
+													
+															new daum.Postcode({
+														        oncomplete: function(data) {
+														        	 var addr = ''; // 주소 변수
+														                var extraAddr = ''; // 참고항목 변수
+
+														                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+														                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+														                    addr = data.roadAddress;
+														                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+														                    addr = data.jibunAddress;
+														                }
+
+														                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+														                if(data.userSelectedType === 'R'){
+														                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+														                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+														                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+														                        extraAddr += data.bname;
+														                    }
+														                    // 건물명이 있고, 공동주택일 경우 추가한다.
+														                    if(data.buildingName !== '' && data.apartment === 'Y'){
+														                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+														                    }
+														                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+														                    if(extraAddr !== ''){
+														                        extraAddr = ' (' + extraAddr + ')';
+														                    }
+														                    // 조합된 참고항목을 해당 필드에 넣는다.
+														                }
+
+														                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+														                document.getElementById("profileAddress").value = addr;
+														                // 커서를 상세주소 필드로 이동한다.
+														                document.getElementById("detailAddress").focus();
+														        }
+														    }).open();
+													}
+													
+													</script>
 												</div>
 												<div class="form-group">
 												<label class="col-md-3 control-label">프로필 업로드</label>
@@ -121,6 +181,7 @@
 																<span class="fileupload-exists">변경</span>
 																<span class="fileupload-new">파일 업로드</span>
 																<input type="file" name="newThumbnail"/>
+																<input type="hidden" name="trainerThumbnail" value="${ loginUser.trainerThumbnail }"/>
 															</span>
 															<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">초기화</a>
 														</div>
@@ -167,6 +228,8 @@
 		<!-- 오른쪽 사이드 바 -->
 		<jsp:include page="../common/sidebarRight.jsp" />		
 	</section>
+	
+	
 
 	<!-- 공통으로 사용하는 JSP -->
 	<jsp:include page="../common/footerjs.jsp" />

@@ -8,7 +8,7 @@
 		FROM MEMBER
 		LEFT JOIN MPRODUCT USING (MEMBER_NO)
 		LEFT JOIN PRODUCT USING (PRODUCT_NO)
-		WHERE MEMBER_STATUS='N' AND BLACKLIST_STATUS='N' 
+		WHERE MEMBER_STATUS='N' AND BLACKLIST_STATUS='N' AND NVL(MEMPRODUCT_END, SYSDATE) >= SYSDATE
 		ORDER BY 1 DESC
 	</select>
 	
@@ -80,6 +80,16 @@
 	<update id="blackCancelMember" parameterType="memberDtoU">
 		update member
 		set blacklist_status='N', blacklist_enrolldate=null, member_Note=#{memberNote}, blacklist_content=null
+		where member_no=#{memberNo}
+	</update>
+	<update id="pauseMember" parameterType="memberDtoU">
+		update member
+		set member_status='P', pause_start=#{pauseStart}, pause_end=to_date(#{pauseStart})+#{pauseDate}
+		where member_no=#{memberNo} and pause_start is null
+	</update>
+	<update id="addDate" parameterType="memberDtoU">
+		update mproduct
+		set memproduct_end=to_date(#{pauseStart})+#{pauseDate}
 		where member_no=#{memberNo}
 	</update>
 	

@@ -29,4 +29,12 @@ public class TrainerDao {
 	public int tnoTrainer(SqlSessionTemplate sqlSession, String tname) {
 		return sqlSession.selectOne("trainerMapper.tnoTrainer", tname);
 	}
+	
+	public Trainer searchPhone(SqlSessionTemplate sqlSession, String phone) {
+		return sqlSession.selectOne("trainerMapper.serachPhone", phone);
+	}
+	
+	public int changePwd(SqlSessionTemplate sqlSession, Trainer t) {
+		return sqlSession.update("trainerMapper.changePwd",t);
+	}
 }

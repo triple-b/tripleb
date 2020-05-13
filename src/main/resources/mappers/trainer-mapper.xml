@@ -27,7 +27,17 @@
 		FROM TRAINER
 		WHERE TRAINER_NO=#{tno} AND TRAINER_STATUS='Y'
 	</select>
-  
+	<select id="serachPhone" resultType="Trainer">
+		SELECT *
+		FROM TRAINER
+		WHERE TRAINER_PHONE=#{phone} AND TRAINER_STATUS='Y'
+	</select>
+  	
+  	<update id="changePwd" parameterType="Trainer">
+  		UPDATE TRAINER
+  		SET TRAINER_PWD=#{trainerPwd}
+  		WHERE TRAINER_NO=#{trainerNo}
+  	</update>
   
   </mapper>
 
