@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.jh.tripleb.mcAllCheck.model.vo.mcAllCheck;
 import com.jh.tripleb.mcAllCheck.model.vo.mcAllCheckDto;
+import com.jh.tripleb.mcAllCheck.model.vo.mcAllDto;
 
 public interface McAllCheckService {
 
@@ -15,7 +16,8 @@ public interface McAllCheckService {
 	int insertMcAllCheck(mcAllCheckDto m);
 
 	//3. 기구점검 상세보기 조회 소비스
-	mcAllCheck selectMcAllCheck(int macno);
+
+	ArrayList<mcAllDto> selectMcCheck(int macno);
 
 	
 	

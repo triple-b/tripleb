@@ -7,11 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-			.Machine{
-				height:300px;
-				overflow-y: visible;
-				overflow-x: hidden;
-			}
+.Machine{
+		height:300px;
+		overflow-y: visible;
+		overflow-x: hidden;
+		}
 </style>
 </head>
 <body>
@@ -43,7 +43,7 @@
 							<header class="panel-heading">
 								
 								<div class="panel-btn" style="margin-bottom:10px;">
-									<button type="button" class=" btn btn-primary" style="float:right ;">수정</button>
+									<input type="hidden" class=" btn btn-primary" style="float:right ;" onclick="update();"></input>
 								</div>
 						
 								<h1 class="panel-title">헬스장 시설 점검표</h1>
@@ -53,20 +53,21 @@
 								<table class="table table-bordered table-striped mb-none" id="datatable-default">
 									<thead>
 										<tr>
-											<th>점검시설</th>
 											
+											<th>점검시설</th>
 											<th class="hidden-phone">점검부위</th>
 											<th class="hidden-phone">점검일</th>
 										</tr>
 									</thead>
 									<tbody>
-									
+										<c:forEach items="${list}" var="m">
 											<tr>
-												<td>레그프레스</td>
-												<td class="center hidden-phone">오늘 몇번 벤치 고장</td>
-												<td class="center hidden-phone">2020-04-21</td>
+												<input type="hidden" name="machine" value="${m.machineChkNo }" onclick="oneCheckbox(this)">
+												<td>${m.mcName}</td>
+												<td class="center hidden-phone">${m.machineChkContent}</td>
+												<td class="center hidden-phone">${m.machineChkDate}</td>
 											</tr>
-										
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -87,12 +88,32 @@
 	<!-- 공통으로 사용하는 JSP -->
 	<jsp:include page="../common/footerjs.jsp" />
 	<!-- 현재 페이지에서만 사용하는 JSP -->
+	
 	<script>
-		$(function(){
-			$("#datatable-default tbody tr").click(function(){
-				location.href="detail.hmc?macno=" + $(this).children().eq(0).text();
-			});
-		});
+	var machineNo = "";
+	
+    function oneCheckbox(a){
+
+        var obj = document.getElementsByName("machine");
+
+        for(var i=0; i<obj.length; i++){
+
+            if(obj[i] != a){
+
+                obj[i].checked = false;
+
+            }
+
+        }
+        
+        machineNo = a.value;
+        
+
+    }
+    
+    function update() {
+    	location.href="updateForm.mcc?mccno="+machineNo;
+    }
 	</script>
 	
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>

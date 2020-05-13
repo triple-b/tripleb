@@ -19,10 +19,21 @@
 		<result property="machineChkContent" column="MACHINE_CHECKCONTENT" />
 		<result property="machineNo" column="MACHINE_NO" />
   	</resultMap>
+  	
+  	<resultMap type="mcAllCheckDto" id="mcAllDtoResultSet">
+	  	<id property="machineChkNo" column="MACHINE_CHKNO"  />
+	  	<result property="machineTitle" column="MACHINE_TITLE" />
+	  	<result property="machineChkDate" column="MACHINE_CHECKDATE" />
+		<result property="machineNo" column="MACHINE_NO" />
+		<result property="machineChkContent" column="MACHINE_CHECKCONTENT" />
+		<result property="machineName" column="MACHINE_NAME" />
+	  	<result property="machinAllChkNo" column="MACHINE_ALLCHKNO" />
+  	</resultMap>
   
   <select id="selectList" resultMap="mcAllCheckResultSet">
-  		select MACHINE_ALLCHKNO, MACHINE_TITLE, MACHINE_CHECKDATE, TRAINER_NO
+  		select MACHINE_ALLCHKNO, MACHINE_TITLE, MACHINE_CHECKDATE, TRAINER_NO, TRAINER_NAME
   		from  mc_all_check
+        join TRAINER using(TRAINER_NO)
   		ORDER BY MACHINE_ALLCHKNO desc
   	</select>
   	
@@ -36,5 +47,14 @@
   	values(SEQ_MCNO.nextval,#{machineChkContent},#{machineNo},#{machineAllChkNo} )
   
   </insert>
+  
+  <select id="selectMcCheck"  resultMap="mcAllDtoResultSet">
+  	 select a.MACHINE_TITLE,a.MACHINE_CHECKDATE,c.MACHINE_NO,c.MACHINE_CHECKCONTENT,c.MACHINE_CHKNO,n.Mc_Name
+	 from MC_CHECK c
+	 join MC_ALL_CHECK a using(MACHINE_ALLCHKNO)
+     join MC_MANAGEMENT m on(c.MACHINE_NO = m.MACHINE_NO)
+     join MACHINE n on(m.MC_NO=n.MC_NO)
+	 where MACHINE_ALLCHKNO= #{macno}
+  </select>
   
   </mapper>

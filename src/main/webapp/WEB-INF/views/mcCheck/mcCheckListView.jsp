@@ -58,6 +58,9 @@
 		margin-left:20px;
 		border:1px solid #ffffff;
 	}
+	.img-responsive{
+	margin :auto;
+	}
 </style>
 </head>
 <body>
@@ -100,7 +103,7 @@
 								<ul class="nav nav-pills nav-pills-primary">
 
 									<li>
-										<button class="modal-with-form btn btn-default"  style="float:right" href="#modalForm1" onclick="updateSelect();">수정</button>
+										<button class="modal-with-form btn btn-default"  style="float:right" href="#modalForm1" onclick="updateSelect();"> 상태창</button>
 									</li>
 									<li>
 										<button class="modal-with-form btn btn-default"  style="float:right" onclick="deletemcm()">삭제</button>
@@ -128,23 +131,22 @@
 													<div id="Mcmanagementtlqkf">
 														<input id="machineNo1"  type="hidden" value="${m.machineNo}" >
 														<a class="thumb-image" href="${ pageContext.servletContext.contextPath }/resources/assets/images/projects/project-1.jpg"></a>
-															<img src="${ pageContext.servletContext.contextPath }/resources/upload_files/${m.thumbChange}" class="img-responsive" alt="Project">
+															<img style="width:200px; height:200px;" src="${ pageContext.servletContext.contextPath }/resources/upload_files/${m.thumbChange}" class="img-responsive" alt="Project">
 														</a>
 													</div>
 													<div class="mg-thumb-options">
-														
 														<div class="mg-toolbar">
-															<div class="mg-option checkbox-custom checkbox-inline">
-																<input type="checkbox" id="file_1" name="machinecheck1" onclick="twoCheckbox(this)" value="${m.machineNo}">
-																<label for="file_1">SELECT</label>
-															</div>
+																<div class="mg-option checkbox-custom checkbox-inline">
+																	<input type="checkbox" id="file_1" name="machinecheck1" onclick="twoCheckbox(this)" value="${m.machineNo}">
+																	<label for="file_1">SELECT</label>
+																</div>
+															<h5 class="mg-title text-semibold">${m.mcName}</h5>
 														</div>
-														<h5 class="mg-title text-semibold">${m.mcName}</h5>
+														<div class="mg-description">
+															<small class="pull-left text-muted">${m.machineNo}</small>
+															<small class="pull-right text-muted">${m.machineRegistDate}</small>
+														</div>						
 													</div>
-													<div class="mg-description">
-														<small class="pull-left text-muted">${m.machineNo}</small>
-														<small class="pull-right text-muted">${m.machineRegistDate}</small>
-													</div>						
 												</div>
 											</div>
 										</div>
@@ -252,16 +254,9 @@
 							</footer>
 						</section>
 					</div>
-
-				
-			</section>
-	
-				
+			</section>			
 				<!--기구 등록-->
 				<section class="panel" style="margin-bottom: 0px;">
-
-					
-
 					<!-- Modal Form -->
 					<div id="modalForm2" class="modal-block modal-block-primary mfp-hide">
 						<section class="panel">
@@ -301,15 +296,10 @@
 							</form>
 						</section>
 					</div>
-
-				
 			</section>
 				<!-- 기구 관리 삭제 -->	
 				
 				<section class="panel"   style="margin-bottom: 0px;" >
-
-					
-
 					<!-- Modal Form -->
 					<div id="modalForm6" class="modal-block modal-block-primary mfp-hide">
 						<section class="panel">
@@ -321,7 +311,6 @@
 									
 									<hr>
 									<div class="Machine">
-										
 										
 										<div class="form-group">
 											<label class="col-sm-3 control-label">기구명</label>
@@ -349,27 +338,32 @@
 							</footer>
 						</section>
 					</div>
-
-				
 			</section>
 
-				<!-- 기구 관리 수정 -->
+				<!-- 기구 관리 정보창 -->
 				<section class="panel" style="margin-bottom: 0px;">
-
-						
 
 						<!-- Modal Form -->
 						<div id="modalForm1" class="modal-block modal-block-primary mfp-hide">
 							<section class="panel">
 								<header class="panel-heading">
-									<h1 class="panel-title">시설기구수정</h1>
+									<h1 class="panel-title">시설기구 정보창</h1>
 								</header>
 								<div class="panel-body">
 									<form id="demo-form-machineList" class="form-horizontal mb-lg-machineList18" novalidate="novalidate" method="post" action="update.mcm" enctype="multipart/form-data">
+										<div id="Mcmanagementtlqkf">
+															<img id="img" style="width:200px; height:200px;" src="${ pageContext.servletContext.contextPath }/resources/upload_files/${m.thumbChange}" class="img-responsive" alt="Project">
+													</div>
 										<div class="form-group">
 												<label class="col-sm-3 control-label">수정할 기구번호</label>
 												<div class="col-sm-9">
 													<input type="text" name="machineNo" id="machineNo" class="form-control"  placeholder="" readonly />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-3 control-label">기구 등록 날짜</label>
+												<div class="col-sm-9">
+													<input type="text" name="mcDate" id="mcDate" class="form-control"  placeholder="" readonly />
 												</div>
 											</div>
 										<hr>
@@ -400,10 +394,11 @@
 												</div>
 											</div>
 										</div>
+										<br><br>
 										<footer class="panel-footer">
 											<div class="row">
 												<div class="col-md-12 text-right">
-													<button class="btn btn-primary modal-confirm"onclick="updatemcm()">수정</button>
+													<button class="btn btn-primary modal-confirm" type="submit" onclick="send()"; >수정</button>
 													<button class="btn btn-default modal-dismiss">취소</button>
 												</div>
 											</div>
@@ -411,15 +406,11 @@
 									</form>
 								</div>
 							</section>
-						</div>
-
-					
+						</div>				
 				</section>
 
 				<!-- 기구 관리 등록 -->
 				<section class="panel" style="margin-bottom: 0px;">
-
-					
 
 					<!-- Modal Form -->
 					<div id="modalForm" class="modal-block modal-block-primary mfp-hide">
@@ -462,8 +453,7 @@
 						</section>
 					</div>
 			</section>
-		
-		
+
 		<!-- 오른쪽 사이드 바 -->
 		<jsp:include page="../common/sidebarRight.jsp" />		
 	</section>
@@ -536,9 +526,11 @@
     function insertmcm() {
     	location.href="insert.mcm?mcno="+machinecheckID;
     }
+    /*
     function updatemcm() {
     	location.href="update.mcm?mano="+machinecheckNo;
     }
+    */
     function updateSelect(){
     	location.href="update.mcm?mano="+machinecheckNo;
     } 
@@ -564,27 +556,26 @@
     
     function updateSelect(){
     	var value1 = machinecheckNo;
-    	
-    	
-    	
-    	$.ajax({
-    		url:"selectMc1.mcm",
-    		data:{mano:value1},
-    		type:"post",
-    		success:function(mc){
-    			console.log(mc);
-    			var value = "";
-    				$("#mcName").val(mc.mcName);
-    				$("#machineNo").val(mc.machineNo);
-    				$("#mcExplain").val(mc.mcExplain);
-    				$("#thumbChange").val(mc.thumbChange);
-    				$("#thumbnail").val(mc.thumbnail);
-    				
-    		},
-    		error:function(){
-    			console.log("머신 상세정보 통신실패");
-    		}
-    	});
+
+		    	$.ajax({
+		    		url:"selectMc1.mcm",
+		    		data:{mano:value1},
+		    		type:"post",
+		    		success:function(mc){
+		    			console.log(mc);
+		    			var value = "";
+		    				$("#mcName").val(mc.mcName);
+		    				$("#machineNo").val(mc.machineNo);
+		    				$("#mcExplain").val(mc.mcExplain);
+		    				$("#thumbChange").val(mc.thumbChange);
+		    				$("#thumbnail").val(mc.thumbnail);
+		    				$("#mcDate").val(mc.mcDate);
+		    				$("#img").attr('src', "${ pageContext.servletContext.contextPath }/resources/upload_files/" + mc.thumbChange);	
+		    		},
+		    		error:function(){
+		    			console.log("머신 상세정보 통신실패");
+		    		}
+		    	});
     }
 	</script>
 	<script>
@@ -593,7 +584,13 @@
 				location.href="select.mcm?mano=" + $(this).children().eq(0).val();
 			});
 		});
+		
+		function send(){
+			document.getElementById("demo-form-machineList").submint();
+		}
 	</script>
+	
+	
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.modals.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/pages/examples.mediagallery.js" ></script>

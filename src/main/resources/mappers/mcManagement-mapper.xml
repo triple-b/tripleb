@@ -45,12 +45,14 @@
   	</select>
   	
   	<update id="updateMachine" parameterType="McManagementDto">
-  		update machine
-  		set mc_name=#{mcName},
-		     mc_explain=#{mcExplain},
-		     thumbnail=#{thumbnail},
-		     thumbChange=#{thumbChange},
-		where machine_no=#{machineNo}
+  		update Machine
+		set mc_name=#{mcName},
+     		mc_explain=#{mcExplain},
+    		thumbnail=#{thumbnail},
+    		thumb_change=#{thumbChange},
+			where mc_no = (select mc_no
+               			   from mc_management
+               			   where machine_no = #{machineNo})
   	</update>
   	
   </mapper>
