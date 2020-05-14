@@ -305,6 +305,7 @@ public class TrainerController {
 		if(result > 0) {
 
 			ArrayList<Trainer> onTrainer = tService.listTrainer();
+			session.setAttribute("onTrainer", onTrainer);
 			
 			return "redirect:trainerList.utr";
 			
