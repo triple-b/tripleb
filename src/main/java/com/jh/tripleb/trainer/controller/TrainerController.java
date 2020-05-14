@@ -43,7 +43,7 @@ public class TrainerController {
 		ArrayList<Trainer> onTrainer = tService.listTrainer();
 		
 		if(list != null) {
-			for(Trainer loginUser : list) {
+			for(Trainer loginUser : list) { // 로그인 성공
 	
 				if(bcryptPasswordEncoder.matches(t.getTrainerPwd(), loginUser.getTrainerPwd())){
 					session.setAttribute("loginUser", loginUser);
@@ -58,7 +58,7 @@ public class TrainerController {
 			mv.addObject("msg", "출근번호가 다릅니다. 다시 입력해주세요.");
 			mv.setViewName("common/errorPage");
 		}
-			
+		
 		return mv;
 		
 	}
@@ -131,7 +131,7 @@ public class TrainerController {
 	
 	@RequestMapping("searchForm.utr")
 	public String serachForm() {
-		return "trainer/recoverPTrainer";
+		return "trainer/lockTrainer";
 	}
 	
 	@RequestMapping("searchPhone.utr")

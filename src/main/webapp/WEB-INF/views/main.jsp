@@ -190,7 +190,7 @@
 										<a href="#" class="fa fa-caret-down"></a>
 									</div>
 
-									<h2 class="panel-title">일정</h2>
+									<h2 class="panel-title">일정관리</h2>
 								</header>
 								<div class="panel-body">
 									<section class="panel panel-group">
@@ -260,7 +260,7 @@
 										<a href="#" class="fa fa-caret-down"></a>
 									</div>
 
-									<h2 class="panel-title">공지사항</h2>
+									<h2 class="panel-title"><a href="List.no">공지사항</a></h2>
 								</header>
 								<div class="panel-body">
 									<section class="panel panel-group">
@@ -269,9 +269,10 @@
 												<div id="collapse1One" class="accordion-body collapse in">
 													<div class="panel-body">
 														<ul class="widget-todo-list">
-
 															<c:forEach items="${ notice }" var="n">
+															<li>
 																<p class="todo-label" for="todoListItem1"><span id="mNoticeNo" style="display:none">${ n.noticeNo}</span> ${ n.noticeTitle }</p>
+															</li>
 															</c:forEach>
 															<c:if test="${ empty notice }">
 																<p class="todo-label" for="todoListItem1"><span>작성된 공지사항이 없습니다.</span></p>
