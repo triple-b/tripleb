@@ -99,14 +99,17 @@
 								<a class="modal-with-form btn btn-default"  style="float:left;" href="#modalForm2" >기구종류등록</a>
 							</li>
 							
-							<li class="right" data-sort-source data-sort-id="media-gallery" style="margin-top: 8px;">
+							<li class="right" data-sort-source data-sort-id="media-gallery" style="margin-top: 10px;">
 								<ul class="nav nav-pills nav-pills-primary">
 
-									<li>
-										<button class="modal-with-form btn btn-default"  style="float:right" href="#modalForm1" onclick="updateSelect();"> 상태창</button>
+									<li style="padding-right: 10px;">
+										<button class="modal-with-form btn btn-default"  style="float:right;" href="#modalForm1" onclick="updateSelect();"> 상태창</button>
 									</li>
-									<li>
-										<button class="modal-with-form btn btn-default"  style="float:right" onclick="deletemcm()">삭제</button>
+									<li style="padding-right: 10px;">
+										<button class=" btn btn-default"  style="float:right; " onclick="trouble()">고장</button>
+									</li>
+									<li style="padding-right: 10px;">
+										<button class=" btn btn-default"  style="float:right; " onclick="deletemcm()">삭제</button>
 									</li>
 									
 								</ul>
@@ -138,9 +141,12 @@
 														<div class="mg-toolbar">
 																<div class="mg-option checkbox-custom checkbox-inline">
 																	<input type="checkbox" id="file_1" name="machinecheck1" onclick="twoCheckbox(this)" value="${m.machineNo}">
-																	<label for="file_1">SELECT</label>
+																	<label for="file_1">SELECT</label>											
 																</div>
 															<h5 class="mg-title text-semibold">${m.mcName}</h5>
+															
+																	<input class="" id="trouble18"  type="hidden" value="${m.machineDel}">
+															
 														</div>
 														<div class="mg-description">
 															<small class="pull-left text-muted">${m.machineNo}</small>
@@ -254,7 +260,8 @@
 							</footer>
 						</section>
 					</div>
-			</section>			
+			</section>		
+				
 				<!--기구 등록-->
 				<section class="panel" style="margin-bottom: 0px;">
 					<!-- Modal Form -->
@@ -265,8 +272,8 @@
 							</header>
 							<div class="panel-body">
 								<form id="insertMachine" method="post" action="insert.mc" enctype="multipart/form-data">
-									<hr>
-									<table align="center">
+									<br>
+									<table align="center" style="width: -webkit-fill-available;">
 										<tr>
 											<th><label for="title">기구명</label></th>
 											<td><input type="text" name="mcName" class="form-control" placeholder="" required/></td>
@@ -297,48 +304,7 @@
 						</section>
 					</div>
 			</section>
-				<!-- 기구 관리 삭제 -->	
 				
-				<section class="panel"   style="margin-bottom: 0px;" >
-					<!-- Modal Form -->
-					<div id="modalForm6" class="modal-block modal-block-primary mfp-hide">
-						<section class="panel">
-							<header class="panel-heading">
-								<h1 class="panel-title">기구삭제</h1>
-							</header>
-							<div class="panel-body">
-								<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
-									
-									<hr>
-									<div class="Machine">
-										
-										<div class="form-group">
-											<label class="col-sm-3 control-label">기구명</label>
-											<div class="col-sm-9">
-												<input type="text" name="Quantity" class="form-control" placeholder="" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-sm-3 control-label">기구설명</label>
-											<div class="col-sm-9">
-												<textarea rows="5" class="form-control" placeholder="Type your comment..." required></textarea>
-											</div>
-										</div>
-										
-									</div>
-								</form>
-							</div>
-							<footer class="panel-footer">
-								<div class="row">
-									<div class="col-md-12 text-right">
-										<button class="btn btn-primary modal-confirm">확인</button>
-										<button class="btn btn-default modal-dismiss">취소</button>
-									</div>
-								</div>
-							</footer>
-						</section>
-					</div>
-			</section>
 
 				<!-- 기구 관리 정보창 -->
 				<section class="panel" style="margin-bottom: 0px;">
@@ -352,8 +318,9 @@
 								<div class="panel-body">
 									<form id="demo-form-machineList" class="form-horizontal mb-lg-machineList18" novalidate="novalidate" method="post" action="update.mcm" enctype="multipart/form-data">
 										<div id="Mcmanagementtlqkf">
-															<img id="img" style="width:200px; height:200px;" src="${ pageContext.servletContext.contextPath }/resources/upload_files/${m.thumbChange}" class="img-responsive" alt="Project">
-													</div>
+															<img id="img"  style="width:300px; height:300px;" src="${ pageContext.servletContext.contextPath }/resources/upload_files/${m.thumbChange}" class="img-responsive" alt="Project">
+										</div>
+										<hr>
 										<div class="form-group">
 												<label class="col-sm-3 control-label">수정할 기구번호</label>
 												<div class="col-sm-9">
@@ -363,7 +330,7 @@
 											<div class="form-group">
 												<label class="col-sm-3 control-label">기구 등록 날짜</label>
 												<div class="col-sm-9">
-													<input type="text" name="mcDate" id="mcDate" class="form-control"  placeholder="" readonly />
+													<input type="text"  id="mcDate" class="form-control"  placeholder="" readonly />
 												</div>
 											</div>
 										<hr>
@@ -381,7 +348,8 @@
 												<div class="col-sm-9">
 													<input type="file" id="upfile" name="reUploadFile" class="form-control" />
 													현재 업로드된 파일 :<h6 id ="thumbChange"></h6>
-													
+													<input type="hidden"  id="machineRegistDate">
+													<input type="hidden" name="mcNo" id="mcNo">
 													<input type="hidden" name="thumbnail" id="thumbnail">
 													<input type="hidden" name="thumbChange" id="thumbChange">
 												</div>
@@ -526,11 +494,12 @@
     function insertmcm() {
     	location.href="insert.mcm?mcno="+machinecheckID;
     }
-    /*
-    function updatemcm() {
-    	location.href="update.mcm?mano="+machinecheckNo;
+    
+  /*
+    function trouble() {
+    	location.href="trouble.mcm?mano="+machinecheckNo;
     }
-    */
+   */
     function updateSelect(){
     	location.href="update.mcm?mano="+machinecheckNo;
     } 
@@ -562,8 +531,10 @@
 		    		data:{mano:value1},
 		    		type:"post",
 		    		success:function(mc){
-		    			console.log(mc);
+		    			
 		    			var value = "";
+		    				$("#machineRegistDate").val(mc.machineRegistDate);
+		    				$("#mcNo").val(mc.mcNo);	
 		    				$("#mcName").val(mc.mcName);
 		    				$("#machineNo").val(mc.machineNo);
 		    				$("#mcExplain").val(mc.mcExplain);
@@ -578,6 +549,27 @@
 		    	});
     }
 	</script>
+	
+	<script>
+		function trouble(){
+			var value2 = machinecheckNo;
+
+	    	$.ajax({
+	    		url:"trouble.mcm",
+	    		data:{mano:value2},
+	    		type:"post",
+	    		success:function(m){
+	    			console.log(m);
+	    			var value = "";
+	    				
+	    			
+	    		},
+	    		error:function(){
+	    			console.log("머신 상세정보 통신실패");
+	    		}
+	    	});
+}
+	</script>
 	<script>
 		$(function(){
 			$("#Mcmanagementtlqkf").click(function(){
@@ -586,11 +578,11 @@
 		});
 		
 		function send(){
-			document.getElementById("demo-form-machineList").submint();
+			document.getElementById("demo-form-machineList").submit();
 		}
 	</script>
 	
-	
+	<!-- 현재 페이지에서만 사용하는 JSP -->
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.modals.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/pages/examples.mediagallery.js" ></script>

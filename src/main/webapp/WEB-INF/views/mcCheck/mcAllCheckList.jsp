@@ -93,13 +93,13 @@
 								
 								<div class="panel-body">
 									<form id="demo-form" action="insert.hmc" method="post" class="form-horizontal mb-lg" novalidate="novalidate">	
-										<div class="form-group">
+										<div class="form-group" style="padding-right: 500px;">
 											<label class="col-sm-3 control-label">점검제목</label>
 											<div class="col-sm-9">
-												<input type="text" class="form-control" name="machineTitle" placeholder="제목을 작성해주세요" required/>
+												<input type="text" style="width: 700px;" class="form-control" name="machineTitle" placeholder="제목을 작성해주세요" required/>
 												<input type="hidden" class="form-control" name="trainerNo" value="${loginUser.trainerNo}" readonly>
-												<input type="text" class="form-control" name="machineNoList" value="" readonly>
-												<input type="text" class="form-control" name="machineChkContentList" value="" readonly>
+												<input type="hidden" class="form-control" name="machineNoList" value="" readonly>
+												<input type="hidden" class="form-control" name="machineChkContentList" value="" readonly>
 											</div>
 										</div>
 										<hr>

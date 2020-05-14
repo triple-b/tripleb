@@ -48,6 +48,7 @@
 		<url-pattern>*.mc</url-pattern>
 		<url-pattern>*.mcm</url-pattern>
 		<url-pattern>*.hmc</url-pattern>
+		<url-pattern>*.hlo</url-pattern>
 	</servlet-mapping>
 	
 	<!-- encodingFilter 등록 -->
