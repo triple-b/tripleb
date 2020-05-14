@@ -45,12 +45,16 @@ public class MemberController {
 		
 		if(list != null) { // 조회 성공
 			mv.addObject("list", list).addObject("plist", plist).addObject("elist", elist).addObject("blist", blist).setViewName("member/memberListView");
+			
 			for(MemberDtoU p : plist) {
 				
-				int compare = p.getPauseEnd().compareTo(yesterday);
-				
-				if(compare < 0) { // 일시정지 지난 회원
-					int result = mService.pauseLate(p.getMemberNo());
+				if(p.getPauseEnd() != null) { // 일시정지된 회원인 경우
+
+					int compare = p.getPauseEnd().compareTo(yesterday);
+					
+					if(compare < 0) { // 일시정지 지난 회원
+						int result = mService.pauseLate(p.getMemberNo());
+					}
 				}
 			}
 			
@@ -75,7 +79,7 @@ public class MemberController {
 	
 	@RequestMapping("update.ume")
 	public String updateMember(MemberDtoU mto, HttpServletRequest request, Model model,
-			int memberYear, int memberMonth, int memberDay, @RequestParam(value="uploadFile", required=false) MultipartFile file) {
+			String memberYear, String memberMonth, String memberDay, @RequestParam(value="uploadFile", required=false) MultipartFile file) {
 		
 		// 전달된 파일이 있는 경우
 		if(!file.getOriginalFilename().contentEquals("")) {
@@ -83,9 +87,9 @@ public class MemberController {
 			mto.setMemberImage(changeName);
 		}
 		
-		int memberBirth = memberYear + memberMonth + memberDay;
+		String memberBirth = memberYear + memberMonth + memberDay;
 		
-		mto.setMemberBirth(Integer.toString(memberBirth));
+		mto.setMemberBirth(memberBirth);
 		
 		int result = mService.updateMember(mto);
 		

@@ -56,6 +56,16 @@ public interface TrainerService {
 	 */
 	int changePwd(Trainer t);
 	
+	
+	/** 트레이너 퇴근 시간
+	 * @param t			로그인된 유저 객체
+	 * @return			처리된 행의 개수
+	 */
+	int updateECheck(Trainer t);
+	
+	int updateSCheck(Trainer t);
+	
+	
 	// 트레이너 리스트 화면
 	ArrayList<Trainer> selectList();
 	

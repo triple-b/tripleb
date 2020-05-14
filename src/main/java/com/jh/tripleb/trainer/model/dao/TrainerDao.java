@@ -73,4 +73,12 @@ public class TrainerDao {
 	public Trainer selectTr(SqlSessionTemplate sqlSession, int trainerNo) {
 		return sqlSession.selectOne("trainerMapper.selectTr", trainerNo);
 	}
+	
+	public int updateECheck(SqlSessionTemplate sqlSession, Trainer t) {
+		return sqlSession.update("trainerMapper.updateECheck", t);
+	}
+	
+	public int updateSCheck(SqlSessionTemplate sqlSession, Trainer t) {
+		return sqlSession.update("trainerMapper.updateSCheck", t);
+	}
 }

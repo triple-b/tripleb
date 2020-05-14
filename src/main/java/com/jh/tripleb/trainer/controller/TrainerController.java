@@ -42,16 +42,40 @@ public class TrainerController {
 	public ModelAndView loginTrainer(Trainer t, HttpSession session, ModelAndView mv) {
 		
 		ArrayList<Trainer> list = tService.listTrainer();
-		ArrayList<Trainer> onTrainer = tService.listTrainer();
+		
+		Date today = new Date();
+		Date yesterday = new Date ( today.getTime ( ) - (long) ( 1000 * 60 * 60 * 24 ) ); // 어제날짜
 		
 		if(list != null) {
 			for(Trainer loginUser : list) { // 로그인 성공
 	
 				if(bcryptPasswordEncoder.matches(t.getTrainerPwd(), loginUser.getTrainerPwd())){
-					session.setAttribute("loginUser", loginUser);
+					session.setAttribute("loginUser", loginUser); // 로그인 세션 올리기
+					
+					if(loginUser.getTrainerScheck() != null) { // 기존 트레이너
+							
+						int result = loginUser.getTrainerScheck().compareTo(yesterday); // 어제 날짜랑 비교
+						
+						
+						if(result > 0 ) { // 출근 한 경우
+							
+							// 퇴근 업데이트 시키기
+							int end = tService.updateECheck(loginUser);
+							
+						}else { // 출근 안 한 경우
+	
+							// 출근 업데이트 시키기
+							int start = tService.updateSCheck(loginUser);
+						}
+					}else {	// 신입 트레이너
+						
+						// 출근 업데이트 시키기
+						int start2 = tService.updateSCheck(loginUser);
+					}
+					
 				}
 			}
-			
+			ArrayList<Trainer> onTrainer = tService.listTrainer();
 			session.setAttribute("onTrainer", onTrainer);
 			mv.setViewName("redirect:/");
 			
@@ -99,8 +123,6 @@ public class TrainerController {
 			
 			t.setTrainerAddress(t.getTrainerAddress() + " " + detailAddress);
 			
-			System.out.println(t);
-
 		int result = tService.updateTrainerProfile(t);
 		
 		
@@ -133,7 +155,7 @@ public class TrainerController {
 	
 	@RequestMapping("searchForm.utr")
 	public String serachForm() {
-		return "trainer/lockTrainer";
+		return "trainer/recoverPTrainer";
 	}
 	
 	@RequestMapping("searchPhone.utr")
