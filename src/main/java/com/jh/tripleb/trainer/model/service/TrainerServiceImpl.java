@@ -47,6 +47,11 @@ public class TrainerServiceImpl implements TrainerService{
 		return tDao.changePwd(sqlSession, t);
 	}
 
+	@Override
+	public ArrayList<Trainer> selectList() {
+		return tDao.selectList(sqlSession);
+	}
+
 
 
 }

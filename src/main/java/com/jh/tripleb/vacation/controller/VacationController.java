@@ -26,8 +26,6 @@ public class VacationController {
 	@RequestMapping("vacation.jva")
 	public String selectList(HttpSession session, Model model) {
 		
-		
-		
 		Trainer t = (Trainer) session.getAttribute("loginUser"); 
 		
 		int trainerNo = t.getTrainerNo();
@@ -41,7 +39,7 @@ public class VacationController {
 	
 	@RequestMapping("vacApprove.jva")
 	public String insertVac(Vacation v, HttpServletRequest request, Model model) {
-		System.out.println(v);
+		
 		int result = vService.insertVac(v);
 		
 		if(result > 0) {

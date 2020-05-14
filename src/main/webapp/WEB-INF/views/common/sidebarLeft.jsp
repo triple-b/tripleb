@@ -41,7 +41,7 @@
 							</a>
 							<ul class="nav nav-children">
 								<li>
-									<a href="trainerList.jtr">
+									<a href="trainerList.utr">
 										 트레이너현황
 									</a>
 								</li>

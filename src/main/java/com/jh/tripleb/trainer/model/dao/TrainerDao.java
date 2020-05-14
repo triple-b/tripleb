@@ -37,4 +37,8 @@ public class TrainerDao {
 	public int changePwd(SqlSessionTemplate sqlSession, Trainer t) {
 		return sqlSession.update("trainerMapper.changePwd",t);
 	}
+	
+	public ArrayList<Trainer> selectList(SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("trainerMapper.selectList");
+	}
 }

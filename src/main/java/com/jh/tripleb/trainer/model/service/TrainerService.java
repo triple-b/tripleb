@@ -56,7 +56,8 @@ public interface TrainerService {
 	 */
 	int changePwd(Trainer t);
 	
-	
+	// 트레이너 리스트 화면
+	ArrayList<Trainer> selectList();
 	
 	
 
