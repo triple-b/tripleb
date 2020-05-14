@@ -41,4 +41,17 @@ public class TrainerDao {
 	public ArrayList<Trainer> selectList(SqlSessionTemplate sqlSession){
 		return (ArrayList)sqlSession.selectList("trainerMapper.selectList");
 	}
+	
+	public Trainer trDetail(SqlSessionTemplate sqlSession, int trainerNo) {
+		return sqlSession.selectOne("trainerMapper.trDetail", trainerNo);
+	}
+	
+	public int insertTr(SqlSessionTemplate sqlSession, Trainer t) {
+		return sqlSession.insert("trainerMapper.insertTr", t);
+	}
+	
+	public int pwdCheck(SqlSessionTemplate sqlSession, String trainerPwd2) {
+		return sqlSession.selectOne("trainerMapper.pwdCheck", trainerPwd2);
+	}
+	
 }

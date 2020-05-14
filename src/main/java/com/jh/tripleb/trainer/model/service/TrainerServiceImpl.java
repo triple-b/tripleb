@@ -52,6 +52,19 @@ public class TrainerServiceImpl implements TrainerService{
 		return tDao.selectList(sqlSession);
 	}
 
+	@Override
+	public Trainer trDetail(int trainerNo) {
+		return tDao.trDetail(sqlSession, trainerNo);
+	}
 
+	@Override
+	public int insertTr(Trainer t) {
+		return tDao.insertTr(sqlSession, t);
+	}
+
+	@Override
+	public int pwdCheck(String trainerPwd2) {
+		return tDao.pwdCheck(sqlSession, trainerPwd2);
+	}
 
 }

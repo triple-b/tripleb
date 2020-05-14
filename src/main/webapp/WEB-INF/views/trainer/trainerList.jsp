@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-		<!-- Specific Page Vendor CSS -->
-		<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/isotope/jquery.isotope.css" />
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/isotope/jquery.isotope.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 	<section class="body">
@@ -28,339 +29,312 @@
 		                </div>
 		            </header>
 		            
-		   	 <!-- Modal Form -->
-                <div id="modalForm" class="modal-block modal-block-primary mfp-hide">
-                   <section class="panel">
-                      <header class="panel-heading" style="background: #0f4c81;">
-                         <h2 class="panel-title" style="color: white;">사원추가</h2>
-                      </header>
-                      <div class="panel-body">
-                         <form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
-                             <div class="form-group mt-lg">
-                                 <label class="col-sm-2 control-label">사진첨부</label>
-                                 <div class="col-sm-9">
-                                    <input type="file" name="name" class="form-control" required/>
-                                 </div>
-                              </div>
-                            <div class="form-group mt-lg">
-                               <label class="col-sm-2 control-label">이름</label>
-                               <div class="col-sm-9">
-                                  <input type="text" name="name" class="form-control" required/>
-                               </div>
-                            </div>
-                            <div class="form-group">
-                               <label class="col-sm-2 control-label">생년월일</label>
-                               <div class="col-sm-9">
-                                  <input type="date" name="birth" class="form-control" required/>
-                               </div>
-                            </div>
-                            <div class="form-group">
-                               <label class="col-sm-2 control-label">성별</label>
-                               <div class="col-sm-3">
-                                  <input type="radio" name="gender" /> 남
-                                  <input type="radio" name="gender" style="margin-left: 5%;"/> 여
-                               </div>
-                            </div>
-                            <div class="form-group">
-                                 <label class="col-sm-2 control-label">핸드폰</label>
-                                 <div class="col-sm-9">
-                                     <input type="text" name="phone" class="form-control" placeholder="- 를 포함하여 입력" />
-                                 </div>
-                            </div>
-                            <div class="form-group">
-                                 <label class="col-sm-2 control-label">이메일</label>
-                                 <div class="col-sm-9">
-                                     <input type="email" name="email" class="form-control" />
-                                 </div>
-                            </div>
-                            <div class="form-group">
-                                 <label class="col-sm-2 control-label">주소</label>
-                                 <div class="col-sm-9">
-                                     <input type="text" name="address" class="form-control" />
-                                 </div>
-                            </div>
-                            <div class="form-group">
-                                 <label class="col-sm-2 control-label">입사일</label>
-                                 <div class="col-sm-9">
-                                     <input type="date" name="joinDate" class="form-control" />
-                                 </div>
-                            </div> 
-                            <div class="form-group">
-                                 <label class="col-sm-2 control-label">수상경력</label>
-                                 <div class="col-sm-9">
-                                    <textarea class="form-control" name="career" id="career" rows="5"></textarea>
-                                 </div>
-                            </div>              
-                         </form>
-                      </div>
-                      <footer class="panel-footer">
-                         <div class="row">
-                            <div class="col-md-12 text-right">
-                               <button class="btn btn-primary modal-confirm">추가</button>
-                               <button class="btn btn-default modal-dismiss">취소</button>
-                            </div>
-                         </div>
-                      </footer>
-                   </section>
-                </div>
-
-             <!--  modal Form 2 -->
-                <div id="modalForm2" class="modal-block modal-block-primary mfp-hide">
-                 <section class="panel">
-                    <header class="panel-heading" style="background: #0f4c81;">
-                       <h2 class="panel-title" style="color: white;">상세정보</h2>
-                    </header>
-                    <div class="panel-body">
-                     <div style="float: right;">
-                         <img src="assets/images/health.jpg" width="200px" height="200px" alt="">
-                     </div>                        
-                     <form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate" style="float: left;">
-                         <div class="form-group">
-                             <label class="col-sm-5 control-label">이 름 : </label>
-                             <div style="float: right;">
-                                 <label class="control-label" style="font-weight: bolder;">조인성</label>
-                             </div>
-                         </div>
-                         <div class="form-group">
-                             <label class="col-sm-5 control-label">나 이 : </label>
-                             <div style="float: right;">
-                                 <label class="control-label">4 8 세</label>
-                             </div>
-                         </div>
-                         <div class="form-group">
-                             <label class="col-sm-5 control-label">주 소 : </label>
-                             <div style="float: right;">
-                                 <label class="control-label">서울시 양천구</label>
-                             </div>
-                         </div> 
-                         <div class="form-group">
-                             <label class="col-sm-5 control-label">이메일 : </label>
-                             <div style="float: right;">
-                                 <label class="control-label">tripleB@naver.com</label>
-                             </div>
-                         </div>
-                         <div class="form-group">
-                             <label class="col-sm-5 control-label">입사일 : </label>
-                             <div style="float: right;">
-                                 <label class="control-label">2019-11-08</label>
-                             </div>
-                         </div>
-                         <div class="form-group">
-                             <label class="col-sm-5 control-label">수상경력 : </label>
-                             <div class="col-sm-9" style="float: right;">
-                                 <p>
-                                     &nbsp;&nbsp;&nbsp;&nbsp;＊ 목동 헬스클럽<br>
-                                     &nbsp;&nbsp;&nbsp;&nbsp;＊ 목동 토박이<br>
-                                     &nbsp;&nbsp;&nbsp;&nbsp;＊ 닭가슴살 싫어함<br>
-                                     &nbsp;&nbsp;&nbsp;&nbsp;＊ 게임하고싶음
-                                 </p>
-                             </div>
-                         </div>                 
-                     </form>
-                 </div>
-                 
-              				<footer class="panel-footer">
-                     <div class="row">
-                        <div class="col-md-12 text-right" style="text-align: center;">
-                           <button class="btn btn-primary modal-confirm assignBtn" style="margin-right: 2%;">수정</button>
-                           <button class="btn btn-default modal-dismiss">반려</button>
-                        </div>
-                     </div>
-              				</footer>
-              			</section>
-			</div>
-			
-			<!-- end Modal -->
-			<!-- start: page -->
-			<section class="content-with-menu content-with-menu-has-toolbar media-gallery">
-				<div class="content-with-menu-container">
-					<div class="inner-body mg-main">
-            				<div class="inner-toolbar clearfix" style="padding-left:0px">
-                				<ul>
-                    				<li>
-                        				<a href="#" id="mgSelectAll"><i class="fa fa-check-square"></i> <span data-all-text="Select All" data-none-text="Select None">Select All</span></a>
-                    				</li> 
-                    				<li>
-                        				<a class="modal-with-form" href="#modalForm"><i class="fa fa-trash-o"></i> 추가</a>
-                    				</li>
-				                    <li>
-				                        <a href="#"><i class="fa fa-trash-o"></i> 삭제</a>
-				                    </li>
-				                    <li class="right" data-sort-source data-sort-id="media-gallery">
-				                        <ul class="nav nav-pills nav-pills-primary">
-				                            <li class="active">
-				                                <a data-option-value="*" href="#all">전체</a>
-				                            </li>
-				                            <li>
-				                                <a data-option-value=".document" href="#document">팀장</a>
-				                            </li>
-				                            <li>
-				                                <a data-option-value=".image" href="#image">일반</a>
-				                            </li>
-				                        </ul>
-				                    </li>
-				                </ul>
-				            </div> 
-            				<!-- end: inner-toolbar -->
-						
-						
 					<!-- start: page -->
-		   				<section class="panel">
-					        <div class="row">
-					            <div class="row mg-files" data-sort-destination data-sort-id="media-gallery">
-					                <div class="isotope-item document col-sm-6 col-md-4 col-lg-3">
-					                    <div class="thumbnail">
-					                        <div class="thumb-preview">
-					                            <a class="thumb-image" href="assets/images/projects/project-1.jpg">
-					                                <img src="resources/assets/images/cho.jpg" class="img-responsive" alt="Project">
-					                            </a>
-					                            <div class="mg-thumb-options">
-					                                <div class="mg-zoom"><i class="fa fa-search"></i></div>
-					                                <div class="mg-toolbar">
-					                                    <div class="mg-option checkbox-custom checkbox-inline">
-					                                        <input type="checkbox" id="file_1" value="1">
-					                                        <label for="file_1">SELECT</label>
-					                                    </div>
-					                                    <div class="mg-group pull-right">
-					                                        <a class="modal-with-form" href="#modalForm2">상세정보</a>
-					                                        <button class="dropdown-toggle mg-toggle" type="button" data-toggle="dropdown">
-					                                            <i class="fa fa-caret-up"></i>
-					                                        </button>
-					                                        <ul class="dropdown-menu mg-menu" role="menu">
-					                                            <li><a href="#"><i class="fa fa-download"></i> 수정</a></li>
-					                                        </ul>
-					                                    </div>
-					                                </div>
-					                            </div>
-					                        </div>
-					                        <h5 class="mg-title text-semibold">조인성<small>왕</small></h5>
-					                    </div>
-					                </div>
-					                <div class="isotope-item col-sm-6 col-md-4 col-lg-3">
-					                    <div class="thumbnail">
-					                        <div class="thumb-preview">
-					                            <a class="thumb-image" href="assets/images/projects/project-2.jpg">
-					                                <img src="resources/assets/images/projects/project-2.jpg" class="img-responsive" alt="Project">
-					                            </a>
-					                            <div class="mg-thumb-options">
-					                                <div class="mg-zoom"><i class="fa fa-search"></i></div>
-					                                <div class="mg-toolbar">
-					                                    <div class="mg-option checkbox-custom checkbox-inline">
-					                                        <input type="checkbox" id="file_1" value="1">
-					                                        <label for="file_1">SELECT</label>
-					                                    </div>
-					                                    <div class="mg-group pull-right">
-					                                        <a href="#">상세정보</a>
-					                                        <button class="dropdown-toggle mg-toggle" type="button" data-toggle="dropdown">
-					                                            <i class="fa fa-caret-up"></i>
-					                                        </button>
-					                                    </div>
-					                                </div>
-					                            </div>
-					                        </div>
-					                        <h5 class="mg-title text-semibold">정휘재<small>팀장</small></h5>
-					                    </div>
-					                </div>
-				                	<div class="isotope-item col-sm-6 col-md-4 col-lg-3">
-					                    <div class="thumbnail">
-					                        <div class="thumb-preview">
-					                            <a class="thumb-image" href="assets/images/projects/project-2.jpg">
-					                                <img src="resources/assets/images/projects/project-2.jpg" class="img-responsive" alt="Project">
-					                            </a>
-					                            <div class="mg-thumb-options">
-					                                <div class="mg-zoom"><i class="fa fa-search"></i></div>
-					                                <div class="mg-toolbar">
-					                                    <div class="mg-option checkbox-custom checkbox-inline">
-					                                        <input type="checkbox" id="file_1" value="1">
-					                                        <label for="file_1">SELECT</label>
-					                                    </div>
-					                                    <div class="mg-group pull-right">
-					                                        <a href="#">EDIT</a>
-					                                        <button class="dropdown-toggle mg-toggle" type="button" data-toggle="dropdown">
-					                                            <i class="fa fa-caret-up"></i>
-					                                        </button>
-					                                        <ul class="dropdown-menu mg-menu" role="menu">
-					                                            <li><a href="#"><i class="fa fa-download"></i> Download</a></li>
-					                                            <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-					                                        </ul>
-					                                    </div>
-					                                </div>
-					                            </div>
-					                        </div>
-					                        <h5 class="mg-title text-semibold">김주희<small>팀장</small></h5>
-					                    </div>
-				                	</div>
-					                <div class="isotope-item col-sm-6 col-md-4 col-lg-3">
-					                    <div class="thumbnail">
-					                        <div class="thumb-preview">
-					                            <a class="thumb-image" href="assets/images/projects/project-2.jpg">
-					                                <img src="resources/assets/images/projects/project-2.jpg" class="img-responsive" alt="Project">
-					                            </a>
-					                            <div class="mg-thumb-options">
-					                                <div class="mg-zoom"><i class="fa fa-search"></i></div>
-					                                <div class="mg-toolbar">
-					                                    <div class="mg-option checkbox-custom checkbox-inline">
-					                                        <input type="checkbox" id="file_1" value="1">
-					                                        <label for="file_1">SELECT</label>
-					                                    </div>
-					                                    <div class="mg-group pull-right">
-					                                        <a href="#">EDIT</a>
-					                                        <button class="dropdown-toggle mg-toggle" type="button" data-toggle="dropdown">
-					                                            <i class="fa fa-caret-up"></i>
-					                                        </button>
-					                                        <ul class="dropdown-menu mg-menu" role="menu">
-					                                            <li><a href="#"><i class="fa fa-download"></i> Download</a></li>
-					                                            <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-					                                        </ul>
-					                                    </div>
-					                                </div>
-					                            </div>
-					                        </div>
-					                        <h5 class="mg-title text-semibold">장미경<small>일반</small></h5>
-					                    </div>
-					                </div>
-					                <div class="isotope-item col-sm-6 col-md-4 col-lg-3">
-					                    <div class="thumbnail">
-					                        <div class="thumb-preview">
-					                            <a class="thumb-image" href="assets/images/projects/project-2.jpg">
-					                                <img src="resources/assets/images/projects/project-2.jpg" class="img-responsive" alt="Project">
-					                            </a>
-					                            <div class="mg-thumb-options">
-					                                <div class="mg-zoom"><i class="fa fa-search"></i></div>
-					                                <div class="mg-toolbar">
-					                                    <div class="mg-option checkbox-custom checkbox-inline">
-					                                        <input type="checkbox" id="file_1" value="1">
-					                                        <label for="file_1">SELECT</label>
-					                                    </div>
-					                                    <div class="mg-group pull-right">
-					                                        <a href="#">EDIT</a>
-					                                        <button class="dropdown-toggle mg-toggle" type="button" data-toggle="dropdown">
-					                                            <i class="fa fa-caret-up"></i>
-					                                        </button>
-					                                        <ul class="dropdown-menu mg-menu" role="menu">
-					                                            <li><a href="#"><i class="fa fa-download"></i> Download</a></li>
-					                                            <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-					                                        </ul>
-					                                    </div>
-					                                </div>
-					                            </div>
-					                        </div>
-					                        <h5 class="mg-title text-semibold">김재희<small>팀장</small></h5>
-					                    </div>
-					                </div>
-			           			</div>
-	            			</div>
-            			</section>
-            		</div>
-           		</div>
+					<section class="content-with-menu content-with-menu-has-toolbar media-gallery">
+						<div class="content-with-menu-container">
+							<div class="inner-body mg-main">
+		            				<div class="inner-toolbar clearfix" style="padding-left:0px">
+		                				<ul>
+		                    				<li>
+		                        				<a href="#" id="mgSelectAll"><i class="fa fa-check-square"></i> <span data-all-text="Select All" data-none-text="Select None">Select All</span></a>
+		                    				</li> 
+		                    				<li>
+		                        				<a class="modal-with-form" href="#modalForm" onclick="pwdRandom();"><i class="fa fa-trash-o"></i> 추가</a>
+		                    				</li>
+						                    <li>
+						                        <a href="#"><i class="fa fa-trash-o"></i> 삭제</a>
+						                    </li>
+						                    <li class="right" data-sort-source data-sort-id="media-gallery">
+						                        <ul class="nav nav-pills nav-pills-primary">
+						                            <li class="active">
+						                                <a style="cursor: pointer;" data-option-value="*" href="trainerList.utr">전체</a>
+						                            </li>
+						                            <li>
+						                                <a class="value1" value="1" style="cursor: pointer;" data-option-value=".document" onclick="categoryFn();">팀장</a>
+						                            </li>
+						                            <li>
+						                                <a class="value1" value="2" style="cursor: pointer;" data-option-value=".image" onclick="categoryFn();">일반</a>
+						                            </li>
+						                        </ul>
+						                    </li>
+						                </ul>
+						            </div> 
+		            				<!-- end: inner-toolbar -->
+						
+						
+									<!-- start: page -->
+					   				<section class="panel">
+								        <div class="row">
+								            <div class="row mg-files" data-sort-destination data-sort-id="media-gallery">
+								            	<c:forEach items="${ list }" var="t">
+								            	<input type="hidden" value="${ t.trainerNo }">
+								                <div class="isotope-item document col-sm-6 col-md-4 col-lg-3">
+								                    <div class="thumbnail" style="width:90%; height:20%;">
+								                        <div class="thumb-preview">
+								                            <a class="thumb-image" href="assets/images/projects/project-1.jpg">
+								                                <img style="width:250px; height:200px;" src="${ pageContext.servletContext.contextPath }/resources/upload_files/${ t.trainerThumbnail }" class="img-responsive" alt="Project">
+								                            </a>
+								                            <div class="mg-thumb-options">
+								                                <div class="mg-zoom"><i class="fa fa-search"></i></div>
+								                                <div class="mg-toolbar">
+								                                    <div class="mg-option checkbox-custom checkbox-inline">
+								                                        <input type="checkbox" id="file_1" value="1">
+								                                        <label for="file_1"></label>
+								                                    </div>
+								                                    <div class="mg-group pull-right">
+								                                        <a class="modal-with-form" href="#modalForm2" onclick="trDetailFn(${t.trainerNo})">상세정보</a>
+								                                        <button class="dropdown-toggle mg-toggle" type="button" data-toggle="dropdown">
+								                                            <i class="fa fa-caret-up"></i>
+								                                        </button>
+								                                        <ul class="dropdown-menu mg-menu" role="menu">
+								                                            <li><a href="#"><i class="fa fa-download"></i> 수정</a></li>
+								                                        </ul>
+								                                    </div>
+								                                </div>
+								                            </div>
+								                        </div>
+								                        <h5 class="mg-title text-semibold">${ t.trainerName }
+								                        <c:choose>
+								                        	<c:when test="${ t.trainerGrade eq 'B'}">
+								                        		<small>트레이너</small>	
+								                        	</c:when>
+								                        	<c:when test="${ t.trainerGrade eq 'E'}">
+								                        		<small>팀장</small>	
+								                        	</c:when>
+								                        	<c:when test="${ t.trainerGrade eq 'M'}">
+								                        		<small>관장</small>	
+								                        	</c:when>
+								                        </c:choose>
+								                        </h5>
+								                    </div>
+								                </div>
+								                </c:forEach>
+							                	
+						           			</div>
+				            			</div>
+				           			</section>
+				           		</div>
+				          	</div>
+						</section>
+					<!-- end Page -->
+				</section>
+		 
+		<!--  상세정보 모달폼 -->
+        <div id="modalForm2" class="modal-block modal-block-primary mfp-hide">
+            <section class="panel">
+               <header class="panel-heading" style="background: #0f4c81;">
+                  <h2 class="panel-title" style="color: white;">상세정보</h2>
+               </header>
+               <div class="panel-body">
+                 	<div style="float: right;">
+                     	<img src="assets/images/health.jpg" width="200px" height="200px" alt="">
+                 	</div>                        
+                	<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate" style="float: left;">
+	                     <div class="form-group">
+	                         <label class="col-sm-6 control-label">이 름 </label>
+	                         <div style="float: right;">
+	                             <label class="control-label" style="font-weight: bolder; width:80px;" id="trainerName"></label>
+	                         </div>
+	                     </div>
+	                     <div class="form-group">
+	                         <label class="col-sm-6 control-label">생년월일 </label>
+	                         <div style="float: right;">
+	                             <label class="control-label col-sm-9" id="trainerBirth" style="width:80px;"></label>
+	                         </div>
+	                     </div>
+	                     <div class="form-group">
+	                         <label class="col-sm-6 control-label">주 소 </label>
+	                         <div style="float: right;">
+	                             <label class="control-label" id="trainerAddress" style="width:80px;"></label>
+	                         </div>
+	                     </div> 
+	                     <div class="form-group">
+	                         <label class="col-sm-6 control-label">이메일 </label>
+	                         <div style="float: right;">
+	                             <label class="control-label" id="email" style="width:80px;"></label>
+	                         </div>
+	                     </div>
+	                     <div class="form-group">
+	                         <label class="col-sm-6 control-label">입사일 </label>
+	                         <div style="float: right;">
+	                             <label class="control-label" id="enrollDate" style="width:80px;"></label>
+	                         </div>
+	                     </div>
+	                     <div class="form-group">
+	                         <label class="col-sm-6 control-label">수상경력 </label>
+	                         <div class="col-sm-6" style="float: right">
+	                         		<ul style="float:left;">
+	                         			<li id="award" style="width:80px;"></li>
+	                         		</ul>
+	                         </div>
+	                     </div>                 
+                 	</form>	
+            	</div>
+				<footer class="panel-footer">
+			         <div class="row">
+			            <div class="col-md-12 text-right" style="text-align: center;">
+			               <button class="btn btn-primary modal-confirm assignBtn" style="margin-right: 2%;">확인</button>
+			            </div>
+			         </div>
+				</footer>
 			</section>
-		<!-- end Page -->
-		</section>
-		 
-		 
+		</div>
+		<!-- /상세정보 -->
+		
+		<!-- 사원 추가 모달폼 -->
+        <div id="modalForm" class="modal-block modal-block-primary mfp-hide">
+           <section class="panel">
+              <header class="panel-heading" style="background: #0f4c81;">
+                 <h2 class="panel-title" style="color: white;">사원추가</h2>
+              </header>
+              <div class="panel-body">
+                 <form id="demo-form-fuck" class="form-horizontal mb-lg" novalidate="novalidate" method="post" action="insertTr.utr" enctype="multipart/form-data">
+                     <div class="form-group mt-lg">
+                         <label class="col-sm-2 control-label">사진첨부</label>
+                         <div class="col-sm-9">
+                            <input type="file" id="upfile" class="form-control" name="uploadFile" required/>
+                         </div>
+                      </div>
+                    <div class="form-group mt-lg">
+                       <label class="col-sm-2 control-label">이름</label>
+                       <div class="col-sm-9">
+                          <input type="text" name="trainerName" class="form-control" required/>
+                       </div>
+                    </div>
+                    <div class="form-group mt-lg">
+                       <label class="col-sm-2 control-label">출근번호</label>
+                       <div class="col-sm-9">
+                          <input type="text" name="trainerPwd" id="trainerPwd1" class="form-control" readonly required/>
+                       </div>
+                    </div>
+                    <div class="form-group">
+                       <label class="col-sm-2 control-label">생년월일</label>
+                       <div class="col-sm-9">
+                          <input type="number" name="trainerBirth" class="form-control" placeholder="주민번호 앞 6자리만 입력하세요" required/>
+                       </div>
+                    </div>
+                    <div class="form-group">
+                       <label class="col-sm-2 control-label">성별</label>
+                       <div class="col-sm-3" style="margin-top:1.5%">
+                          <input type="radio" name="trainerGender" value="M"/> 남
+                          <input type="radio" name="trainerGender" value="F" style="margin-left: 5%;"/> 여
+                       </div>
+                    </div>
+                    <div class="form-group">
+                         <label class="col-sm-2 control-label">핸드폰</label>
+                         <div class="col-sm-9">
+                             <input type="text" name="trainerPhone" class="form-control" placeholder="- 를 포함하여 입력" />
+                         </div>
+                    </div>
+                    <div class="form-group">
+                         <label class="col-sm-2 control-label">이메일</label>
+                         <div class="col-sm-9">
+                             <input type="email" name="trainerEmail" class="form-control" />
+                         </div>
+                    </div>
+                    <div class="form-group">
+                         <label class="col-sm-2 control-label">주소</label>
+                         <div class="col-sm-9">
+                             <input type="text" name="trainerAddress" class="form-control" />
+                         </div>
+                    </div>
+                    <div class="form-group">
+                         <label class="col-sm-2 control-label">수상경력</label>
+                         <div class="col-sm-9">
+                            <textarea class="form-control" name="trainerAward" id="career" rows="5"></textarea>
+                         </div>
+                    </div>              
+		              <footer class="panel-footer">
+		                 <div class="row">
+		                    <div class="col-md-12 text-right">
+		                       <button type="submit" class="btn btn-primary modal-confirm" onclick="insertBtn1();">추가</button>
+		                       <button class="btn btn-default modal-dismiss">취소</button>
+		                    </div>
+		                 </div>
+		              </footer>
+                 </form>
+              </div>
+           </section>
+        </div>
+		<!-- /사원추가 폼 -->
+			
 		</div>
 		<!--/ 전체 레이어 -->
 		
+		<script>
+			var trDetailFn = function(rowkey){
+				var trainerNo = rowkey;
+				
+				$.ajax({
+					url:"trDetail.utr",
+					data:{trainerNo:trainerNo},
+					type:"post",
+					success:function(t){
+						var value = "";
+						
+						$("#trainerName").text(t.trainerName);
+						$("#trainerBirth").text(t.trainerBirth);
+						$("#trainerAddress").text(t.trainerAddress);
+						$("#email").text(t.trainerEmail);
+						$("#enrollDate").text(t.trainerJoin);
+						$("#award").html(t.trainerAward);
+					},
+					error:function(){
+						console.log("통신실패");
+					}
+				});
+			}
+		</script>
+		
+		<!-- 출근번호 랜덤변수 발생 -->
+		<script>
+			function pwdRandom(){
+				var ranNum = Math.random();
+				var randPwd = Math.floor(ranNum*90000 + 10000);
+				
+				$.ajax({
+					url:"randomPwd.utr",
+					data:{trainerPwd:randPwd},
+					type:"post",
+					success:function(result){
+						
+						if(result > 0){
+							var ranNum2 = Math.random();
+							var randPwd2 = Math.floor(ranNum*90000 + 10000);
+							
+							$("#trainerPwd1").val(randPwd);
+						}else{
+							$("#trainerPwd1").val(randPwd);							
+						}
+					},
+					error:function(){
+						console.log("통신실패");
+					}
+				});
+				
+			}
+		</script>
+		<!-- /ajax -->
+		
+		
+		<script>
+			function insertBtn1(){
+				document.getElementById("demo-form-fuck").submit();
+			}
+		</script>
+		
+		
+		<!-- 카테고리별 리스트 출력 -->
+		<script>
+			function categoryFn(){
+				
+				var aValue = $(".value1").attr('value');
+				console.log(aValue);
+				/* $.ajax({
+					url:""
+				}); */
+			}
+		</script>
 		
 		
 		<!-- 오른쪽 사이드 바 -->

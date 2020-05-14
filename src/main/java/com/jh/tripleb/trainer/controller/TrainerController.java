@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jh.tripleb.trainer.model.service.TrainerService;
 import com.jh.tripleb.trainer.model.vo.Trainer;
 
@@ -192,11 +194,55 @@ public class TrainerController {
 		
 		return "trainer/trainerList";
 	}
+
+	@ResponseBody
+	@RequestMapping(value="trDetail.utr", produces="application/json; charset=utf-8")
+	public String trDetail(int trainerNo) {
+		Trainer t = tService.trDetail(trainerNo);
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		
+		return gson.toJson(t);
+	}
 	
+	@ResponseBody
+	@RequestMapping(value="randomPwd.utr", produces="application/json; charset=utf-8")
+	public String pwdCheck(int trainerPwd) {
+		
+		String trainerPwd2 = Integer.toString(trainerPwd);
+		
+		int count = tService.pwdCheck(trainerPwd2);
+		
+		return String.valueOf(count);
+	}
 	
-	
-	
-	
+	@RequestMapping("insertTr.utr")
+	public String insertTr(Trainer t, String trainerPwd, HttpSession session, HttpServletRequest request, Model model, 
+							  @RequestParam(value="uploadFile", required=false) MultipartFile file) {
+		
+		String encPwd = bcryptPasswordEncoder.encode(trainerPwd);
+		
+		t.setTrainerPwd(encPwd);
+		
+		
+		if(!file.getOriginalFilename().equals("")) {
+			String changeName = saveFile(file, request); // 수정명
+			
+			t.setTrainerThumbnail(changeName);
+		}
+		
+		int result = tService.insertTr(t);
+		
+		if(result > 0) {
+			
+			ArrayList<Trainer> onTrainer = tService.listTrainer();
+			session.setAttribute("onTrainer", onTrainer);
+			return "redirect:trainerList.utr";
+		}else {
+			model.addAttribute("msg", "트레이너 추가 실패");
+			return "common/errorPage";
+		}
+	}
 	
 	
 	// 파일명 수정 메소드

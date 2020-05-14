@@ -59,8 +59,13 @@ public interface TrainerService {
 	// 트레이너 리스트 화면
 	ArrayList<Trainer> selectList();
 	
+	// 트레이너 상세정보
+	Trainer trDetail(int trainerNo);
+
+	// 트레이너 추가
+	int insertTr(Trainer t);
 	
-
-
+	// 출근번호 중복확인
+	int pwdCheck(String trainerPwd2);
 
 }
