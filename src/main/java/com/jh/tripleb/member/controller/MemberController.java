@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jh.tripleb.member.model.service.MemberService;
 import com.jh.tripleb.member.model.vo.MemberDtoU;
 
@@ -35,8 +36,24 @@ public class MemberController {
 		ArrayList<MemberDtoU> elist = mService.expSelectListMember(); // 만료회원
 		ArrayList<MemberDtoU> blist = mService.blackSelectListMember(); // 블랙리스트회원
 		
+
+		Date date = new Date(); // 오늘 날짜
+		
+		Date yesterday = new Date ( date.getTime ( ) - (long) ( 1000 * 60 * 60 * 24 ) ); // 어제날짜
+
+
+		
 		if(list != null) { // 조회 성공
 			mv.addObject("list", list).addObject("plist", plist).addObject("elist", elist).addObject("blist", blist).setViewName("member/memberListView");
+			for(MemberDtoU p : plist) {
+				
+				int compare = p.getPauseEnd().compareTo(yesterday);
+				
+				if(compare < 0) { // 일시정지 지난 회원
+					int result = mService.pauseLate(p.getMemberNo());
+				}
+			}
+			
 		}else {	// 조회 실패
 			mv.addObject("msg", "회원 전체 조회 실패").setViewName("common/errorPage");
 		}
@@ -49,10 +66,11 @@ public class MemberController {
 	public String detailMember(int mno) throws IOException {
 		
 		MemberDtoU m = mService.detailMember(mno);
-		
-		return new Gson().toJson(m);			
 
-		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+	      
+	    return gson.toJson(m);		
+
 	}
 	
 	@RequestMapping("update.ume")
@@ -102,7 +120,7 @@ public class MemberController {
 	
 	@RequestMapping("insert.ume")
 	public String insertMember(MemberDtoU m, HttpServletRequest request, Model model,
-			int memberYear, int memberMonth, int memberDay, @RequestParam(value="uploadFile", required=false) MultipartFile file) {
+			String memberYear, String memberMonth, String memberDay, @RequestParam(value="uploadFile", required=false) MultipartFile file) {
 		
 		if(!file.getOriginalFilename().contentEquals("")) {
 			String changeName = saveFile(file, request); // 실제로 업로드된 파일명
@@ -110,7 +128,7 @@ public class MemberController {
 			m.setMemberImage(changeName);
 		}
 		
-		String memberBirth = Integer.toString(memberYear) + Integer.toString(memberMonth) + Integer.toString(memberDay);
+		String memberBirth = memberYear + memberMonth + memberDay;
 		
 		m.setMemberBirth(memberBirth);
 		
@@ -163,17 +181,41 @@ public class MemberController {
 	@RequestMapping("pause.ume")
 	public String pauseMember(MemberDtoU m, Model model) {
 
-		int result = mService.pauseMember(m);
+		int result = mService.pauseMember(m); // 일시정지로 변경
 		
 		if(result > 0) {
 			int result2 = mService.addDate(m);	// 상품권 종료일 증가
 				if(result2 > 0) {
-					return "redirect:list.ume";					
+					return "redirect:list.ume";
 				}
 				model.addAttribute("msg", "존재하는 상품권이 없습니다.");
 				return "common/errorPage";
 		}else {
 			model.addAttribute("msg", "일시정지 할 수 없는 회원입니다.");
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping("pauseCancel.ume")
+	public String pauseCancelMember(MemberDtoU m, Model model) {
+		
+		MemberDtoU mem = mService.detailMember(m.getMemberNo()); // 상세정보 조회
+		
+		long sub = mem.getPauseEnd().getTime() - m.getPauseCancelDate().getTime(); // 날짜간 빼기
+		
+		int pauseDate = (int)sub / ( 24*60*60*1000); // 일시정지 변경되는 기간
+		
+		m.setPauseDate(pauseDate);
+
+		int result = mService.pauseCancelMember(m); // 회원 일시정지 상태 변경 서비스
+
+		
+		if(result > 0) {
+			int result2 = mService.pauseCanceladdDate(m);
+			return "redirect:list.ume";
+		}else {
+			model.addAttribute("msg", "일시정지 해제 할 수 없는 회원입니다.");
 			return "common/errorPage";
 		}
 		

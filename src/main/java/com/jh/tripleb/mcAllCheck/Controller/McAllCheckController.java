@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jh.tripleb.mcAllCheck.model.service.McAllCheckService;
 import com.jh.tripleb.mcAllCheck.model.vo.mcAllCheck;
 import com.jh.tripleb.mcAllCheck.model.vo.mcAllCheckDto;
+import com.jh.tripleb.mcAllCheck.model.vo.mcAllDto;
 import com.jh.tripleb.notice.model.vo.Notice;
 
 
@@ -32,20 +33,7 @@ public class McAllCheckController {
 		return "mcCheck/mcAllCheckList";
 	}
 	
-	@RequestMapping("detail.hmc")
-	public ModelAndView selectMcAllCheck(int macno, ModelAndView mv) {
-		
-		mcAllCheck ma = macService.selectMcAllCheck(macno);
-		
-		if(ma !=null) {
-			mv.addObject("ma", ma).setViewName("mcCheck/mcAllCheckDetail");
-		}else {
-			mv.addObject("msg", "유효한 게시글 아님!");
-			mv.setViewName("common/errorPage");
-		}
-		
-		return mv;
-	}
+	
 	@RequestMapping("insert.hmc")
 	public String insertMcAllCheck(mcAllCheckDto m, Model model) {
 		
@@ -63,6 +51,22 @@ public class McAllCheckController {
 			model.addAttribute("msg", "시설점검관리 작성 실패!");
 			return "common/errorPage";
 		}
-		
-}
+	}
+	
+		@RequestMapping("detail.hmc")
+		public ModelAndView selectMcCheck(int macno , ModelAndView mv) {
+			
+			ArrayList<mcAllDto> list = macService.selectMcCheck(macno);
+			System.out.println(list);
+			if(list !=null) {
+				mv.addObject("list", list).setViewName("mcCheck/mcAllCheckDetail");
+			}else {
+				mv.addObject("msg", "유효한 게시글 아님!");
+				mv.setViewName("common/errorPage");
+			}
+			
+			return mv;
+			}
+			
+
 }

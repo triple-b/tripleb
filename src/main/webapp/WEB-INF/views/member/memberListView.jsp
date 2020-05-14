@@ -137,7 +137,7 @@
 								<section class="panel">
 									<header class="panel-heading">
 										<div class="panel-btn" style="margin-bottom:10px;">
-											<a class="mb-xs mt-xs mr-xs modal-basic btn btn-default" href="" style="float:right"> 일시정지 해제 </a>
+											<a class="mb-xs mt-xs mr-xs modal-basic btn btn-default btn_memPauseCancel" href="#memberpauseCancel" style="float:right"> 일시정지 해제 </a>
 											<a class="mb-xs mt-xs mr-xs modal-basic btn btn-default btn_memDel" href="#memberDel" style="color:red; float:right"> 회원 삭제 </a>
 
 										</div>
@@ -168,9 +168,7 @@
 														<td><input type="checkbox" name="checkRow" value="${ p.memberNo }"></td>
 														<td>${ p.memberNo }</td>
 														<td class="text-semibold text-dark">
-															<a class="mb-xs mt-xs mr-xs modal-basic" href="#memberupdate">
-																${ p.memberName }
-															</a>
+															<a class="mb-xs mt-xs mr-xs modal-basic memPName" href="#memberupdate">${ p.memberName }</a>
 														</td>
 														<td>
 														<c:choose>
@@ -446,13 +444,13 @@
 										<div class="form-group">
 											<label class="col-sm-3 control-label"> 키(cm)</label>
 											<div class="col-sm-9">
-												<input type="text" name="memberHeight" class="form-control" required/>
+												<input type="text" name="memberHeight" class="form-control">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label"> 몸무게(kg)</label>
 											<div class="col-sm-9">
-												<input type="text" name="memberWeight" class="form-control" required/>
+												<input type="text" name="memberWeight" class="form-control">
 											</div>
 										</div>
 
@@ -543,8 +541,51 @@
 					</form>
 				</div>
 				<!--회원일시정지 Modal end -->
+				
+				<!-- 회원 일시정지 해제 Modal -->
+				<div id="memberpauseCancel" class="modal-block mfp-hide">
+					<form method="post" action="pauseCancel.ume">
+						<section class="panel">
+							<header class="panel-heading">
+								<h2 class="panel-title">회원 일시정지 해제</h2>
+							</header>
+							<div class="panel-body">
+								<div class="modal-wrapper">
+									<div class="modal-text">
+										<div class="panel-body">
+											
+											<div class="form-group">
+												<label class="col-md-3 control-label" for="inputSuccess">회원명</label>
+												<div class="col-md-6">
+													<input type="hidden" id="pauseCancleMemberNo" name="memberNo" />
+													<input type="text" id="pauseCancleMemberName" name="memberName" class="form-control" required disabled> 
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-md-3 control-label" for="inputSuccess">일시정지 해제일</label>
+												<div class="col-md-6">
+													<input type="date" class="form-control" name="pauseCancelDate" required>
+												</div>
+											</div>
 
-				<!-- 회원 블랙리스트 Modal -->
+										</div>
+									</div>
+								</div>
+							</div>
+							<footer class="panel-footer">
+								<div class="row">
+									<div class="col-md-12 text-right">
+										<button type="submit" class="btn btn-primary">일시정지</button>
+										<button class="btn btn-default modal-dismiss">취소</button>
+									</div>
+								</div>
+							</footer>
+						</section>
+					</form>
+				</div>
+				<!--회원일시정지 Modal 해제 end -->
+
+				<!-- 회원 블랙리스트  Modal -->
 				<div id="memberblack" class="modal-block mfp-hide">
 					<form id="blackModal" method="post" action="black.ume">
 						<section class="panel">
@@ -652,10 +693,10 @@
 									<div class="form-group">
 											<label class="col-sm-3 control-label">생년월일 <span class="required">*</span></label>
 											<div class="col-sm-2">
-												<input type="number" name="memberYear" min="00" class="form-control" placeholder="년(두글자)" required/>
+												<input type="text" name="memberYear" id="memberYear" class="form-control" placeholder="년(두글자)" required/>
 											</div>
 											<div class="col-sm-2">
-												<select name="memberMonth" class="form-control mb-md">
+												<select name="memberMonth" id="memberMonth" class="form-control mb-md">
 													<option value="01">01</option>
 													<option value="02">02</option>
 													<option value="03">03</option>
@@ -671,7 +712,7 @@
 												</select>
 											</div>
 											<div class="col-sm-2">
-												<input type="number" name="memberDay" class="form-control" min="1" max="31" placeholder="07" required/>
+												<input type="text" name="memberDay" id="memberDay" class="form-control" placeholder="07" required/>
 											</div>
 										</div>
 									

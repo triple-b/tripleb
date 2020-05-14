@@ -107,6 +107,47 @@ $('#menuTree').on("changed.jstree", function (e, data) {
 	
 });
 
+	
+$("#itemPurchase").click(function(){
+	if(menuList == "") {
+		alert("구매하신 항목이 없습니다.\n항목을 선택하신 후 구매하시기 바랍니다.");
+		return;
+	}
+	if(confirm("선택한 항목으로 구매처리 하시겠습니까? 구매처리시 계약서가 구매처로 자동 발송 됩니다.")) {
+		
+		// 구매처정보
+		/*
+		var invoicePname = $('input[name="Pname"]').val();
+		var invoicePaddress = $('input[name="Paddress"]').val();
+		var invoicePphone = $('input[name="Paddress"]').val();
+		var invoicePemail = $('input[name="Pemail"]').val();
+		var invoicePurl = $('input[name="Purl"]').val();
+		*/
+		
+		var invoicePname = "건강세상";
+		var invoicePaddress = "서울시 강남구 논현동 589-1";
+		var invoicePphone = "02-518-9292";
+		var invoicePemail = "nooribooja@naver.com";
+		var invoicePurl = "https://www.tripleb.jh.com/hihealth";
+		var invoiceItemList = menuList;
+		
+		var $newForm = $('<form></form>');	
+		$newForm.attr("method", "post");
+		$newForm.attr("action", "insert.miv");
+		$newForm.appendTo('body');
+		
+		$newForm.append($("<input/>", {type:"hidden", name:"invoicePname", value:invoicePname}));
+		$newForm.append($("<input/>", {type:"hidden", name:"invoicePaddress", value:invoicePaddress}));
+		$newForm.append($("<input/>", {type:"hidden", name:"invoicePphone", value:invoicePphone}));
+		$newForm.append($("<input/>", {type:"hidden", name:"invoicePemail", value:invoicePemail}));
+		$newForm.append($("<input/>", {type:"hidden", name:"invoicePurl", value:invoicePurl}))
+		$newForm.append($("<input/>", {type:"hidden", name:"invoiceItemList", value:invoiceItemList})); 
+	
+		$newForm.submit();	
+	}
+});
+
+
 
 // 금액초기화
 function setItemPrice() {

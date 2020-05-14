@@ -168,6 +168,14 @@
 					</section>
 					
 					<!-- 기구 상태창 -->
+					<section class="content-with-menu" data-theme-gmap-builder>
+						<div class="content-with-menu-container">
+
+							<div class="inner-menu-toggle">
+								<a href="#" class="inner-menu-expand" data-open="inner-menu">
+									Show Options <i class="fa fa-chevron-right"></i>
+								</a>
+							</div>
 				    <menu id="content-menu" class="inner-menu" role="menu" style="right:0; left: auto; width: 329.9px; margin-top: 52px;">
 					     <div class="nano has-scrollbar">
 					         <div class="nano-content">
@@ -251,7 +259,8 @@
 					         </div>
 					     </div>
 					 </menu>
-					
+				</div>
+			</section>
 			</section>
 			<!-- 오른쪽 content 페이지 -->
 		</div>

@@ -52,16 +52,16 @@
 						                                    <th>휴가사유</th>
 						                                    <th>시작일</th>
 						                                    <th>종료일</th>
-						                                    <th colspan="2">버튼</th>
+						                                    <th colspan="2">신청</th>
 						                                </tr>
 						                            </thead>
 						                            <tbody>
 				                                 		<tr>
-				                                 			<td><input type="text" value="${ loginUser.trainerName }" style="margin-top:2%" readonly></td>
-				                                 			<td><input type="text" id="vacCause" style="margin-top:2%" name="vacCause"></td>
-				                                 			<td><input type="date" id="vacStDate" name="vacStDate"></td>
-				                                 			<td><input type="date" id="vacEndDate" name="vacEndDate"></td>
-					                                    	<td style="border-right: 0px"><button type="submit" class="btn btn-default" style=" margin-right: 1%; background:#0088cc; color:white; border:1px solid #0088cc;">신청</button><td>
+				                                 			<td><input type="text" class="form-control" value="${ loginUser.trainerName }" style="margin-top:2%" readonly></td>
+				                                 			<td><input type="text" class="form-control" id="vacCause" style="margin-top:2%" name="vacCause"></td>
+				                                 			<td><input type="date" class="form-control" id="vacStDate" name="vacStDate"></td>
+				                                 			<td><input type="date" class="form-control" id="vacEndDate" name="vacEndDate"></td>
+					                                    	<td><button type="submit" class="btn btn-primary">신청</button></td>
 					                                    </tr>
 						                        	</tbody>
 						                    	</table>
@@ -80,7 +80,7 @@
 				<!--  start : page  -->
 				<div class="row">
 				     <div class="col-md-6 col-lg-12 col-xl-6" style="margin-top: 1%;">
-				            <div class="row">
+				     
 				                   <div class="content">
 								   <br><br>
 								         <div class="innerOuter" style="margin-top:-5%">
@@ -122,7 +122,7 @@
 						              	
 						               	   <br><br>
 							      </div>
-				            </div>
+				      
             		  </div>
 		        </div>
 				<!-- end: page -->

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jh.tripleb.mcAllCheck.model.vo.mcAllCheck;
 import com.jh.tripleb.mcAllCheck.model.vo.mcAllCheckDto;
+import com.jh.tripleb.mcAllCheck.model.vo.mcAllDto;
 
 @Repository("macDao")
 public class McAllCheckDao {
@@ -16,10 +17,6 @@ public class McAllCheckDao {
 		return (ArrayList)sqlSession.selectList("mcAllCheckMapper.selectList");
 	}
 
-	public mcAllCheck selectMcAllCheck(SqlSessionTemplate sqlSession, int macno) {
-		
-		return sqlSession.selectOne("mcAllCheckMapper.selectMcAllCheck", macno);
-	}
 
 	public int insertMcAllCheck(SqlSessionTemplate sqlSession, mcAllCheckDto m) {
 		
@@ -29,6 +26,11 @@ public class McAllCheckDao {
 	public int insertMcCheck(SqlSessionTemplate sqlSession, mcAllCheckDto m) {
 		
 		return sqlSession.insert("mcAllCheckMapper.insertMcCheck", m);
+	}
+
+	public ArrayList<mcAllDto> selectMcCheck(SqlSessionTemplate sqlSession, int macno) {
+	
+		return (ArrayList)sqlSession.selectList("mcAllCheckMapper.selectMcCheck", macno);
 	}
 
 }

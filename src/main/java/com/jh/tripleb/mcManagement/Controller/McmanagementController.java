@@ -118,8 +118,9 @@ public class McmanagementController {
 	@RequestMapping("update.mcm")
 	public ModelAndView updateMachine(McManagementDto m, HttpServletRequest request, ModelAndView mv,
 									 @RequestParam(value="reUploadFile", required=false) MultipartFile file) {
+		System.out.println(m);
 	//새로 넘어온 첨부파일이 있을 경우
-	if(file.getOriginalFilename().equals("")) {
+		if(!file.getOriginalFilename().equals("")) {
 		
 		// 새로 넘어온 첨부파일도 있고 뿐만아니라 기존의 첨부파일이 있었을 경우
 		if(m.getThumbnail() !=null) {
@@ -131,7 +132,7 @@ public class McmanagementController {
 		m.setThumbChange(thumbChange);
 		m.setThumbnail(thumbnail);
 	
-	}
+		}
 	int result = mcmService.updateMachine(m);
 	
 	if(result > 0) {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+  <mapper namespace="mcCheckMapper">
+  
+  <resultMap type="McCheck" id="mcCheckResultSet">
+	  	<id property="machineChkNo" column="machine_ChkNo"/>
+	  	<result property="machineChkContent" column="machine_ChkContent"/>
+	  	<result property="machineNo" column="machine_No"/>
+		<result property="machineAllChkNo" column="machine_AllChkNo"/>		
+  	</resultMap>
+  	
+  		<select id="selectMcCheck" parameterType="_int" resultMap="mcCheckResultSet">
+ 		 select *
+  		 from MC_CHECK
+ 		 where MACHINE_CHKNO=#{mccno}
+ 		</select>
+  	
+  </mapper>

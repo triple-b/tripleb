@@ -38,6 +38,8 @@
 		<typeAlias type="com.jh.tripleb.mcAllCheck.model.vo.mcAllCheckDto" alias="mcAllCheckDto"/>
 		<typeAlias type="com.jh.tripleb.vacation.model.vo.Vacation" alias="Vacation"/>
       	<typeAlias type="com.jh.tripleb.appVaca.model.vo.AppVaca" alias="AppVaca"/>
+      	<typeAlias type="com.jh.tripleb.mcCheck.model.vo.McCheck" alias="McCheck"/>
+      	<typeAlias type="com.jh.tripleb.mcAllCheck.model.vo.mcAllDto" alias="mcAllDto"/>
 	</typeAliases>
 	
 	<mappers>
@@ -61,6 +63,7 @@
 	      <mapper resource="mappers/student-mapper.xml"/>   
 	      <mapper resource="mappers/vacation-mapper.xml"/>
 	      <mapper resource="mappers/appVaca-mapper.xml"/>
+	      <mapper resource="mappers/mcCheck-mapper.xml"/>
 	</mappers>
 	
 

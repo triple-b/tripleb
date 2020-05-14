@@ -17,7 +17,7 @@ public class ExcelController {
 	@Autowired
 	private ExcelService xService;
 	
-	@RequestMapping("download.do")
+	@RequestMapping("download.do")	
 	public String excelTransform(@RequestParam String target, @RequestParam int targetno, Map<String,Object> ModelMap) throws Exception{
 		
 			Map<String,Object> invoiceList = xService.getAllObjects("invoice", targetno);
@@ -27,8 +27,9 @@ public class ExcelController {
 		    ModelMap.put("invoiceList", invoiceList);
 		    ModelMap.put("companyList", companyList);
 		    ModelMap.put("itemList", itemList);
-
-		    return "ExcelDownloadInvoice";
+		    ModelMap.put("target", target);
+		    
+		   	return "ExcelDownloadInvoice";    
 		    		  
 	}
 	

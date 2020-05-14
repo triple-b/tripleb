@@ -21,7 +21,9 @@
 
 	<!-- 계약서 리스트 조회(장미경) -->
 	<select id="selectListInvoice" resultMap="invoiceResultSet">
-		select *
+		select INVOICE_NO, INVOICE_NUMBER, INVOICE_DATE, INVOICE_DUEDATE, INVOCIE_PNAME, 
+		       INVOCIE_PADDRESS, INVOCIE_PPHONE, INVOCIE_PEMAIL, INVOCIE_PURL, INVOCIE_ITEMLIST,
+		       INVOICE_TOTALPRICE, INVOICE_STATUS, INVOICE_CANCELDATE, INVOICE_CANCELREASON
 		from invoice		
 		order by invoice_no desc
 	</select>
@@ -78,6 +80,26 @@
         order by t.TEMPLATE_PARENTITEMNAME
 	</select>
 	
+	<!-- 계약서 번호 계산을 위해 yyyymm 기준으로 저장된 데이타 갯수 조회(장미경) -->
+	<select id="selectInvoiceCount" parameterType="String" resultType="_int">
+		select count(*) from invoice
+		where substr(invoice_number, 1, 4) = #{str}
+	</select>
 	
+	<!-- 계약서 생성(장미경) -->	
+	<select id="insertInvocie" parameterType="Invoice">
+		INSERT INTO INVOICE (INVOICE_NO, INVOICE_NUMBER, INVOICE_DATE, INVOICE_DUEDATE, 
+		INVOCIE_PNAME, INVOCIE_PADDRESS, INVOCIE_PPHONE, INVOCIE_PEMAIL, INVOCIE_PURL, 
+		INVOCIE_ITEMLIST, INVOICE_TOTALPRICE, INVOICE_STATUS) 
+		VALUES (SEQ_IVNO.NEXTVAL, #{invoiceNumber}, SYSDATE, ADD_MONTHS(SYSDATE, +1),
+		#{invoicePname}, #{invoicePaddress}, #{invoicePphone}, #{invoicePemail}, #{invoicePurl},
+		#{invoiceItemList}, #{invoiceTotalPrice}, 'Y')
+	</select>
+	
+	<!-- 구매정보 생성(장미경) -->
+	<select id="insertPurchase" parameterType="hashmap">
+		INSERT INTO PURCHASE (PURCHASE_NO, PURCHASE_COUNT, TEMPLATE_ITEMNO, INVOICE_NO) 
+		VALUES (SEQ_PCNO.NEXTVAL, 1, #{tno}, #{ino})
+	</select>
 	
 </mapper>

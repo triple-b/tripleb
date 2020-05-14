@@ -27,6 +27,7 @@ public class EquipCheckController {
 		ArrayList<EquipCheckDto> elist = ecService.selectEqList();
 		ArrayList<Equipment> list = eService.selectList();
 		
+		
 		model.addAttribute("elist",elist);		
 		model.addAttribute("list",list);
 		
