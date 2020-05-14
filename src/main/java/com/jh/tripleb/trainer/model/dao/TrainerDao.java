@@ -54,4 +54,23 @@ public class TrainerDao {
 		return sqlSession.selectOne("trainerMapper.pwdCheck", trainerPwd2);
 	}
 	
+	public ArrayList<Trainer> expertList(SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("trainerMapper.expertList");
+	}
+	
+	public ArrayList<Trainer> beginnerList(SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("trainerMapper.beginnerList");
+	}
+	
+	public int deleteTr(SqlSessionTemplate sqlSession, int checkArr) {
+		return sqlSession.update("trainerMapper.deleteTr", checkArr);
+	}
+	
+	public int trEndDate(SqlSessionTemplate sqlSession, int checkArr) {
+		return sqlSession.update("trainerMapper.trEndDate", checkArr);
+	}
+	
+	public Trainer selectTr(SqlSessionTemplate sqlSession, int trainerNo) {
+		return sqlSession.selectOne("trainerMapper.selectTr", trainerNo);
+	}
 }

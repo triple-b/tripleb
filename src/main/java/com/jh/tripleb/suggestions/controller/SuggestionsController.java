@@ -63,7 +63,6 @@ public class SuggestionsController {
 	@RequestMapping("updateForm.jsu")
 	public ModelAndView updateForm(int sugNo, ModelAndView mv) {
 		
-		System.out.println(sugNo);
 		Suggestions s = sService.selectSug(sugNo);
 		
 		mv.addObject("s", s).setViewName("suggestions/sugUpdateForm");

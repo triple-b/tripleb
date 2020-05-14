@@ -67,4 +67,29 @@ public class TrainerServiceImpl implements TrainerService{
 		return tDao.pwdCheck(sqlSession, trainerPwd2);
 	}
 
+	@Override
+	public ArrayList<Trainer> expertList() {
+		return tDao.expertList(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Trainer> beginnerList() {
+		return tDao.beginnerList(sqlSession);
+	}
+
+	@Override
+	public int deleteTr(int checkArr) {
+		return tDao.deleteTr(sqlSession, checkArr);
+	}
+
+	@Override
+	public int trEndDate(int checkArr) {
+		return tDao.trEndDate(sqlSession, checkArr);
+	}
+
+	@Override
+	public Trainer selectTr(int trainerNo) {
+		return tDao.selectTr(sqlSession, trainerNo);
+	}
+
 }

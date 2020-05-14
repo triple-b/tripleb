@@ -61,5 +61,35 @@
   		insert into trainer
   		values(seq_trno.nextval, #{trainerName}, #{trainerPwd}, default, #{trainerBirth}, #{trainerGender}, #{trainerPhone}, #{trainerEmail}, #{trainerAddress}, 'Y', 'B', #{trainerAward}, sysdate, default, default, default, #{trainerThumbnail})
   	</insert>
+  	
+  	<select id="expertList" resultType="Trainer">
+  		select trainer_no, trainer_thumbnail, trainer_Name, trainer_grade
+  		from trainer
+  		where trainer_status='Y' and trainer_grade='E'
+  	</select>
+  	
+  	<select id="beginnerList" resultType="Trainer">
+  		select trainer_no, trainer_thumbnail, trainer_Name, trainer_grade
+  		from trainer
+  		where trainer_status='Y' and trainer_grade='B'
+  	</select>
+  	
+  	<update id="deleteTr" parameterType="Trainer">
+  		update Trainer
+  		set trainer_status = 'N'
+  		where trainer_no=#{trainerNo}
+  	</update>
+  	
+  	<update id="trEndDate" parameterType="Trainer">
+  		update Trainer
+  		set trainer_end = sysdate
+  		where trainer_no=#{trainerNo}
+  	</update>
+  	
+  	<select id="selectTr" resultType="Trainer">
+  		select *
+  		from trainer
+  		where trainer_no=#{trainerNo}
+  	</select>
   </mapper>
 

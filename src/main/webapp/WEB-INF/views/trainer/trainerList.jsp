@@ -8,6 +8,11 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/assets/vendor/isotope/jquery.isotope.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+	#deleteBtn3:hover{
+		color:white;
+	}
+</style>
 </head>
 <body>
 	<section class="body">
@@ -35,14 +40,14 @@
 							<div class="inner-body mg-main">
 		            				<div class="inner-toolbar clearfix" style="padding-left:0px">
 		                				<ul>
+		                					<li>
+		                						트레이너 현황
+		                					</li>
 		                    				<li>
-		                        				<a href="#" id="mgSelectAll"><i class="fa fa-check-square"></i> <span data-all-text="Select All" data-none-text="Select None">Select All</span></a>
-		                    				</li> 
-		                    				<li>
-		                        				<a class="modal-with-form" href="#modalForm" onclick="pwdRandom();"><i class="fa fa-trash-o"></i> 추가</a>
+		                        				<a class="modal-with-form" href="#modalFormAdd" onclick="pwdRandom();"><i class="fa fa-trash-o"></i> 추가</a>
 		                    				</li>
 						                    <li>
-						                        <a href="#"><i class="fa fa-trash-o"></i> 삭제</a>
+						                        <a href="#modalFormDel" class="modal-with-form" id="deleteBtn3"><i class="fa fa-trash-o"></i>삭제</a>
 						                    </li>
 						                    <li class="right" data-sort-source data-sort-id="media-gallery">
 						                        <ul class="nav nav-pills nav-pills-primary">
@@ -50,10 +55,10 @@
 						                                <a style="cursor: pointer;" data-option-value="*" href="trainerList.utr">전체</a>
 						                            </li>
 						                            <li>
-						                                <a class="value1" value="1" style="cursor: pointer;" data-option-value=".document" onclick="categoryFn();">팀장</a>
+						                                <a style="cursor: pointer;" data-option-value=".document" href="expertList.utr">팀장</a>
 						                            </li>
 						                            <li>
-						                                <a class="value1" value="2" style="cursor: pointer;" data-option-value=".image" onclick="categoryFn();">일반</a>
+						                                <a style="cursor: pointer;" data-option-value=".image" href="beginnerList.utr">일반</a>
 						                            </li>
 						                        </ul>
 						                    </li>
@@ -67,44 +72,47 @@
 								        <div class="row">
 								            <div class="row mg-files" data-sort-destination data-sort-id="media-gallery">
 								            	<c:forEach items="${ list }" var="t">
-								            	<input type="hidden" value="${ t.trainerNo }">
+								            	<input type="hidden" id="trainerNo" value="${ t.trainerNo }">
 								                <div class="isotope-item document col-sm-6 col-md-4 col-lg-3">
 								                    <div class="thumbnail" style="width:90%; height:20%;">
 								                        <div class="thumb-preview">
 								                            <a class="thumb-image" href="assets/images/projects/project-1.jpg">
-								                                <img style="width:250px; height:200px;" src="${ pageContext.servletContext.contextPath }/resources/upload_files/${ t.trainerThumbnail }" class="img-responsive" alt="Project">
+								                                <img id="trainerThumbnail" style="width:250px; height:200px;" src="${ pageContext.servletContext.contextPath }/resources/upload_files/${ t.trainerThumbnail }" class="img-responsive" alt="Project">
 								                            </a>
 								                            <div class="mg-thumb-options">
 								                                <div class="mg-zoom"><i class="fa fa-search"></i></div>
 								                                <div class="mg-toolbar">
 								                                    <div class="mg-option checkbox-custom checkbox-inline">
-								                                        <input type="checkbox" id="file_1" value="1">
+								                                        <input type="checkbox" id="file_1" id="checkTr1" name="checkTr1" data-trNum="${ t.trainerNo }">
 								                                        <label for="file_1"></label>
 								                                    </div>
 								                                    <div class="mg-group pull-right">
-								                                        <a class="modal-with-form" href="#modalForm2" onclick="trDetailFn(${t.trainerNo})">상세정보</a>
-								                                        <button class="dropdown-toggle mg-toggle" type="button" data-toggle="dropdown">
-								                                            <i class="fa fa-caret-up"></i>
-								                                        </button>
-								                                        <ul class="dropdown-menu mg-menu" role="menu">
-								                                            <li><a href="#"><i class="fa fa-download"></i> 수정</a></li>
-								                                        </ul>
+								                                        <a id="trainerNo" class="modal-with-form" href="#modalForm2" onclick="trDetailFn(${t.trainerNo})">상세정보</a>
+								                                        <c:if test="${ loginUser.trainerGrade eq 'M' }">
+									                                        <button class="dropdown-toggle mg-toggle" type="button" data-toggle="dropdown">
+									                                            <i class="fa fa-caret-up"></i>
+									                                        </button>
+									                                        <ul class="dropdown-menu mg-menu" role="menu">
+									                                            <li><a style="cursor:pointer" id="updateBtn1" onclick="gotoUpdateForm(${ t.trainerNo })">프로필 수정</a></li>
+									                                        </ul>
+								                                        </c:if>
 								                                    </div>
 								                                </div>
 								                            </div>
 								                        </div>
-								                        <h5 class="mg-title text-semibold">${ t.trainerName }
-								                        <c:choose>
-								                        	<c:when test="${ t.trainerGrade eq 'B'}">
-								                        		<small>트레이너</small>	
-								                        	</c:when>
-								                        	<c:when test="${ t.trainerGrade eq 'E'}">
-								                        		<small>팀장</small>	
-								                        	</c:when>
-								                        	<c:when test="${ t.trainerGrade eq 'M'}">
-								                        		<small>관장</small>	
-								                        	</c:when>
-								                        </c:choose>
+								                        <h5 id="trainerName" class="mg-title text-semibold">${ t.trainerName }
+								                        	<input id="trainerGrade" type="hidden" value="${ t.trainerGrade }">
+									                        <c:choose>
+									                        	<c:when test="${ t.trainerGrade eq 'B'}">
+									                        		<small>트레이너</small>	
+									                        	</c:when>
+									                        	<c:when test="${ t.trainerGrade eq 'E'}">
+									                        		<small>팀장</small>	
+									                        	</c:when>
+									                        	<c:when test="${ t.trainerGrade eq 'M'}">
+									                        		<small>관장</small>	
+									                        	</c:when>
+									                        </c:choose>
 								                        </h5>
 								                    </div>
 								                </div>
@@ -182,13 +190,13 @@
 		<!-- /상세정보 -->
 		
 		<!-- 사원 추가 모달폼 -->
-        <div id="modalForm" class="modal-block modal-block-primary mfp-hide">
+        <div id="modalFormAdd" class="modal-block modal-block-primary mfp-hide">
            <section class="panel">
               <header class="panel-heading" style="background: #0f4c81;">
                  <h2 class="panel-title" style="color: white;">사원추가</h2>
               </header>
               <div class="panel-body">
-                 <form id="demo-form-fuck" class="form-horizontal mb-lg" novalidate="novalidate" method="post" action="insertTr.utr" enctype="multipart/form-data">
+                 <form id="demo-form-add" class="form-horizontal mb-lg" novalidate="novalidate" method="post" action="insertTr.utr" enctype="multipart/form-data">
                      <div class="form-group mt-lg">
                          <label class="col-sm-2 control-label">사진첨부</label>
                          <div class="col-sm-9">
@@ -210,7 +218,7 @@
                     <div class="form-group">
                        <label class="col-sm-2 control-label">생년월일</label>
                        <div class="col-sm-9">
-                          <input type="number" name="trainerBirth" class="form-control" placeholder="주민번호 앞 6자리만 입력하세요" required/>
+                          <input type="number" name="trainerBirth" class="form-control" placeholder="생년월일을 입력하세요  (예) 19900506" required/>
                        </div>
                     </div>
                     <div class="form-group">
@@ -257,7 +265,30 @@
            </section>
         </div>
 		<!-- /사원추가 폼 -->
-			
+		
+		
+		<!-- 삭제 모달폼 -->
+		 <div id="modalFormDel" class="modal-block modal-block-primary mfp-hide">
+			<section class="panel">
+			   <header class="panel-heading" style="background: #0f4c81;">
+			   </header>
+			   <div class="panel-body">
+				  <form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
+					  <div style="text-align: center; font-weight: bolder; font-size: 1.5em;">해당 트레이너를 삭제하시겠습니까?</div>        
+				  </form>
+			   </div>
+			   <footer class="panel-footer">
+				  <div class="row">
+					 <div class="col-md-12 text-right" style="text-align: center;">
+						<button id="deleteBtn1" class="btn btn-primary modal-confirm">확인</button>
+						<button class="btn btn-default modal-dismiss" style="margin-left:2%">취소</button>
+					 </div>
+				  </div>
+			   </footer>
+			</section>
+		 </div>
+		 <!-- /삭제 모달폼 -->
+		 	
 		</div>
 		<!--/ 전체 레이어 -->
 		
@@ -316,26 +347,53 @@
 		</script>
 		<!-- /ajax -->
 		
-		
+	
 		<script>
 			function insertBtn1(){
-				document.getElementById("demo-form-fuck").submit();
+				document.getElementById("demo-form-add").submit();
 			}
 		</script>
 		
-		
-		<!-- 카테고리별 리스트 출력 -->
+		<!-- 프로필 수정 -->
 		<script>
-			function categoryFn(){
+			var gotoUpdateForm = function(rowkey){
+				var value = rowkey;
 				
-				var aValue = $(".value1").attr('value');
-				console.log(aValue);
-				/* $.ajax({
-					url:""
-				}); */
+				console.log(rowkey);
+				location.href="trUpdateForm.utr?trainerNo=" + value;
 			}
 		</script>
+		<!-- /프로필 수정 -->
 		
+		<!-- 트레이너 삭제 ajax -->
+		<script>
+			$(function(){
+				$("#deleteBtn1").click(function(){
+					var checkArr = new Array();
+					
+					$("input[name=checkTr1]:checked").each(function(){
+						checkArr.push($(this).attr("data-trNum"));
+					});
+					
+					console.log(checkArr);
+					$.ajax({
+						url:"deleteTr.utr",
+						data:{checkArr:checkArr},
+						type:"post",
+						success:function(result2){
+							if(result2 > 0){
+								location.href= "trainerList.utr";
+							}else{
+								return "common/errorPage";
+							}
+						},
+						error:function(){
+							console.log("통신실패");
+						}
+					});
+				});
+			});
+		</script>
 		
 		<!-- 오른쪽 사이드 바 -->
 		<jsp:include page="../common/sidebarRight.jsp" />		

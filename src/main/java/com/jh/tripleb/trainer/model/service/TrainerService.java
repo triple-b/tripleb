@@ -67,5 +67,19 @@ public interface TrainerService {
 	
 	// 출근번호 중복확인
 	int pwdCheck(String trainerPwd2);
-
+	
+	// 팀장 리스트
+	ArrayList<Trainer> expertList();
+	
+	// 일반 트레이너 리스트
+	ArrayList<Trainer> beginnerList();
+	
+	// 트레이너 삭제
+	int deleteTr(int checkArr);
+	
+	// 트레이너 퇴사일 업데이트
+	int trEndDate(int checkArr);
+	
+	// 트레이너 수정 화면 이동
+	Trainer selectTr(int trainerNo);
 }
