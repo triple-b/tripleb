@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class McManagementDto {
 
-	private int machineNo;			// 기구번호
+	private int machineNo;			// 기구번호 !
 	private Date machineRegistDate;	// 기구등록일
 	private String machineStatus;	// 기구상태 (Y:사용가능 N:고장)
 	private String machineDel;		// 기구 삭제여부	(Y:유지 N:삭제)

@@ -57,8 +57,8 @@
 						                            </thead>
 						                            <tbody>
 				                                 		<tr>
-				                                 			<td><input type="text" class="form-control" value="${ loginUser.trainerName }" style="margin-top:2%" readonly></td>
-				                                 			<td><input type="text" class="form-control" id="vacCause" style="margin-top:2%" name="vacCause"></td>
+				                                 			<td><input type="text" class="form-control" value="${ loginUser.trainerName }" readonly></td>
+				                                 			<td><input type="text" class="form-control" id="vacCause" name="vacCause"></td>
 				                                 			<td><input type="date" class="form-control" id="vacStDate" name="vacStDate"></td>
 				                                 			<td><input type="date" class="form-control" id="vacEndDate" name="vacEndDate"></td>
 					                                    	<td><button type="submit" class="btn btn-primary">신청</button></td>

@@ -89,6 +89,18 @@ public class McmanagementController {
 			return "common/errorPage";
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="trouble.mcm", produces="application/json; charset=utf-8")
+	public String troubleMcManagement(int mano) {
+		
+		int m = mcmService.troubleMcManagement(mano);
+		
+		Gson gson = new Gson();
+
+		return  gson.toJson(m);
+	}
+	
 	@RequestMapping("select.mcm")
 	public ModelAndView selectMcManagement(int mano, ModelAndView mv) {
 		
@@ -118,7 +130,7 @@ public class McmanagementController {
 	@RequestMapping("update.mcm")
 	public ModelAndView updateMachine(McManagementDto m, HttpServletRequest request, ModelAndView mv,
 									 @RequestParam(value="reUploadFile", required=false) MultipartFile file) {
-		System.out.println(m);
+		
 	//새로 넘어온 첨부파일이 있을 경우
 		if(!file.getOriginalFilename().equals("")) {
 		
