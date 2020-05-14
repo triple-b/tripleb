@@ -16,10 +16,10 @@
   </insert>
   
   <select id="selectList" resultMap="lockerPosResultSet">
-  	select *
-  		from LOCKERPOS
-  		where LOCKERPOS_STATUS='Y'
-  		ORDER BY 1 asc
+  		  	select *
+  			from LOCKERPOS 
+  			where LOCKERPOS_STATUS='Y'
+  			ORDER BY 1 asc
   </select>
   
   <update id="deleteLockerPos" parameterType="_int">
@@ -28,8 +28,12 @@
   		where lockerPos_No=#{lpno}
   </update>
   
-  <update id="updateLockerPos" parameterType="LockerPos">
+  <select id="selectLocker" parameterType="_int" resultMap="lockerPosResultSet">
+  		select *
+  		from LOCKERPOS
+ 		where lockerPos_No=#{lpno} and LOCKERPOS_STATUS='Y'
+  </select>
   
+
   
-  </update>
   </mapper>

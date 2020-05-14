@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+  <mapper namespace="lockerMapper">
+  
+  	<resultMap type="Locker" id="lockerResultSet">
+	  	<id property="lockerNo" column="locker_no" />
+	  	<result property="lockerStartDate" column="locker_startDate" />
+	  	<result property="lockerEndDate" column="locker_endDate" />
+	  	<result property="lockerRegistDate" column="locker_registDate" />
+	  	<result property="lockerStatus" column="locker_status" />
+	  	<result property="lockerPosNo" column="locker_posNo" />
+	  	<result property="memberNo" column="member_no" />
+	</resultMap>
+	 
+	 <insert id="insertLocker" parameterType="Locker">
+  		insert into Locker
+  		values(seq_LKNO.nextval, #{lockerStartDate}, #{lockerEndDate}, default, default,#{lockerPosNo}, #{memberNo})
+  	</insert>
+  	
+  	
+  	
+</mapper>

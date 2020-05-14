@@ -3,6 +3,8 @@ package com.jh.tripleb.locker.model.vo;
 
 import java.sql.Date;
 
+import org.mybatis.spring.SqlSessionTemplate;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,5 +25,7 @@ public class Locker {
 	private String lockerStatus;	// 락커 상태 (Y:사용중,R:회수)
 	private int lockerPosNo;			// 락커룸번호
 	private int memberNo;			// 회원번호
+	
+
 
 }

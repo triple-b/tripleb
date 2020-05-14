@@ -49,4 +49,9 @@ public class LockerPosDao {
 		
 	}
 
+	public LockerPos selectLocker(SqlSessionTemplate sqlSession, int lpno) {
+		
+		return sqlSession.selectOne("lockerPosMapper.selectLocker", lpno);
+	}
+
 }
