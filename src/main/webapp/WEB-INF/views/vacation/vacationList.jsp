@@ -160,9 +160,6 @@
 				success:function(list){
 					var value = "";
 					
-					console.log(list);
-					console.log(list.vacStDate);
-					console.log(list.vacEndDate);
 					$.each(list, function(i, obj){
 						
 						value += '<tr>' +

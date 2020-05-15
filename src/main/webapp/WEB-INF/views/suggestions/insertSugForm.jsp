@@ -95,7 +95,7 @@
                             	
 	                        <div style="float:left; padding-left:3%; width:10%;">
 	                        	<div style="margin-left:auto; margin-right:auto;">
-	                                <a href="https://naumcare.co.kr:56790/brand/tratac" target="_blank"><img src="resources/assets/images/트라택 배너.PNG"></a> 
+	                                <a href="https://naumcare.co.kr:56790/brand/tratac" target="_blank"><img src="${ pageContext.servletContext.contextPath }/resources/images/sugBanner.png"></a>
 								</div>	                                
 	                         </div>
 	                        </div>

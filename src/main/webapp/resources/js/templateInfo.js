@@ -115,20 +115,12 @@ $("#itemPurchase").click(function(){
 	}
 	if(confirm("선택한 항목으로 구매처리 하시겠습니까? 구매처리시 계약서가 구매처로 자동 발송 됩니다.")) {
 		
-		// 구매처정보
-		/*
+		// 구매처정보		
 		var invoicePname = $('input[name="Pname"]').val();
 		var invoicePaddress = $('input[name="Paddress"]').val();
-		var invoicePphone = $('input[name="Paddress"]').val();
+		var invoicePphone = $('input[name="Pphone"]').val();
 		var invoicePemail = $('input[name="Pemail"]').val();
 		var invoicePurl = $('input[name="Purl"]').val();
-		*/
-		
-		var invoicePname = "건강세상";
-		var invoicePaddress = "서울시 강남구 논현동 589-1";
-		var invoicePphone = "02-518-9292";
-		var invoicePemail = "nooribooja@naver.com";
-		var invoicePurl = "https://www.tripleb.jh.com/hihealth";
 		var invoiceItemList = menuList;
 		
 		var $newForm = $('<form></form>');	

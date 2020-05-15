@@ -77,10 +77,10 @@
 								                    <div class="thumbnail" style="width:90%; height:20%;">
 								                        <div class="thumb-preview">
 								                            <a class="thumb-image" href="assets/images/projects/project-1.jpg">
-								                                <img id="trainerThumbnail" style="width:250px; height:200px;" src="${ pageContext.servletContext.contextPath }/resources/upload_files/${ t.trainerThumbnail }" class="img-responsive" alt="Project">
+								                                <img id="trainerThumbnail" src="${ pageContext.servletContext.contextPath }/resources/upload_files/${ t.trainerThumbnail }" class="img-responsive" alt="Project">
 								                            </a>
 								                            <div class="mg-thumb-options">
-								                                <div class="mg-zoom"><i class="fa fa-search"></i></div>
+								                                <!-- <div class="mg-zoom"><i class="fa fa-search"></i></div> -->
 								                                <div class="mg-toolbar">
 								                                    <div class="mg-option checkbox-custom checkbox-inline">
 								                                        <input type="checkbox" id="file_1" id="checkTr1" name="checkTr1" data-trNum="${ t.trainerNo }">
@@ -104,13 +104,13 @@
 								                        	<input id="trainerGrade" type="hidden" value="${ t.trainerGrade }">
 									                        <c:choose>
 									                        	<c:when test="${ t.trainerGrade eq 'B'}">
-									                        		<small>트레이너</small>	
+									                        		<small>사원</small>	
 									                        	</c:when>
 									                        	<c:when test="${ t.trainerGrade eq 'E'}">
 									                        		<small>팀장</small>	
 									                        	</c:when>
 									                        	<c:when test="${ t.trainerGrade eq 'M'}">
-									                        		<small>관장</small>	
+									                        		<small>대표</small>	
 									                        	</c:when>
 									                        </c:choose>
 								                        </h5>

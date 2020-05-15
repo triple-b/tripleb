@@ -102,7 +102,7 @@
                             
                         </div>
                         <div style="float: right;">
-                            <a href="https://www.youtube.com/channel/UCDBAVzfX3yZ1hah0FHnOoaA" target="_blank"><img src="resources/assets/images/health.jpg"></a> 
+                            <a href="https://naumcare.co.kr:56790/brand/tratac" target="_blank"><img src="${ pageContext.servletContext.contextPath }/resources/images/sugBanner.png"></a> 
                         </div>
                     </div>
                 </section>

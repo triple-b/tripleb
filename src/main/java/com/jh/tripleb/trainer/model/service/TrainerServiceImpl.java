@@ -26,6 +26,10 @@ public class TrainerServiceImpl implements TrainerService{
 	public int updateTrainerProfile(Trainer t) {
 		return tDao.updateTrainerProfile(sqlSession, t);
 	}
+	@Override
+	public int updateTrainer(Trainer t) {
+		return tDao.updateTrainer(sqlSession, t);
+	}
 
 	@Override
 	public ArrayList<Trainer> listTrainer() {

@@ -7,6 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<style>
+    .form-group a{cursor:pointer;}
+    .form-group .hide{display:none;}
+    #memberList1 .hide{display:none;}
+</style>
+
 </head>
 <body>
 	<section class="body">
@@ -201,6 +208,9 @@
 				  <form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
 						      
 				  </form>
+				  <div style="float:right">
+				  		<img src="resources/images/logo_invoice.png">
+				  </div>
 			   </div>
 			   <footer class="panel-footer">
 				  <div class="row">
@@ -234,6 +244,28 @@
 			</section>
 		 </div>
 		 <!-- /삭제 모달폼 -->
+		 
+		 <!-- 인원리스트 모달폼-->
+		 <div id="modalFormSt" class="modal-block modal-block-primary mfp-hide">
+			<section class="panel">
+			   <header class="panel-heading" style="background: #0f4c81;">
+				  <h2 class="panel-title" style="color: white;">수강생리스트</h2>
+			   </header>
+			   <div class="panel-body">
+				  <form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
+					  
+				  </form>
+			   </div>
+			   <footer class="panel-footer">
+				  <div class="row">
+					 <div class="col-md-12 text-right">
+						<button class="btn btn-default"><a class="modal-with-form" style="color: black;">확인</a></button>
+					 </div>
+				  </div>
+			   </footer>
+			</section>
+		 </div>
+		 <!-- /인원리스트 모달폼 -->
 		
 		<!-- 오른쪽 사이드 바 -->
 		<jsp:include page="../common/sidebarRight.jsp" />		
@@ -287,28 +319,36 @@
 									   '<label class="col-sm-6" style="margin-top:1.5%">' + data.className + '</label>' +
 									'</div>' +
 								'</div>' +
-								'<div class="form-group">' +
+								'<div class="form-group" style="margin-top:6%">' +
 									'<label class="col-sm-2 control-label">강사명 : </label>' +
 									'<div class="col-sm-9">' +
 									   '<label class="col-sm-3" style="margin-top:1.5%">' + data.trainerName + '</label>' +
 									'</div>' +
 								 '</div>' +
-								 '<div class="form-group">' +
+								 '<div class="form-group" style="margin-top:6%">' +
 									'<label class="col-sm-2 control-label">시작일 : </label>' +
 									'<div class="col-sm-9">' +
 									   '<label class="col-sm-3" style="margin-top:1.5%">' + data.classStDate + '</label>' +
 									'</div>' +
 								 '</div>' +
-								 '<div class="form-group">' +
+								 '<div class="form-group" style="margin-top:6%">' +
 									'<label class="col-sm-2 control-label">종료일 : </label>' +
 									'<div class="col-sm-9">' +
 									   '<label class="col-sm-3" style="margin-top:1.5%">' + data.classEndDate + '</label>' +
 									'</div>' +
 								 '</div>' +
-								 '<div class="form-group">' + 
+								 '<div class="form-group" style="margin-top:6%">' + 
 									'<label class="col-sm-2 control-label">수강인원 : </label>' +
 									'<div class="col-sm-9">' +
-									   '<label class="col-sm-3" style="margin-top:1.5%">' + '<button id="stuListBtn1" class="modal-with-form" style="background:white; color:#777; border:0px" href="#modalFormSt">' + data.classCount + '/' + data.classMaxCount + '</button>' + '</label>' +
+									   '<label id="stuList2" class="col-sm-3" style="margin-top:1.5%">' + '<a id="stuList" style="background:white; color:#777; border:0px" onclick="classStudent(' + data.classNo + ')">' + data.classCount + '/' + data.classMaxCount + '</a>' + '</label>' +
+									'</div>' +
+								 '</div>' +
+								 '<div class="form-group">' +
+								 	'<label class="col-sm-2 control-label"></label>' +
+									'<div class="col-sm-9">' +
+										 '<table class="memberList">' +
+										 
+										 '</table>' +
 									'</div>' +
 								 '</div>' +
 								 '<div class="form-group">' +
@@ -319,7 +359,7 @@
 										'</p>' +
 									  '</div>' +
 								 '</div>';
-						 
+					
 					$("#demo-form").html(value);
 							 
 				},
@@ -333,14 +373,47 @@
 	
 	<!-- 수강생리스트 ajax -->
 	<script>
-		$(function(){
-			$("#stuListBtn1").click(function(){
+		var classStudent = function(rowkey){
+			var value = rowkey;
+			
+			if($(".memberList").text() == ""){
+				$.ajax({
+					url:"stuList.jcl",
+					data:{classNo:value},
+					type:"post",
+					success:function(list){
+						console.log(list);
+						var value2 = '<tr style="border-bottom: 1px solid lightgray;">' +
+										  '<th width="70px">이름</th>' +
+										  '<th width="70px;">나이</th>' +
+										  '<th width="150px;">휴대폰</th>' +
+									  '</tr>' ;
+						
+						for(var i in list){
+							
+							value2 += '<tr>' +
+										  '<td>' + list[i].memberName + '</td>' +
+										  '<td>' + list[i].memberBirth + '</td>' +
+										  '<td>' + list[i].memberPhone + '</td>' +
+									  '</tr>';
+						}
+						
+						$(".memberList").html(value2);
+					},
+					error:function(){
+						
+					}
+				});
 				
-			});
-		});
+			}else{
+				$(".memberList").html("");
+			}
+		}
+		
 	</script>
 	<!-- /ajax -->
 	
+
 	<!-- 삭제 ajax -->
 	<script>
 		$(function(){

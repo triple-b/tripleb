@@ -54,4 +54,12 @@
 		join trainer using(trainer_no)
 		where class_no=#{classNo}
 	</select>
+	
+	<select id="stuList" resultType="Member">
+		select member_name, member_birth, member_phone, member_address
+		from member m
+		where m.member_no in(select s.member_no
+		                     from student s
+		                     where s.class_no = #{class_no})
+	</select>
 </mapper>

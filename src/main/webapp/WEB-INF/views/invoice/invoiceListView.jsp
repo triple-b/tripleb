@@ -53,7 +53,7 @@
 												<tr class="tr-click" data-url="${ i.invoicePurl }" data-addr="${ i.invoicePaddress }" data-tel="${ i.invoicePphone }" data-status="구매 취소 (취소일 : ${ i.invoiceCancelDate })" data-reason="${ i.invoiceCancelReason }"> 
                    							</c:when>
                    							<c:otherwise>
-                   								<tr class="tr-click" data-url="${ i.invoicePurl }" data-addr="${ i.invoicePaddress }" data-tel="${ i.invoicePphone }" data-status="구매 완료" data-reason="null"> 
+                   								<tr class="tr-click" data-url="${ i.invoicePurl }" data-addr="${ i.invoicePaddress }" data-tel="${ i.invoicePphone }" data-status="구매 완료" data-reason=""> 
                    							</c:otherwise>
                    						</c:choose>											
 													<td data-clickid="${ i.invoiceNo }">${ i.invoicePname }</td>

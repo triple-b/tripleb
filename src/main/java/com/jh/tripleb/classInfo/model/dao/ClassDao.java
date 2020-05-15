@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jh.tripleb.approve.model.vo.Approve;
 import com.jh.tripleb.classInfo.model.vo.ClassInfo;
+import com.jh.tripleb.member.model.vo.Member;
 import com.jh.tripleb.product.model.vo.Product;
 
 @Repository("cDao")
@@ -46,5 +47,9 @@ public class ClassDao {
 	
 	public ClassInfo clDetail(SqlSessionTemplate sqlSession, int classNo) {
 		return sqlSession.selectOne("classMapper.clDetail", classNo);
+	}
+	
+	public ArrayList<Member> stuList(SqlSessionTemplate sqlSession, int classNo){
+		return (ArrayList)sqlSession.selectList("classMapper.stuList", classNo);
 	}
 }

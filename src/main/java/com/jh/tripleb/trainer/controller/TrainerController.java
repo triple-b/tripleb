@@ -121,9 +121,10 @@ public class TrainerController {
 				t.setTrainerThumbnail(changeName);
 			}
 			
+			System.out.println(t);
 			t.setTrainerAddress(t.getTrainerAddress() + " " + detailAddress);
 			
-		int result = tService.updateTrainerProfile(t);
+		int result = tService.updateTrainer(t);
 		
 		
 		if(result > 0) {
