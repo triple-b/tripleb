@@ -108,7 +108,7 @@
                             </form>
                         </div>
                         <div style="float: right;">
-                            <a href="https://www.youtube.com/channel/UCDBAVzfX3yZ1hah0FHnOoaA" target="_blank"><img src="resources/assets/images/health.jpg"></a> 
+                            <a href="https://www.youtube.com/channel/UCDBAVzfX3yZ1hah0FHnOoaA" target="_blank"><img src="resources/assets/images/트라택 배너.PNG"></a> 
                         </div>
                     </div>
                 </section>

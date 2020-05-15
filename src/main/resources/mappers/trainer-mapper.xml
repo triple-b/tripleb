@@ -43,6 +43,7 @@
   		select trainer_no, trainer_thumbnail, trainer_Name, trainer_grade
   		from trainer
   		where trainer_status='Y'
+  		ORDER BY TRAINER_GRADE DESC
   	</select>
   
   	<select id="trDetail" resultType="Trainer">

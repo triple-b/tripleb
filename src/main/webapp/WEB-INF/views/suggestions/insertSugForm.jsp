@@ -49,7 +49,6 @@
 				<div class="row">
 
 	               <div class="content">
-	                   <br><br>
 	                   <div class="innerOuter">
 	               
 	                   <section class="panel">
@@ -88,7 +87,6 @@
 	                                
 		                                <div align="center">
 		                                	<button type="submit" class="btn btn-primary" onclick="alert('작성 완료');">등록</button>
-		                                    <!-- <a class="btn btn-secondary modal-with-form" href="#modalFormA">작성</a> -->
 		                                    <a class="btn btn-secondary3 modal-with-form" href="#modalFormC">취소</a>
 		                                </div>
 	                                </form>
