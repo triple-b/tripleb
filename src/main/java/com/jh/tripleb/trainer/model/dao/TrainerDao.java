@@ -18,6 +18,10 @@ public class TrainerDao {
 		return sqlSession.update("trainerMapper.updateTrainerProfile", t);
 	}
 	
+	public int updateTrainer(SqlSessionTemplate sqlSession, Trainer t) {
+		return sqlSession.update("trainerMapper.updateTrainer", t);
+	}
+	
 	public ArrayList<Trainer> listTrainer(SqlSessionTemplate sqlSession){
 		return (ArrayList)sqlSession.selectList("trainerMapper.listTrainer");
 	}

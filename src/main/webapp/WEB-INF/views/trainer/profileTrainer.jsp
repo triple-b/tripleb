@@ -44,7 +44,7 @@
 												<c:when test="${ loginUser.trainerGrade eq 'B'}">
 												사원
 												</c:when>
-												<c:when test="${ loginUser.trainerName eq 'E'}">
+												<c:when test="${ loginUser.trainerGrade eq 'E'}">
 												팀장
 												</c:when>
 												<c:otherwise>

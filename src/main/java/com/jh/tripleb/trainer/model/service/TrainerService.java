@@ -39,6 +39,17 @@ public interface TrainerService {
 	 * @author 김주
 	 * @return			처리된 행의 개수
 	 */
+	
+	int updateTrainer(Trainer t);
+	
+	// 트레이너 상세보기 서비스
+	/**
+	 * @param tno		클릭 시 전달 받은 트레이너 번호
+	 * @author 김주
+	 * @return			처리된 행의 개수
+	 */
+	
+	
 	Trainer detailTrainer(int tno);
 	
 	/** 1_1. 핸드폰번호 찾기 서비스

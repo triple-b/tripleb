@@ -16,6 +16,14 @@
 		where trainer_no=#{trainerNo}
 	</update>
 	
+	<update id="updateTrainer" parameterType="Trainer">
+		update trainer
+		set trainer_nick=#{trainerNick}, trainer_phone=#{trainerPhone}, trainer_email=#{trainerEmail}, 
+		    trainer_address=#{trainerAddress}, trainer_thumbnail=#{trainerThumbnail},
+		    trainer_award=#{trainerAward}
+		where trainer_no=#{trainerNo}
+	</update>
+	
 	<select id="listTrainer" resultType="Trainer">
 		SELECT * FROM TRAINER
 		WHERE TRAINER_STATUS='Y'
