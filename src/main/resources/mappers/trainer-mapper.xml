@@ -91,5 +91,17 @@
   		from trainer
   		where trainer_no=#{trainerNo}
   	</select>
+  	
+  	<update id="updateECheck" parameterType="Trainer">
+  		UPDATE TRAINER
+  		SET TRAINER_ECHECK = SYSDATE
+  		WHERE TRAINER_NO = #{trainerNo}
+  	</update>
+  	<update id="updateSCheck" parameterType="Trainer">
+  		UPDATE TRAINER
+  		SET TRAINER_SCHECK = SYSDATE
+  		WHERE TRAINER_NO = #{trainerNo}
+  	</update>
+  	
   </mapper>
 

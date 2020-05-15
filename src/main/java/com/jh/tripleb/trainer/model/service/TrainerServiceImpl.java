@@ -92,4 +92,14 @@ public class TrainerServiceImpl implements TrainerService{
 		return tDao.selectTr(sqlSession, trainerNo);
 	}
 
+	@Override
+	public int updateECheck(Trainer t) {
+		return tDao.updateECheck(sqlSession, t);
+	}
+
+	@Override
+	public int updateSCheck(Trainer t) {
+		return tDao.updateSCheck(sqlSession, t);
+	}
+
 }

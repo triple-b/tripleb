@@ -38,5 +38,10 @@ public class LockerPosServiceImpl implements LockerPosService {
 		
 		return LpDao.updateLockerPos(sqlSession,lockerPosType,lockerPosQuantity);
 	}
+	@Override
+	public LockerPos selectLocker(int lpno) {
+		
+		return LpDao.selectLocker(sqlSession, lpno);
+	}
 	
 }

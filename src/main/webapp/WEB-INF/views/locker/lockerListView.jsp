@@ -96,18 +96,22 @@
 										<option>여자</option>
 									</select>
 								</li>
-								
+							
 								<li class="right" data-sort-source data-sort-id="media-gallery"  style="margin-top: 10px;">
 									<ul class="nav nav-pills nav-pills-primary">
 										<li class="active" style="padding-right: 10px;">
 											<a class="modal-with-form btn btn-default"  style="float:right; " href="#modalForm2" >락커생성</a>
 										</li>
+										<!--  
 										<li style="padding-right: 10px;">
 											<a class="modal-with-form btn btn-default"  style="float:right" href="#modalForm1">락커수정</a>
-											
 										</li>
+										-->
 										<li style="padding-right: 10px;">
 											<button class=" btn btn-default"  style="float:right; width:60px; height:38px; " onclick="deletemcm()">삭제</button>
+										</li>
+										<li class="active" style="padding-right: 10px;">
+											<a class="modal-with-form btn btn-default"  style="float:right" href="#modalForm5"onclick="selectLk()" >락커정보창</a>
 										</li>
 										<li class="active" style="padding-right: 10px;">
 											<a class="modal-with-form btn btn-default"  style="float:right" href="#modalForm">일괄등록</a>
@@ -134,20 +138,39 @@
 													
 														<input id="lockerPosNo"  type="hidden" value="${L.lockerPosNo}" >
 														<div class="locker-window" style="width:161.06px; height: 134.33px;">
-															<h5 class="open">${L.lockerPosStatus}
-																<div class="mg-option checkbox-custom checkbox-inline" style="margin-left: 124px;">
-																		<input type="checkbox" id="file_1" name="lockerPosCheck" onclick="twoCheckbox(this)" value="${L.lockerPosNo}">
-																		<label for="file_1" style="right:0;"></label>
-																</div>
+															<h5 class="open">
+															<c:choose>
+																<c:when test="${ L.lockerPosStatus eq 'Y' }">
+																	<h5 style="width:42px; margin: auto;">사용중</h5>
+																</c:when>
+																<c:when test="${ L.lockerPosStatus eq 'X' }">
+																	<h5 style="width:42px; margin: auto;">미사용</h5>
+																</c:when>
+																<c:when test="${ L.lockerPosStatus eq 'M' }">
+																	<h5 style="width:42px; margin: auto;">만기</h5>
+																</c:when>
+																<c:when test="${ L.lockerPosStatus eq 'N' }">
+																	<h5 style="width:42px; margin: auto;">고장</h5>
+																</c:when>
+															</c:choose>
+																	<div class="mg-option checkbox-custom checkbox-inline" style="margin-left: 140px;">
+																			<input type="checkbox" id="file_1" name="lockerPosCheck" onclick="twoCheckbox(this)" value="${L.lockerPosNo}">
+																			<label for="file_1"></label>
+																	</div>
 															</h5>
-															
 															<div class="locker-window-parent" style="border: 2px solid transparent; border-image: none; ">
 																<div class="locker-window-content" style="color: black;">
 																			<h4>${L.lockerPosNo}</h4>
 																			<span style="font-variant:normal;">정휘재</span>
-																			<span style="font-variant:normal;">[2020.05.03]</span>
-																	<h5 class="mg-title text-semibold">${L.lockerPosType}</h5>
-		
+																			<span style="font-variant:normal;">[2020.05.03]</span>																	
+																	<c:choose>
+																		<c:when test="${ L.lockerPosType eq 'F' }">
+																			<h5 style="color:#e36159;">F</h5>
+																		</c:when>
+																		<c:when test="${ L.lockerPosType eq 'M' }">
+																			<h5 style="color:#0088c;">M</h5>
+																		</c:when>															
+																	</c:choose>
 																</div>
 															</div>
 														</div>
@@ -268,20 +291,20 @@
 												<thead>
 													<tr>
 														<th><input type="checkbox"></th>
-														<th>No</th>
-														<th>상품명</th>
+														<th>락커번호</th>
+														<th>락커타입</th>
 														<th class="hidden-phone">고객명</th>
 														<th class="hidden-phone">시작일</th>
 														<th class="hidden-phone">종료일</th>
 														<th class="hidden-phone">구매일</th>
-														<th class="hidden-phone">락카번호</th>
+														<th class="hidden-phone">락커룸번호</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<th><input type="checkbox"></th>
 														<th>1</th>
-														<th>락커</th>
+														<th>M</th>
 														<th class="hidden-phone">정휘재</th>
 														<th class="hidden-phone">2020-04-22</th>
 														<th class="hidden-phone">2020-10-11</th>
@@ -291,7 +314,7 @@
 													<tr>
 														<th><input type="checkbox"></th>
 														<th>2</th>
-														<th>락커</th>
+														<th>M</th>
 														<th class="hidden-phone">김재희</th>
 														<th class="hidden-phone">2020-04-25</th>
 														<th class="hidden-phone">2020-10-17</th>
@@ -301,7 +324,7 @@
 													<tr>
 														<th><input type="checkbox"></th>
 														<th>3</th>
-														<th>락커</th>
+														<th>M</th>
 														<th class="hidden-phone">박종호</th>
 														<th class="hidden-phone">2020-04-24</th>
 														<th class="hidden-phone">2020-10-13</th>
@@ -311,7 +334,7 @@
 													<tr>
 														<th><input type="checkbox"></th>
 														<th>4</th>
-														<th>락커</th>
+														<th>F</th>
 														<th class="hidden-phone">장미경</th>
 														<th class="hidden-phone">2020-04-29</th>
 														<th class="hidden-phone">2020-10-19</th>
@@ -321,7 +344,7 @@
 													<tr>
 														<th><input type="checkbox"></th>
 														<th>5</th>
-														<th>락커</th>
+														<th>F</th>
 														<th class="hidden-phone">김주희</th>
 														<th class="hidden-phone">2020-04-20</th>
 														<th class="hidden-phone">2020-10-10</th>
@@ -331,7 +354,7 @@
 													<tr>
 														<th><input type="checkbox"></th>
 														<th>6</th>
-														<th>락커</th>
+														<th>F</th>
 														<th class="hidden-phone">강보람</th>
 														<th class="hidden-phone">2020-04-27</th>
 														<th class="hidden-phone">2020-10-17</th>
@@ -341,7 +364,7 @@
 													<tr>
 														<th><input type="checkbox"></th>
 														<th>7</th>
-														<th>락커</th>
+														<th>M</th>
 														<th class="hidden-phone">홍길동</th>
 														<th class="hidden-phone">2020-04-28</th>
 														<th class="hidden-phone">2020-10-18</th>
@@ -351,7 +374,7 @@
 													<tr>
 														<th><input type="checkbox"></th>
 														<th>8</th>
-														<th>락커</th>
+														<th>M</th>
 														<th class="hidden-phone">괴물쥐</th>
 														<th class="hidden-phone">2020-04-24</th>
 														<th class="hidden-phone">2020-10-14</th>
@@ -378,51 +401,74 @@
 					
 				</section>
 				
-					<!-- 락커 이동 등록 -->
-					<section class="panel">
+					<!-- 기구 관리 정보창 -->
+				<section class="panel" style="margin-bottom: 0px;">
 
 						<!-- Modal Form -->
-						<div id="modalForm3" class="modal-block modal-block-primary mfp-hide">
+						<div id="modalForm5" class="modal-block modal-block-primary mfp-hide">
 							<section class="panel">
 								<header class="panel-heading">
-									<h1 class="panel-title">락커 이동</h1>
+									<h1 class="panel-title">락커기구 정보창</h1>
 								</header>
 								<div class="panel-body">
-									<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
+									<form id="demo-form-Locker" class="form-horizontal mb-lg-machineList18" novalidate="novalidate" method="post" action="enroll.hlc" enctype="multipart/form-data">
 										
 										<hr>
-										<div class="Machine">
 											<div class="form-group">
-												<label class="col-sm-3 control-label">이동할 락커룸</label>
+												<label class="col-sm-3 control-label">락커번호</label>
 												<div class="col-sm-9">
-													<select >
-														<option value="">공용락커</option>
-														<option value="">남자</option>
-														<option value="">여자</option>
-													</select>
+													<input type="text"  id="lockerPosNo" class="form-control"  placeholder="" readonly />
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-3 control-label">이동할 락커룸</label>
+												<label class="col-sm-3 control-label">락커 타입</label>
 												<div class="col-sm-9">
-													<input type="number" name="Quantity" class="form-control"  />번 락커로 이동
+													<input type="text"  id="lockerPosType" class="form-control"  placeholder="" readonly />
 												</div>
 											</div>
-									
+											<div class="form-group">
+												<label class="col-sm-3 control-label">락커 상태</label>
+												<div class="col-sm-9">
+													<input type="text"  id="lockerPosStatus" class="form-control"  placeholder="" readonly />
+												</div>
+											</div>
+											<input type="hidden"  id="lockerPosNo" name="lockerPosNo">
+											<input type="hidden"  id="lockerPosType">
+											<input type="hidden"  id="lockerPosStatus">
+										<hr>
+										<div class="Machine">															
+											<div class="form-group">
+												<label class="col-sm-3 control-label">회원이름</label>
+												<div class="col-sm-9">
+													<input id="myInput" type="text" name="countries" class="form-control"  placeholder="" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-3 control-label">시작일</label>
+												<div class="col-sm-9">
+													<input id="mcName" type="date" name="lockerStartDate" class="form-control"  placeholder="" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-3 control-label">종류일</label>
+												<div class="col-sm-9">
+													<input id="mcName" type="date" name="lockerEndDate" class="form-control"  placeholder="" />
+												</div>
+											</div>
 										</div>
+										<br><br>
+										<footer class="panel-footer">
+											<div class="row">
+												<div class="col-md-12 text-right">
+													<button class="btn btn-primary modal-confirm" type="submit" onclick="send2()"; >수정</button>
+													<button class="btn btn-default modal-dismiss">취소</button>
+												</div>
+											</div>
+										</footer>
 									</form>
 								</div>
-								<footer class="panel-footer">
-									<div class="row">
-										<div class="col-md-12 text-right">
-											<button class="btn btn-primary modal-confirm">완료</button>
-											<button class="btn btn-default modal-dismiss">취소</button>
-										</div>
-									</div>
-								</footer>
 							</section>
-						</div>
-
+						</div>				
 				</section>
 		
 		<!-- 오른쪽 사이드 바 -->
@@ -435,8 +481,32 @@
 	function send1(){
 		document.getElementById("demo-form-update").submit();
 	}
+	function send2(){
+		document.getElementById("demo-form-Locker").submit();
+	}
 	</script>
-	
+	<script>
+	 function selectLk(){
+	    	var value1 = lockerPosNo;
+
+			    	$.ajax({
+			    		url:"selectlk.hlo",
+			    		data:{lpno:value1},
+			    		type:"post",
+			    		success:function(lp){
+			    			
+			    			var value = "";
+			    				$("#lockerPosNo").val(lp.lockerPosNo);
+			    				$("#lockerPosType").val(lp.lockerPosType);	
+			    				$("#lockerPosStatus").val(lp.lockerPosStatus);
+			    			
+			    		},
+			    		error:function(){
+			    			console.log("머신 상세정보 통신실패");
+			    		}
+			    	});
+	    }
+	</script>
 	<script>
 	  function deletemcm(){
 	    	location.href="delete.hlo?lpno="+lockerPosNo;
@@ -461,6 +531,7 @@
 	        lockerPosNo = a.value;
 	    }
 	</script>
+	
 	<!-- 공통으로 사용하는 JSP -->
 	<jsp:include page="../common/footerjs.jsp" />
 	<!-- 현재 페이지에서만 사용하는 JSP -->

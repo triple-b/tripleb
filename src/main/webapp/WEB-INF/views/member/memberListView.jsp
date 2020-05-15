@@ -575,7 +575,7 @@
 							<footer class="panel-footer">
 								<div class="row">
 									<div class="col-md-12 text-right">
-										<button type="submit" class="btn btn-primary">일시정지</button>
+										<button type="submit" class="btn btn-primary">해제</button>
 										<button class="btn btn-default modal-dismiss">취소</button>
 									</div>
 								</div>
@@ -647,7 +647,7 @@
 						<footer class="panel-footer">
 							<div class="row">
 								<div class="col-md-12 text-right">
-									<button type="submit" class="btn btn-primary">등록</button>
+									<button type="submit" class="btn btn-primary">해제</button>
 									<button class="btn btn-default modal-dismiss">취소</button>
 								</div>
 							</div>

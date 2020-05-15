@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.jh.tripleb.lockerPos.model.service.LockerPosService;
 import com.jh.tripleb.lockerPos.model.vo.LockerPos;
+import com.jh.tripleb.mcManagement.model.vo.McManagementDto;
 import com.jh.tripleb.notice.model.vo.Notice;
 
 @Controller
@@ -75,6 +78,18 @@ public class LockerPosController {
 			}
 							
 }
+	
+	@ResponseBody
+	@RequestMapping(value="selectlk.hlo", produces="application/json; charset=utf-8")
+	public String selectLocker(int lpno) {
+		
+		LockerPos lp = LpService.selectLocker(lpno);
+		
+		Gson gson = new Gson();
 
+		return  gson.toJson(lp);
+	}
+	
+	
 	
 }

@@ -16,4 +16,6 @@ public interface LockerPosService {
 
 	int updateLockerPos(String lockerPosType, int lockerPosQuantity);
 
+	LockerPos selectLocker(int lpno);
+
 }
