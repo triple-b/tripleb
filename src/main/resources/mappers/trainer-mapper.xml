@@ -11,7 +11,7 @@
 	<update id="updateTrainerProfile" parameterType="Trainer">
 		update trainer
 		set trainer_nick=#{trainerNick}, trainer_phone=#{trainerPhone}, trainer_email=#{trainerEmail}, 
-		    trainer_address=#{trainerAddress}, trainer_thumbnail=#{trainerThumbnail},
+		    trainer_address=#{trainerAddress}, trainer_thumbnail=#{trainerThumbnail}, trainer_grade=#{trainerGrade},
 		    trainer_award=#{trainerAward}
 		where trainer_no=#{trainerNo}
 	</update>

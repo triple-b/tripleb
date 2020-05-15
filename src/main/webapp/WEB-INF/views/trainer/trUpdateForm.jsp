@@ -90,6 +90,31 @@
 													</div>
 												</div>
 												<div class="form-group">
+													<label class="col-md-3 control-label" for="profileGrade">직급</label>
+													<div class="col-md-8">
+														<label class="form-control" id="profileGrade">
+														<input type="hidden" id="profileGrade" name="trainerGrade" value="${t.trainerGrade }"/>
+															<c:choose>
+																<c:when test="${ t.trainerGrade eq 'B'}">
+																	사원
+																</c:when>
+																<c:when test="${ t.trainerGrade eq 'E'}">
+																	팀장
+																</c:when>
+																<c:otherwise>
+																	관장
+																</c:otherwise>
+															</c:choose>
+														</label>
+														<select name="trainerGrade" id="gradeVal">
+															<option value="B">사원</option>
+															<option value="E">팀장</option>
+															<option value="M">관장</option>
+														</select>
+														<button type="button" style="margin-left:2%; border:0px; background:none" onclick="changeGrade(${ t.trainerNo })">변경</button>
+													</div>
+												</div>
+												<div class="form-group">
 													<label class="col-md-3 control-label" for="profileBirth">생년월일</label>
 													<div class="col-md-8">
 														<p id="profileBirth" style="margin:0px; padding-top:7px">
@@ -235,7 +260,44 @@
 	</section>
 	
 	
-
+	<!-- 직급변경 -->
+	<script>
+		var changeGrade = function(rowkey){
+			var trainerNo = rowkey;
+			
+			console.log(trainerNo);
+			trainerGrade = $("#gradeVal option:selected").attr('value');
+			console.log(trainerGrade);
+			
+			$.ajax({
+				url:"updateGrade.utr",
+				data:{trainerNo:trainerNo,
+					  trainerGrade:trainerGrade},
+				type:"post",
+				success:function(t){
+					var value = "";
+					
+					if(t.trainerGrade == 'B'){
+						$("#profileGrade").val(t.trainerGrade);
+						console.log($("#profileGrade").val(t.trainerGrade))
+						$("#profileGrade").text('사원');
+					}else if(t.trainerGrade == 'E'){
+						$("#profileGrade").val(t.trainerGrade);
+						console.log($("#profileGrade").val(t.trainerGrade))
+						$("#profileGrade").text('팀장');
+					}else{
+						$("#profileGrade").val(t.trainerGrade);
+						console.log($("#profileGrade").val(t.trainerGrade))
+						$("#profileGrade").text('관장');
+					}
+				},
+				error:function(){
+					console.log("직급변경 실패");
+				}
+			});
+		}
+	</script>
+	
 	<!-- 공통으로 사용하는 JSP -->
 	<jsp:include page="../common/footerjs.jsp" />
 	<!-- 현재 페이지에서만 사용하는 JSP -->	

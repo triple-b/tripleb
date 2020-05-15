@@ -282,7 +282,7 @@ public class TrainerController {
 	public ModelAndView trUpdateForm(int trainerNo, ModelAndView mv) {
 		
 		Trainer t = tService.selectTr(trainerNo);
-		
+
 		mv.addObject("t", t).setViewName("trainer/trUpdateForm");
 		
 		return mv;
@@ -297,7 +297,7 @@ public class TrainerController {
 			String changeName = saveFile(file, request); // 실제로 업로드된 파일명
 			t.setTrainerThumbnail(changeName);
 		}
-		
+		System.out.println(t);
 		t.setTrainerAddress(t.getTrainerAddress() + " " + detailAddress);
 		
 		int result = tService.updateTrainerProfile(t);
@@ -313,6 +313,16 @@ public class TrainerController {
 			return "common/errorPage";
 		}
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="updateGrade.utr", produces="application/json; charset=utf-8;")
+	public Trainer updateGradere(int trainerNo, String trainerGrade) {
+		Trainer t = tService.selectTr(trainerNo);
+		
+		t.setTrainerGrade(trainerGrade);
+		
+		return t;
 	}
 	
 	// 파일명 수정 메소드
