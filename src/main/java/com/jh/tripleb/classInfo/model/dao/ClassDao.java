@@ -17,8 +17,12 @@ public class ClassDao {
 		return sqlSession.selectOne("classMapper.getListCount");
 	}
 	
+	public ArrayList<ClassInfo> selectList(SqlSessionTemplate sqlSession, int trainerNo){
+		return (ArrayList)sqlSession.selectList("classMapper.selectList", trainerNo);
+	}
+	
 	public ArrayList<ClassInfo> selectList(SqlSessionTemplate sqlSession){
-		return (ArrayList)sqlSession.selectList("classMapper.selectList", null);
+		return (ArrayList)sqlSession.selectList("classMapper.selectListAll");
 	}
 	
 	public int insertClass(SqlSessionTemplate sqlSession, ClassInfo cl) {

@@ -44,10 +44,14 @@
 							<button class="modal-with-form btn btn-default" style="float:right;" href="#modalFormD">삭제</button>
 							<button id="addBtn" class="modal-with-form btn btn-default" style="float:right; margin-right: 1%; background:#0088cc; color:white; border:1px solid #0088cc;" href="#modalFormA">수업등록</button>
 							<a class="btn btn-default" style="float:right; margin-right: 1%; background:#e36159; color:white; border:1px solid #e36159;" href="approveList.jcl">결재목록</a>
+							<a class="btn btn-default" style="float:left; background:#f6f6f6; color:black; border:0px;" href="AllClassList.jcl">All Class</a>
+							<a class="btn btn-default" style="float:left; background:#f6f6f6; color:black; border:0px;" disabled>|</a>
+							<a class="btn btn-default" style="float:left; margin-right: 1%; background:#f6f6f6; color:black; border:0px;" href="myClassList.jcl">My Class</a>
 						</div>
 					</header>
 					
                     <div class="col-md-6 col-lg-12 col-xl-6" style="margin-top: 1%;">
+                    	<input type="hidden" id="trainerNo" name="trainerNo" value="${ loginUser.trainerNo }">
                         <div class="row">
                         	<c:forEach items="${ list }" var="cl">
 	                            <div class="col-md-12 col-lg-6 col-xl-6">
@@ -383,11 +387,18 @@
 					type:"post",
 					success:function(list){
 						console.log(list);
-						var value2 = '<tr style="border-bottom: 1px solid lightgray;">' +
-										  '<th width="70px">이름</th>' +
-										  '<th width="70px;">나이</th>' +
-										  '<th width="150px;">휴대폰</th>' +
-									  '</tr>' ;
+						if(list == ""){
+							var value2 = '<tr>' + 
+											'<td>등록된 회원이 없습니다.</td>' +
+										 '</tr>';
+						}else{
+							var value2 = '<tr style="border-bottom: 1px solid lightgray;">' +
+											  '<th width="70px">이름</th>' +
+											  '<th width="70px;">나이</th>' +
+											  '<th width="150px;">휴대폰</th>' +
+										  '</tr>' ;
+						}
+						
 						
 						for(var i in list){
 							

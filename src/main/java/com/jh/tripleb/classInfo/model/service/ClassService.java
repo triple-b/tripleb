@@ -11,6 +11,8 @@ public interface ClassService {
 
 	int getListCount();
 	
+	ArrayList<ClassInfo> selectList(int trainerNo);
+	
 	ArrayList<ClassInfo> selectList();
 	
 	int insertClass(ClassInfo cl);

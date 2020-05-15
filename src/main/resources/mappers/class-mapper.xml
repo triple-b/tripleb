@@ -13,6 +13,14 @@
 		select class_no, class_count, class_stdate, class_enddate, class_status, trainer_no, product_no, class_name, times, class_maxcount, class_content, weekday, trainer_name
 		from classInfo
 		join trainer using(trainer_no)
+		where trainer_no=#{trainerNo} and class_status='Y' and class_enddate > sysdate
+		order by class_no desc
+	</select>
+	
+	<select id="selectListAll" resultType="ClassInfo">
+		select class_no, class_count, class_stdate, class_enddate, class_status, trainer_no, product_no, class_name, times, class_maxcount, class_content, weekday, trainer_name
+		from classInfo
+		join trainer using(trainer_no)
 		where class_status='Y' and class_enddate > sysdate
 		order by class_no desc
 	</select>

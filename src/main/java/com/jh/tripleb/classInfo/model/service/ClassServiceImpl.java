@@ -27,6 +27,11 @@ public class ClassServiceImpl implements ClassService{
 	}
 
 	@Override
+	public ArrayList<ClassInfo> selectList(int trainerNo) {
+		return cDao.selectList(sqlSession, trainerNo);
+	}
+	
+	@Override
 	public ArrayList<ClassInfo> selectList() {
 		return cDao.selectList(sqlSession);
 	}
