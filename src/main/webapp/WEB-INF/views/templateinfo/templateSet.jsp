@@ -207,8 +207,8 @@
 						<div class="col-lg-4">
 							<div class="plan" style="height:620px;">
 								<h3>Price List<span><strong id="totalprice" class="item-price">0</strong>원<a style="font-size:12px"> (월사용료)</a></span></h3>				
-								<a class="btn btn-primary" class="item-btn" href="javascript:window.open('http://localhost:8888/tripleb/preview.mpv','new')">미리보기</a>
-								<a class="modal-with-form btn btn-primary" class="item-btn" href="#modalForm_Purchase">구매하기</a>
+								<a class="btn btn-lg btn-primary" class="item-btn" href="javascript:window.open('${ pageContext.servletContext.contextPath }/preview.mpv','new')">미리보기</a>
+								<button class="btn btn-lg btn-primary" class="item-btn" id="itemPurchase">구매하기</button>
 								<ul>
 									<c:forEach items="${ list }" var="i">			
 										<li class="item-price">${ i.templateItemName } : <strong id="item${ i.templateItemNo }">0</strong>원</li>

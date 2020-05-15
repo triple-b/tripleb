@@ -18,6 +18,10 @@ public class TrainerDao {
 		return sqlSession.update("trainerMapper.updateTrainerProfile", t);
 	}
 	
+	public int updateTrainer(SqlSessionTemplate sqlSession, Trainer t) {
+		return sqlSession.update("trainerMapper.updateTrainer", t);
+	}
+	
 	public ArrayList<Trainer> listTrainer(SqlSessionTemplate sqlSession){
 		return (ArrayList)sqlSession.selectList("trainerMapper.listTrainer");
 	}
@@ -36,5 +40,49 @@ public class TrainerDao {
 	
 	public int changePwd(SqlSessionTemplate sqlSession, Trainer t) {
 		return sqlSession.update("trainerMapper.changePwd",t);
+	}
+	
+	public ArrayList<Trainer> selectList(SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("trainerMapper.selectList");
+	}
+	
+	public Trainer trDetail(SqlSessionTemplate sqlSession, int trainerNo) {
+		return sqlSession.selectOne("trainerMapper.trDetail", trainerNo);
+	}
+	
+	public int insertTr(SqlSessionTemplate sqlSession, Trainer t) {
+		return sqlSession.insert("trainerMapper.insertTr", t);
+	}
+	
+	public int pwdCheck(SqlSessionTemplate sqlSession, String trainerPwd2) {
+		return sqlSession.selectOne("trainerMapper.pwdCheck", trainerPwd2);
+	}
+	
+	public ArrayList<Trainer> expertList(SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("trainerMapper.expertList");
+	}
+	
+	public ArrayList<Trainer> beginnerList(SqlSessionTemplate sqlSession){
+		return (ArrayList)sqlSession.selectList("trainerMapper.beginnerList");
+	}
+	
+	public int deleteTr(SqlSessionTemplate sqlSession, int checkArr) {
+		return sqlSession.update("trainerMapper.deleteTr", checkArr);
+	}
+	
+	public int trEndDate(SqlSessionTemplate sqlSession, int checkArr) {
+		return sqlSession.update("trainerMapper.trEndDate", checkArr);
+	}
+	
+	public Trainer selectTr(SqlSessionTemplate sqlSession, int trainerNo) {
+		return sqlSession.selectOne("trainerMapper.selectTr", trainerNo);
+	}
+	
+	public int updateECheck(SqlSessionTemplate sqlSession, Trainer t) {
+		return sqlSession.update("trainerMapper.updateECheck", t);
+	}
+	
+	public int updateSCheck(SqlSessionTemplate sqlSession, Trainer t) {
+		return sqlSession.update("trainerMapper.updateSCheck", t);
 	}
 }

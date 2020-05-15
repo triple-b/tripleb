@@ -575,7 +575,7 @@
 							<footer class="panel-footer">
 								<div class="row">
 									<div class="col-md-12 text-right">
-										<button type="submit" class="btn btn-primary">일시정지</button>
+										<button type="submit" class="btn btn-primary">해제</button>
 										<button class="btn btn-default modal-dismiss">취소</button>
 									</div>
 								</div>
@@ -647,7 +647,7 @@
 						<footer class="panel-footer">
 							<div class="row">
 								<div class="col-md-12 text-right">
-									<button type="submit" class="btn btn-primary">등록</button>
+									<button type="submit" class="btn btn-primary">해제</button>
 									<button class="btn btn-default modal-dismiss">취소</button>
 								</div>
 							</div>
@@ -693,10 +693,10 @@
 									<div class="form-group">
 											<label class="col-sm-3 control-label">생년월일 <span class="required">*</span></label>
 											<div class="col-sm-2">
-												<input type="text" name="memberYear" class="form-control" placeholder="년(두글자)" required/>
+												<input type="text" name="memberYear" id="memberYear" class="form-control" placeholder="년(두글자)" required/>
 											</div>
 											<div class="col-sm-2">
-												<select name="memberMonth" class="form-control mb-md">
+												<select name="memberMonth" id="memberMonth" class="form-control mb-md">
 													<option value="01">01</option>
 													<option value="02">02</option>
 													<option value="03">03</option>
@@ -712,7 +712,7 @@
 												</select>
 											</div>
 											<div class="col-sm-2">
-												<input type="text" name="memberDay" class="form-control" placeholder="07" required/>
+												<input type="text" name="memberDay" id="memberDay" class="form-control" placeholder="07" required/>
 											</div>
 										</div>
 									

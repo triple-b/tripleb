@@ -55,11 +55,11 @@
 											<span class="name">${ ot.trainerName } 트레이너 (${ ot.trainerGrade })</span>
 											<span class="title">ON : 
 												<c:choose>
-													<c:when test="${ ot.trainerEcheck eq ot.trainerScheck }">
+													<c:when test="${ ot.trainerEcheck ne ot.trainerScheck }">
 														${ ot.trainerScheck }
 													</c:when>
 													<c:otherwise>
-														--
+														${ ot.trainerScheck }
 													</c:otherwise>
 												</c:choose>
 											

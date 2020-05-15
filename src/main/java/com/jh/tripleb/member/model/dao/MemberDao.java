@@ -63,5 +63,9 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.pauseCancelMember", mto);
 	}
 	
+	public int pauseCanceladdDate(SqlSessionTemplate sqlSession, MemberDtoU mto) {
+		return sqlSession.update("memberMapper.pauseCanceladdDate", mto);
+	}
+	
 
 }

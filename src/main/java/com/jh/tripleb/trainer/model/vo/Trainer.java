@@ -20,7 +20,7 @@ public class Trainer {
 	private String trainerNick;		// 닉네임
 	private int trainerBirth;		// 트레이너 생년월일
 	private String trainerGender;	// 트레이너 성별
-	private String trainerPhone;		// 트레이너 핸드폰
+	private String trainerPhone;	// 트레이너 핸드폰
 	private String trainerEmail;	// 트레이너 이메일
 	private String trainerAddress;	// 트레이너 주소
 	private String trainerStatus;	// 트레이너 상태 (Y:유지 N:퇴사)
@@ -31,5 +31,7 @@ public class Trainer {
 	private Date trainerScheck;		// 출근시간
 	private Date trainerEcheck;		// 퇴근시간
 	private String trainerThumbnail;	// 트레이너 사진
+	
+	private String changeName;
 
 }

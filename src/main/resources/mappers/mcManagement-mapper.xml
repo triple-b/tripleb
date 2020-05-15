@@ -49,10 +49,16 @@
 		set mc_name=#{mcName},
      		mc_explain=#{mcExplain},
     		thumbnail=#{thumbnail},
-    		thumb_change=#{thumbChange},
-			where mc_no = (select mc_no
-               			   from mc_management
-               			   where machine_no = #{machineNo})
+    		thumb_change=#{thumbChange}
+		where mc_no = (select mc_no
+               			 from mc_management
+               			where machine_no = #{machineNo})
   	</update>
   	
+  	
+  	<update id="troubleMcManagement" parameterType="_int" >
+  		update mc_management
+  		set machine_del='N'
+  		where machine_no=#{mano}
+  	</update>
   </mapper>

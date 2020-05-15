@@ -26,6 +26,10 @@ public class TrainerServiceImpl implements TrainerService{
 	public int updateTrainerProfile(Trainer t) {
 		return tDao.updateTrainerProfile(sqlSession, t);
 	}
+	@Override
+	public int updateTrainer(Trainer t) {
+		return tDao.updateTrainer(sqlSession, t);
+	}
 
 	@Override
 	public ArrayList<Trainer> listTrainer() {
@@ -47,6 +51,59 @@ public class TrainerServiceImpl implements TrainerService{
 		return tDao.changePwd(sqlSession, t);
 	}
 
+	@Override
+	public ArrayList<Trainer> selectList() {
+		return tDao.selectList(sqlSession);
+	}
 
+	@Override
+	public Trainer trDetail(int trainerNo) {
+		return tDao.trDetail(sqlSession, trainerNo);
+	}
+
+	@Override
+	public int insertTr(Trainer t) {
+		return tDao.insertTr(sqlSession, t);
+	}
+
+	@Override
+	public int pwdCheck(String trainerPwd2) {
+		return tDao.pwdCheck(sqlSession, trainerPwd2);
+	}
+
+	@Override
+	public ArrayList<Trainer> expertList() {
+		return tDao.expertList(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Trainer> beginnerList() {
+		return tDao.beginnerList(sqlSession);
+	}
+
+	@Override
+	public int deleteTr(int checkArr) {
+		return tDao.deleteTr(sqlSession, checkArr);
+	}
+
+	@Override
+	public int trEndDate(int checkArr) {
+		return tDao.trEndDate(sqlSession, checkArr);
+	}
+
+	@Override
+	public Trainer selectTr(int trainerNo) {
+		return tDao.selectTr(sqlSession, trainerNo);
+	}
+
+	@Override
+	public int updateECheck(Trainer t) {
+		return tDao.updateECheck(sqlSession, t);
+	}
+
+	@Override
+	public int updateSCheck(Trainer t) {
+		return tDao.updateSCheck(sqlSession, t);
+	}
 
 }

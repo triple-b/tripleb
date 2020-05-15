@@ -33,7 +33,7 @@ public class MemberDtoU {
 	private String memberTrainer;		// 담당 트레이너
 	private String memberBirth;			// 회원 생년월일
 	private Date pauseStart;			// 일시정지 시작일
-	private Date pauseEnd;			// 일시정지 종료일
+	private Date pauseEnd;				// 일시정지 종료일
 	private String productName;			// 회원 보유 상품명
 	private Date memProductStart;		// 회원권 시작일
 	private Date memProductEnd;			// 회원권 종료일

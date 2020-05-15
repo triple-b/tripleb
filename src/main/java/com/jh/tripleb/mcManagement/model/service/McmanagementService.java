@@ -15,20 +15,18 @@ public interface McmanagementService {
 	//2. 기구관리 리스트 조회 서비스
 	ArrayList<McManagement> selectList();
 	
-	
-	
-	//4.기구 관리 삭제
+	//3.기구 관리 삭제
 	int deleteMcManagement(int mano);
 	
-	//5.기구관리 상세보기 조회 서비스
+	//4.기구관리 상세보기 조회 서비스
 	McManagementDto selectMcManagement(int mano);
 	
-	//6.기구관리 고장 처리
-	int delMcManagement(int mano);
-	
-	//시설점검 리스트 ajax
+	//5.시설점검 리스트 ajax
 	ArrayList<McManagement> selectList2();
 	
-	//기구 관리 수정
+	//6.기구 관리 수정
 	int updateMachine(McManagementDto m);
+	
+	//7.기구 관리 고장
+	int troubleMcManagement(int mano);
 }

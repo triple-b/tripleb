@@ -11,6 +11,14 @@
 	<update id="updateTrainerProfile" parameterType="Trainer">
 		update trainer
 		set trainer_nick=#{trainerNick}, trainer_phone=#{trainerPhone}, trainer_email=#{trainerEmail}, 
+		    trainer_address=#{trainerAddress}, trainer_thumbnail=#{trainerThumbnail}, trainer_grade=#{trainerGrade},
+		    trainer_award=#{trainerAward}
+		where trainer_no=#{trainerNo}
+	</update>
+	
+	<update id="updateTrainer" parameterType="Trainer">
+		update trainer
+		set trainer_nick=#{trainerNick}, trainer_phone=#{trainerPhone}, trainer_email=#{trainerEmail}, 
 		    trainer_address=#{trainerAddress}, trainer_thumbnail=#{trainerThumbnail},
 		    trainer_award=#{trainerAward}
 		where trainer_no=#{trainerNo}
@@ -38,6 +46,70 @@
   		SET TRAINER_PWD=#{trainerPwd}
   		WHERE TRAINER_NO=#{trainerNo}
   	</update>
+  	
+  	<select id="selectList" resultType="Trainer">
+  		select trainer_no, trainer_thumbnail, trainer_Name, trainer_grade
+  		from trainer
+  		where trainer_status='Y'
+  	</select>
   
+  	<select id="trDetail" resultType="Trainer">
+  		select trainer_no, trainer_name, trainer_address, trainer_email, trainer_join, trainer_award, trainer_birth
+  		from trainer
+  		where trainer_no = #{trainerNo}
+  	</select>
+  	
+  	<select id="pwdCheck" resultType="_int">
+  		select count(*)
+  		from trainer
+  		where trainer_pwd=#{trainerPwd}
+  	</select>
+  	
+  	<insert id="insertTr" parameterType="Trainer">
+  		insert into trainer
+  		values(seq_trno.nextval, #{trainerName}, #{trainerPwd}, default, #{trainerBirth}, #{trainerGender}, #{trainerPhone}, #{trainerEmail}, #{trainerAddress}, 'Y', 'B', #{trainerAward}, sysdate, default, default, default, #{trainerThumbnail})
+  	</insert>
+  	
+  	<select id="expertList" resultType="Trainer">
+  		select trainer_no, trainer_thumbnail, trainer_Name, trainer_grade
+  		from trainer
+  		where trainer_status='Y' and trainer_grade='E'
+  	</select>
+  	
+  	<select id="beginnerList" resultType="Trainer">
+  		select trainer_no, trainer_thumbnail, trainer_Name, trainer_grade
+  		from trainer
+  		where trainer_status='Y' and trainer_grade='B'
+  	</select>
+  	
+  	<update id="deleteTr" parameterType="Trainer">
+  		update Trainer
+  		set trainer_status = 'N'
+  		where trainer_no=#{trainerNo}
+  	</update>
+  	
+  	<update id="trEndDate" parameterType="Trainer">
+  		update Trainer
+  		set trainer_end = sysdate
+  		where trainer_no=#{trainerNo}
+  	</update>
+  	
+  	<select id="selectTr" resultType="Trainer">
+  		select *
+  		from trainer
+  		where trainer_no=#{trainerNo}
+  	</select>
+  	
+  	<update id="updateECheck" parameterType="Trainer">
+  		UPDATE TRAINER
+  		SET TRAINER_ECHECK = SYSDATE
+  		WHERE TRAINER_NO = #{trainerNo}
+  	</update>
+  	<update id="updateSCheck" parameterType="Trainer">
+  		UPDATE TRAINER
+  		SET TRAINER_SCHECK = SYSDATE
+  		WHERE TRAINER_NO = #{trainerNo}
+  	</update>
+  	
   </mapper>
 

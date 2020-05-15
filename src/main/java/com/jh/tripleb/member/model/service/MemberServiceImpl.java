@@ -87,6 +87,11 @@ public class MemberServiceImpl implements MemberService {
 	public int pauseCancelMember(MemberDtoU mto) {
 		return mDao.pauseCancelMember(sqlSession, mto);
 	}
+
+	@Override
+	public int pauseCanceladdDate(MemberDtoU mto) {
+		return mDao.pauseCanceladdDate(sqlSession, mto);
+	}
 	
 	
 

@@ -40,6 +40,9 @@
       	<typeAlias type="com.jh.tripleb.appVaca.model.vo.AppVaca" alias="AppVaca"/>
       	<typeAlias type="com.jh.tripleb.mcCheck.model.vo.McCheck" alias="McCheck"/>
       	<typeAlias type="com.jh.tripleb.mcAllCheck.model.vo.mcAllDto" alias="mcAllDto"/>
+      	<typeAlias type="com.jh.tripleb.lockerPos.model.vo.LockerPos" alias="LockerPos"/>
+      	<typeAlias type="com.jh.tripleb.lockerPos.model.vo.LockerPosDto" alias="LockerPosDto"/>
+      	<typeAlias type="com.jh.tripleb.locker.model.vo.Locker" alias="Locker"/>
       	<typeAlias type="com.jh.tripleb.sales.model.vo.SalesDto" alias="SalesDto"/> 
       	<typeAlias type="com.jh.tripleb.sales.model.vo.SalesSearchDto" alias="SalesSearchDto"/>       	
 	</typeAliases>
@@ -66,6 +69,8 @@
 	      <mapper resource="mappers/vacation-mapper.xml"/>
 	      <mapper resource="mappers/appVaca-mapper.xml"/>
 	      <mapper resource="mappers/mcCheck-mapper.xml"/>
+	      <mapper resource="mappers/lockerPos-mapper.xml"/>
+	      <mapper resource="mappers/locker-mapper.xml"/>
 	      <mapper resource="mappers/sales-mapper.xml"/>
 	</mappers>
 	

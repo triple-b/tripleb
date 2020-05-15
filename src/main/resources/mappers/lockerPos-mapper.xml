@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+  <mapper namespace="lockerPosMapper">
+  
+  <resultMap type="LockerPos" id="lockerPosResultSet">
+  		<id property="lockerPosNo" column="lockerPos_No"/>
+	  	<result property="lockerPosType" column="lockerPos_Type"/>
+	  	<result property="lockerPosStatus" column="lockerPos_Status"/>
+	  	<result property="lockerPosDelet" column="lockerPos_Delet"/>
+  </resultMap>
+  
+  <insert id="insertLockerPos" parameterType="LockerPos">
+	  	insert into LOCKERPOS
+	  	values(seq_LKPNO.nextval,#{lockerPosType}, 'Y', default)
+  </insert>
+  
+  <select id="selectList" resultMap="lockerPosResultSet">
+  		  	select *
+  			from LOCKERPOS 
+  			where LOCKERPOS_STATUS='Y'
+  			ORDER BY 1 asc
+  </select>
+  
+  <update id="deleteLockerPos" parameterType="_int">
+  		update LOCKERPOS
+  		set LOCKERPOS_STATUS='N'
+  		where lockerPos_No=#{lpno}
+  </update>
+  
+  <select id="selectLocker" parameterType="_int" resultMap="lockerPosResultSet">
+  		select *
+  		from LOCKERPOS
+ 		where lockerPos_No=#{lpno} and LOCKERPOS_STATUS='Y'
+  </select>
+  
+
+  
+  </mapper>

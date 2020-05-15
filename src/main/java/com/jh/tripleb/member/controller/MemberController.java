@@ -27,7 +27,7 @@ public class MemberController {
 	@Autowired
 	private MemberService mService;
 	
-	// 주희 임시 수정
+	
 	@RequestMapping("list.ume")
 	public ModelAndView selectListMember(ModelAndView mv) {
 		
@@ -45,12 +45,16 @@ public class MemberController {
 		
 		if(list != null) { // 조회 성공
 			mv.addObject("list", list).addObject("plist", plist).addObject("elist", elist).addObject("blist", blist).setViewName("member/memberListView");
+			
 			for(MemberDtoU p : plist) {
 				
-				int compare = p.getPauseEnd().compareTo(yesterday);
-				
-				if(compare < 0) { // 일시정지 지난 회원
-					int result = mService.pauseLate(p.getMemberNo());
+				if(p.getPauseEnd() != null) { // 일시정지된 회원인 경우
+
+					int compare = p.getPauseEnd().compareTo(yesterday);
+					
+					if(compare < 0) { // 일시정지 지난 회원
+						int result = mService.pauseLate(p.getMemberNo());
+					}
 				}
 			}
 			
@@ -75,7 +79,7 @@ public class MemberController {
 	
 	@RequestMapping("update.ume")
 	public String updateMember(MemberDtoU mto, HttpServletRequest request, Model model,
-			int memberYear, int memberMonth, int memberDay, @RequestParam(value="uploadFile", required=false) MultipartFile file) {
+			String memberYear, String memberMonth, String memberDay, @RequestParam(value="uploadFile", required=false) MultipartFile file) {
 		
 		// 전달된 파일이 있는 경우
 		if(!file.getOriginalFilename().contentEquals("")) {
@@ -83,9 +87,9 @@ public class MemberController {
 			mto.setMemberImage(changeName);
 		}
 		
-		int memberBirth = memberYear + memberMonth + memberDay;
+		String memberBirth = memberYear + memberMonth + memberDay;
 		
-		mto.setMemberBirth(Integer.toString(memberBirth));
+		mto.setMemberBirth(memberBirth);
 		
 		int result = mService.updateMember(mto);
 		
@@ -186,7 +190,7 @@ public class MemberController {
 		if(result > 0) {
 			int result2 = mService.addDate(m);	// 상품권 종료일 증가
 				if(result2 > 0) {
-					return "redirect:list.ume";					
+					return "redirect:list.ume";
 				}
 				model.addAttribute("msg", "존재하는 상품권이 없습니다.");
 				return "common/errorPage";
@@ -200,15 +204,24 @@ public class MemberController {
 	@RequestMapping("pauseCancel.ume")
 	public String pauseCancelMember(MemberDtoU m, Model model) {
 		
-		int result = mService.pauseCancelMember(m);
+		MemberDtoU mem = mService.detailMember(m.getMemberNo()); // 상세정보 조회
+		
+		long sub = mem.getPauseEnd().getTime() - m.getPauseCancelDate().getTime(); // 날짜간 빼기
+		
+		int pauseDate = (int)sub / ( 24*60*60*1000); // 일시정지 변경되는 기간
+		
+		m.setPauseDate(pauseDate);
+
+		int result = mService.pauseCancelMember(m); // 회원 일시정지 상태 변경 서비스
+
 		
 		if(result > 0) {
+			int result2 = mService.pauseCanceladdDate(m);
 			return "redirect:list.ume";
 		}else {
 			model.addAttribute("msg", "일시정지 해제 할 수 없는 회원입니다.");
 			return "common/errorPage";
 		}
-		
 		
 	}
 	
