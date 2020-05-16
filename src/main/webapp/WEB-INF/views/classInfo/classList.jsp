@@ -25,6 +25,14 @@
         box-sizing: border-box;
         
     }
+    fieldset {
+		border-color: red;
+		border-width: 1px 0 0 0;
+		margin-left:-15%;
+	}
+	legend {
+		margin-left:1%;			
+	}
 </style>
 
 </head>
@@ -67,6 +75,13 @@
                     	<input type="hidden" id="trainerNo" name="trainerNo" value="${ loginUser.trainerNo }">
                         <div class="row">
                        		<table style="width:100%;">
+                       			<tr>
+                       				<td>
+                       					<fieldset>
+											<legend style="line-height: 3em;">주중 수업</legend>
+										</fieldset>
+                       				</td>
+                       			</tr>
                        			<tr style="width:100%;">
                        				<td>
 			                        	<c:forEach items="${ list }" var="cl">
@@ -131,6 +146,13 @@
 					                            </div>
 				                            </c:if>
 			                            </c:forEach>
+                       				</td>
+                       			</tr>
+                       			<tr>
+                       				<td>
+                       					<fieldset>
+											<legend style="line-height: 3em;">주말 수업</legend>
+										</fieldset>
                        				</td>
                        			</tr>
                        			<tr style="width:100%;">
@@ -203,7 +225,7 @@
                            </div>
                        </div>
                    </div>	
-			</div>
+			
 			<!-- end: page -->
 				
 				<!-- 등록 모달폼-->
