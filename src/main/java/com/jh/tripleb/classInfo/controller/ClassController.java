@@ -3,6 +3,7 @@ package com.jh.tripleb.classInfo.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jh.tripleb.approve.model.vo.Approve;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jh.tripleb.classInfo.model.service.ClassService;
 import com.jh.tripleb.classInfo.model.vo.ClassInfo;
+import com.jh.tripleb.member.model.vo.Member;
 import com.jh.tripleb.product.model.vo.Product;
+import com.jh.tripleb.trainer.model.vo.Trainer;
 
 @Controller
 public class ClassController {
@@ -23,6 +27,21 @@ public class ClassController {
 	private ClassService cService;
 	
 	@RequestMapping("classList.jcl")
+	public String selectClList(HttpSession session, Model model) {
+		int listCount = cService.getListCount();
+		
+		Trainer t = (Trainer) session.getAttribute("loginUser"); 
+		
+		int trainerNo = t.getTrainerNo();
+		
+		ArrayList<ClassInfo> list = cService.selectList(trainerNo);
+		
+		model.addAttribute("list", list);
+		
+		return "classInfo/classList";
+	}
+	
+	@RequestMapping("AllClassList.jcl")
 	public String selectClList(Model model) {
 		int listCount = cService.getListCount();
 		
@@ -31,6 +50,11 @@ public class ClassController {
 		model.addAttribute("list", list);
 		
 		return "classInfo/classList";
+	}
+	
+	@RequestMapping("myClassList.jcl")
+	public String selectMyList(HttpSession session) {
+		return "redirect:classList.jcl";
 	}
 	
 	@RequestMapping("insertClass.jcl")
@@ -83,9 +107,20 @@ public class ClassController {
 	
 	@ResponseBody
 	@RequestMapping(value="classDetail.jcl", produces = "application/json; charset=utf-8")
-	public ClassInfo clDetail(int classNo, HttpServletRequest request, Model model) {
+	public String clDetail(int classNo, HttpServletRequest request, Model model) {
 		ClassInfo c = cService.clDetail(classNo);
 		
-		return c;
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		
+		return gson.toJson(c);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="stuList.jcl", produces = "application/json; charset=utf-8")
+	public ArrayList<Member> stuList(int classNo, Model model){
+		ArrayList<Member> list = cService.stuList(classNo);
+		
+		model.addAttribute("list", list);
+		return list;
 	}
 }

@@ -49,8 +49,6 @@ public class InvoiceServiceImpl implements InvoiceService {
 	public int insertInvocie(Invoice i) {	
 		
 		// 구매항목 리스트 및 전체금액, 구매항목번호 리턴
-		System.out.println(i);
-		System.out.println(i.getInvoiceItemList());
 		String[] itemList  = i.getInvoiceItemList().split(",");
 		int totalPrice = 0;
 					
@@ -84,25 +82,15 @@ public class InvoiceServiceImpl implements InvoiceService {
 		
 		int cnt = iDao.selectInvoiceCount(sqlSession, fmt3.format(today)); 
 		int nxtcnt = cnt + 1;
-		System.out.println("cnt : " + cnt);
-		System.out.println("nxtcnt : " + nxtcnt);
 		
-		String str1 = "0000" + Integer.toString(nxtcnt);
-		System.out.println("str1 : " + str1);
+		String str1 = "0000" + Integer.toString(nxtcnt);	
 		String str2 = str1.substring(str1.length()-4, str1.length());		
-		System.out.println("str2 : " + str2);			
 		String invoiceNumber = fmt2.format(today) + str2;
-		System.out.println("invoiceNumber : " + invoiceNumber);	
-		
-		System.out.println("tname : " + tname);		
-		System.out.println("tname.toString : " + tname.toString());	
-		System.out.println("totalPrice : " + totalPrice);	
 				
 		i.setInvoiceNumber(invoiceNumber);
 		i.setInvoiceItemList(tname.toString());
 		i.setInvoiceTotalPrice(totalPrice);
-		
-		System.out.println(i);
+
 		
 		// 계약서 작성
 		int result1 = iDao.insertInvocie(sqlSession, i);				
@@ -112,16 +100,12 @@ public class InvoiceServiceImpl implements InvoiceService {
 			// 생성된 계약서 번호 조회
 			ArrayList<Invoice> nlist = iDao.selectListInvoice(sqlSession);
 			int ino = nlist.get(0).getInvoiceNo();	
-			System.out.println(("새롭게 생성된 계약서 번호 : " + ino));
-			// 구매정보 데이타 생성
-			System.out.println(tlist);
-			
+		
 			// 구매정보 데이타 생성시 계약번호와 구매항목 정보 저장
 			HashMap<String, Integer> paramNo = new HashMap<String, Integer>();
 			paramNo.put("ino", ino);
 
 			for(int n=0; n<tlist.size(); n++) {		
-				System.out.println("아이템 번호 : " + tlist.get(n));
 				paramNo.put("tno", tlist.get(n));			
 				int result2 = iDao.insertPurchase(sqlSession, paramNo);
 				if(result2 < 1) {
@@ -134,8 +118,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 		}else {
 			return result1;
-		}
-		
+		}		
 		
 	}
 	

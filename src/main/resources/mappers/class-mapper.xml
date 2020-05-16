@@ -13,6 +13,14 @@
 		select class_no, class_count, class_stdate, class_enddate, class_status, trainer_no, product_no, class_name, times, class_maxcount, class_content, weekday, trainer_name
 		from classInfo
 		join trainer using(trainer_no)
+		where trainer_no=#{trainerNo} and class_status='Y' and class_enddate > sysdate
+		order by class_no desc
+	</select>
+	
+	<select id="selectListAll" resultType="ClassInfo">
+		select class_no, class_count, class_stdate, class_enddate, class_status, trainer_no, product_no, class_name, times, class_maxcount, class_content, weekday, trainer_name
+		from classInfo
+		join trainer using(trainer_no)
 		where class_status='Y' and class_enddate > sysdate
 		order by class_no desc
 	</select>
@@ -53,5 +61,13 @@
 		from classInfo
 		join trainer using(trainer_no)
 		where class_no=#{classNo}
+	</select>
+	
+	<select id="stuList" resultType="Member">
+		select member_name, member_birth, member_phone, member_address
+		from member m
+		where m.member_no in(select s.member_no
+		                     from student s
+		                     where s.class_no = #{class_no})
 	</select>
 </mapper>

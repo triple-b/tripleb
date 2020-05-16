@@ -115,12 +115,12 @@
 							</a>
 							<ul class="nav nav-children">
 								<li>
-									<a href="saleslist.do">
+									<a href="javascript:salesList();">
 										 매출현황
 									</a>
 								</li>
 								<li>
-									<a href="saleschart.do">
+									<a href="saleschart.msl">
 										 매출통계
 									</a>
 								</li>
@@ -172,6 +172,31 @@
 			var trainerNo = rowkey;
 			
 			location.href="vacation.jva?trainerNo=" + trainerNo;
+		}
+		
+		var today = new Date();
+		var startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+		var endDate = new Date(today.getFullYear(), today.getMonth()+1, 0);
+						
+		function get_date_str(date) {	
+		    var sYear = date.getFullYear();
+		    var sMonth = date.getMonth() + 1;
+		    var sDate = date.getDate();
+		    return sYear + sMonth + sDate;
+		}
+		
+		function getFormatDate(date){
+		    var year = date.getFullYear();              //yyyy
+		    var month = (1 + date.getMonth());          //M
+		    month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+		    var day = date.getDate();                   //d
+		    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+		    return  year + '-' + month + '-' + day;
+		}
+		
+		
+		function salesList(){
+			location.href="list.msl?startDate=" + getFormatDate(startDate) + "&endDate=" + getFormatDate(endDate);			
 		}
 	</script>
 </body>

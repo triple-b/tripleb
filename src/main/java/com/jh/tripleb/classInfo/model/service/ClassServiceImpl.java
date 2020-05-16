@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.jh.tripleb.approve.model.vo.Approve;
 import com.jh.tripleb.classInfo.model.dao.ClassDao;
 import com.jh.tripleb.classInfo.model.vo.ClassInfo;
+import com.jh.tripleb.member.model.vo.Member;
 import com.jh.tripleb.product.model.vo.Product;
 
 @Service("cService")
@@ -25,6 +26,11 @@ public class ClassServiceImpl implements ClassService{
 		return cDao.getListCount(sqlSession);
 	}
 
+	@Override
+	public ArrayList<ClassInfo> selectList(int trainerNo) {
+		return cDao.selectList(sqlSession, trainerNo);
+	}
+	
 	@Override
 	public ArrayList<ClassInfo> selectList() {
 		return cDao.selectList(sqlSession);
@@ -63,6 +69,11 @@ public class ClassServiceImpl implements ClassService{
 	@Override
 	public ClassInfo clDetail(int classNo) {
 		return cDao.clDetail(sqlSession, classNo);
+	}
+
+	@Override
+	public ArrayList<Member> stuList(int classNo) {
+		return cDao.stuList(sqlSession, classNo);
 	}
 
 

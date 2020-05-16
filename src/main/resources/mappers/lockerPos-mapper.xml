@@ -12,28 +12,73 @@
   
   <insert id="insertLockerPos" parameterType="LockerPos">
 	  	insert into LOCKERPOS
-	  	values(seq_LKPNO.nextval,#{lockerPosType}, 'Y', default)
+	  	values(seq_LKPNO.nextval,#{lockerPosType}, 'X', default)
   </insert>
   
   <select id="selectList" resultMap="lockerPosResultSet">
   		  	select *
   			from LOCKERPOS 
-  			where LOCKERPOS_STATUS='Y'
+  			where LOCKERPOS_Delet='Y'
   			ORDER BY 1 asc
   </select>
   
   <update id="deleteLockerPos" parameterType="_int">
   		update LOCKERPOS
-  		set LOCKERPOS_STATUS='N'
+  		set LOCKERPOS_Delet='N'
   		where lockerPos_No=#{lpno}
   </update>
   
-  <select id="selectLocker" parameterType="_int" resultMap="lockerPosResultSet">
-  		select *
-  		from LOCKERPOS
- 		where lockerPos_No=#{lpno} and LOCKERPOS_STATUS='Y'
+  <select id="DetailLocker" parameterType="_int" resultType="LockerPosDto">
+  		select LOCKERPOS_NO,LOCKERPOS_TYPE,LOCKERPOS_STATUS,LOCKER_NO,LOCKER_STARTDATE,LOCKER_ENDDATE,MEMBER_NAME
+		from LOCKERPOS 
+		left join locker using(lockerpos_no)
+		left join member using(member_no)
+		where LOCKERPOS_NO=#{lpno}
   </select>
   
-
-  
+<select id="selectnList" resultType="LockerDtou">
+  		select lockerPos_No,lockerPos_Type
+		from LOCKERPOS 
+		left join locker using(lockerpos_no)
+		left join member using(member_no)
+		where  member_name is null and LOCKERPOS_Delet='Y'
+		ORDER BY 1 asc
+  	</select>
+ 
+	 <select id="selectmList" resultType="Member">
+	 	select member_no, member_name
+		from member
+		where  Member_LockerNo is null
+	 </select>
+ 
+ 	 <select id="selectLList" resultType="LockerDtou">
+ 		select Locker_registdate, member_name, locker_Status, LockerPos_No
+		from Locker
+		join member using(member_no)
+		where LOCKER_STATUS='Y'
+ 	</select>
+ 	
+ 	<select id="selectCategory" resultType="LockerPos">
+ 		select *
+ 		from lockerPos
+ 		where lockerPos_delet='Y' and lockerPos_Type='M'
+ 	</select>
+ 	
+ 		<select id="selectFCategory" resultType="LockerPos">
+ 		select *
+ 		from lockerPos
+ 		where lockerPos_delet='Y' and lockerPos_Type='F'
+ 	</select>
+ 	
+ 	<update id="updateLockerPos" parameterType="_int" >
+ 		update LOCKERPOS
+  		set LOCKERPOS_STATUS='Y'
+  		where lockerPos_No=#{lpno};
+ 	</update>
+ 	
+ 	 <update id="troubleLocker" parameterType="_int">
+  		update LOCKERPOS
+  		set LOCKERPOS_STATUS='N'
+  		where lockerPos_No=#{lpno}
+  	</update>
   </mapper>

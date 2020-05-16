@@ -11,7 +11,7 @@
 			padding: 2px; 
 		}
 		.item-btn {
-			margin:10px 0 0 0; 
+			margin:15px 0 0 0; 
 			padding-top: 0px;
 			padding-bottom: 5px;
 			border-top-width: 5px;			
@@ -227,12 +227,62 @@
 		<!-- 오른쪽 사이드 바 -->
 		<jsp:include page="../common/sidebarRight.jsp" />		
 	</section>
+	
+	<!-- 구매처 정보 입력 모달찰 -->
+	<div id="modalForm_Purchase" class="modal-block modal-block-primary mfp-hide">
+		<section class="panel">
+			<header class="panel-heading">
+				<h2 class="panel-title">구매처 정보 입력</h2>
+			</header>
+			<div class="panel-body">	
+				<div class="form-group">
+					<label class="col-sm-3 control-label">구매처</label>
+					<div class="col-sm-9">
+						<input type="text" name="Pname" class="form-control" placeholder="구매처 이름을 입력하세요" required="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">주소</label>
+					<div class="col-sm-9">
+						<input type="text" name="Paddress" class="form-control" placeholder="주소를 입력해 주세요" required="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">전화번호</label>
+					<div class="col-sm-9">
+						<input type="text" name="Pphone" class="form-control" placeholder="전화번호를 입력해 주세요" required="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Email</label>
+					<div class="col-sm-9">
+						<input type="email" name="Pemail" class="form-control" placeholder="메일주소를 입력해 주세요" required="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">URL</label>
+					<div class="col-sm-9">
+						<input type="url" name="Purl" class="form-control" placeholder="https://www.tripleb.jh.com/">
+					</div>
+				</div>
+			</div>
+			<footer class="panel-footer">
+				<div class="row">
+					<div class="col-md-12 text-right">
+						<button id="itemPurchase" class="btn btn-primary modal-confirm">확인</button>
+						<button class="btn btn-default modal-dismiss">취소</button>
+					</div>
+				</div>
+			</footer>
+		</section>
+	</div>
+	<!-- / 구매처 정보 입력 모달창 -->
 
 	<!-- 공통으로 사용하는 JSP -->
 	<jsp:include page="../common/footerjs.jsp" />
 	<!-- 현재 페이지에서만 사용하는 JSP -->
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/jstree/jstree.js"></script>
+	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.modals.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/js/templateInfo.js"></script>
-
 </body>
 </html>
