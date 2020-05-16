@@ -39,13 +39,7 @@ public class LockerController {
 	
 	@RequestMapping("lockerEnroll.hlc")
 	public ModelAndView insertLocker(String lockerPosNo, String memberNo, String lockerStartDate, String lockerEndDate, Model model, ModelAndView mv) {
-	
-		
-		System.out.println(lockerPosNo);
-		System.out.println(memberNo);
-		System.out.println(lockerStartDate);
-		System.out.println(lockerEndDate);
-		
+
 		String[] lno = lockerPosNo.split(",");
 		String[] mno = memberNo.split(",");
 		String[] lsd = lockerStartDate.split(",");

@@ -74,7 +74,7 @@
  		UPDATE LOCKERPOS
         SET LOCKERPOS_STATUS='Y'
         WHERE LOCKERPOS_NO IN (SELECT LOCKERPOS_NO
-                                FROM LOCKER
+                                 FROM LOCKER
                                 WHERE LOCKER_STATUS='Y')
  	</update>
  	
