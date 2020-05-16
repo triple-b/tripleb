@@ -154,7 +154,7 @@
 																	<h5 style="width:42px; margin: auto; color:red;">고장</h5>
 																</c:when>
 															</c:choose>
-																	<div class="mg-option checkbox-custom checkbox-inline" style="margin-left: 140px;">
+																	<div class="mg-option checkbox-custom checkbox-inline" style="margin-left:140px;">
 																			<input type="checkbox" id="file_1" name="lockerPosCheck" onclick="twoCheckbox(this)" value="${L.lockerPosNo}">
 																			<label for="file_1"></label>
 																	</div>
@@ -163,12 +163,12 @@
 																<div class="locker-window-content" style="color: black;">
 																			<h4>${L.lockerPosNo}</h4>
 																			
-																			<c:forEach items="${Llist}" var="m" >
+																			<c:forEach items="${Llist}" var="m" > <!-- 락커 리스트 락커포스 아님 -->
 																				<c:choose>
 																					<c:when test="${ m.lockerStatus eq 'Y' }">
-																						<c:if test="${ L.lockerPosNo eq m.lockerPosNo}"> <!-- 같을 때 -->
-																						<span style="font-variant:normal;">${m.memberName }</span>
-																						<span style="font-variant:normal;">[${m.lockerRegistDate}]</span>
+																						<c:if test="${ L.lockerPosNo eq m.lockerPosNo}">
+																						<span style="font-variant:normal;">${ m.memberName }</span>
+																						<span style="font-variant:normal;">[${ m.lockerRegistDate}]</span>
 																						</c:if>
 																					</c:when>
 																					<c:when test="${ m.lockerStatus eq 'R' }">
@@ -183,7 +183,7 @@
 																		</c:when>
 																		<c:when test="${ L.lockerPosType eq 'M' }">
 																			<h5 style="color:#0088c;">M</h5>
-																		</c:when>															
+																		</c:when>							
 																	</c:choose>
 																</div>
 															</div>
@@ -298,7 +298,7 @@
 								<header class="panel-heading">
 									<h1 class="panel-title">일괄등록</h1>
 								</header>
-							<form id="demo-form-wlqrkrhtlvek-Enroll" class="form-horizontal mb-lg" novalidate="novalidate" method="post" action="lockerEnroll.hlc" >
+							<form id="demo-form-wlqrkrhtlvek-Enroll" class="form-horizontal mb-lg" novalidate="novalidate">
 								<div class="panel-body">
 										<div class="panel-body">
 											<table class="table table-bordered table-striped mb-none-LockerArea" id="datatable-default">
@@ -315,19 +315,20 @@
 												</thead>
 												<tbody>
 													<c:forEach items="${nlist}" var="L" >   
-													<tr> 
-														<th><input type=checkbox name=lockerPosNo onclick=oneCheckbox(this) value="${L.lockerPosNo}"></th> 
+													<tr id="LockerInsert1"> 
+														<th><input type=checkbox name="lockerPosNo" id="check1" value="${ L.lockerPosNo }"></th> 
 														<th> ${L.lockerPosNo} </th>
 														<th>${L.lockerPosType} </th>
 														<th>
-														<select name="memberNo">
+														<select name="memberNo" id="memberName2">
+															<option>이름선택</option>
 														<c:forEach items="${mlist}" var="L" >   
-															<option name="memberNo" value="${L.memberNo }">${L.memberName }</option>
+															<option name="memberNo" value="${ L.memberNo }">${ L.memberName }</option>
 														</c:forEach>
 														</select>
 														</th>
-														<th><input name="lockerStartDate" type='date'></th>
-														<th><input name="lockerEndDate" type='date'></th>	
+														<th><input name="lockerStartDate" type="date"></th>
+														<th><input name="lockerEndDate" type="date"></th>
 													</tr>
 													</c:forEach>
 														
@@ -430,9 +431,7 @@
 	function send1(){
 		document.getElementById("demo-form-update").submit();
 	}
-	function send2(){
-		document.getElementById("demo-form-Locker").submit();
-	}
+
 	</script>
 	<script>
 	 function selectLk(){
@@ -548,7 +547,23 @@
 	}
 	
 	function send2(){
-		document.getElementById("demo-form-wlqrkrhtlvek-Enroll").submit();
+		
+		var lockerPosNo = new Array();
+		var memName = new Array();
+		var chk = new Array();
+		var chk2 = new Array();
+		$("input[name=lockerPosNo]:checked").each(function(){
+			lockerPosNo.push($(this).val());
+			memName.push($(this).parent().next().next().next().children().val());
+			chk.push($(this).parent().next().next().next().next().children().val());
+			chk2.push($(this).parent().next().next().next().next().next().children().val());
+
+			location.href="lockerEnroll.hlc?lockerPosNo=" + lockerPosNo + "&&memberNo="+ memName + "&&lockerStartDate=" + chk + "&&lockerEndDate=" + chk2;
+			
+		}) 
+		
+		//document.getElementById("demo-form-wlqrkrhtlvek-Enroll").submit();
+		
 	}
 	</script>
 	<!-- 공통으로 사용하는 JSP -->

@@ -20,18 +20,7 @@ public class LockerServiceImpl implements LockerService {
 	
 	@Override
 	public int insertLocker(Locker l) {
-		int result1 = LDao.insertLocker(sqlSession, l);
-		if(result1 > 0) {
-			ArrayList<Locker> list = LDao.selectLockerPos(sqlSession);
-			
-			int lpno = list.get(4).getLockerPosNo();
-			
-			l.setLockerPosNo(lpno);
-			
-			return LDao.updateLockerPos(sqlSession, l);
-		}else {
-			return result1;
-		}
+		return LDao.insertLocker(sqlSession, l);
 	}
 
 	@Override
@@ -43,6 +32,19 @@ public class LockerServiceImpl implements LockerService {
 	@Override
 	public int collectLocker(int lcno) {
 		return LDao.collectLocker(sqlSession, lcno);
+	}
+
+	@Override
+	public ArrayList<Locker> selectLockerPos() {
+		return LDao.selectLockerPos(sqlSession);
+	}
+
+	
+
+	@Override
+	public int updateLockerPos() {
+	
+		return LDao.updateLockerPos(sqlSession);
 	}
 	
 	
