@@ -43,6 +43,8 @@
       	<typeAlias type="com.jh.tripleb.lockerPos.model.vo.LockerPos" alias="LockerPos"/>
       	<typeAlias type="com.jh.tripleb.lockerPos.model.vo.LockerPosDto" alias="LockerPosDto"/>
       	<typeAlias type="com.jh.tripleb.locker.model.vo.Locker" alias="Locker"/>
+      	<typeAlias type="com.jh.tripleb.locker.model.vo.LockerDto" alias="LockerDto"/>
+      	<typeAlias type="com.jh.tripleb.lockerPos.model.vo.LockerDtou" alias="LockerDtou"/>
 	</typeAliases>
 
 	<mappers>
