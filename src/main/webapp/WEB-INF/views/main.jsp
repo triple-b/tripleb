@@ -55,7 +55,7 @@
 										<a href="#" class="fa fa-caret-down"></a>
 									</div>
 			
-									<h2 class="panel-title">달성률 (월별)</h2>
+									<h2 class="panel-title">전체 달성률 (월별)</h2>
 								</header>
 								<div class="panel-body">
 									<div class="row text-center">
@@ -189,7 +189,7 @@
 										<a href="#" class="fa fa-caret-down"></a>
 									</div>
 
-									<h2 class="panel-title">일정관리</h2>
+									<h2 class="panel-title"><a href="calendar.uca">일정관리</a></h2>
 								</header>
 								<div class="panel-body">
 									<section class="panel panel-group">
@@ -226,21 +226,11 @@
 												<div id="collapse1One" class="accordion-body collapse in">
 													<div class="panel-body">
 														<ul class="widget-todo-list">
+														<c:forEach items="${ calendar }" var="c">
 															<li>
-																<p class="todo-label" for="todoListItem1"><span>Lorem ipsum dolor sit amet</span></p>
+																<p class="todo-label" for="todoListItem1"><span>${ c.calTitle } : ${ c.calContent }</span></p>
 															</li>
-															<li>
-																<p class="todo-label" for="todoListItem1"><span>Lorem ipsum dolor sit amet</span></p>
-															</li>
-															<li>
-																<p class="todo-label" for="todoListItem1"><span>Lorem ipsum dolor sit amet</span></p>
-															</li>
-															<li>
-																<p class="todo-label" for="todoListItem1"><span>Lorem ipsum dolor sit amet</span></p>
-															</li>
-															<li>
-																<p class="todo-label" for="todoListItem1"><span>Lorem ipsum dolor sit amet</span></p>
-															</li>
+														</c:forEach>
 														</ul>
 													</div>
 												</div>

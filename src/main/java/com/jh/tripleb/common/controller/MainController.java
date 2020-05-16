@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jh.tripleb.calendar.model.vo.Calendar;
 import com.jh.tripleb.common.model.service.MainService;
 import com.jh.tripleb.notice.model.service.NoticeService;
 import com.jh.tripleb.notice.model.vo.Notice;
@@ -37,6 +38,7 @@ public class MainController {
 		int currentStudent = umService.currentStudent(t.getTrainerNo()); // 진행 중인 회원
 		int newStudent = umService.newStudent(t.getTrainerNo()); // 30일 이내 신규 회원
 		int expStudent = umService.expStudent(t.getTrainerNo()); // 30일 이내 신규 회원
+		ArrayList<Calendar> clist = umService.todayCal(t.getTrainerNo()); // 오늘 일정
 		
 		int thisMonth = umService.thisMonth(); // 이번달 총수입
 		int thisMonthGoal = umService.thisMonthGoal(); // 이번달 총수입
@@ -56,6 +58,7 @@ public class MainController {
 		model.addAttribute("expStudent", expStudent);
 		model.addAttribute("goal", goal);
 		model.addAttribute("notice", nlist);
+		model.addAttribute("calendar", clist);
 		
 		return "main";
 	}

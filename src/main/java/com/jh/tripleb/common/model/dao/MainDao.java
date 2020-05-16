@@ -1,7 +1,11 @@
 package com.jh.tripleb.common.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.jh.tripleb.calendar.model.vo.Calendar;
 
 @Repository("umDao")
 public class MainDao {
@@ -28,6 +32,10 @@ public class MainDao {
 	
 	public int thisMonthGoal(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("mainMapper.thisMonthGoal");
+	}
+	
+	public ArrayList<Calendar> todayCal(SqlSessionTemplate sqlSession, int tno) {
+		return (ArrayList)sqlSession.selectList("calendarMapper.todayCal", tno);
 	}
 
 }
