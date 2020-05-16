@@ -14,5 +14,9 @@ public interface LockerService {
 	ArrayList<LockerDto> selectList();
 
 	int collectLocker(int lcno);
+	
+	ArrayList<Locker> selectLockerPos();
+
+	int updateLockerPos();
 
 }

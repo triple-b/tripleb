@@ -22,15 +22,14 @@ public class LockerDao {
 
 	}
 	
-
 	public ArrayList<Locker> selectLockerPos(SqlSessionTemplate sqlSession) {
 		
 		return (ArrayList)sqlSession.selectList("lockerMapper.selectLockerPos");
 	}
 
-	public int updateLockerPos(SqlSessionTemplate sqlSession, Locker l) {
+	public int updateLockerPos(SqlSessionTemplate sqlSession) {
 		
-		return sqlSession.update("lockerPosMapper.updateLockerPos",l);
+		return sqlSession.update("lockerPosMapper.updateLockerPos");
 	}
 
 	public int collectLocker(SqlSessionTemplate sqlSession, int lcno) {

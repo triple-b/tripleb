@@ -6,8 +6,8 @@
 	<select id="selectListProduct" resultType="Product">
 		select DISTINCT PRODUCT_NAME
 		from product
-        where PRODUCT_STAUS = 'Y'
-        order by PRODUCT_NAME	
+        where PRODUCT_STATUS = 'Y'
+        order by PRODUCT_NAME
 	</select>
 	
 	<!-- 트레이너 조회(장미경) -->

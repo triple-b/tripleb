@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jh.tripleb.common.model.service.MainService;
 import com.jh.tripleb.notice.model.service.NoticeService;
 import com.jh.tripleb.notice.model.vo.Notice;
 import com.jh.tripleb.trainer.model.service.TrainerService;
@@ -22,16 +23,38 @@ public class MainController {
 	private NoticeService nService;
 	@Autowired
 	private TrainerService tService;
+	@Autowired
+	private MainService umService;
 	
 	
 	@RequestMapping("main.do")
-	public String triplebMain(Model model) {
+	public String triplebMain(Model model, HttpSession session) {
 		
-		ArrayList<Notice> nlist = nService.mainNotice();
+		Trainer t = (Trainer)session.getAttribute("loginUser");
+
+		ArrayList<Notice> nlist = nService.mainNotice(); // 공지사항 리스트
+		int current = umService.currentClass(t.getTrainerNo()); // 진행중인 수업 개수
+		int currentStudent = umService.currentStudent(t.getTrainerNo()); // 진행 중인 회원
+		int newStudent = umService.newStudent(t.getTrainerNo()); // 30일 이내 신규 회원
+		int expStudent = umService.expStudent(t.getTrainerNo()); // 30일 이내 신규 회원
 		
-		model.addAttribute("one", "대충");
-		model.addAttribute("two", "대충");
-		model.addAttribute("three", "대충");
+		int thisMonth = umService.thisMonth(); // 이번달 총수입
+		int thisMonthGoal = umService.thisMonthGoal(); // 이번달 총수입
+		
+		Double goal = thisMonth / (thisMonthGoal * 0.01) ; // 월달성률
+		
+		if(goal == 0) {
+			model.addAttribute("goal", 0);
+		}else {
+			model.addAttribute("goal", goal);
+		}
+		
+		
+		model.addAttribute("current", current);
+		model.addAttribute("currentStudent", currentStudent);
+		model.addAttribute("newStudent", newStudent);
+		model.addAttribute("expStudent", expStudent);
+		model.addAttribute("goal", goal);
 		model.addAttribute("notice", nlist);
 		
 		return "main";

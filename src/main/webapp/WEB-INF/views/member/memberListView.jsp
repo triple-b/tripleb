@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +51,8 @@
 								<a href="#tabmemberblack" data-toggle="tab">블랙리스트</a>
 							</li>
 						</ul>
-
+						<jsp:useBean id="now" class="java.util.Date" />
+						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />  
 
 						<div class="tab-content">
 							<!--첫번째 탭-->
@@ -81,8 +83,8 @@
 												<th>담당 트레이너</th>
 												<th>성별</th>
 												<th>연락처</th>
-												<th>회원권</th>
 												<th>등록일</th>
+												<th>회원권</th>
 												<th>시작일</th>
 												<th>종료일</th>
 											</tr>
@@ -117,10 +119,19 @@
 													</c:choose>
 												</td>
 												<td>${ m.memberPhone }</td>
-												<td>${ m.productName }</td>
 												<td>${ m.memberEnrollDate }</td>
-												<td>${ m.memProductStart }</td>
-												<td>${ m.memProductEnd }</td>
+												<c:choose>
+													<c:when test="${ m.memProductEnd gt now}">
+														<td>${ m.productName }</td>
+														<td>${ m.memProductStart }</td>
+														<td>${ m.memProductEnd }</td>
+													</c:when>
+													<c:otherwise>
+														<td></td>
+														<td></td>
+														<td></td>
+													</c:otherwise>
+												</c:choose>
 											</tr>
 										</c:forEach>
 										</tbody>
@@ -156,8 +167,8 @@
 													<th>담당 트레이너</th>
 													<th>성별</th>
 													<th>연락처</th>
-													<th>회원권</th>
 													<th>등록일</th>
+													<th>회원권</th>
 													<th>일시정지 시작일</th>
 													<th>일시정지 종료일</th>	
 												</tr>
@@ -190,10 +201,19 @@
 														</c:choose>
 													</td>
 													<td>${ p.memberPhone }</td>
-													<td>${ p.productName }</td>
 													<td>${ p.memberEnrollDate }</td>
-													<td>${ p.pauseStart }</td>
-													<td>${ p.pauseEnd }</td>
+													<c:choose>
+														<c:when test="${ p.memProductEnd gt now}">
+															<td>${ p.productName }</td>
+															<td>${ p.pauseStart }</td>
+															<td>${ p.pauseEnd }</td>
+														</c:when>
+														<c:otherwise>
+															<td></td>
+															<td></td>
+															<td></td>
+														</c:otherwise>
+													</c:choose>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -224,8 +244,8 @@
 													<th>담당 트레이너</th>
 													<th>성별</th>
 													<th>연락처</th>
-													<th>회원권</th>
 													<th>등록일</th>
+													<th>회원권</th>
 													<th>시작일</th>
 													<th>종료일</th>	
 												</tr>
@@ -260,10 +280,19 @@
 														</c:choose>
 													</td>
 													<td>${ e.memberPhone }</td>
-													<td>${ e.productName }</td>
 													<td>${ e.memberEnrollDate }</td>
-													<td>${ e.memProductStart }</td>
-													<td>${ e.memProductEnd }</td>
+													<c:choose>
+														<c:when test="${ e.memProductEnd gt now}">
+															<td>${ e.productName }</td>
+															<td>${ e.memProductStart }</td>
+															<td>${ e.memProductEnd }</td>
+														</c:when>
+														<c:otherwise>
+															<td></td>
+															<td></td>
+															<td></td>
+														</c:otherwise>
+													</c:choose>
 												</tr>
 											</c:forEach>
 											

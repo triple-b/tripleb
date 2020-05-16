@@ -70,10 +70,12 @@
  		where lockerPos_delet='Y' and lockerPos_Type='F'
  	</select>
  	
- 	<update id="updateLockerPos" parameterType="_int" >
- 		update LOCKERPOS
-  		set LOCKERPOS_STATUS='Y'
-  		where lockerPos_No=#{lpno};
+ 	<update id="updateLockerPos" parameterType="_int">
+ 		UPDATE LOCKERPOS
+        SET LOCKERPOS_STATUS='Y'
+        WHERE LOCKERPOS_NO IN (SELECT LOCKERPOS_NO
+                                 FROM LOCKER
+                                WHERE LOCKER_STATUS='Y')
  	</update>
  	
  	 <update id="troubleLocker" parameterType="_int">

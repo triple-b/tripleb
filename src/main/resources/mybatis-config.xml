@@ -46,7 +46,7 @@
       	<typeAlias type="com.jh.tripleb.locker.model.vo.LockerDto" alias="LockerDto"/>
       	<typeAlias type="com.jh.tripleb.lockerPos.model.vo.LockerDtou" alias="LockerDtou"/>
       	<typeAlias type="com.jh.tripleb.sales.model.vo.SalesDto" alias="SalesDto"/> 
-      	<typeAlias type="com.jh.tripleb.sales.model.vo.SalesSearchDto" alias="SalesSearchDto"/>       	
+      	<typeAlias type="com.jh.tripleb.sales.model.vo.SalesSearchDto" alias="SalesSearchDto"/>       	     	
 	</typeAliases>
 	
 	<mappers>
@@ -74,6 +74,7 @@
 	      <mapper resource="mappers/lockerPos-mapper.xml"/>
 	      <mapper resource="mappers/locker-mapper.xml"/>
 	      <mapper resource="mappers/sales-mapper.xml"/>
+	      <mapper resource="mappers/main-mapper.xml"/>
 	</mappers>
 	
 
