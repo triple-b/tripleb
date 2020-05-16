@@ -12,6 +12,19 @@
     .form-group a{cursor:pointer;}
     .form-group .hide{display:none;}
     #memberList1 .hide{display:none;}
+    
+    div.left {
+        width: 50%;
+        float: left;
+        box-sizing: border-box;
+        
+    }
+    div.right {
+        width: 50%;
+        float: right;
+        box-sizing: border-box;
+        
+    }
 </style>
 
 </head>
@@ -39,7 +52,7 @@
 				
 				<!-- start: page -->
 				<div class="row">
-					<header class="panel-heading">
+					<header class="panel-heading" style="padding-bottom: 5px;">
 						<div class="panel-btn" style="margin-bottom:3%;">
 							<button class="modal-with-form btn btn-default" style="float:right;" href="#modalFormD">삭제</button>
 							<button id="addBtn" class="modal-with-form btn btn-default" style="float:right; margin-right: 1%; background:#0088cc; color:white; border:1px solid #0088cc;" href="#modalFormA">수업등록</button>
@@ -53,75 +66,145 @@
                     <div class="col-md-6 col-lg-12 col-xl-6" style="margin-top: 1%;">
                     	<input type="hidden" id="trainerNo" name="trainerNo" value="${ loginUser.trainerNo }">
                         <div class="row">
-                        	<c:forEach items="${ list }" var="cl">
-	                            <div class="col-md-12 col-lg-6 col-xl-6">
-	                                <section class="panel panel-featured-left panel-featured-primary" style="width:90%;">
-	                                    <div class="panel-body">
-	                                        <div class="widget-summary">
-	                                            <div class="widget-summary-col widget-summary-col-icon">
-	                                            	<c:choose>
-			                                            <c:when test="${ cl.weekDay eq '주중' }">
-			                                                <div class="summary-icon bg-primary">
-			                                                    <i class="fa fa-users"></i>
-			                                                </div>
-			                                            </c:when>
-			                                            <c:when test="${ cl.weekDay eq '주말' }">
-			                                            	<div class="summary-icon bg-primary" style="background: #e36159;">
-	                                                        	<i class="fa fa-users"></i>
-	                                                    	</div>
-			                                            </c:when>
-			                                            <c:otherwise>
-			                                            	<div class="summary-icon bg-primary">
-			                                                    <i class="fa fa-users"></i>
-			                                                </div>
-			                                            </c:otherwise>
-		                                            </c:choose>
-	                                            </div>
-	                                            <table>
-	                                                <tr>
-	                                                    <td width="80px"><h4>수업명 : </h4></td>
-														<th width="400px" style = "cursor:pointer;" class="classDetail">
-															<h4>
-																<button style="background:white; border:0px" class="modal-with-form" href="#modalFormDe" onclick="classDetailFn(${ cl.classNo })">${ cl.className }</button>
-															</h4>
-														</th>
-														<td><input name="checkCl1" type="checkbox" data-clNum="${ cl.classNo }" id="checkCl1" style="float:right"></td>
-	                                                </tr>
-	                                                <tr>
-	                                                    <td width="60px">수업시간 : </td>
-														<th width="400px">${ cl.weekDay }</th>
-														<td></td>
-	                                                </tr>
-	                                                 <tr>
-	                                                    <td width="60px">수업횟수 : </td>
-														<th width="400px">${ cl.times }</th>
-														<td></td>
-	                                                </tr>
-	                                                <tr>
-	                                                    <td width="60px">담당자 : </td>
-														<th width="400px">${ cl.trainerName } 트레이너</th>
-														<td></td>
-	                                                </tr>
-	                                                <tr>
-	                                                    <td width="60px">등록원 : </td>
-														<th width="400px">Triple B</th>
-														<td></td>
-	                                                </tr>
-	                                                <tr>
-	                                                    <td width="60px">수강원 : </td>
-														<th width="400px">${ cl.classCount }/${ cl.classMaxCount }</th>
-														<td></td>
-													</tr> 
-	                                            </table>
-	                                        </div>
-										</div>
-	                                </section>
-	                            </div>
-                            </c:forEach>
-                        </div>
-                    </div>	
-				</div>
-				<!-- end: page -->
+                       		<table style="width:100%;">
+                       			<tr style="width:100%;">
+                       				<td>
+			                        	<c:forEach items="${ list }" var="cl">
+			                        		<c:if test="${ cl.weekDay eq '주중' }">
+					                            <div class="col-md-12 col-lg-6 col-xl-6">
+					                                <section class="panel panel-featured-left panel-featured-primary" style="width:90%;">
+					                                    <div class="panel-body">
+					                                        <div class="widget-summary">
+					                                            <div class="widget-summary-col widget-summary-col-icon">
+					                                            	<c:choose>
+							                                            <c:when test="${ cl.weekDay eq '주중' }">
+							                                                <div class="summary-icon bg-primary">
+							                                                    <i class="fa fa-users"></i>
+							                                                </div>
+							                                            </c:when>
+							                                            <c:otherwise>
+							                                            	<div class="summary-icon bg-primary">
+							                                                    <i class="fa fa-users"></i>
+							                                                </div>
+							                                            </c:otherwise>
+						                                            </c:choose>
+					                                            </div>
+					                                            <table>
+					                                                <tr>
+					                                                    <td width="80px"><h4>수업명 : </h4></td>
+																		<th width="400px" style = "cursor:pointer;" class="classDetail">
+																			<h4>
+																				<button style="background:white; border:0px" class="modal-with-form" href="#modalFormDe" onclick="classDetailFn(${ cl.classNo })">${ cl.className }</button>
+																			</h4>
+																		</th>
+																		<td><input name="checkCl1" type="checkbox" data-clNum="${ cl.classNo }" id="checkCl1" style="float:right"></td>
+					                                                </tr>
+					                                                <tr>
+					                                                    <td width="60px">수업시간 : </td>
+																		<th width="400px">${ cl.weekDay }</th>
+																		<td></td>
+					                                                </tr>
+					                                                 <tr>
+					                                                    <td width="60px">수업횟수 : </td>
+																		<th width="400px">${ cl.times }</th>
+																		<td></td>
+					                                                </tr>
+					                                                <tr>
+					                                                    <td width="60px">담당자 : </td>
+																		<th width="400px">${ cl.trainerName } 트레이너</th>
+																		<td></td>
+					                                                </tr>
+					                                                <tr>
+					                                                    <td width="60px">등록원 : </td>
+																		<th width="400px">Triple B</th>
+																		<td></td>
+					                                                </tr>
+					                                                <tr>
+					                                                    <td width="60px">수강원 : </td>
+																		<th width="400px">${ cl.classCount }/${ cl.classMaxCount }</th>
+																		<td></td>
+																	</tr> 
+					                                            </table>
+					                                        </div>
+														</div>
+					                                </section>
+					                            </div>
+				                            </c:if>
+			                            </c:forEach>
+                       				</td>
+                       			</tr>
+                       			<tr style="width:100%;">
+                       				<td>
+                       					<c:forEach items="${ list }" var="cl">
+			                        		<c:if test="${ cl.weekDay eq '주말' }">
+					                            <div class="col-md-12 col-lg-6 col-xl-6">
+					                                <section class="panel panel-featured-left panel-featured-primary" style="width:90%;">
+					                                    <div class="panel-body">
+					                                        <div class="widget-summary">
+					                                            <div class="widget-summary-col widget-summary-col-icon">
+					                                            	<c:choose>
+							                                            <c:when test="${ cl.weekDay eq '주말' }">
+							                                            	<div class="summary-icon bg-primary" style="background: #e36159;">
+					                                                        	<i class="fa fa-users"></i>
+					                                                    	</div>
+							                                            </c:when>
+							                                            <c:otherwise>
+							                                            	<div class="summary-icon bg-primary">
+							                                                    <i class="fa fa-users"></i>
+							                                                </div>
+							                                            </c:otherwise>
+						                                            </c:choose>
+					                                            </div>
+					                                            <table>
+					                                                <tr>
+					                                                    <td width="80px"><h4>수업명 : </h4></td>
+																		<th width="400px" style = "cursor:pointer;" class="classDetail">
+																			<h4>
+																				<button style="background:white; border:0px" class="modal-with-form" href="#modalFormDe" onclick="classDetailFn(${ cl.classNo })">${ cl.className }</button>
+																			</h4>
+																		</th>
+																		<td><input name="checkCl1" type="checkbox" data-clNum="${ cl.classNo }" id="checkCl1" style="float:right"></td>
+					                                                </tr>
+					                                                <tr>
+					                                                    <td width="60px">수업시간 : </td>
+																		<th width="400px">${ cl.weekDay }</th>
+																		<td></td>
+					                                                </tr>
+					                                                 <tr>
+					                                                    <td width="60px">수업횟수 : </td>
+																		<th width="400px">${ cl.times }</th>
+																		<td></td>
+					                                                </tr>
+					                                                <tr>
+					                                                    <td width="60px">담당자 : </td>
+																		<th width="400px">${ cl.trainerName } 트레이너</th>
+																		<td></td>
+					                                                </tr>
+					                                                <tr>
+					                                                    <td width="60px">등록원 : </td>
+																		<th width="400px">Triple B</th>
+																		<td></td>
+					                                                </tr>
+					                                                <tr>
+					                                                    <td width="60px">수강원 : </td>
+																		<th width="400px">${ cl.classCount }/${ cl.classMaxCount }</th>
+																		<td></td>
+																	</tr> 
+					                                            </table>
+					                                        </div>
+														</div>
+					                                </section>
+					                            </div>
+				                            </c:if>
+			                            </c:forEach>
+                       				</td>
+                       			</tr>
+                              </table>
+                           </div>
+                       </div>
+                   </div>	
+			</div>
+			<!-- end: page -->
 				
 				<!-- 등록 모달폼-->
 				<div id="modalFormA" class="modal-block modal-block-primary mfp-hide">
@@ -358,9 +441,9 @@
 								 '<div class="form-group">' +
 									  '<label class="col-sm-2 control-label">수업내용 : </label>' +
 									  '<div class="col-sm-9">' +
-										 '<p class="col-sm-6" style="margin-top:1.5%">' +
+									  	'<textarea rows="3" cols="50" style="border:none; background:#fdfdfd; resize:none;" disabled readonly>' +
 											 data.classContent +
-										'</p>' +
+										'</textarea>' +
 									  '</div>' +
 								 '</div>';
 					
@@ -390,7 +473,7 @@
 						if(list == ""){
 							var value2 = '<tr>' + 
 											'<td>등록된 회원이 없습니다.</td>' +
-										 '</tr>';
+										 '</tr>';	
 						}else{
 							var value2 = '<tr style="border-bottom: 1px solid lightgray;">' +
 											  '<th width="70px">이름</th>' +

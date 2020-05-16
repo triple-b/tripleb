@@ -14,10 +14,31 @@
 	</resultMap>
 	 
 	 <insert id="insertLocker" parameterType="Locker">
-  		insert into Locker
-  		values(seq_LKNO.nextval, #{lockerStartDate}, #{lockerEndDate}, default, default,#{lockerPosNo}, #{memberNo})
+  		
+  		insert into locker
+  		values (SEQ_LKNO.nextval, #{lockerStartDate}, #{lockerEndDate}, default, default, #{lockerPosNo}, #{memberNo})
+  		
   	</insert>
   	
+  	<select id="selectList" resultType="LockerDto">
+  		select *
+		from LOCKERPOS 
+		left join locker using(lockerpos_no)
+		left join member using(member_no)
+		where  member_name is null and LOCKERPOS_Delet='Y'
+		ORDER BY 1 asc
+  	</select>
   	
+  	<select id="selectLockerPos" resultMap="lockerResultSet">
+  		select *
+		from LOCKER
+		where LOCKER_STATUS='Y'
+		order by 1 desc
+  	</select>
   	
+  	<update id="collectLocker" parameterType="_int">
+  		update LOCKER
+  		set LOCKER_STATUS='R'
+  		where locker_no=#{lcno}
+  	</update>
 </mapper>

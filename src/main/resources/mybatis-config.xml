@@ -43,6 +43,8 @@
       	<typeAlias type="com.jh.tripleb.lockerPos.model.vo.LockerPos" alias="LockerPos"/>
       	<typeAlias type="com.jh.tripleb.lockerPos.model.vo.LockerPosDto" alias="LockerPosDto"/>
       	<typeAlias type="com.jh.tripleb.locker.model.vo.Locker" alias="Locker"/>
+      	<typeAlias type="com.jh.tripleb.locker.model.vo.LockerDto" alias="LockerDto"/>
+      	<typeAlias type="com.jh.tripleb.lockerPos.model.vo.LockerDtou" alias="LockerDtou"/>
       	<typeAlias type="com.jh.tripleb.sales.model.vo.SalesDto" alias="SalesDto"/> 
       	<typeAlias type="com.jh.tripleb.sales.model.vo.SalesSearchDto" alias="SalesSearchDto"/>       	     	
 	</typeAliases>

@@ -43,7 +43,7 @@
 	                    <div class="innerOuter" style="margin-top:-5%">
 	                        <section class="panel">
 	                            <header class="panel-heading">
-	                            	<c:if test="${ loginUser.trainerGrade ne 'N' }">
+	                            	<c:if test="${ loginUser.trainerGrade ne 'B' }">
 		                                <div class="panel-btn" style="margin-bottom: 1%;">
 		                                    <button class="modal-with-form btn btn-default" style="float:right; margin-right: 1%;" href="#modalFormD">삭제</button>
 		                                    <button id="registModal" class="modal-with-form btn btn-default" style="float:right; margin-right: 1%; background:#0088cc; color:white; border:1px solid #0088cc;" href="#modalFormR">등록</button>
@@ -69,7 +69,6 @@
 	                                    </div>
 	                                </div>
 	                                <!-- /member 정보 -->
-	                                
 	                                <!-- 회원권, pt권 리스트 -->
                                     <div class="pricing-table" style="margin-top:5%">
                                        <table style="width:100%;">
@@ -185,7 +184,7 @@
 	                    
 	                    </tbody>
                     </table>
-		            <footer class="panel-footer" style="margin-top:2%">
+		            <footer class="panel-footer" style="margin-top:2%; background:white">
 		                <div class="row">
 		                    <div class="col-md-12 text-right">
 		                        <button id="memSubmit" class="btn btn-default modal-dismiss" type="button">확인</button>
