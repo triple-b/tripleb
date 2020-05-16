@@ -134,9 +134,6 @@
                   <h2 class="panel-title" style="color: white;">상세정보</h2>
                </header>
                <div class="panel-body">
-                 	<div style="float: right;">
-                     	<img src="assets/images/health.jpg" width="200px" height="200px" alt="">
-                 	</div>                        
                 	<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate" style="float: left;">
 	                     <div class="form-group">
 	                         <label class="col-sm-6 control-label">이 름 </label>
