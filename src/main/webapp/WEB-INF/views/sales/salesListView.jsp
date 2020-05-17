@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,21 +47,23 @@
 								<td width="*">
 									<h2 class="panel-title">매출 현황</h2>											
 								</td>
-								<td width="380px">											
-									<div id="selectDate11" class="input-daterange input-group">
+								<td width="380px">									
+									<div class="input-daterange input-group">
 										<span class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</span>
-										<input type="text" class="form-control" name="startDate">
+										<input type="text" class="form-control" name="startDate" value="${dmap.startDate}">
 										<span class="input-group-addon">to</span>
-										<input type="text" class="form-control" name="endDate">
+										<input type="text" class="form-control" name="endDate" value="${dmap.endDate}">
 									</div>
 								</td>									
 								<td width="300px">
 									<div class="input-group">
 										<input type="text" name="searchStr" class="form-control">
+										<input type="hidden" name="searchProduct">
+										<input type="hidden" name="searchTrainer">
 										<div class="input-group-btn">
-												<button tabindex="-1" class="btn btn-primary" type="button" id="serchBtn">검색</button>
+												<button tabindex="-1" class="btn btn-primary" type="button" onclick="actionProcess('search')">검색</button>
 												<button tabindex="-1" data-toggle="dropdown" class="btn btn-primary dropdown-toggle mr-sm" type="button" aria-expanded="false">
 													<span class="caret"></span>
 												</button>
@@ -68,13 +71,13 @@
 													<li><a href="#"><strong>상품별</strong></a></li>
 													<li class="divider"></li>
 													<c:forEach items="${ plist }" var="p">
-														<li data-title="${ p.productName }" onclick="setSearchStr(this)"><a href="#">${ p.productName }</a></li>
+														<li data-name="product" data-title="${ p.productName }" onclick="setSearchStr(this)"><a href="#">${ p.productName }</a></li>
 													</c:forEach>	
 													<li class="divider"></li>													
 													<li><a href="#"><strong>트레이너별</strong></a></li>
 													<li class="divider"></li>
 													<c:forEach items="${ tlist }" var="t">
-														<li data-title="${ t.trainerName }" onclick="setSearchStr(this)"><a href="#">${ t.trainerName }</a></li>
+														<li data-name="trainer" data-title="${ t.trainerName }" onclick="setSearchStr(this)"><a href="#">${ t.trainerName }</a></li>
 													</c:forEach>
 												</ul>												
 										</div>
@@ -84,8 +87,8 @@
 						</table>								
 					</header>
 					<div class="panel-body">
-						<div class="table-responsive">
-							<table class="table table-bordered table-striped table-condensed mb-none">
+						<div class="table-responsive">						
+							<table class="table table-bordered table-striped mb-none">
 								<thead>
 									<tr>										
 										<th class="text-center">구매일</th>
@@ -103,12 +106,12 @@
 											<td class="text-center">${ s.payDate }</td>
 											<td class="text-center">${ s.productCategory }</td>
 											<td class="text-center">${ s.productName }</td>
-											<td class="text-center">${ s.memberTrainer }</td>
+											<td class="text-center">${ s.trainerName }</td>
 											<td class="text-center">${ s.memberName }</td>
-											<td class="text-right">${ s.payPrice }</td>
+											<td class="text-right"><fmt:formatNumber value="${ s.payPrice }" pattern="#,###" /></td>
 											<td class="text-center">
 												<c:choose>
-	                    							<c:when test="${ s.payType eq 'card' }">카드</c:when>
+	                    							<c:when test="${ s.payType eq 'Card' }">카드</c:when>
 	                    							<c:otherwise>현금</c:otherwise>
 	                    						</c:choose>
 											</td>
@@ -122,20 +125,19 @@
 							<div class="widget-summary widget-summary-sm">
 								<div class="widget-summary-col widget-summary-col-icon" style="padding-top: 15px;">
 									<div class="summary-icon bg-secondary">
-										<div class="btn-secondary" style="cursor: pointer;"><i class="fa fa-file-excel-o" title="엑셀로 저장"></i></div>			
+										<div class="btn-secondary" style="cursor: pointer;" onclick="actionProcess('excel')"><i class="fa fa-file-excel-o" title="엑셀로 저장"></i></div>			
 									</div>
 								</div>										
 								<div class="widget-summary-col" style="margin-right: 20px;">
 									<div class="summary" style="margin-right: 10px;">
-										<h5 class="title">현금 : <i class="fa fa-krw"></i> 14,890.30</h5>	
-										<h5 class="title" style="padding-bottom:5px;">카드 : <i class="fa fa-krw"></i> 0</h5>
+										<h5 class="title">현금 : <fmt:formatNumber value="${ dmap.cashPrice }" pattern="#,###" /></h5>
+										<h5 class="title" style="padding-bottom:5px;">카드 : <fmt:formatNumber value="${ dmap.cardPrice }" pattern="#,###" /></h5>
 										<div style="border-top-width: 1px;
 										border-top-style: dotted;
 										border-top-color: rgb(221, 221, 221);
-										padding-top:5px;">
-											<h4 class="title">총 매출액 : <strong class="amount"><i class="fa fa-krw"></i> 14,890.30</strong></h4>
-										</div>
-										
+										padding-top:5px;">   
+											<h4 class="title">총 매출액 : <strong class="amount"><fmt:formatNumber value="${ dmap.totalPrice }" pattern="#,###" /></strong></h4>
+										</div>										
 									</div>
 								</div>
 							</div>
@@ -158,18 +160,71 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/js/daterangepicker.js"></script>
 	<script>	
+					
+		var thisUrlStr = window.location.href;
+		var thisUrl = new URL(thisUrlStr);
+		var startDate = thisUrl.searchParams.get("startDate");
+		var endDate = thisUrl.searchParams.get("endDate");
 	
 		function setSearchStr(target) {
 			var title = $(target).attr('data-title');
-			$('input[name="searchStr"]').val(title);
-		}
-		
-	 	$('#serchBtn').click(function () { 
-	  		var searchStr = $('input[name="searchStr"]').val();
-	  		alert(searchStr);
-	  	}); 
+			var name =  $(target).attr('data-name');
+			$('input[name="searchStr"]').val(name + " : " + title);
+		}		
 	 	
-	 	$(function() {		
+	 	function actionProcess(action) {
+	 		
+	  		var searchStr = $('input[name="searchStr"]').val();
+	  		var startDate = $('input[name="startDate"]').val();
+	  		var endDate = $('input[name="endDate"]').val();
+	  		$('input[name="searchProduct"]').val("");
+	  		$('input[name="searchTrainer"]').val("");
+	  			  		
+	  		// 검색어에 product:, trainer: 포함 여부 확인해서 필드에 값 저장
+	  		if(searchStr.substring(0,10) == "product : ") {	  			
+	  			var idxStr = searchStr.substring(10);
+	  			$('input[name="searchProduct"]').val(idxStr);
+	  			$('input[name="searchStr"]').val("");
+	  		}
+	  		
+	  		if(searchStr.substring(0,10) == "trainer : ") {
+	  			var idxStr = searchStr.substring(10);
+	  			$('input[name="searchTrainer"]').val(idxStr);
+	  			$('input[name="searchStr"]').val("");
+	  		}
+	  		
+	  		var searchProduct = $('input[name="searchProduct"]').val();
+	  		var searchTrainer = $('input[name="searchTrainer"]').val();
+	  		var searchStr = $('input[name="searchStr"]').val();
+	  		
+	 		if(searchStr == "카드"){
+	  			searchStr = "Card";
+	  		}else if(searchStr == "현금"){
+	  			searchStr = "Cash";
+	  		}
+		  				  			  		
+	  		var $newForm = $('<form></form>');	
+			$newForm.attr("method", "post");
+			
+			if(action=="search") {
+				$newForm.attr("action", "saerch.msl");
+			}else {
+				$newForm.attr("action", "download.msl");
+			}
+			
+			$newForm.appendTo('body');
+			
+			$newForm.append($("<input/>", {type:"hidden", name:"searchStr", value:searchStr}));
+			$newForm.append($("<input/>", {type:"hidden", name:"startDate", value:startDate}));
+			$newForm.append($("<input/>", {type:"hidden", name:"endDate", value:endDate}));
+			$newForm.append($("<input/>", {type:"hidden", name:"searchProduct", value:searchProduct}));
+			$newForm.append($("<input/>", {type:"hidden", name:"searchTrainer", value:searchTrainer}));
+				
+			$newForm.submit();
+	 	}
+	 	
+	 	
+	 	$(function() {	
 	
 			$('input[name="startDate"]').daterangepicker({
 			  singleDatePicker: true,
@@ -182,7 +237,6 @@
 				  showDropdowns: true,
 			      locale: {format: 'YYYY-MM-DD'}  
 			});
-	 		
 	 	});
 
 	</script>

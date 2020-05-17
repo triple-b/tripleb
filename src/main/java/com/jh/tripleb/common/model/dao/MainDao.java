@@ -26,7 +26,7 @@ public class MainDao {
 		return sqlSession.selectOne("mainMapper.expStudent", tno);
 	}
 	
-	public int thisMonth(SqlSessionTemplate sqlSession) {
+	public String thisMonth(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("mainMapper.thisMonth");
 	}
 	

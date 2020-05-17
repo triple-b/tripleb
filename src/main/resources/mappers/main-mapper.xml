@@ -29,7 +29,7 @@
 		WHERE SYSDATE+7 > CLASS_ENDDATE AND TRAINER_NO=#{tno}
 	</select>
 	
-	<select id="thisMonth" resultType="_int">
+	<select id="thisMonth" resultType="String">
 		SELECT SUM(PAY_PRICE)
 		FROM PAYINFO
 		WHERE EXTRACT(MONTH FROM SYSDATE) = EXTRACT (MONTH FROM PAY_DATE)
