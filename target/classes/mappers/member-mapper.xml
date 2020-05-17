@@ -89,12 +89,22 @@
 	</update>
 	<update id="addDate" parameterType="memberDtoU">
 		update mproduct
-		set memproduct_end=to_date(#{pauseStart})+#{pauseDate}
+		set memproduct_end=memproduct_end+#{pauseDate}
 		where member_no=#{memberNo}
 	</update>
 	<update id="pauseLate" parameterType="_int">
 		update member
 		set member_status='N'
+		where member_no=#{memberNo}
+	</update>
+	<update id="pauseCancelMember" parameterType="memberDtoU">
+		update member
+		set member_status='N', pause_end=#{pauseCancelDate}
+		where member_no=#{memberNo}
+	</update>
+	<update id="pauseCanceladdDate" parameterType="memberDtoU">
+		update mproduct
+		set memproduct_end=memproduct_end-#{pauseDate}
 		where member_no=#{memberNo}
 	</update>
 	

@@ -51,7 +51,7 @@
 									</header>
 									<div class="panel-body">
 										
-										<table class="table table-bordered table-striped mb-none" id="datatable-default">
+										<table class="table table-bordered table-striped mb-none" id="datatable-default" style="cursor:pointer;">
 											<thead>
 												<tr>
 												  <th>글번호</th>
@@ -66,7 +66,7 @@
 													  <tr>
 														  <td>${n.noticeNo }</td>
 														  <td>${n.noticeTitle }</td>
-														  <td>${loginUser.trainerName}</td>
+														  <td>${n.trainerName}</td>
 														  <td>${n.noticeDate}</td>
 													  </tr>
 												  </c:forEach>

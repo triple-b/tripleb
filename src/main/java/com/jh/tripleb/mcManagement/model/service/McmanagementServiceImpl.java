@@ -61,6 +61,12 @@ public class McmanagementServiceImpl implements McmanagementService{
 		return mcmDao.troubleMcManagement(sqlSession,mano);
 	}
 
+	@Override
+	public int trouble1McManagement(int mano) {
+		
+		return mcmDao.trouble1McManagement(sqlSession,mano);
+	}
+
 
 
 

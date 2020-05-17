@@ -19,5 +19,6 @@ public class mcAllCheck {
 	private String machineTitle;			// 점검제목
 	private Date machineChkDate;			// 점검일
 	private int trainerNo;					// 트레이너번호
+	private String trainerName;				// 트레이너이름
 
 }

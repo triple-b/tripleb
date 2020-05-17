@@ -41,4 +41,23 @@
   		set LOCKER_STATUS='R'
   		where locker_no=#{lcno}
   	</update>
+  	
+  	<select id="selectLcPos" resultType="LockerPos">
+  		select lockerpos_no
+		from lockerpos
+		join locker using (lockerpos_no)
+		where locker_no = #{lcno}
+  	</select>
+  	
+  	<update id="updateLcPosStatus" parameterType="_int">
+  		update LockerPos
+  		set lockerpos_status='X'
+  		where lockerPos_no=#{lpno}
+  	</update>
+  	
+  	<update id="updateMember" parameterType="_int">
+  		update Member
+  		set Member_LockerNo = #{lockerPosNo}
+  		where member_no=#{memberNo}
+  	</update>
 </mapper>

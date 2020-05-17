@@ -103,10 +103,10 @@
 								<ul class="nav nav-pills nav-pills-primary">
 
 									<li style="padding-right: 10px;">
-										<button class="modal-with-form btn btn-default"  style="float:right;" href="#modalForm1" onclick="updateSelect();"> 상태창</button>
+										<button class=" btn btn-default"  style="float:right; " onclick="trouble()">고장</button>
 									</li>
 									<li style="padding-right: 10px;">
-										<button class=" btn btn-default"  style="float:right; " onclick="trouble()">고장</button>
+										<button class=" btn btn-default"  style="float:right; " onclick="trouble1()">고장해제</button>
 									</li>
 									<li style="padding-right: 10px;">
 										<button class=" btn btn-default"  style="float:right; " onclick="deletemcm()">삭제</button>
@@ -133,8 +133,8 @@
 												<div class="thumb-preview">
 													<div id="Mcmanagementtlqkf">
 														<input id="machineNo1"  type="hidden" value="${m.machineNo}" >
-														<a class="thumb-image" href="${ pageContext.servletContext.contextPath }/resources/assets/images/projects/project-1.jpg"></a>
-															<img style="width:200px; height:200px;" src="${ pageContext.servletContext.contextPath }/resources/upload_files/${m.thumbChange}" class="img-responsive" alt="Project">
+														<a class="thumb-image">
+															<img style="width:200px; height:200px; cursor:pointer" src="${ pageContext.servletContext.contextPath }/resources/upload_files/${m.thumbChange}" class="img-responsive modal-with-form" alt="Project" onclick="clickImgFn(${ m.machineNo})" id="imgValue1" href="#modalForm1">
 														</a>
 													</div>
 													<div class="mg-thumb-options">
@@ -433,6 +433,36 @@
 	<!-- 현재 페이지에서만 사용하는 JSP -->
 	
 	<script>
+		var clickImgFn = function(rowkey){
+			var value1 = rowkey;
+			console.log(value1);
+			
+			$.ajax({
+	    		url:"selectMc1.mcm",
+	    		data:{mano:value1},
+	    		type:"post",
+	    		success:function(mc){
+	    			
+	    			var value = "";
+	    				$("#machineRegistDate").val(mc.machineRegistDate);
+	    				$("#mcNo").val(mc.mcNo);	
+	    				$("#mcName").val(mc.mcName);
+	    				$("#machineNo").val(mc.machineNo);
+	    				$("#mcExplain").val(mc.mcExplain);
+	    				$("#thumbChange").val(mc.thumbChange);
+	    				$("#thumbnail").val(mc.thumbnail);
+	    				$("#mcDate").val(mc.mcDate);
+	    				$("#img").attr('src', "${ pageContext.servletContext.contextPath }/resources/upload_files/" + mc.thumbChange);	
+	    		},
+	    		error:function(){
+	    			console.log("머신 상세정보 통신실패");
+	    		}
+	    	});
+		}
+	</script>
+	
+	
+	<script>
 		$(function(){
 			selectList();
 		});
@@ -496,12 +526,10 @@
     function insertmcm() {
     	location.href="insert.mcm?mcno="+machinecheckID;
     }
-    
-  /*
-    function trouble() {
-    	location.href="trouble.mcm?mano="+machinecheckNo;
+    function trouble1() {
+    	location.href="trouble1.mcm?mcno="+machinecheckNo;
     }
-   */
+    
     function updateSelect(){
     	location.href="update.mcm?mano="+machinecheckNo;
     } 
@@ -524,32 +552,7 @@
         
         machinecheckNo = a.value;
     }
-    
-    function updateSelect(){
-    	var value1 = machinecheckNo;
-
-		    	$.ajax({
-		    		url:"selectMc1.mcm",
-		    		data:{mano:value1},
-		    		type:"post",
-		    		success:function(mc){
-		    			
-		    			var value = "";
-		    				$("#machineRegistDate").val(mc.machineRegistDate);
-		    				$("#mcNo").val(mc.mcNo);	
-		    				$("#mcName").val(mc.mcName);
-		    				$("#machineNo").val(mc.machineNo);
-		    				$("#mcExplain").val(mc.mcExplain);
-		    				$("#thumbChange").val(mc.thumbChange);
-		    				$("#thumbnail").val(mc.thumbnail);
-		    				$("#mcDate").val(mc.mcDate);
-		    				$("#img").attr('src', "${ pageContext.servletContext.contextPath }/resources/upload_files/" + mc.thumbChange);	
-		    		},
-		    		error:function(){
-		    			console.log("머신 상세정보 통신실패");
-		    		}
-		    	});
-    }
+   
 	</script>
 	
 	<script>

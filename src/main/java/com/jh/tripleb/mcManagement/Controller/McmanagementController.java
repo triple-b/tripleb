@@ -22,6 +22,7 @@ import com.jh.tripleb.machine.model.vo.Machine;
 import com.jh.tripleb.mcManagement.model.service.McmanagementService;
 import com.jh.tripleb.mcManagement.model.vo.McManagement;
 import com.jh.tripleb.mcManagement.model.vo.McManagementDto;
+import com.jh.tripleb.notice.model.vo.Notice;
 
 
 @Controller
@@ -99,6 +100,21 @@ public class McmanagementController {
 		Gson gson = new Gson();
 
 		return  gson.toJson(m);
+	}
+	
+	@RequestMapping("trouble1.mcm")
+	public String trouble1McManagement(int mano,Model model) {
+		
+		int result = mcmService.trouble1McManagement(mano);
+		 
+		if(result > 0) { 
+			
+			return "redirect:mcList.mcm?type=leftmenu";
+		}else { 
+			
+			model.addAttribute("msg", "고장 작성 실패!");
+			return "common/errorPage";
+		}
 	}
 	
 	@RequestMapping("select.mcm")
