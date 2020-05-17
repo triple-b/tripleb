@@ -55,15 +55,15 @@
 										<a href="#" class="fa fa-caret-down"></a>
 									</div>
 			
-									<h2 class="panel-title">달성률 (월별)</h2>
+									<h2 class="panel-title">전체 달성률 (월별)</h2>
 								</header>
 								<div class="panel-body">
 									<div class="row text-center">
 										<div class="col-md-6" style="margin-right:auto; margin-left:auto; width:100%; height:350px;">
 											<div class="circular-bar" style="margin-top:15%;">
-												<div class="circular-bar-chart" data-percent="85" data-plugin-options='{ "barColor": "#0088CC", "delay": 300 }'>
+												<div class="circular-bar-chart" data-percent="${ goal }" data-plugin-options='{ "barColor": "#0088CC", "delay": 300 }'>
 													<strong>달성률</strong>
-													<label><span class="percent">${ one }</span>%</label>
+													<label><span class="percent">${ goal }</span>%</label>
 												</div>
 											</div>
 										</div>
@@ -92,12 +92,11 @@
 													<div class="summary">
 														<h4 class="title">진행 수업</h4>
 														<div class="info">
-															<strong class="amount">${ two }</strong>
-															<span class="text-primary">(14 unread)</span>
+															<strong class="amount">${ current }개</strong>
 														</div>
 													</div>
 													<div class="summary-footer">
-														<a class="text-muted text-uppercase">(view all)</a>
+														<a class="text-muted text-uppercase" href="student.jst">(view all)</a>
 													</div>
 												</div>
 											</div>
@@ -115,13 +114,13 @@
 												</div>
 												<div class="widget-summary-col">
 													<div class="summary">
-														<h4 class="title">신규 회원</h4>
+														<h4 class="title">한 달 이내 신규 회원</h4>
 														<div class="info">
-															<strong class="amount">${ three }</strong>
+															<strong class="amount">${ newStudent }명</strong>
 														</div>
 													</div>
 													<div class="summary-footer">
-														<a class="text-muted text-uppercase">(withdraw)</a>
+														<a class="text-muted text-uppercase" href="student.jst">(VIEW ALL)</a>
 													</div>
 												</div>
 											</div>
@@ -139,13 +138,13 @@
 												</div>
 												<div class="widget-summary-col">
 													<div class="summary">
-														<h4 class="title">진행 회원</h4>
+														<h4 class="title">수업 진행 중인 회원</h4>
 														<div class="info">
-															<strong class="amount">${ four }</strong>
+															<strong class="amount">${ currentStudent }명</strong>
 														</div>
 													</div>
 													<div class="summary-footer">
-														<a class="text-muted text-uppercase">(statement)</a>
+														<a class="text-muted text-uppercase" href="student.jst">(VIEW ALL)</a>
 													</div>
 												</div>
 											</div>
@@ -163,13 +162,13 @@
 												</div>
 												<div class="widget-summary-col">
 													<div class="summary">
-														<h4 class="title">만료 임박 회원</h4>
+														<h4 class="title">7일 이내 만료 임박 회원</h4>
 														<div class="info">
-															<strong class="amount">3765</strong>
+															<strong class="amount">${ expStudent }명</strong>
 														</div>
 													</div>
 													<div class="summary-footer">
-														<a class="text-muted text-uppercase">(report)</a>
+														<a class="text-muted text-uppercase" href="student.jst">(VIEW ALL)</a>
 													</div>
 												</div>
 											</div>
@@ -190,7 +189,7 @@
 										<a href="#" class="fa fa-caret-down"></a>
 									</div>
 
-									<h2 class="panel-title">일정관리</h2>
+									<h2 class="panel-title"><a href="calendar.uca">일정관리</a></h2>
 								</header>
 								<div class="panel-body">
 									<section class="panel panel-group">
@@ -227,21 +226,11 @@
 												<div id="collapse1One" class="accordion-body collapse in">
 													<div class="panel-body">
 														<ul class="widget-todo-list">
+														<c:forEach items="${ calendar }" var="c">
 															<li>
-																<p class="todo-label" for="todoListItem1"><span>Lorem ipsum dolor sit amet</span></p>
+																<p class="todo-label" for="todoListItem1"><span>${ c.calTitle } : ${ c.calContent }</span></p>
 															</li>
-															<li>
-																<p class="todo-label" for="todoListItem1"><span>Lorem ipsum dolor sit amet</span></p>
-															</li>
-															<li>
-																<p class="todo-label" for="todoListItem1"><span>Lorem ipsum dolor sit amet</span></p>
-															</li>
-															<li>
-																<p class="todo-label" for="todoListItem1"><span>Lorem ipsum dolor sit amet</span></p>
-															</li>
-															<li>
-																<p class="todo-label" for="todoListItem1"><span>Lorem ipsum dolor sit amet</span></p>
-															</li>
+														</c:forEach>
 														</ul>
 													</div>
 												</div>

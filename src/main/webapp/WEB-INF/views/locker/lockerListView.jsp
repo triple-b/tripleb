@@ -90,10 +90,11 @@
 					<div class="inner-toolbar clearfix locker-header" style="margin-top: 4px; height:70px; margin-bottom: 10px;">
 						<ul>
 								<li style="padding: 0px;">
-									<select>
-										<option>공용락커</option>
-										<option>남자</option>
-										<option>여자</option>
+									<select id="LockerCategory" onclick="send5();">
+										<option value="">락커선택</option>
+										<option value="all">공용락커</option>
+										<option value="M">남자</option>
+										<option value="F">여자</option>
 									</select>
 								</li>
 							
@@ -141,19 +142,19 @@
 															<h5 class="open">
 															<c:choose>
 																<c:when test="${ L.lockerPosStatus eq 'Y' }">
-																	<h5 style="width:42px; margin: auto;">사용중</h5>
+																	<h5 style="width:42px; margin: auto; color:blue;">사용중</h5>
 																</c:when>
 																<c:when test="${ L.lockerPosStatus eq 'X' }">
-																	<h5 style="width:42px; margin: auto;">미사용</h5>
+																	<h5 style="width:42px; margin: auto; color:black;">미사용</h5>
 																</c:when>
 																<c:when test="${ L.lockerPosStatus eq 'M' }">
-																	<h5 style="width:42px; margin: auto;">만기</h5>
+																	<h5 style="width:42px; margin: auto; color:orange;">만기</h5>
 																</c:when>
 																<c:when test="${ L.lockerPosStatus eq 'N' }">
-																	<h5 style="width:42px; margin: auto;">고장</h5>
+																	<h5 style="width:42px; margin: auto; color:red;">고장</h5>
 																</c:when>
 															</c:choose>
-																	<div class="mg-option checkbox-custom checkbox-inline" style="margin-left: 140px;">
+																	<div class="mg-option checkbox-custom checkbox-inline" style="margin-left:140px;">
 																			<input type="checkbox" id="file_1" name="lockerPosCheck" onclick="twoCheckbox(this)" value="${L.lockerPosNo}">
 																			<label for="file_1"></label>
 																	</div>
@@ -161,15 +162,28 @@
 															<div class="locker-window-parent" style="border: 2px solid transparent; border-image: none; ">
 																<div class="locker-window-content" style="color: black;">
 																			<h4>${L.lockerPosNo}</h4>
-																			<span style="font-variant:normal;">정휘재</span>
-																			<span style="font-variant:normal;">[2020.05.03]</span>																	
+																			
+																			<c:forEach items="${Llist}" var="m" > <!-- 락커 리스트 락커포스 아님 -->
+																				<c:choose>
+																					<c:when test="${ m.lockerStatus eq 'Y' }">
+																						<c:if test="${ L.lockerPosNo eq m.lockerPosNo}">
+																						<span style="font-variant:normal;">${ m.memberName }</span>
+																						<span style="font-variant:normal;">[${ m.lockerRegistDate}]</span>
+																						</c:if>
+																					</c:when>
+																					<c:when test="${ m.lockerStatus eq 'R' }">
+																						<span style="font-variant:normal;"></span>
+																						<span style="font-variant:normal;"></span>
+																					</c:when>
+																				</c:choose>
+																			</c:forEach>																	
 																	<c:choose>
 																		<c:when test="${ L.lockerPosType eq 'F' }">
 																			<h5 style="color:#e36159;">F</h5>
 																		</c:when>
 																		<c:when test="${ L.lockerPosType eq 'M' }">
 																			<h5 style="color:#0088c;">M</h5>
-																		</c:when>															
+																		</c:when>							
 																	</c:choose>
 																</div>
 															</div>
@@ -284,117 +298,53 @@
 								<header class="panel-heading">
 									<h1 class="panel-title">일괄등록</h1>
 								</header>
+							<form id="demo-form-wlqrkrhtlvek-Enroll" class="form-horizontal mb-lg" novalidate="novalidate">
 								<div class="panel-body">
-									<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
 										<div class="panel-body">
-											<table class="table table-bordered table-striped mb-none" id="datatable-default">
+											<table class="table table-bordered table-striped mb-none-LockerArea" id="datatable-default">
 												<thead>
 													<tr>
-														<th><input type="checkbox"></th>
+														<th></th>
 														<th>락커번호</th>
 														<th>락커타입</th>
 														<th class="hidden-phone">고객명</th>
 														<th class="hidden-phone">시작일</th>
 														<th class="hidden-phone">종료일</th>
-														<th class="hidden-phone">구매일</th>
-														<th class="hidden-phone">락커룸번호</th>
+														
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<th><input type="checkbox"></th>
-														<th>1</th>
-														<th>M</th>
-														<th class="hidden-phone">정휘재</th>
-														<th class="hidden-phone">2020-04-22</th>
-														<th class="hidden-phone">2020-10-11</th>
-														<th class="hidden-phone">2020-03-11</th>
-														<th class="hidden-phone"><input type="text" placeholder="락카번호" number="0" ></th>
+													<c:forEach items="${nlist}" var="L" >   
+													<tr id="LockerInsert1"> 
+														<th><input type=checkbox name="lockerPosNo" id="check1" value="${ L.lockerPosNo }"></th> 
+														<th> ${L.lockerPosNo} </th>
+														<th>${L.lockerPosType} </th>
+														<th>
+														<select name="memberNo" id="memberName2">
+															<option>이름선택</option>
+														<c:forEach items="${mlist}" var="L" >   
+															<option name="memberNo" value="${ L.memberNo }">${ L.memberName }</option>
+														</c:forEach>
+														</select>
+														</th>
+														<th><input name="lockerStartDate" type="date"></th>
+														<th><input name="lockerEndDate" type="date"></th>
 													</tr>
-													<tr>
-														<th><input type="checkbox"></th>
-														<th>2</th>
-														<th>M</th>
-														<th class="hidden-phone">김재희</th>
-														<th class="hidden-phone">2020-04-25</th>
-														<th class="hidden-phone">2020-10-17</th>
-														<th class="hidden-phone">2020-03-10</th>
-														<th class="hidden-phone"><input type="text" placeholder="락카번호" number="0" ></th>
-													</tr>
-													<tr>
-														<th><input type="checkbox"></th>
-														<th>3</th>
-														<th>M</th>
-														<th class="hidden-phone">박종호</th>
-														<th class="hidden-phone">2020-04-24</th>
-														<th class="hidden-phone">2020-10-13</th>
-														<th class="hidden-phone">2020-03-16</th>
-														<th class="hidden-phone"><input type="text" placeholder="락카번호" number="0" ></th>
-													</tr>
-													<tr>
-														<th><input type="checkbox"></th>
-														<th>4</th>
-														<th>F</th>
-														<th class="hidden-phone">장미경</th>
-														<th class="hidden-phone">2020-04-29</th>
-														<th class="hidden-phone">2020-10-19</th>
-														<th class="hidden-phone">2020-03-19</th>
-														<th class="hidden-phone"><input type="text" placeholder="락카번호" number="0" ></th>
-													</tr>
-													<tr>
-														<th><input type="checkbox"></th>
-														<th>5</th>
-														<th>F</th>
-														<th class="hidden-phone">김주희</th>
-														<th class="hidden-phone">2020-04-20</th>
-														<th class="hidden-phone">2020-10-10</th>
-														<th class="hidden-phone">2020-03-10</th>
-														<th class="hidden-phone"><input type="text" placeholder="락카번호" number="0" ></th>
-													</tr>
-													<tr>
-														<th><input type="checkbox"></th>
-														<th>6</th>
-														<th>F</th>
-														<th class="hidden-phone">강보람</th>
-														<th class="hidden-phone">2020-04-27</th>
-														<th class="hidden-phone">2020-10-17</th>
-														<th class="hidden-phone">2020-03-17</th>
-														<th class="hidden-phone"><input type="text" placeholder="락카번호" number="0" ></th>
-													</tr>
-													<tr>
-														<th><input type="checkbox"></th>
-														<th>7</th>
-														<th>M</th>
-														<th class="hidden-phone">홍길동</th>
-														<th class="hidden-phone">2020-04-28</th>
-														<th class="hidden-phone">2020-10-18</th>
-														<th class="hidden-phone">2020-03-18</th>
-														<th class="hidden-phone"><input type="text" placeholder="락카번호" number="0" ></th>
-													</tr>
-													<tr>
-														<th><input type="checkbox"></th>
-														<th>8</th>
-														<th>M</th>
-														<th class="hidden-phone">괴물쥐</th>
-														<th class="hidden-phone">2020-04-24</th>
-														<th class="hidden-phone">2020-10-14</th>
-														<th class="hidden-phone">2020-03-14</th>
-														<th class="hidden-phone"><input type="text" placeholder="락카번호" number="0" ></th>
-													</tr>
-
+													</c:forEach>
+														
 												</tbody>
 											</table>
 										</div>
-									</form>
-								</div>
-								<footer class="panel-footer">
-									<div class="row">
-										<div class="col-md-12 text-right">
-											<button class="btn btn-primary modal-confirm">등록</button>
-											<button class="btn btn-default modal-dismiss">취소</button>
-										</div>
 									</div>
-								</footer>
+									<footer class="panel-footer">
+										<div class="row">
+											<div class="col-md-12 text-right">
+												<button class="btn btn-primary modal-confirm" onclick="send2()">등록</button>
+												<button class="btn btn-default modal-dismiss">취소</button>
+											</div>
+										</div>
+									</footer>
+								</form>
 							</section>
 						</div>
 
@@ -432,27 +382,26 @@
 													<input type="text"  id="lockerPosStatus" class="form-control"  placeholder="" readonly />
 												</div>
 											</div>
-											<input type="hidden"  id="lockerPosNo" name="lockerPosNo">
-											<input type="hidden"  id="lockerPosType">
-											<input type="hidden"  id="lockerPosStatus">
+											<input type="hidden"  id="lockerNo" name="lockerNo">
+											
 										<hr>
 										<div class="Machine">															
 											<div class="form-group">
 												<label class="col-sm-3 control-label">회원이름</label>
 												<div class="col-sm-9">
-													<input id="myInput" type="text" name="countries" class="form-control"  placeholder="" />
+													<input type="text"  id="memberName" class="form-control"  placeholder="" readonly />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-3 control-label">시작일</label>
 												<div class="col-sm-9">
-													<input id="mcName" type="date" name="lockerStartDate" class="form-control"  placeholder="" />
+													<input type="text"  id="lockerStartDate" class="form-control"  placeholder="" readonly />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-3 control-label">종류일</label>
 												<div class="col-sm-9">
-													<input id="mcName" type="date" name="lockerEndDate" class="form-control"  placeholder="" />
+													<input type="text"  id="lockerEndDate" class="form-control"  placeholder="" readonly />
 												</div>
 											</div>
 										</div>
@@ -460,7 +409,8 @@
 										<footer class="panel-footer">
 											<div class="row">
 												<div class="col-md-12 text-right">
-													<button class="btn btn-primary modal-confirm" type="submit" onclick="send2()"; >수정</button>
+													<button class="btn btn-primary modal-confirm"  onclick="send7()"; >고장</button>
+													<button class="btn btn-primary modal-confirm"  onclick="send8()"; >회수</button>
 													<button class="btn btn-default modal-dismiss">취소</button>
 												</div>
 											</div>
@@ -481,9 +431,7 @@
 	function send1(){
 		document.getElementById("demo-form-update").submit();
 	}
-	function send2(){
-		document.getElementById("demo-form-Locker").submit();
-	}
+
 	</script>
 	<script>
 	 function selectLk(){
@@ -499,7 +447,12 @@
 			    				$("#lockerPosNo").val(lp.lockerPosNo);
 			    				$("#lockerPosType").val(lp.lockerPosType);	
 			    				$("#lockerPosStatus").val(lp.lockerPosStatus);
-			    			
+			    				$("#memberName").val(lp.memberName);
+			    				$("#lockerStartDate").val(lp.lockerStartDate);
+			    				$("#lockerEndDate").val(lp.lockerEndDate);
+			    				$("#lockerNo").val(lp.lockerNo);
+				    			
+			    				
 			    		},
 			    		error:function(){
 			    			console.log("머신 상세정보 통신실패");
@@ -531,7 +484,88 @@
 	        lockerPosNo = a.value;
 	    }
 	</script>
+	<!-- 
+	<script>
+		$(function(){
+			selectList();
+		});
+		function selectList(){
+				$.ajax({
+					url:"Lockerlist.hl",
+					type:"get",
+					success:function(list){
+						
+						console.log(list);
+						var value = "";
+						$.each(list, function(i, obj){
+							value += "<tr>" +   
+										"<th><input type='checkbox' name='Lockercheck' onclick='oneCheckbox(this)' value=" + obj.lockerPosNo + "></th>" +
+										"<th>" + obj.lockerPosNo + "</th>" +
+										"<th>" + obj.lockerPosType + "</th>" +
+										"<th><input type='text'></th>" +
+										"<th><input type='date'></th>" +
+										"<th><input type='date'></th>" +	
+									 "</tr>";	
+						});
+						$(".mb-none-LockerArea tbody").html(value);
+						
+					},error:function(){
+						console.log("댓글 리스트 조회용 ajax 통신 실패")
+					}
+					
+				});
+				
+				
+			}
+	</script>
+	  -->
 	
+	<script>
+	function send8(){
+	    var val = $('#lockerNo').val();
+	    location.href = "collect.hlc?lcno=" + val;		
+		}
+	function send7(){
+	    var val = $('#lockerPosNo').val();
+	    location.href = "trouble.hlo?lpno=" + val;		
+		}
+	</script>
+
+	
+	
+	<!-- LockerCategory스크립 -->
+	<script>
+	
+	function send5(){
+		
+		var value =	$("#LockerCategory option:selected").attr('value');
+		
+		if(value != ""){
+			location.href = "category.hlo?gender=" + value;			
+		}
+			
+	}
+	
+	function send2(){
+		
+		var lockerPosNo = new Array();
+		var memName = new Array();
+		var chk = new Array();
+		var chk2 = new Array();
+		$("input[name=lockerPosNo]:checked").each(function(){
+			lockerPosNo.push($(this).val());
+			memName.push($(this).parent().next().next().next().children().val());
+			chk.push($(this).parent().next().next().next().next().children().val());
+			chk2.push($(this).parent().next().next().next().next().next().children().val());
+
+			location.href="lockerEnroll.hlc?lockerPosNo=" + lockerPosNo + "&&memberNo="+ memName + "&&lockerStartDate=" + chk + "&&lockerEndDate=" + chk2;
+			
+		}) 
+		
+		//document.getElementById("demo-form-wlqrkrhtlvek-Enroll").submit();
+		
+	}
+	</script>
 	<!-- 공통으로 사용하는 JSP -->
 	<jsp:include page="../common/footerjs.jsp" />
 	<!-- 현재 페이지에서만 사용하는 JSP -->

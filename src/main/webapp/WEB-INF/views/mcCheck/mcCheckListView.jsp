@@ -141,15 +141,15 @@
 														<div class="mg-toolbar">
 																<div class="mg-option checkbox-custom checkbox-inline">
 																	<input type="checkbox" id="file_1" name="machinecheck1" onclick="twoCheckbox(this)" value="${m.machineNo}">
-																	<label for="file_1">SELECT</label>											
+																	<label for="file_1"></label>											
 																</div>
-															<h5 class="mg-title text-semibold">${m.mcName}</h5>	
+														
 																<c:choose>
 																	<c:when test="${ m.machineDel eq 'Y' }">
-																		<h5 style="width:42px; margin: auto;"></h5>
+																		<h5 class="mg-title text-semibold">${m.mcName}</h5>	
 																	</c:when>
 																	<c:when test="${ m.machineDel eq 'N' }">
-																		<h5 style="width:42px; margin: auto;">고장</h5>
+																		<h5 class="mg-title text-semibold" style="color:red;">${m.mcName}</h5>	
 																	</c:when>
 																</c:choose>
 														</div>

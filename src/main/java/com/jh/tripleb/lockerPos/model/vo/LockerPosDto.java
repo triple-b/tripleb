@@ -8,7 +8,8 @@ public class LockerPosDto {
 	private String lockerPosType;		// 락커룸이름
 	private String lockerPosStatus;		// 락커룸 상태  (N=고장 M=만기 Y=사용 X=미사용)
 	private String lockerPosDelet;		// 락커룸 삭제  (Y:유지 N:삭제)									
-	private int lockerNo;			// 락커 번호														
+	private int lockerNo;			// 락커 번호
+	private Date lockerStartDate;	// 락커 시작일
 	private Date lockerEndDate;		// 락커 종료일																															
 	private String lockerStatus;	// 락커 상태 (Y:사용중,R:회수)
 	private int memberNo;			// 회원번호

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mainMapper">
+
+	<select id="currentClass" parameterType="_int" resultType="_int">
+		SELECT COUNT(CLASS_NO)
+		FROM CLASSINFO
+		WHERE TRAINER_NO=#{tno} AND CLASS_STATUS='Y'
+	</select>
+	
+	<select id="currentStudent" parameterType="_int" resultType="_int">
+		SELECT COUNT(MEMBER_NO)
+		  FROM STUDENT
+		  JOIN CLASSINFO USING(CLASS_NO)
+		 WHERE TRAINER_NO=#{tno}
+	</select>
+	
+	<select id="newStudent" parameterType="_int" resultType="_int">
+		SELECT COUNT(MEMBER_NO)
+		FROM STUDENT
+		JOIN CLASSINFO USING(CLASS_NO)
+		WHERE SYSDATE+30 > CLASS_STDATE AND TRAINER_NO=#{tno}
+	</select>
+	
+	<select id="expStudent" parameterType="_int" resultType="_int">
+		SELECT COUNT(MEMBER_NO)
+		FROM STUDENT
+		JOIN CLASSINFO USING(CLASS_NO)
+		WHERE SYSDATE+7 > CLASS_ENDDATE AND TRAINER_NO=#{tno}
+	</select>
+	
+	<select id="thisMonth" resultType="_int">
+		SELECT SUM(PAY_PRICE)
+		FROM PAYINFO
+		WHERE EXTRACT(MONTH FROM SYSDATE) = EXTRACT (MONTH FROM PAY_DATE)
+	</select>
+	<select id="thisMonthGoal" resultType="_int">
+		SELECT SALESPRICE
+		FROM SALESGOAL
+		WHERE MONTH = EXTRACT(MONTH FROM SYSDATE)
+	</select>
+	
+</mapper>

@@ -108,7 +108,7 @@
                             </form>
                         </div>
                         <div style="float: right;">
-                            <a href="https://naumcare.co.kr:56790/brand/tratac" target="_blank"><img src="${ pageContext.servletContext.contextPath }/resources/images/sugBanner.png"></a> 
+                           <a href="https://naumcare.co.kr:56790/brand/tratac" target="_blank"><img src="${ pageContext.servletContext.contextPath }/resources/images/sugBanner.png"></a> 
                         </div>
                     </div>
                 </section>

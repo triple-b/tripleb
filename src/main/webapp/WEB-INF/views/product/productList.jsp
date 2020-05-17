@@ -12,6 +12,19 @@
 	table tr{
 		width:100%;
 	}
+	fieldset {
+		border-color: red;
+		border-width: 1px 0 0 0;
+		margin-left:-15%;
+	}
+	legend {
+		text-align: center;			
+	}
+	
+	.memInfoTable{
+		border-collapse: seperate;
+		border-spacing: 5px 10px;
+	}
 </style>
 </head>
 <body>
@@ -43,7 +56,7 @@
 	                    <div class="innerOuter" style="margin-top:-5%">
 	                        <section class="panel">
 	                            <header class="panel-heading">
-	                            	<c:if test="${ loginUser.trainerGrade ne 'N' }">
+	                            	<c:if test="${ loginUser.trainerGrade ne 'B' }">
 		                                <div class="panel-btn" style="margin-bottom: 1%;">
 		                                    <button class="modal-with-form btn btn-default" style="float:right; margin-right: 1%;" href="#modalFormD">삭제</button>
 		                                    <button id="registModal" class="modal-with-form btn btn-default" style="float:right; margin-right: 1%; background:#0088cc; color:white; border:1px solid #0088cc;" href="#modalFormR">등록</button>
@@ -52,6 +65,9 @@
 	                                <h2 class="panel-title">상품관리</h2>				
 	                            </header>
 	                            <div class="panel-body">
+		                            <fieldset>
+										<legend style="line-height: 3em;">회원정보</legend>
+									</fieldset>
 	                              	  회원이름 : <input type="text" id="memberName"><button id="searchModal" class="modal-with-form btn btn-default" style="margin-left: 1%;" href="#modalFormS">검색</button>
 	                                <!-- member 정보 -->
 	                                <div class="memberInfo2" style="margin-top: 2%;">
@@ -72,6 +88,9 @@
 	                                
 	                                <!-- 회원권, pt권 리스트 -->
                                     <div class="pricing-table" style="margin-top:5%">
+		                                <fieldset>
+											<legend style="line-height: 3em;">상품정보</legend>
+										</fieldset>
                                        <table style="width:100%;">
                                           <tr style="width:100%;">
                                              <td>
@@ -149,7 +168,7 @@
 							}else{
 								var value="";
 								
-								value += '<td colspan="3">조회된 회원이 없습니다 </td>'; 
+								value += '<td colspan="3"><label style="width: 100%;text-align: center;margin-left: 135%;margin-top: 10%;">조회된 회원이 없습니다</label></td>'; 
 							}
 							
 							$("#memberList").html(value);
@@ -185,7 +204,7 @@
 	                    
 	                    </tbody>
                     </table>
-		            <footer class="panel-footer" style="margin-top:2%">
+		            <footer class="panel-footer" style="margin-top:2%; background:white">
 		                <div class="row">
 		                    <div class="col-md-12 text-right">
 		                        <button id="memSubmit" class="btn btn-default modal-dismiss" type="button">확인</button>
@@ -335,26 +354,26 @@
 								var value = "";
 								
 								value += '<div class="summary">' +
-										 	'<h4 class="title">회원정보</h4>' +
+										 	'<h4 class="title"></h4>' +
 										 		'<div class="info">' +
 										 			'<form>' +
 										 				'<input type="hidden" id="memberNo1" value="' + data.memberNo + '">' +
-												 		'<table>' +
+												 		'<table class="memInfoTable">' +
 															'<tr>' +
 								                                '<th>이름 : </th>' +
-								                                '<td>' + data.memberName + '</td>' +
+								                                '<td>&nbsp;&nbsp;&nbsp;&nbsp;' + data.memberName + '</td>' +
 								                            '</tr>' +
 								                            '<tr>' +
 								                            	'<th>생년월일 : </th>' +
-								                            	'<td>' + data.memberBirth + '</td>' +
+								                            	'<td>&nbsp;&nbsp;&nbsp;&nbsp;' + data.memberBirth + '</td>' +
 								                            '</tr>' +
 								                            '<tr>' +
 								                                '<th>휴대폰 : </th>' +
-								                                '<td>' + data.memberPhone + '</td>' +
+								                                '<td>&nbsp;&nbsp;&nbsp;&nbsp;' + data.memberPhone + '</td>' +
 								                            '</tr>' +
 								                            '<tr>' +
 								                                '<th>주소 : </th>' +
-								                                '<td>' + data.memberAddress + '</td>' +
+								                                '<td>&nbsp;&nbsp;&nbsp;&nbsp;' + data.memberAddress + '</td>' +
 								                            '</tr>' +
 								                         '</table>' +
 						                      		'</form>' +

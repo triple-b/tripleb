@@ -3,8 +3,6 @@ package com.jh.tripleb.locker.model.vo;
 
 import java.sql.Date;
 
-import org.mybatis.spring.SqlSessionTemplate;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

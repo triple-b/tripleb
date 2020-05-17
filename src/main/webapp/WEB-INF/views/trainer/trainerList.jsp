@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -134,51 +135,47 @@
                   <h2 class="panel-title" style="color: white;">상세정보</h2>
                </header>
                <div class="panel-body">
-                 	<div style="float: right;">
-                     	<img src="assets/images/health.jpg" width="200px" height="200px" alt="">
-                 	</div>                        
-                	<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate" style="float: left;">
+                	<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
 	                     <div class="form-group">
-	                         <label class="col-sm-6 control-label">이 름 </label>
-	                         <div style="float: right;">
-	                             <label class="control-label" style="font-weight: bolder; width:80px;" id="trainerName"></label>
+	                         <label class="col-sm-3 control-label">이 름 </label>
+	                         <div>
+	                             <label class="control-label" style="font-weight: bolder;" id="trainerName"></label>
 	                         </div>
 	                     </div>
 	                     <div class="form-group">
-	                         <label class="col-sm-6 control-label">생년월일 </label>
-	                         <div style="float: right;">
-	                             <label class="control-label col-sm-9" id="trainerBirth" style="width:80px;"></label>
+	                         <label class="col-sm-3 control-label">생년월일 </label>
+	                         <div>
+	                             <label class="control-label" id="trainerBirth"></label>
 	                         </div>
 	                     </div>
 	                     <div class="form-group">
-	                         <label class="col-sm-6 control-label">주 소 </label>
-	                         <div style="float: right;">
-	                             <label class="control-label" id="trainerAddress" style="width:80px;"></label>
+	                         <label class="col-sm-3 control-label">주 소 </label>
+	                         <div>
+	                             <label class="control-label" id="trainerAddress"></label>
 	                         </div>
 	                     </div> 
 	                     <div class="form-group">
-	                         <label class="col-sm-6 control-label">이메일 </label>
-	                         <div style="float: right;">
-	                             <label class="control-label" id="email" style="width:80px;"></label>
+	                         <label class="col-sm-3 control-label">이메일 </label>
+	                         <div>
+	                             <label class="control-label" id="email"></label>
 	                         </div>
 	                     </div>
 	                     <div class="form-group">
-	                         <label class="col-sm-6 control-label">입사일 </label>
-	                         <div style="float: right;">
-	                             <label class="control-label" id="enrollDate" style="width:80px;"></label>
+	                         <label class="col-sm-3 control-label">입사일 </label>
+	                         <div>
+	                             <label class="control-label" id="enrollDate"></label>
 	                         </div>
 	                     </div>
-	                     <div class="form-group">
-	                         <label class="col-sm-6 control-label">수상경력 </label>
-	                         <div class="col-sm-6" style="float: right">
-	                         		<ul style="float:left;">
-	                         			<li id="award" style="width:80px;"></li>
-	                         		</ul>
-	                         </div>
-	                     </div>                 
+	                     <div class="form-group" style="margin-bottom:0px;">
+	                        <label class="col-sm-3 control-label">수상경력 </label>
+	                         <textarea rows="10" cols="50" style="border:none; background:#fdfdfd; resize:none;"id="award" disabled readonly></textarea>
+	                     </div>
+	                     <div style="float:right">
+	                    	<img src="resources/images/tripleb_logo.png">
+	              		 </div>
                  	</form>	
             	</div>
-				<footer class="panel-footer">
+				<footer class="panel-footer" style="background:white">
 			         <div class="row">
 			            <div class="col-md-12 text-right" style="text-align: center;">
 			               <button class="btn btn-primary modal-confirm assignBtn" style="margin-right: 2%;">확인</button>
@@ -406,4 +403,3 @@
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.modals.js"></script>
   
 </body>
-</html>
