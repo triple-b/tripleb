@@ -121,6 +121,11 @@ public class InvoiceServiceImpl implements InvoiceService {
 		}		
 		
 	}
+
+	@Override
+	public int updateInvocie(Invoice i) {
+		return iDao.updateInvocie(sqlSession, i);
+	}
 	
 
 }

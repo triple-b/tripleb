@@ -45,8 +45,10 @@
       	<typeAlias type="com.jh.tripleb.locker.model.vo.Locker" alias="Locker"/>
       	<typeAlias type="com.jh.tripleb.locker.model.vo.LockerDto" alias="LockerDto"/>
       	<typeAlias type="com.jh.tripleb.lockerPos.model.vo.LockerDtou" alias="LockerDtou"/>
-      	<typeAlias type="com.jh.tripleb.sales.model.vo.SalesDto" alias="SalesDto"/> 
-      	<typeAlias type="com.jh.tripleb.sales.model.vo.SalesSearchDto" alias="SalesSearchDto"/>       	     	
+      	<typeAlias type="com.jh.tripleb.sales.model.vo.SalesDto" alias="SalesDto"/>
+      	<typeAlias type="com.jh.tripleb.sales.model.vo.SalesSearchDto" alias="SalesSearchDto"/>   
+      	<typeAlias type="com.jh.tripleb.sales.model.vo.SalesProductDto" alias="SalesProductDto"/>
+      	<typeAlias type="com.jh.tripleb.salesGoal.model.vo.SalesGoal" alias="SalesGoal"/>
 	</typeAliases>
 	
 	<mappers>

@@ -94,7 +94,7 @@
 										<td colspan="3"></td>
 									</tr>
 									<tr>
-										<td colspan="4"><p style="height:150px">${n.noticeContent }</p></td>
+										<td colspan="4"><textarea cols="100" rows="80"  style="resize:none; height:500px; border:none;" readonly>${n.noticeContent }</textarea></td>
 									</tr>
 								</table>
 								<br>

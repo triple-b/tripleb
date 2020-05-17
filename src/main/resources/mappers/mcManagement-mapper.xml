@@ -54,11 +54,17 @@
                			 from mc_management
                			where machine_no = #{machineNo})
   	</update>
-  	
+  
   	
   	<update id="troubleMcManagement" parameterType="_int" >
   		update mc_management
   		set machine_del='N'
+  		where machine_no=#{mano}
+  	</update>
+  	
+  	<update id="trouble1McManagement" parameterType="_int" >
+  		update mc_management
+  		set machine_del='Y'
   		where machine_no=#{mano}
   	</update>
   </mapper>

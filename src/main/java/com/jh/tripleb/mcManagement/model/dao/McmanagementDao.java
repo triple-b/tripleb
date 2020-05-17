@@ -45,4 +45,9 @@ public class McmanagementDao {
 		
 		return sqlSession.update("mcManagementMapper.troubleMcManagement",mano);
 	}
+
+	public int trouble1McManagement(SqlSessionTemplate sqlSession, int mano) {
+		
+		return sqlSession.update("mcManagementMapper.trouble1McManagement",mano);
+	}
 }

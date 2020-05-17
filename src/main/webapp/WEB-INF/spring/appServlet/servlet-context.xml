@@ -33,7 +33,10 @@
 	</beans:bean>
 	
 	<!-- Controller 에서 download 라는 뷰를 호출하면 ExcelView 클래스 처리 -->
+	<!-- Invoice 양식 처리 class -->
 	<beans:bean id="ExcelDownloadInvoice" class="com.jh.tripleb.common.excel.model.vo.ExcelDownloadInvoice"/>
+	<!-- 보기리스트  처리 class -->
+	<beans:bean id="ExcelDownloadSales" class="com.jh.tripleb.common.excel.model.vo.ExcelDownloadSales"/>
 		
 	<!-- 메일발송용 -->		
 	<beans:bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >

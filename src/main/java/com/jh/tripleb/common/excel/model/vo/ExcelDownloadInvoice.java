@@ -402,9 +402,12 @@ public class ExcelDownloadInvoice  extends AbstractXlsxView {
 		cell.setCellStyle(styleOfItemTitle);
 		cell.setCellValue("Price");
 		
+		System.out.println("인보이스 : " + itemList);
+		
 		// 구매항목 리스트 : 구매항목 갯수만큼 새로운 행 생성			
 		short itemHeight = 500;
 		for(int i=0; i<itemList.size(); i++) {		
+			
 			row = worksheet.createRow(rowCount++);
 			cellCount = 0; 
 			row.setHeight(itemHeight);

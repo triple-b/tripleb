@@ -231,6 +231,9 @@
 																<p class="todo-label" for="todoListItem1"><span>${ c.calTitle } : ${ c.calContent }</span></p>
 															</li>
 														</c:forEach>
+														<c:if test="${ empty calendar }">
+																<p class="todo-label" for="todoListItem1"><span>예정된 일정이 없습니다.</span></p>
+														</c:if>
 														</ul>
 													</div>
 												</div>

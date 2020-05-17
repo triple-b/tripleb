@@ -63,7 +63,7 @@
 										<input type="hidden" name="searchProduct">
 										<input type="hidden" name="searchTrainer">
 										<div class="input-group-btn">
-												<button tabindex="-1" class="btn btn-primary" type="button" id="serchBtn">검색</button>
+												<button tabindex="-1" class="btn btn-primary" type="button" onclick="actionProcess('search')">검색</button>
 												<button tabindex="-1" data-toggle="dropdown" class="btn btn-primary dropdown-toggle mr-sm" type="button" aria-expanded="false">
 													<span class="caret"></span>
 												</button>
@@ -106,7 +106,7 @@
 											<td class="text-center">${ s.payDate }</td>
 											<td class="text-center">${ s.productCategory }</td>
 											<td class="text-center">${ s.productName }</td>
-											<td class="text-center">${ s.memberTrainer }</td>
+											<td class="text-center">${ s.trainerName }</td>
 											<td class="text-center">${ s.memberName }</td>
 											<td class="text-right"><fmt:formatNumber value="${ s.payPrice }" pattern="#,###" /></td>
 											<td class="text-center">
@@ -125,7 +125,7 @@
 							<div class="widget-summary widget-summary-sm">
 								<div class="widget-summary-col widget-summary-col-icon" style="padding-top: 15px;">
 									<div class="summary-icon bg-secondary">
-										<div class="btn-secondary" style="cursor: pointer;"><i class="fa fa-file-excel-o" title="엑셀로 저장"></i></div>			
+										<div class="btn-secondary" style="cursor: pointer;" onclick="actionProcess('excel')"><i class="fa fa-file-excel-o" title="엑셀로 저장"></i></div>			
 									</div>
 								</div>										
 								<div class="widget-summary-col" style="margin-right: 20px;">
@@ -137,8 +137,7 @@
 										border-top-color: rgb(221, 221, 221);
 										padding-top:5px;">   
 											<h4 class="title">총 매출액 : <strong class="amount"><fmt:formatNumber value="${ dmap.totalPrice }" pattern="#,###" /></strong></h4>
-										</div>
-										
+										</div>										
 									</div>
 								</div>
 							</div>
@@ -161,23 +160,20 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/js/daterangepicker.js"></script>
 	<script>	
-	
 					
 		var thisUrlStr = window.location.href;
 		var thisUrl = new URL(thisUrlStr);
 		var startDate = thisUrl.searchParams.get("startDate");
 		var endDate = thisUrl.searchParams.get("endDate");
-		
-		console.log(startDate);
-		console.log(endDate);
 	
 		function setSearchStr(target) {
 			var title = $(target).attr('data-title');
 			var name =  $(target).attr('data-name');
 			$('input[name="searchStr"]').val(name + " : " + title);
-		}
-		
-	 	$('#serchBtn').click(function () { 	 			 		
+		}		
+	 	
+	 	function actionProcess(action) {
+	 		
 	  		var searchStr = $('input[name="searchStr"]').val();
 	  		var startDate = $('input[name="startDate"]').val();
 	  		var endDate = $('input[name="endDate"]').val();
@@ -185,7 +181,6 @@
 	  		$('input[name="searchTrainer"]').val("");
 	  			  		
 	  		// 검색어에 product:, trainer: 포함 여부 확인해서 필드에 값 저장
-	  		console.log(searchStr.substring(0,10));
 	  		if(searchStr.substring(0,10) == "product : ") {	  			
 	  			var idxStr = searchStr.substring(10);
 	  			$('input[name="searchProduct"]').val(idxStr);
@@ -202,15 +197,21 @@
 	  		var searchTrainer = $('input[name="searchTrainer"]').val();
 	  		var searchStr = $('input[name="searchStr"]').val();
 	  		
-	  		console.log("searchStr : " + searchStr);
-	  		console.log("startDate : " + startDate);
-	  		console.log("endDate : " + endDate);
-	  		console.log("searchProduct : " + searchProduct);
-	  		console.log("searchTrainer : " + searchTrainer);
+	 		if(searchStr == "카드"){
+	  			searchStr = "Card";
+	  		}else if(searchStr == "현금"){
+	  			searchStr = "Cash";
+	  		}
 		  				  			  		
 	  		var $newForm = $('<form></form>');	
 			$newForm.attr("method", "post");
-			$newForm.attr("action", "saerch.msl");
+			
+			if(action=="search") {
+				$newForm.attr("action", "saerch.msl");
+			}else {
+				$newForm.attr("action", "download.msl");
+			}
+			
 			$newForm.appendTo('body');
 			
 			$newForm.append($("<input/>", {type:"hidden", name:"searchStr", value:searchStr}));
@@ -220,8 +221,8 @@
 			$newForm.append($("<input/>", {type:"hidden", name:"searchTrainer", value:searchTrainer}));
 				
 			$newForm.submit();
+	 	}
 	 	
-	 	});	
 	 	
 	 	$(function() {	
 	

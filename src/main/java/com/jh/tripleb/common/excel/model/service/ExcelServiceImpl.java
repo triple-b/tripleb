@@ -1,5 +1,6 @@
 package com.jh.tripleb.common.excel.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jh.tripleb.common.excel.model.dao.ExcelDao;
+import com.jh.tripleb.sales.model.vo.SalesDto;
+import com.jh.tripleb.sales.model.vo.SalesSearchDto;
 
 
 @Service("xService")
@@ -24,8 +27,6 @@ public class ExcelServiceImpl implements ExcelService {
 	    	   return xDao.selectInvocie(sqlSession, targetNo);
 	       }else if(target.equals("company")) {
 	    	   return xDao.selectCompany(sqlSession, targetNo);
-	       }else if(target.equals("item")) {
-	    	   return null;
 	       }else {
 	    	   return null;
 	       }
@@ -35,22 +36,13 @@ public class ExcelServiceImpl implements ExcelService {
 		return xDao.selectListPurchase(sqlSession, targetNo);
 	}
 
-	/*
-	 * 
-
 	@Override
-	public List<Object> getAllObjects(String target, int targetNo) {
-		
-	       if(target.equals("invoice")) {
-	    	   return eDao.selectInvocie(sqlSession, targetNo);
-	       }else if(target.equals("salesList")) {
-	    	   //return eDao.selectListSales();
-	    	   return null;
-	       }else {
-	    	   return null;
-	       }
+	public List<Object> selectListSalesExcel(SalesSearchDto s) throws Exception {
+		return xDao.selectListSalesExcel(sqlSession, s);
 	}
-	*/
+
+
+
 
 }
 

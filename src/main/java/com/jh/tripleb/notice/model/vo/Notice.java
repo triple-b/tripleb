@@ -20,5 +20,5 @@ public class Notice {
 	private Date noticeDate;		// 공지사항 등록일
 	private String noticeStatus;	// 공지사항 상태 (Y:유지 N:삭제)
 	private int trainerNo;			// 트레이너 번호
-
+	private String trainerName;
 }

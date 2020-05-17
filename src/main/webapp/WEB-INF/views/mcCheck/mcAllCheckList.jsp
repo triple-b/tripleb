@@ -52,7 +52,7 @@
 							</header>
 							<div class="panel-body">
 								
-								<table class="table table-bordered table-striped mb-none" id="datatable-default">
+								<table class="table table-bordered table-striped mb-none" id="datatable-default"style="cursor:pointer;">
 									<thead>
 										<tr>
 											<th>No</th>
@@ -65,7 +65,7 @@
 										<c:forEach items="${List}" var="ma">
 											<tr>
 												<td>${ma.machinAllChkNo}</td>
-												<td>${ma.trainerNo}</td>
+												<td>${ma.trainerName}</td>
 												<td class="center hidden-phone">${ma.machineTitle}</td>
 												<td class="center hidden-phone">${ma.machineChkDate}</td>
 											</tr>

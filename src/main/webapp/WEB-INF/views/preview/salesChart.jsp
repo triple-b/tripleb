@@ -14,7 +14,7 @@
 
 		<div class="inner-wrapper">
 			<!-- 왼쪽메뉴 페이지 -->
-			<jsp:include page="../common/sidebarLeft.jsp" />
+			<jsp:include page="sidebarLeft.jsp" />
 			
 			<!-- 오른쪽 페이지 -->	
 			<section role="main" class="content-body">
@@ -273,8 +273,6 @@
 										label: "김재희",
 										value: 20
 									}];
-				
-									// See: assets/javascripts/ui-elements/examples.charts.js for more settings.
 				
 								</script>
 				

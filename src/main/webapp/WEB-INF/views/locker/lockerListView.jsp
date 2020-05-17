@@ -409,8 +409,8 @@
 										<footer class="panel-footer">
 											<div class="row">
 												<div class="col-md-12 text-right">
-													<button class="btn btn-primary modal-confirm"  onclick="send7()"; >고장</button>
-													<button class="btn btn-primary modal-confirm"  onclick="send8()"; >회수</button>
+													<button class="btn btn-primary modal-confirm"  onclick="send7();" >고장</button>
+													<button class="btn btn-primary modal-confirm"  onclick="send8();" >회수</button>
 													<button class="btn btn-default modal-dismiss">취소</button>
 												</div>
 											</div>
@@ -484,41 +484,7 @@
 	        lockerPosNo = a.value;
 	    }
 	</script>
-	<!-- 
-	<script>
-		$(function(){
-			selectList();
-		});
-		function selectList(){
-				$.ajax({
-					url:"Lockerlist.hl",
-					type:"get",
-					success:function(list){
-						
-						console.log(list);
-						var value = "";
-						$.each(list, function(i, obj){
-							value += "<tr>" +   
-										"<th><input type='checkbox' name='Lockercheck' onclick='oneCheckbox(this)' value=" + obj.lockerPosNo + "></th>" +
-										"<th>" + obj.lockerPosNo + "</th>" +
-										"<th>" + obj.lockerPosType + "</th>" +
-										"<th><input type='text'></th>" +
-										"<th><input type='date'></th>" +
-										"<th><input type='date'></th>" +	
-									 "</tr>";	
-						});
-						$(".mb-none-LockerArea tbody").html(value);
-						
-					},error:function(){
-						console.log("댓글 리스트 조회용 ajax 통신 실패")
-					}
-					
-				});
-				
-				
-			}
-	</script>
-	  -->
+	
 	
 	<script>
 	function send8(){

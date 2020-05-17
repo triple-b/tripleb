@@ -56,7 +56,6 @@ public class MainController {
 			model.addAttribute("goal", goal);
 		}
 		
-		
 		model.addAttribute("current", current);
 		model.addAttribute("currentStudent", currentStudent);
 		model.addAttribute("newStudent", newStudent);
