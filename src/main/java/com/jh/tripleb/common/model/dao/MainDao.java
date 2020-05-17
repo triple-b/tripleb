@@ -37,5 +37,17 @@ public class MainDao {
 	public ArrayList<Calendar> todayCal(SqlSessionTemplate sqlSession, int tno) {
 		return (ArrayList)sqlSession.selectList("calendarMapper.todayCal", tno);
 	}
+	
+	public String product1(SqlSessionTemplate sqlSession, int tno) {
+		return sqlSession.selectOne("mainMapper.product1", tno);
+	}
+	
+	public String product2(SqlSessionTemplate sqlSession, int tno) {
+		return sqlSession.selectOne("mainMapper.product2", tno);
+	}
+	
+	public String product3(SqlSessionTemplate sqlSession, int tno) {
+		return sqlSession.selectOne("mainMapper.product3", tno);
+	}
 
 }

@@ -19,4 +19,8 @@ public interface MainService {
 	int thisMonthGoal();
 	
 	ArrayList<Calendar> todayCal(int tno);
+	
+	String product1(int tno);
+	String product2(int tno);
+	String product3(int tno);
 }

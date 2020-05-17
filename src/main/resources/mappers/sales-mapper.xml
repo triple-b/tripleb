@@ -20,11 +20,12 @@
 	<!-- 매출 리스트 조회(장미경) -->
 	<select id="selectListSalesDto" parameterType="String" resultType="SalesDto">
        	select Pay_Date, Product_Category, Product_Name, Trainer_Name, Member_Name, Pay_Price, Pay_Type 
-	    from PayInfo                
-        join Product using(Product_No) 
-        full outer join ClassInfo using(Product_No)
-        full outer join Trainer using(Trainer_No)
-        join Member using(Member_No)	 
+	    FROM PAYINFO
+        full outer JOIN PRODUCT P USING (PRODUCT_NO)
+        full outer JOIN MEMBER USING (MEMBER_NO)
+        full outer JOIN STUDENT USING (MEMBER_NO)
+        full outer JOIN CLASSINFO C USING (CLASS_NO)
+        full outer JOIN TRAINER USING (TRAINER_NO) 
 	    where to_char(Pay_Date,'yyyy') = #{currentYear}
 	    order by Pay_Date desc
 	</select>
@@ -32,11 +33,12 @@
 	<!-- 매출 리스트 검색(장미경) -->	
 	<select id="searchListSalesDto" parameterType="SalesSearchDto" resultType="SalesDto">
 		select Pay_Date, Product_Category, Product_Name, Trainer_Name, Member_Name, Pay_Price, Pay_Type 
-	    from PayInfo                
-        join Product using(Product_No) 
-        full outer join ClassInfo using(Product_No)
-        full outer join Trainer using(Trainer_No)
-        join Member using(Member_No)
+	    FROM PAYINFO
+        full outer JOIN PRODUCT P USING (PRODUCT_NO)
+        full outer JOIN MEMBER USING (MEMBER_NO)
+        full outer JOIN STUDENT USING (MEMBER_NO)
+        full outer JOIN CLASSINFO C USING (CLASS_NO)
+        full outer JOIN TRAINER USING (TRAINER_NO)
 	    where Pay_Date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
 	    <choose>
 		   	<when test="searchProduct != ''">
@@ -60,11 +62,12 @@
 	<!-- 엑셀다운로드용 매출 리스트 검색(장미경) -->
 	<select id="selectListSalesExcel" parameterType="SalesSearchDto" resultType="hashmap">
 		select Pay_Date, Product_Category, Product_Name, Trainer_Name, Member_Name, Pay_Price, Pay_Type 
-	    from PayInfo                
-        join Product using(Product_No) 
-        full outer join ClassInfo using(Product_No)
-        full outer join Trainer using(Trainer_No)
-        join Member using(Member_No)	   
+	    FROM PAYINFO
+        full outer JOIN PRODUCT P USING (PRODUCT_NO)
+        full outer JOIN MEMBER USING (MEMBER_NO)
+        full outer JOIN STUDENT USING (MEMBER_NO)
+        full outer JOIN CLASSINFO C USING (CLASS_NO)
+        full outer JOIN TRAINER USING (TRAINER_NO)   
 	    where Pay_Date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
 	    <choose>
 		   	<when test="searchProduct != ''">
@@ -107,9 +110,11 @@
 	<select id="salesListTrainer" resultType="SalesProductDto">
 		select TRAINER_NAME, SUM(Pay_Price) AS Pay_Price
 		from PayInfo 
-		join Product using(Product_No) 
-		join ClassInfo using(Product_No)
-		join Trainer using(Trainer_No)
+		JOIN MEMBER USING (MEMBER_NO)
+        JOIN STUDENT USING (MEMBER_NO)
+        JOIN CLASSINFO C USING (CLASS_NO)
+        JOIN PRODUCT P ON (P.PRODUCT_NO = C.PRODUCT_NO)
+        JOIN TRAINER USING (TRAINER_NO)
 		group by TRAINER_NAME
 	</select>	
 	

@@ -51,6 +51,21 @@ public class MainServiceImpl implements MainService {
 	public ArrayList<Calendar> todayCal(int tno) {
 		return umDao.todayCal(sqlSession, tno);
 	}
+
+	@Override
+	public String product1(int tno) {
+		return umDao.product1(sqlSession, tno);
+	}
+
+	@Override
+	public String product2(int tno) {
+		return umDao.product2(sqlSession, tno);
+	}
+
+	@Override
+	public String product3(int tno) {
+		return umDao.product3(sqlSession, tno);
+	}
 	
 
 }

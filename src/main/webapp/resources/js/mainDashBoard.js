@@ -1,20 +1,4 @@
 
-
-var morrisBarData = [{
-	y: '1:1 PT',
-	a: 50,
-	b: 10
-}, {
-	y: '1:3 PT',
-	a: 70,
-	b: 25
-}, {
-	y: '1:5 PT',
-	a: 30,
-	b: 10
-}];
-
-
 (function( $ ) {
 
 	'use strict';

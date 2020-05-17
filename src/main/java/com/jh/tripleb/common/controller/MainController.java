@@ -40,7 +40,31 @@ public class MainController {
 		int expStudent = umService.expStudent(t.getTrainerNo()); // 30일 이내 신규 회원
 		ArrayList<Calendar> clist = umService.todayCal(t.getTrainerNo()); // 오늘 일정
 		
-	   String thisMonth = umService.thisMonth(); // 이번달 총수입
+		String pro1 = umService.product1(t.getTrainerNo()); // 상품권 1
+		String pro2 = umService.product2(t.getTrainerNo()); // 상품권 2
+		String pro3 = umService.product3(t.getTrainerNo()); // 상품권 3
+		// String pro4 = umService.product4(t.getTrainerNo()); // 상품권 1
+		// String pro5 = umService.product5(t.getTrainerNo()); // 상품권 2
+		// String pro6 = umService.product6(t.getTrainerNo()); // 상품권 3
+		
+		int product1 = 0;
+		int product2 = 0;
+		int product3 = 0;
+		
+		
+		if(pro1 != null) {
+			product1 = Integer.parseInt(pro1);
+		}
+		
+		if(pro2 != null) {
+			product2 = Integer.parseInt(pro2);
+		}
+		
+		if(pro3 != null) {
+			product3 = Integer.parseInt(pro3);
+		}
+		
+	    String thisMonth = umService.thisMonth(); // 이번달 총수입
 	      int thisMonthGoal = umService.thisMonthGoal(); // 이번달 총수입
 
 	      Double goal = 0.0;
@@ -55,6 +79,7 @@ public class MainController {
 	      }else {
 	         model.addAttribute("goal", goal);
 	      }
+	      
 	
 		
 		model.addAttribute("current", current);
@@ -64,6 +89,9 @@ public class MainController {
 		model.addAttribute("goal", goal);
 		model.addAttribute("notice", nlist);
 		model.addAttribute("calendar", clist);
+		model.addAttribute("product1", product1);
+		model.addAttribute("product2", product2);
+		model.addAttribute("product3", product3);
 		
 		return "main";
 	}

@@ -41,6 +41,21 @@
 					
 									<!-- Morris: Bar -->
 									<div class="chart chart-md" id="morrisBar"></div>
+									<script type="text/javascript">
+										var morrisBarData = [{
+											y: '1:1 PT',
+											a: 50,
+											b: ${ product1 }
+										}, {
+											y: '1:3 PT',
+											a: 70,
+											b: ${ product2 }
+										}, {
+											y: '1:5 PT',
+											a: 30,
+											b: ${ product3 }
+										}];
+									</script>
 					
 								</div>
 							</section>

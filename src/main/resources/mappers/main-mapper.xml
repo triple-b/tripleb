@@ -39,5 +39,61 @@
 		FROM SALESGOAL
 		WHERE MONTH = EXTRACT(MONTH FROM SYSDATE)
 	</select>
-	
+	<select id="product1" resultType="String">
+		SELECT SUM(PAY_PRICE)
+		FROM PAYINFO
+		JOIN MEMBER USING (MEMBER_NO)
+		JOIN STUDENT USING (MEMBER_NO)
+		JOIN CLASSINFO C USING (CLASS_NO)
+		JOIN PRODUCT P ON (P.PRODUCT_NO = C.PRODUCT_NO)
+		JOIN TRAINER USING (TRAINER_NO)
+		WHERE EXTRACT(MONTH FROM SYSDATE) = EXTRACT (MONTH FROM PAY_DATE)
+		AND PRODUCT_NO IN (SELECT PRODUCT_NO
+		                    FROM(
+		                        select ROWNUM NNUM, PRODUCT_NO
+		                        from (select COUNT(PRODUCT_NO), PRODUCT_NO
+		                                from PAYINFO
+		                                GROUP BY PRODUCT_NO
+		                                ORDER BY COUNT(PRODUCT_NO) DESC) A)
+		                    WHERE NNUM =1)
+		AND TRAINER_NO=#{tno}
+	</select>
+	<select id="product2" resultType="String">
+		SELECT SUM(PAY_PRICE)
+		FROM PAYINFO
+		JOIN MEMBER USING (MEMBER_NO)
+		JOIN STUDENT USING (MEMBER_NO)
+		JOIN CLASSINFO C USING (CLASS_NO)
+		JOIN PRODUCT P ON (P.PRODUCT_NO = C.PRODUCT_NO)
+		JOIN TRAINER USING (TRAINER_NO)
+		WHERE EXTRACT(MONTH FROM SYSDATE) = EXTRACT (MONTH FROM PAY_DATE)
+		AND PRODUCT_NO IN (SELECT PRODUCT_NO
+		                    FROM(
+		                        select ROWNUM NNUM, PRODUCT_NO
+		                        from (select COUNT(PRODUCT_NO), PRODUCT_NO
+		                                from PAYINFO
+		                                GROUP BY PRODUCT_NO
+		                                ORDER BY COUNT(PRODUCT_NO) DESC) A)
+		                    WHERE NNUM =2)
+		AND TRAINER_NO=#{tno}
+	</select>
+	<select id="product3" resultType="String">
+		SELECT SUM(PAY_PRICE)
+		FROM PAYINFO
+		JOIN MEMBER USING (MEMBER_NO)
+		JOIN STUDENT USING (MEMBER_NO)
+		JOIN CLASSINFO C USING (CLASS_NO)
+		JOIN PRODUCT P ON (P.PRODUCT_NO = C.PRODUCT_NO)
+		JOIN TRAINER USING (TRAINER_NO)
+		WHERE EXTRACT(MONTH FROM SYSDATE) = EXTRACT (MONTH FROM PAY_DATE)
+		AND PRODUCT_NO IN (SELECT PRODUCT_NO
+		                    FROM(
+		                        select ROWNUM NNUM, PRODUCT_NO
+		                        from (select COUNT(PRODUCT_NO), PRODUCT_NO
+		                                from PAYINFO
+		                                GROUP BY PRODUCT_NO
+		                                ORDER BY COUNT(PRODUCT_NO) DESC) A)
+		                    WHERE NNUM =3)
+		AND TRAINER_NO=#{tno}
+	</select>
 </mapper>
