@@ -98,7 +98,7 @@
                                                    <c:if test="${ p.productCategory eq '회원권' }">
                                                        <div class="col-lg-2 col-sm-6">
                                                            <div class="plan">
-                                                               <h3 style="background: darkgoldenrod;"><input type="checkbox"  data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<span>${ p.productPrice }￦</span></h3>
+                                                               <h3 style="background: mistyrose;"><input type="checkbox"  data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<span>${ p.productPrice }￦</span></h3>
                                                                <button id="payMentNm1" class="btn btn-lg btn-primary" onclick="payment2Fn(${p.productNo})">결제</button>
                                                            </div>
                                                        </div>
@@ -112,7 +112,7 @@
                                                    <c:if test="${ p.productCategory eq 'PT권' }">
                                                        <div class="col-lg-2">
                                                            <div class="plan">
-                                                               <h3 style="background: #e36159;"><input type="checkbox" data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<br>(${ p.productDays }  일)<span id="productPrice1">${ p.productPrice }￦</span></h3>
+                                                               <h3 style="background: lightblue;"><input type="checkbox" data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<br>(${ p.productDays }  일)<span id="productPrice1">${ p.productPrice }￦</span></h3>
                                                                <button id="payListBtn1" class="btn btn-lg btn-primary modal-with-form" href="#modalFormCList" onclick="paymentFn(${p.productNo})">결제</button>
                                                                <ul>
                                                                    <li><b>${ p.weekDay }</b></li>
@@ -478,30 +478,21 @@
 		<!-- PT결제 ajax -->
 		<script>
 			function payMentPT(){
-				var mem1 = $("#memberNo1").val();
+				var mem1 = $("#memberNo1").val(); // 선택한 회원번호
+				var classNo = $("#classCheck1").val(); // 선택한 수업번호
 				
-				var classNo = $("#classCheck1").val();
-				var cl2 = $("#classCheck2").val();
-				console.log("회원번호 : " + mem1);
-				console.log("수업번호 : " + classNo);
-				
-				$.ajax({
+				$.ajax({ 							// 선택한 수업정보 가져오는 ajax
 					url:"selectPro1.jpr",
 					data:{classNo:classNo},
 					type:"post",
 					success:function(data){
 						var value = data;
-						$.ajax({
+						$.ajax({					// 선택한 회원정보 가져오는 ajax
 							url:"selectMem1.jpr",
 							data:{memNo:mem1},
 							type:"post",
 							success:function(data){
-								var memVal = data;
-								console.log("상품번호 : " + value.productNo);
-								console.log("상품가격 : " + value.productPrice);
-								console.log("수업번호 : " + classNo);
-								console.log("강사명 : " + cl2);
-								
+								var memVal = data;		// 성공시 결제 api 실행
 								var IMP = window.IMP;
 								IMP.init('imp45214918');
 								
@@ -524,8 +515,8 @@
 								        msg += '상점 거래ID : ' + rsp.merchant_uid;
 								        msg += '결제 금액 : ' + rsp.paid_amount;
 								        msg += '카드 승인번호 : ' + rsp.apply_num;
-								        
-								        location.href="insertPay.jpr?memberNo=" + memVal.memberNo + "&productNo=" + value.productNo + "&price=" + value.productPrice + "&classNo=" + classNo; // member -> 담당트레이너 update  1.payInfo 테이블 insert  classInfo count+1   mproduct insert
+								        											// 회원번호, 상품번호, 가격, 수업번호 url로 넘김
+								        location.href="insertPay.jpr?memberNo=" + memVal.memberNo + "&productNo=" + value.productNo + "&price=" + value.productPrice + "&classNo=" + classNo;
 								    } else {
 								        var msg = '결제에 실패하였습니다.';
 								        msg += '에러내용 : ' + rsp.error_msg;
@@ -549,8 +540,8 @@
 		
 		<!-- 일반회원권 결제 ajax -->
 		<script>
-			var payment2Fn = function(rowkey){
-				var mem2 = $("#memberNo1").val();
+			var payment2Fn = function(rowkey){ // 결제버튼 클릭시 상품번호 가져옴
+				var mem2 = $("#memberNo1").val(); // 선택한 회원번호
 				var pNum = rowkey
 				
 				// 날짜포맷 지정하는 함수
@@ -562,31 +553,19 @@
 				    }
 				    return date.getFullYear() + '-' + pad(date.getMonth()+1) + '-' + pad(date.getDate());
 				}
-				 
-				var currDate = new Date(); // 현재 날짜
-				var prevDate = new Date(new Date().setMonth(new Date().getMonth()-1)); // 한달전 날짜
 				
-				// YYYY-MM-DD로 형식변환
-				var prevMon = dateToYYYYMMDD(prevDate);
-				var currMon = dateToYYYYMMDD(currDate);
-				
-			
-				console.log(mem2);
-				console.log(pNum);
-				
-				
-				$.ajax({
+				$.ajax({					// 회원권 정보 가져오는 ajax
 					url:"selectPro2.jpr",
 					data:{productNo:pNum},
 					type:"post",
 					success:function(data){
 						var product2 = data;
 						
-						$.ajax({
+						$.ajax({					// 회원정보 가져오는 ajax
 							url:"selectMem2.jpr",
 							data:{memberNo:mem2},
 							type:"post",
-							success:function(data){
+							success:function(data){ // 성공시 결제 api 실행
 								var memInfo = data;
 								
 								var IMP = window.IMP;
@@ -612,9 +591,10 @@
 								        msg += '결제 금액 : ' + rsp.paid_amount;
 								        msg += '카드 승인번호 : ' + rsp.apply_num;
 								        
+								        // 일반회원권 날짜 계산식
 								        var nextDate = new Date(new Date().setMonth(new Date().getMonth()+product2.productDays/30)); // 한달후 날짜
-								        var nextMon = dateToYYYYMMDD(nextDate);
-								        console.log(nextMon);
+								        var nextMon = dateToYYYYMMDD(nextDate); // YYYY-MM-DD로 형식변환
+								        
 								        location.href="insertPayNm.jpr?memberNo=" + memInfo.memberNo + "&productNo=" + product2.productNo + "&productPrice=" + product2.productPrice + "&productDays=" + product2.productDays + "&sysdate1=" + nextMon; // member -> 담당트레이너 update  1.payInfo 테이블 insert  classInfo count+1   mproduct insert
 								    } else {
 								        var msg = '결제에 실패하였습니다.';
