@@ -11,8 +11,8 @@ var menuList = window.opener.menuList;
 		type:"post",
 		async: false,
 		success:function(list){
+			
 			console.log(list);
-			console.log(list.length);	
 			
 			var value = "<ul class='nav nav-main'>" +
 						"<li class='nav-active'>" +

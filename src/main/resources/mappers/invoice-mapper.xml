@@ -102,4 +102,11 @@
 		VALUES (SEQ_PCNO.NEXTVAL, 1, #{tno}, #{ino})
 	</select>
 	
+	<!-- 구매취소(장미경) -->
+	<select id="updateInvocie" parameterType="Invoice" resultType="_int">
+		update invoice
+       	set INVOICE_STATUS = 'N',  INVOICE_CANCELREASON = #{invoiceCancelReason},  INVOICE_CANCELDATE = SYSDATE
+       	where INVOICE_NO = #{invoiceNo}
+	</select>
+	
 </mapper>

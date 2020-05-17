@@ -7,7 +7,6 @@
  * Inspired on dribble shot:
  * http://dribbble.com/shots/1069484-Charging-Animation
  */
-
 (function($) {
 
 	'use strict';
@@ -28,7 +27,7 @@
 	};
 
 	var LiquidMeter = function(el, options) {
-
+			
 		if (typeof Snap == 'undefined') {
 			throw 'Snap.js not found.';
 		}
@@ -36,7 +35,7 @@
 		this.meter = $(el);
 		this.options = options;
 		this.options.text = this.meter.text();
-		this.init();
+		//this.init();
 
 	};
 

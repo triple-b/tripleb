@@ -18,24 +18,107 @@
 	</select>
 	
 	<!-- 매출 리스트 조회(장미경) -->
-	<select id="selectListSalesDto" parameterType="SalesSearchDto" resultType="SalesDto">
-	    select Pay_Date, Product_Category, Product_Name, Member_Trainer, Member_Name, Pay_Price, Pay_Type 
-	    from PayInfo
-	    join Product using(Product_No)
-	    join Member using(Member_No)
+	<select id="selectListSalesDto" parameterType="String" resultType="SalesDto">
+       	select Pay_Date, Product_Category, Product_Name, Trainer_Name, Member_Name, Pay_Price, Pay_Type 
+	    from PayInfo                
+        join Product using(Product_No) 
+        full outer join ClassInfo using(Product_No)
+        full outer join Trainer using(Trainer_No)
+        join Member using(Member_No)	 
+	    where to_char(Pay_Date,'yyyy') = #{currentYear}
+	    order by Pay_Date desc
+	</select>
+			
+	<!-- 매출 리스트 검색(장미경) -->	
+	<select id="searchListSalesDto" parameterType="SalesSearchDto" resultType="SalesDto">
+		select Pay_Date, Product_Category, Product_Name, Trainer_Name, Member_Name, Pay_Price, Pay_Type 
+	    from PayInfo                
+        join Product using(Product_No) 
+        full outer join ClassInfo using(Product_No)
+        full outer join Trainer using(Trainer_No)
+        join Member using(Member_No)
 	    where Pay_Date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
+	    <choose>
+		   	<when test="searchProduct != ''">
+		   		and Product_Name = #{searchProduct}
+		   	</when>
+		   	<when test="searchTrainer != ''">
+		   		and Trainer_Name = #{searchTrainer}
+		   	</when>
+		   	<when test="searchStr != ''">
+		   		and (Product_Category LIKE '%' || #{searchStr} || '%'
+		   			 OR Product_Name LIKE '%' || #{searchStr} || '%'
+		   			 OR Trainer_Name LIKE '%' || #{searchStr} || '%'
+		   			 OR Member_Name LIKE '%' || #{searchStr} || '%'
+		   			 OR Pay_Type LIKE '%' || #{searchStr} || '%'
+		   		)
+		   	</when>	    
+	    </choose>
 	    order by Pay_Date desc
 	</select>
 	
-	<!-- 매출 리스트 검색(장미경) -->
-	<!-- searchStr=, startDate=2020-01-03, endDate=2020-05-15, searchProduct=, searchTrainer= -->
-	<select id="searchListSalesDto" parameterType="SalesSearchDto" resultType="SalesDto">
-	    select Pay_Date, Product_Category, Product_Name, Member_Trainer, Member_Name, Pay_Price, Pay_Type 
-	    from PayInfo
-	    join Product using(Product_No)
-	    join Member using(Member_No)
-	    where Pay_Date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD') 
+	<!-- 엑셀다운로드용 매출 리스트 검색(장미경) -->
+	<select id="selectListSalesExcel" parameterType="SalesSearchDto" resultType="hashmap">
+		select Pay_Date, Product_Category, Product_Name, Trainer_Name, Member_Name, Pay_Price, Pay_Type 
+	    from PayInfo                
+        join Product using(Product_No) 
+        full outer join ClassInfo using(Product_No)
+        full outer join Trainer using(Trainer_No)
+        join Member using(Member_No)	   
+	    where Pay_Date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
+	    <choose>
+		   	<when test="searchProduct != ''">
+		   		and Product_Name = #{searchProduct}
+		   	</when>
+		   	<when test="searchTrainer != ''">
+		   		and Trainer_Name = #{searchTrainer}
+		   	</when>
+		   	<when test="searchStr != ''">
+		   		and (Product_Category LIKE '%' || #{searchStr} || '%'
+		   			 OR Product_Name LIKE '%' || #{searchStr} || '%'
+		   			 OR Trainer_Name LIKE '%' || #{searchStr} || '%'
+		   			 OR Member_Name LIKE '%' || #{searchStr} || '%'
+		   			 OR Pay_Type LIKE '%' || #{searchStr} || '%'
+		   		)
+		   	</when>	    
+	    </choose>
 	    order by Pay_Date desc
 	</select>
+	
+	<!-- 월별 매출 조회(장미경) -->
+	<select id="selectListMonth" parameterType="String" resultType="SalesDto">
+		select Pay_Date, Product_Category, Product_Name, Pay_Price, Pay_Type 
+	    from PayInfo
+	    join Product using(Product_No)
+	    where to_char(Pay_Date,'yyyymm') = #{months}
+	</select>
+		
+	<!-- 상품별 매출 조회(장미경) -->
+	<select id="salesListProduct" resultType="SalesProductDto">
+		select Product_Name, SUM(Pay_Price) AS Pay_Price
+		from PayInfo 
+		join Product 
+		using(Product_No) 
+		group by Product_Name 
+		order by Product_Name
+	</select>
+	
+	<!-- 트레이너별 매출 조회(장미경) -->
+	<select id="salesListTrainer" resultType="SalesProductDto">
+		select TRAINER_NAME, SUM(Pay_Price) AS Pay_Price
+		from PayInfo 
+		join Product using(Product_No) 
+		join ClassInfo using(Product_No)
+		join Trainer using(Trainer_No)
+		group by TRAINER_NAME
+	</select>	
+	
+	<!-- 월별 목표 매출(장미경) -->
+	<select id="selectGoal" parameterType="_int" resultType="SalesGoal">
+ 		select MONTH, SALESPRICE
+        from salesgoal
+        where MONTH = #{month}
+	</select>
+
 
 </mapper>

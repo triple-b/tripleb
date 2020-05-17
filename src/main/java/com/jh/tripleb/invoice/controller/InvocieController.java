@@ -70,4 +70,19 @@ public class InvocieController {
 		}		
 	}
 	
+	// 계약서 구매취소
+	@RequestMapping("update.miv")
+	public String updateInvocie(Invoice i, Model model) {
+		
+		int result = iService.updateInvocie(i);
+		
+		if(result > 0) {	
+			return "redirect:list.miv";
+		}else {				
+			model.addAttribute("msg", "구매취소 처리 실패");
+			return "common/errorPage";			
+		}				
+				
+	}
+	
 }

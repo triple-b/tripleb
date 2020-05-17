@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,11 +40,11 @@
 									<table width="100%">
 										<tr style="text-align: center;">
 											<td width="2%"></td>
-											<td width="22%"><h4>이전달</h4></td>
+											<td width="22%"><h4 id="premonth" prv-num="0" style="cursor:pointer;">이전달</h4></td>
 											<td width="2%"></td>
-											<td width="22%"><h4><b>2020년 4월</b></h4></td>
+											<td width="22%"><h4><strong id="dateinfo"></strong></h4></td>
 											<td width="2%"></td>
-											<td width="22%"><h4>다음달</h4></td>
+											<td width="22%"><h4 id="nextmonth" next-num="0" style="cursor:pointer;">다음달</h4></td>
 											<td width="3%"></td>
 											<td width="24%"><h4><b>목표 달성률</b></h4></td>
 										</tr>
@@ -62,7 +63,7 @@
 																<div class="summary">
 																	<h4 class="title">총 매출액</h4>
 																	<div class="info">
-																		<strong class="amount-sale"><i class="fa fa-krw"></i> 14,890,000</strong>
+																		<strong class="amount-sale" id="total_price" style="font-size:12px;">0</strong>
 																	</div>
 																</div>
 															</div>
@@ -84,7 +85,7 @@
 																<div class="summary">
 																	<h4 class="title">카드</h4>
 																	<div class="info">
-																		<strong class="amount-sale"><i class="fa fa-krw"></i> 14,890,000</strong>
+																		<strong class="amount-sale" id="card_price" style="font-size:12px;">0</strong>
 																	</div>
 																</div>
 															</div>
@@ -106,7 +107,7 @@
 																<div class="summary">
 																	<h4 class="title">현금</h4>
 																	<div class="info">
-																		<strong class="amount-sale"><i class="fa fa-krw"></i> 0</strong>
+																		<strong class="amount-sale" id="cash_price" style="font-size:12px;">0</strong>
 																	</div>
 																</div>
 															</div>
@@ -117,8 +118,10 @@
 											<td></td>
 											<td>
 												<div class="liquid-meter-wrapper liquid-meter-sm mt-lg">
-													<div class="liquid-meter liquid-meter-loaded"><svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 220 220" width="100%" height="100%"><desc>Created with Snap</desc><defs><linearGradient x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse" id="Sk9axui5w2"><stop offset="0%" stop-color="#ffffff"></stop><stop offset="100%" stop-color="#f9f9f9"></stop></linearGradient><mask id="Sk9axui5w8"><circle cx="110" cy="110" r="87" fill="#ffffff" style=""></circle></mask><mask id="Sk9axui5wi"><circle cx="110" cy="110" r="87" fill="#ffffff" style=""></circle></mask></defs><circle cx="110" cy="110" r="95" fill="url('#Sk9axui5w2')" stroke="#f2f2f2" style="stroke-width: 15;"></circle><path id="front" fill="#0088cc" mask="url('#Sk9axui5w8')" stroke="#33bbff" style="stroke-width: 1;" d="M0,133.4 C114.4,143.4 163.4,157.4 220,154.4 L220,220 L0,220 z"></path><text x="50%" y="50%" fill="#333333" dy=".4em" stroke="#333333" style="font-family: &quot;Open Sans&quot;; font-size: 24px; font-weight: 600; text-anchor: middle;"><tspan>35</tspan><tspan stroke="none" style="font-size: 24px;">%</tspan></text></svg><meter min="0" max="100" value="35" id="meter"></meter></div>
-												</div>	
+													<div class="liquid-meter liquid-meter-loaded">
+														<meter min="0" max="100" value="0" id="meter"></meter>
+													</div>
+												</div>
 											</td>
 										</tr>
 									</table>
@@ -140,77 +143,23 @@
 							</header>
 							<div class="panel-body">
 					
-								<!-- Morris: Bar -->
-								<div class="chart chart-md" id="morrisBar" style="position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-								</div>
-								<script type="text/javascript">
-				
-									var morrisBarData = [{
-										y: '1월',
-										a: 30,
-										b: 40,
-										c: 30
-									}, {
-										y: '2월',
-										a: 100,
-										b: 25,
-										c: 30
-									}, {
-										y: '3월',
-										a: 60,
-										b: 25,
-										c: 30
-									}, {
-										y: '4월',
-										a: 75,
-										b: 35,
-										c: 30
-									}, {
-										y: '5월',
-										a: 90,
-										b: 20,
-										c: 30
-									}, {
-										y: '6월',
-										a: 75,
-										b: 15,
-										c: 30
-									}, {
-										y: '7월',
-										a: 50,
-										b: 10,
-										c: 30
-									}, {
-										y: '8월',
-										a: 75,
-										b: 25,
-										c: 30
-									}, {
-										y: '9월',
-										a: 30,
-										b: 10,
-										c: 30
-									}, {
-										y: '10월',
-										a: 75,
-										b: 5,
-										c: 30
-									}, {							
-										y: '11월',
-										a: 60,
-										b: 8,
-										c: 30
-									}, {	
-										y: '12월',							
-										a: 60,
-										b: 8,
-										c: 50
-									}];
-				
-									// See: assets/javascripts/ui-elements/examples.charts.js for more settings.
-				
-								</script>
-				
+								<!-- Morris: Bar -->								
+								<div class='chart chart-md' id='morrisBar' style='position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);'>
+								</div>	
+									<script>
+										var morrisBarData = [	
+										<c:forEach items="${ slist }" var="s">
+										{
+											y: "${s.date}",
+											a: ${s.totalPrice},
+											b: ${s.memberPrice},
+											c: ${s.ptPrice}
+										},	
+										</c:forEach>
+										]
+									</script>							
+
+								
 							</div>
 						</section>
 					</div>
@@ -224,24 +173,19 @@
 								<div class="panel-actions">
 									<a href="#" class="fa fa-caret-down"></a>
 								</div>					
-								<h2 class="panel-title">상품별 매출 현황</h2>
+								<h2 class="panel-title">상품별 매출 현황(년간)</h2>
 							</header>
 							<div class="panel-body">
 				
 								<!-- Flot: Bars -->
 								<div class="chart chart-md" id="flotBars" style="padding: 0px; position: relative;">
 								</div>
-								<script type="text/javascript">
-				
+								<script type="text/javascript">				
 									var flotBarsData = [
-										["회원권 3개월", 28],
-										["회원권 6개월", 42],
-										["회원권 12개월", 25],
-										["PT 1:1", 23],
-										["PT 1:3", 37],
-										["PT 1:5", 33]
-									];
-			
+										<c:forEach items="${ plist }" var="p">
+											["${ p.productName }", ${ p.price }],
+										</c:forEach>										
+									];			
 								</script>
 				
 							</div>
@@ -254,30 +198,23 @@
 									<a href="#" class="fa fa-caret-down"></a>
 								</div>
 				
-								<h2 class="panel-title">트레이너별 실적</h2>
+								<h2 class="panel-title">트레이너별 실적(년간)</h2>
 							</header>
 							<div class="panel-body">
 					
 								<!-- Morris: Donut -->
 								<div class="chart chart-md" id="morrisDonut">
 								</div>
-								<script type="text/javascript">
-				
-									var morrisDonutData = [{
-										label: "김주희",
-										value: 32
-									}, {
-										label: "정휘재",
-										value: 18
-									}, {
-										label: "김재희",
-										value: 20
-									}];
-				
-									// See: assets/javascripts/ui-elements/examples.charts.js for more settings.
-				
+								<script type="text/javascript">	
+								var morrisDonutData = [
+									<c:forEach items="${ rlist }" var="r">
+									{									
+										label: "${ r.trainerName }",
+										value: ${ r.price }
+									},	
+									</c:forEach>		
+								];
 								</script>
-				
 							</div>
 						</section>	
 					</div>
@@ -291,7 +228,75 @@
 
 	<!-- jsp파일들 -->
 	<jsp:include page="../common/footerjs.jsp" />
-	<!-- chart관련 jsp파일 -->
-	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.charts.js"></script>
+	<!-- 차트관련 js -->
+	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/morris/morris.js"></script>
+	<script src="${ pageContext.servletContext.contextPath }/resources/js/sales.charts.js"></script>
+	<script>
+		var saleslist = new Array();		 
+		<c:forEach items="${slist}" var="item">		 
+			saleslist.push("${item.date}" + "," + "${item.totalPrice}" + "," + "${item.cardPrice}" + "," + "${item.cashPrice}" + "," +"${item.salesGoal}");		 
+ 		</c:forEach>
+ 		
+		var d = new Date();
+		var m = d.getMonth();		
+ 		
+ 		$(function() { 			
+ 			//현재날짜 계산
+ 			setMonthSales(m+1); 
+		});
+ 		
+ 		$('#premonth').click(function () { 
+ 			monthNum = $(this).attr("prv-num");
+ 			setMonthSales(parseInt(monthNum));	
+ 	  	});
+ 	  	
+ 	  	$('#nextmonth').click(function () { 
+ 			monthNum = $(this).attr("next-num")
+ 			setMonthSales(parseInt(monthNum));
+ 	  	});
+ 	  	
+ 	  	function setMonthSales(m){
+ 	  		var monthData = saleslist[m-1].split(",");
+ 			$("#dateinfo").text(monthData[0]);
+ 			$("#total_price").text(numberFormat(monthData[1]));
+ 			$("#card_price").text(numberFormat(monthData[2]));
+ 			$("#cash_price").text(numberFormat(monthData[3]));
+ 			$("#meter").attr("value", monthData[4]);
+ 			$('#premonth').attr("prv-num", parseInt(m)-1);
+			$('#nextmonth').attr("next-num", parseInt(m)+1);	
+		
+			$('#meter').liquidMeter({
+				shape: 'circle',
+				color: '#0088CC',
+				background: '#F9F9F9',
+				fontSize: '24px',
+				fontWeight: '600',
+				stroke: '#F2F2F2',
+				textColor: '#333',
+				liquidOpacity: 0.9,
+				liquidPalette: ['#333'],
+				speed: 3000,
+				animate: !$.browser.mobile
+			});
+			
+
+ 	  	}
+ 	  	
+ 		function numberFormat(inputNumber) {
+ 			return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+ 		}
+
+		
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>
