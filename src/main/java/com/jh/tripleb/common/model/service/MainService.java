@@ -14,7 +14,7 @@ public interface MainService {
 	
 	int expStudent(int tno);
 
-	int thisMonth();
+	String thisMonth();
 	
 	int thisMonthGoal();
 	

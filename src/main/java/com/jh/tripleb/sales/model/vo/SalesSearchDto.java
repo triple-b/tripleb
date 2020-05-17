@@ -11,7 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class SalesSearchDto {	 
+public class SalesSearchDto {
 	
 	private String searchStr;			// 검색어
 	private String startDate;			// 시작일

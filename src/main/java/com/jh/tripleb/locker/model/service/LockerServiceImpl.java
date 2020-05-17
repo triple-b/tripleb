@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.jh.tripleb.locker.model.Dao.LockerDao;
 import com.jh.tripleb.locker.model.vo.Locker;
 import com.jh.tripleb.locker.model.vo.LockerDto;
+import com.jh.tripleb.lockerPos.model.vo.LockerPos;
 
 @Service("LService")
 public class LockerServiceImpl implements LockerService {
@@ -45,6 +46,22 @@ public class LockerServiceImpl implements LockerService {
 	public int updateLockerPos() {
 	
 		return LDao.updateLockerPos(sqlSession);
+	}
+
+	@Override
+	public int updateMember(Locker l) {
+		
+		return LDao.updateMember(sqlSession, l);
+	}
+
+	@Override
+	public int changeLcStatus(int lpno) {
+		return LDao.updateLcPosStatus(sqlSession, lpno);
+	}
+
+	@Override
+	public LockerPos selectLcPos(int lcno) {
+		return LDao.selectLcPos(sqlSession, lcno);
 	}
 	
 	

@@ -208,12 +208,12 @@
 							<div class="plan" style="height:620px;">
 								<h3>Price List<span><strong id="totalprice" class="item-price">0</strong>원<a style="font-size:12px"> (월사용료)</a></span></h3>				
 								<a class="btn btn-lg btn-primary" class="item-btn" href="javascript:window.open('${ pageContext.servletContext.contextPath }/preview.mpv','new')">미리보기</a>
-								<button class="btn btn-lg btn-primary" class="item-btn" id="itemPurchase">구매하기</button>
+								<a class="modal-with-form btn btn-lg btn-primary" class="item-btn" href="#modalForm_Purchase">구매하기</a>
 								<ul>
 									<c:forEach items="${ list }" var="i">			
 										<li class="item-price">${ i.templateItemName } : <strong id="item${ i.templateItemNo }">0</strong>원</li>
 									</c:forEach>
-								</ul>
+								</ul>								
 							</div>
 						</div>
 					</div>
@@ -228,7 +228,7 @@
 		<jsp:include page="../common/sidebarRight.jsp" />		
 	</section>
 	
-	<!-- 구매처 정보 입력 모달찰 -->
+	<!-- 구매처 정보 입력 모달창 -->
 	<div id="modalForm_Purchase" class="modal-block modal-block-primary mfp-hide">
 		<section class="panel">
 			<header class="panel-heading">

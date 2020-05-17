@@ -37,19 +37,16 @@ public interface InvoiceService {
 	 */
 	ArrayList<InvoicePurchaseDto> selectListPurchase(int invoiceNo);
 		
-	// 3-2. 계약서 저장
 	int insertInvocie(Invoice i);
 	
-	// 3-3. 구매정보 저장
-	//int insertPurchase(Purchase p)
 	
 	/**
-	 * 4. 계약서 수정용  서비스
+	 * 4. 계약서 구매취소 서비스
 	 * @author	장미경	
-	 * @Param	InvoiceNo : 수정할 계약서 번호
+	 * @Param	InvoiceNo : 구매취소할 계약서 번호
 	 * @return	result : 수행결과
 	 */		
-	//int updateInvocie(Invoice i);
+	int updateInvocie(Invoice i);
 	
 	
 

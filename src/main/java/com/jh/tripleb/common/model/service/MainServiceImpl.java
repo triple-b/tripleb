@@ -38,7 +38,7 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
-	public int thisMonth() {
+	public String thisMonth() {
 		return umDao.thisMonth(sqlSession);
 	}
 

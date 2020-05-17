@@ -29,4 +29,6 @@ public interface McmanagementService {
 	
 	//7.기구 관리 고장
 	int troubleMcManagement(int mano);
+
+	int trouble1McManagement(int mano);
 }

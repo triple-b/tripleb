@@ -40,17 +40,21 @@ public class MainController {
 		int expStudent = umService.expStudent(t.getTrainerNo()); // 30일 이내 신규 회원
 		ArrayList<Calendar> clist = umService.todayCal(t.getTrainerNo()); // 오늘 일정
 		
-		int thisMonth = umService.thisMonth(); // 이번달 총수입
+		String thisMonth = umService.thisMonth(); // 이번달 총수입
 		int thisMonthGoal = umService.thisMonthGoal(); // 이번달 총수입
-		
-		Double goal = thisMonth / (thisMonthGoal * 0.01) ; // 월달성률
+
+		Double goal = 0.0;
+		if(thisMonth != null) {
+			goal = Integer.parseInt(thisMonth) / (thisMonthGoal * 0.01) ; // 월달성률
+		}else {
+			model.addAttribute("goal", 0);
+		}
 		
 		if(goal == 0) {
 			model.addAttribute("goal", 0);
 		}else {
 			model.addAttribute("goal", goal);
 		}
-		
 		
 		model.addAttribute("current", current);
 		model.addAttribute("currentStudent", currentStudent);

@@ -47,4 +47,8 @@ public class InvoiceDao {
 		return sqlSession.insert("invoiceMapper.insertPurchase", paramNo);
 	}
 	
+	public int updateInvocie(SqlSessionTemplate sqlSession, Invoice i) {
+		return sqlSession.update("invoiceMapper.updateInvocie", i);
+	}
+	
 }

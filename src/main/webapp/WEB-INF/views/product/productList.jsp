@@ -98,7 +98,11 @@
                                                    <c:if test="${ p.productCategory eq '회원권' }">
                                                        <div class="col-lg-2 col-sm-6">
                                                            <div class="plan">
+<<<<<<< HEAD
                                                                <h3 style="background: mistyrose;"><input type="checkbox"  data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<span>${ p.productPrice }￦</span></h3>
+=======
+                                                               <h3 style="background: ;"><input type="checkbox"  data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<span>${ p.productPrice }￦</span></h3>
+>>>>>>> branch 'master' of https://github.com/triple-b/tripleb.git
                                                                <button id="payMentNm1" class="btn btn-lg btn-primary" onclick="payment2Fn(${p.productNo})">결제</button>
                                                            </div>
                                                        </div>

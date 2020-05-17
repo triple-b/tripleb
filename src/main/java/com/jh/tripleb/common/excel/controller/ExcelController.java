@@ -1,5 +1,6 @@
 package com.jh.tripleb.common.excel.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jh.tripleb.common.excel.model.service.ExcelService;
+import com.jh.tripleb.sales.model.vo.SalesDto;
+import com.jh.tripleb.sales.model.vo.SalesSearchDto;
 
 @Controller
 public class ExcelController {
@@ -32,6 +35,19 @@ public class ExcelController {
 		   	return "ExcelDownloadInvoice";    
 		    		  
 	}
+	
+	@RequestMapping("download.msl")
+	public String excelTransformSales(SalesSearchDto s, Map<String,Object> ModelMap) throws Exception{
+		
+		List<Object> itemList = xService.selectListSalesExcel(s); 
+		
+		System.out.println("itemList : " + itemList);
+		
+		ModelMap.put("itemList", itemList);
+	  
+	   	return "ExcelDownloadSales";    
+	    		  
+}
 	
 }	
 

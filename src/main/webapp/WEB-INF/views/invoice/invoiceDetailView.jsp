@@ -129,6 +129,7 @@
 						</div>
 						<div class="text-center mr-lg">
 							<a href="download.do?target=invoice&targetno=${ i.invoiceNo }" class="btn btn-primary ml-sm"><i class="fa fa-file-excel-o"></i> Excel</a>
+							<a class="modal-with-form btn btn-primary ml-sm" href="#modalForm_Cancel">구매취소</a>
 						</div>
 					</div>
 				</section>
@@ -139,11 +140,63 @@
 		<!--/ 전체 레이어 -->
 				
 		<!-- 오른쪽 사이드 바 -->
-		<jsp:include page="../common/sidebarRight.jsp" />		
+		<jsp:include page="../common/sidebarRight.jsp" />				
 	</section>
+	
+	<!-- 구메취소사유 입력 모달창 -->
+	<div id="modalForm_Cancel" class="modal-block modal-block-primary mfp-hide">
+		<section class="panel">
+			<header class="panel-heading">
+				<h2 class="panel-title">구매취소 사유 입력</h2>
+			</header>
+			<div class="panel-body">	
+				<div class="form-group">
+					<div class="col-sm-6">						
+						<textarea cols="65" rows="5"></textarea>
+						<input type="hidden" name="invoiceNo" value="${ i.invoiceNo }">
+					</div>
+				</div>
+			</div>
+			<footer class="panel-footer">
+				<div class="row">
+					<div class="col-md-12 text-right">
+						<button id="cancelInvocie" class="btn btn-primary modal-confirm">확인</button>
+						<button class="btn btn-default modal-dismiss">취소</button>
+					</div>
+				</div>
+			</footer>
+		</section>
+	</div>
+	<!-- / 구메취소사유 입력 모달창 -->
 
 	<!-- 공통으로 사용하는 JS파일들 -->
 	<jsp:include page="../common/footerjs.jsp" />
 	<!-- 현재 페이지에서만 사용하는 JS -->
+	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/ui-elements/examples.modals.js"></script>
+	<script>
+	$("#cancelInvocie").click(function(){
+		
+		// 구매처정보		
+		var invoiceCancelReason = $("textarea").val();
+		var invoiceNo = $('input[name="invoiceNo"]').val();
+				
+		if(invoiceCancelReason == "") {
+			alert("구매 취소 사유를 입력해주세요");
+		} else{
+			if(confirm("구매를 취소하시겠습니까?")) {
+			
+				var $newForm = $('<form></form>');	
+				$newForm.attr("method", "post");
+				$newForm.attr("action", "update.miv");
+				$newForm.appendTo('body');
+				
+				$newForm.append($("<input/>", {type:"hidden", name:"invoiceNo", value:invoiceNo}));
+				$newForm.append($("<input/>", {type:"hidden", name:"invoiceCancelReason", value:invoiceCancelReason}));
+				
+				$newForm.submit();	
+			}
+		}
+	});
+	</script>
 </body>
 </html>

@@ -10,12 +10,13 @@
 	  	<result property="noticeDate" column="notice_date" />
 	  	<result property="noticeStatus" column="notice_status" />
 	  	<result property="trainerNo" column="trainer_no" />
-	
+		<result property="trainerName" column="trainer_name" />
   	</resultMap>
   
   	<select id="selectList" resultMap="noticeResultSet">
-  		select *
+  		select NOTICE_NO,NOTICE_TITLE,NOTICE_DATE,TRAINER_NAME
   		from notice
+        join trainer using(TRAINER_NO)
   		where notice_status='Y'
   		ORDER BY 1 desc
   	</select>

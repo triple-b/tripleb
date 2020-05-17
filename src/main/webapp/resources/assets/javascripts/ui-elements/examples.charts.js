@@ -6,6 +6,7 @@
 	/*
 	Liquid Meter
 	*/
+	/*
 	$('#meter').liquidMeter({
 		shape: 'circle',
 		color: '#0088CC',
@@ -19,6 +20,7 @@
 		speed: 3000,
 		animate: !$.browser.mobile
 	});
+	*/
 	/*
 	Morris: Bar
 	*/

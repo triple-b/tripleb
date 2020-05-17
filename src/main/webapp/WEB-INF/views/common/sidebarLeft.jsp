@@ -120,7 +120,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="saleschart.msl">
+									<a href="chart.msl">
 										 매출통계
 									</a>
 								</li>
@@ -173,30 +173,40 @@
 			
 			location.href="vacation.jva?trainerNo=" + trainerNo;
 		}
-		
-		var today = new Date();
-		var startDate = new Date(today.getFullYear(), today.getMonth(), 1);
-		var endDate = new Date(today.getFullYear(), today.getMonth()+1, 0);
-						
-		function get_date_str(date) {	
-		    var sYear = date.getFullYear();
-		    var sMonth = date.getMonth() + 1;
-		    var sDate = date.getDate();
-		    return sYear + sMonth + sDate;
-		}
-		
+			
 		function getFormatDate(date){
-		    var year = date.getFullYear();              //yyyy
-		    var month = (1 + date.getMonth());          //M
-		    month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
-		    var day = date.getDate();                   //d
-		    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+		    var year = date.getFullYear();              
+		    var month = (1 + date.getMonth());          
+		    month = month >= 10 ? month : '0' + month;  
+		    var day = date.getDate();                  
+		    day = day >= 10 ? day : '0' + day;          
 		    return  year + '-' + month + '-' + day;
 		}
-		
-		
-		function salesList(){
-			location.href="list.msl?startDate=" + getFormatDate(startDate) + "&endDate=" + getFormatDate(endDate);			
+				
+		function salesList(){			
+			var today = new Date();
+			var sDate = new Date(today.getFullYear(), today.getMonth(), 1);
+			var eDate = new Date(today.getFullYear(), today.getMonth()+1, 0);
+			
+			var searchStr = "";
+			var startDate = getFormatDate(sDate);
+			var endDate = getFormatDate(eDate);
+			var searchProduct = "";
+			var searchTrainer = "";			
+			
+			var $newForm = $('<form></form>');	
+			$newForm.attr("method", "post");
+			$newForm.attr("action", "saerch.msl");
+			$newForm.appendTo('body');
+			
+			$newForm.append($("<input/>", {type:"hidden", name:"searchStr", value:searchStr}));
+			$newForm.append($("<input/>", {type:"hidden", name:"startDate", value:startDate}));
+			$newForm.append($("<input/>", {type:"hidden", name:"endDate", value:endDate}));
+			$newForm.append($("<input/>", {type:"hidden", name:"searchProduct", value:searchProduct}));
+			$newForm.append($("<input/>", {type:"hidden", name:"searchTrainer", value:searchTrainer}));
+				
+			$newForm.submit();
+			
 		}
 	</script>
 </body>
