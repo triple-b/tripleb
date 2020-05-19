@@ -61,9 +61,9 @@
 															</div>
 															<div class="widget-summary-col">
 																<div class="summary">
-																	<h4 class="title">총 매출액</h4>
+																	<h4 class="title" style="font-size:15px;">총 매출액</h4>
 																	<div class="info">
-																		<strong class="amount-sale" id="total_price" style="font-size:12px;">0</strong>
+																		<strong class="amount-sale" id="total_price" style="font-size:15px;">0</strong>
 																	</div>
 																</div>
 															</div>
@@ -83,9 +83,9 @@
 															</div>
 															<div class="widget-summary-col">
 																<div class="summary">
-																	<h4 class="title">카드</h4>
+																	<h4 class="title" style="font-size:15px;">카드</h4>
 																	<div class="info">
-																		<strong class="amount-sale" id="card_price" style="font-size:12px;">0</strong>
+																		<strong class="amount-sale" id="card_price" style="font-size:15px;">0</strong>
 																	</div>
 																</div>
 															</div>
@@ -105,9 +105,9 @@
 															</div>
 															<div class="widget-summary-col">
 																<div class="summary">
-																	<h4 class="title">현금</h4>
+																	<h4 class="title" style="font-size:15px;">현금</h4>
 																	<div class="info">
-																		<strong class="amount-sale" id="cash_price" style="font-size:12px;">0</strong>
+																		<strong class="amount-sale" id="cash_price" style="font-size:15px;">0</strong>
 																	</div>
 																</div>
 															</div>
@@ -116,12 +116,8 @@
 												</section>
 											</td>
 											<td></td>
-											<td>
-												<div class="liquid-meter-wrapper liquid-meter-sm mt-lg">
-													<div class="liquid-meter liquid-meter-loaded">
-														<meter min="0" max="100" value="0" id="meter"></meter>
-													</div>
-												</div>
+											<td>												
+											<div id="fluid-meter"></div>									
 											</td>
 										</tr>
 									</table>
@@ -231,6 +227,7 @@
 	<!-- 차트관련 js -->
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/vendor/morris/morris.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/js/sales.charts.js"></script>
+	<script src="${ pageContext.servletContext.contextPath }/resources/js/fluid-meter.js"></script>
 	<script>
 		var saleslist = new Array();		 
 		<c:forEach items="${slist}" var="item">		 
@@ -239,10 +236,17 @@
  		
 		var d = new Date();
 		var m = d.getMonth();		
- 		
- 		$(function() { 			
- 			//현재날짜 계산
- 			setMonthSales(m+1); 
+		var fm = new FluidMeter();
+		
+ 		$(function() { 
+ 			
+ 			// 목표달성율 init 처리
+ 			fm.init({			
+			  targetContainer: document.getElementById("fluid-meter"),			
+			  fillPercentage: 0
+			});
+
+ 	 		setMonthSales(m+1);  	
 		});
  		
  		$('#premonth').click(function () { 
@@ -264,39 +268,16 @@
  			$("#meter").attr("value", monthData[4]);
  			$('#premonth').attr("prv-num", parseInt(m)-1);
 			$('#nextmonth').attr("next-num", parseInt(m)+1);	
-		
-			$('#meter').liquidMeter({
-				shape: 'circle',
-				color: '#0088CC',
-				background: '#F9F9F9',
-				fontSize: '24px',
-				fontWeight: '600',
-				stroke: '#F2F2F2',
-				textColor: '#333',
-				liquidOpacity: 0.9,
-				liquidPalette: ['#333'],
-				speed: 3000,
-				animate: !$.browser.mobile
-			});
 			
-
+			// 월별 목표 달성률 표시
+ 			fm.setPercentage(monthData[4]);
  	  	}
  	  	
  		function numberFormat(inputNumber) {
  			return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
  		}
-
-		
+ 			
 	</script>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 </body>
 </html>

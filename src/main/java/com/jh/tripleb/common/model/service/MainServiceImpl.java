@@ -67,5 +67,40 @@ public class MainServiceImpl implements MainService {
 		return umDao.product3(sqlSession, tno);
 	}
 	
+	@Override
+	public String productAvg1(int tCount) {
+		return umDao.productAvg1(sqlSession, tCount);
+	}
+
+	@Override
+	public String productAvg2(int tCount) {
+		return umDao.productAvg2(sqlSession, tCount);
+	}
+
+	@Override
+	public String productAvg3(int tCount) {
+		return umDao.productAvg3(sqlSession, tCount);
+	}
+
+	@Override
+	public String trainerCount() {
+		return umDao.trainerCount(sqlSession);
+	}
+
+	@Override
+	public String productName1() {
+		return umDao.productName1(sqlSession);
+	}
+
+	@Override
+	public String productName2() {
+		return umDao.productName2(sqlSession);
+	}
+
+	@Override
+	public String productName3() {
+		return umDao.productName3(sqlSession);
+	}
+	
 
 }

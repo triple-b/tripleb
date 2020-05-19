@@ -53,6 +53,8 @@
 		                        select ROWNUM NNUM, PRODUCT_NO
 		                        from (select COUNT(PRODUCT_NO), PRODUCT_NO
 		                                from PAYINFO
+		                                JOIN PRODUCT USING (PRODUCT_NO)
+		                                WHERE PRODUCT_CATEGORY='PT권'
 		                                GROUP BY PRODUCT_NO
 		                                ORDER BY COUNT(PRODUCT_NO) DESC) A)
 		                    WHERE NNUM =1)
@@ -72,6 +74,8 @@
 		                        select ROWNUM NNUM, PRODUCT_NO
 		                        from (select COUNT(PRODUCT_NO), PRODUCT_NO
 		                                from PAYINFO
+		                                JOIN PRODUCT USING (PRODUCT_NO)
+		                                WHERE PRODUCT_CATEGORY='PT권'
 		                                GROUP BY PRODUCT_NO
 		                                ORDER BY COUNT(PRODUCT_NO) DESC) A)
 		                    WHERE NNUM =2)
@@ -91,9 +95,115 @@
 		                        select ROWNUM NNUM, PRODUCT_NO
 		                        from (select COUNT(PRODUCT_NO), PRODUCT_NO
 		                                from PAYINFO
+		                                JOIN PRODUCT USING (PRODUCT_NO)
+		                                WHERE PRODUCT_CATEGORY='PT권'
 		                                GROUP BY PRODUCT_NO
 		                                ORDER BY COUNT(PRODUCT_NO) DESC) A)
 		                    WHERE NNUM =3)
 		AND TRAINER_NO=#{tno}
 	</select>
+	<select id="productAvg1" resultType="String" parameterType="_int">
+	SELECT SUM(PAY_PRICE) / #{tCount}
+		FROM PAYINFO
+		JOIN MEMBER USING (MEMBER_NO)
+		JOIN STUDENT USING (MEMBER_NO)
+		JOIN CLASSINFO C USING (CLASS_NO)
+		JOIN PRODUCT P ON (P.PRODUCT_NO = C.PRODUCT_NO)
+		JOIN TRAINER USING (TRAINER_NO)
+		WHERE EXTRACT(MONTH FROM SYSDATE) = EXTRACT (MONTH FROM PAY_DATE)
+		AND PRODUCT_NO IN (SELECT PRODUCT_NO
+		                    FROM(
+		                        select ROWNUM NNUM, PRODUCT_NO
+		                        from (select COUNT(PRODUCT_NO), PRODUCT_NO
+		                                from PAYINFO
+                                        JOIN PRODUCT USING (PRODUCT_NO)
+                                        WHERE PRODUCT_CATEGORY='PT권'
+		                                GROUP BY PRODUCT_NO
+		                                ORDER BY COUNT(PRODUCT_NO) DESC) A)
+		                    WHERE NNUM =1)
+	</select>
+	<select id="productAvg2" resultType="String" parameterType="_int">
+	SELECT SUM(PAY_PRICE) / #{tCount}
+		FROM PAYINFO
+		JOIN MEMBER USING (MEMBER_NO)
+		JOIN STUDENT USING (MEMBER_NO)
+		JOIN CLASSINFO C USING (CLASS_NO)
+		JOIN PRODUCT P ON (P.PRODUCT_NO = C.PRODUCT_NO)
+		JOIN TRAINER USING (TRAINER_NO)
+		WHERE EXTRACT(MONTH FROM SYSDATE) = EXTRACT (MONTH FROM PAY_DATE)
+		AND PRODUCT_NO IN (SELECT PRODUCT_NO
+		                    FROM(
+		                        select ROWNUM NNUM, PRODUCT_NO
+		                        from (select COUNT(PRODUCT_NO), PRODUCT_NO
+		                                from PAYINFO
+                                        JOIN PRODUCT USING (PRODUCT_NO)
+                                        WHERE PRODUCT_CATEGORY='PT권'
+		                                GROUP BY PRODUCT_NO
+		                                ORDER BY COUNT(PRODUCT_NO) DESC) A)
+		                    WHERE NNUM =2)
+	</select>
+	<select id="productAvg3" resultType="String" parameterType="_int">
+	SELECT SUM(PAY_PRICE) / #{tCount}
+		FROM PAYINFO
+		JOIN MEMBER USING (MEMBER_NO)
+		JOIN STUDENT USING (MEMBER_NO)
+		JOIN CLASSINFO C USING (CLASS_NO)
+		JOIN PRODUCT P ON (P.PRODUCT_NO = C.PRODUCT_NO)
+		JOIN TRAINER USING (TRAINER_NO)
+		WHERE EXTRACT(MONTH FROM SYSDATE) = EXTRACT (MONTH FROM PAY_DATE)
+		AND PRODUCT_NO IN (SELECT PRODUCT_NO
+		                    FROM(
+		                        select ROWNUM NNUM, PRODUCT_NO
+		                        from (select COUNT(PRODUCT_NO), PRODUCT_NO
+		                                from PAYINFO
+                                        JOIN PRODUCT USING (PRODUCT_NO)
+                                        WHERE PRODUCT_CATEGORY='PT권'
+		                                GROUP BY PRODUCT_NO
+		                                ORDER BY COUNT(PRODUCT_NO) DESC) A)
+		                    WHERE NNUM =3)
+	</select>
+	
+	<select id="trainerCount" resultType="String">
+		SELECT COUNT(TRAINER_NO)
+		FROM TRAINER
+		WHERE TRAINER_STATUS='Y'
+	</select>
+	
+	<select id="productName1" resultType="String">
+	SELECT PRODUCT_NAME
+    FROM(
+        select ROWNUM NNUM, PRODUCT_NAME
+        FROM(
+			select COUNT(PRODUCT_NAME), PRODUCT_NAME
+			    from PAYINFO
+			    JOIN PRODUCT USING (PRODUCT_NO)
+			    WHERE PRODUCT_CATEGORY='PT권'
+			    GROUP BY PRODUCT_NAME) A)
+			    WHERE NNUM=1
+	</select>
+	<select id="productName2" resultType="String">
+	SELECT PRODUCT_NAME
+    FROM(
+        select ROWNUM NNUM, PRODUCT_NAME
+        FROM(
+			select COUNT(PRODUCT_NAME), PRODUCT_NAME
+			    from PAYINFO
+			    JOIN PRODUCT USING (PRODUCT_NO)
+			    WHERE PRODUCT_CATEGORY='PT권'
+			    GROUP BY PRODUCT_NAME) A)
+			    WHERE NNUM=2
+	</select>
+	<select id="productName3" resultType="String">
+	SELECT PRODUCT_NAME
+    FROM(
+        select ROWNUM NNUM, PRODUCT_NAME
+        FROM(
+			select COUNT(PRODUCT_NAME), PRODUCT_NAME
+			    from PAYINFO
+			    JOIN PRODUCT USING (PRODUCT_NO)
+			    WHERE PRODUCT_CATEGORY='PT권'
+			    GROUP BY PRODUCT_NAME) A)
+			    WHERE NNUM=3
+	</select>
+	
 </mapper>

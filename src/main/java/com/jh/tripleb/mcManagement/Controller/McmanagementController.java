@@ -91,15 +91,12 @@ public class McmanagementController {
 		}
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="trouble.mcm", produces="application/json; charset=utf-8")
+	@RequestMapping("trouble.mcm")
 	public String troubleMcManagement(int mano) {
 		
 		int m = mcmService.troubleMcManagement(mano);
-		
-		Gson gson = new Gson();
 
-		return  gson.toJson(m);
+		return "redirect:mcList.mcm?type=leftmenu";
 	}
 	
 	@RequestMapping("trouble1.mcm")

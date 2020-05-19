@@ -37,19 +37,40 @@ public class MainController {
 		int current = umService.currentClass(t.getTrainerNo()); // 진행중인 수업 개수
 		int currentStudent = umService.currentStudent(t.getTrainerNo()); // 진행 중인 회원
 		int newStudent = umService.newStudent(t.getTrainerNo()); // 30일 이내 신규 회원
-		int expStudent = umService.expStudent(t.getTrainerNo()); // 30일 이내 신규 회원
+		int expStudent = umService.expStudent(t.getTrainerNo()); // 7일 이내 만기 회원
 		ArrayList<Calendar> clist = umService.todayCal(t.getTrainerNo()); // 오늘 일정
 		
+		// 나의 pt권 수입
 		String pro1 = umService.product1(t.getTrainerNo()); // 상품권 1
 		String pro2 = umService.product2(t.getTrainerNo()); // 상품권 2
 		String pro3 = umService.product3(t.getTrainerNo()); // 상품권 3
-		// String pro4 = umService.product4(t.getTrainerNo()); // 상품권 1
-		// String pro5 = umService.product5(t.getTrainerNo()); // 상품권 2
-		// String pro6 = umService.product6(t.getTrainerNo()); // 상품권 3
+		
+		String tnt = umService.trainerCount(); // 트레이너 인원
+		int tCount = 0;
+		if(tnt != null) {
+			tCount = Integer.parseInt(tnt.substring(0, 1));
+		}
+		
+		// 매출 높은 pt권 전체 평균
+		String avg1 = umService.productAvg1(tCount); // 전체 평균 1
+		String avg2 = umService.productAvg2(tCount); // 전체 평균 2
+		String avg3 = umService.productAvg3(tCount); // 전체 평균 3
+		
+		// 매출 높은 PT권 이름
+		String pn1 = umService.productName1(); // 전체 평균 1
+		String pn2 = umService.productName2(); // 전체 평균 2
+		String pn3 = umService.productName3(); // 전체 평균 3
+		
 		
 		int product1 = 0;
 		int product2 = 0;
 		int product3 = 0;
+		int all1 = 0;
+		int all2 = 0;
+		int all3 = 0;
+		
+		
+		System.out.println(avg2);
 		
 		
 		if(pro1 != null) {
@@ -62,6 +83,17 @@ public class MainController {
 		
 		if(pro3 != null) {
 			product3 = Integer.parseInt(pro3);
+		}
+		if(avg1 != null) {
+			all1 = Integer.parseInt(avg1);
+		}
+		
+		if(avg2 != null) {
+			all2 = Integer.parseInt(avg2);
+		}
+		
+		if(avg3 != null) {
+			all3 = Integer.parseInt(avg3);
 		}
 		
 	    String thisMonth = umService.thisMonth(); // 이번달 총수입
@@ -92,6 +124,12 @@ public class MainController {
 		model.addAttribute("product1", product1);
 		model.addAttribute("product2", product2);
 		model.addAttribute("product3", product3);
+		model.addAttribute("avg1", all1);
+		model.addAttribute("avg2", all2);
+		model.addAttribute("avg3", all3);
+		model.addAttribute("pn1", pn1);
+		model.addAttribute("pn2", pn2);
+		model.addAttribute("pn3", pn3);
 		
 		return "main";
 	}

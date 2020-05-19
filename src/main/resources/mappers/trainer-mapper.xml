@@ -111,6 +111,11 @@
   		SET TRAINER_SCHECK = SYSDATE
   		WHERE TRAINER_NO = #{trainerNo}
   	</update>
+  	<select id="calendarDetail" parameterType="String" resultType="Trainer">
+  		SELECT *
+  		FROM TRAINER
+  		WHERE TRAINER_NAME = #{tname}
+  	</select>
   	
   </mapper>
 

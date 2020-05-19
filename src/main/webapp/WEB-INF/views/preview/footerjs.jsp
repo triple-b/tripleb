@@ -49,8 +49,5 @@
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/dashboard/examples.dashboard.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.default.js"></script>
 	<script src="${ pageContext.servletContext.contextPath }/resources/assets/javascripts/tables/examples.datatables.row.with.details.js"></script>
-	
-	<!-- mainJs -->
-	<script src="${ pageContext.servletContext.contextPath }/resources/js/mainDashBoard.js"></script>
 </body>
 </html>

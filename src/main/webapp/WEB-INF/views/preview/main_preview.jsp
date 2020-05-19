@@ -285,5 +285,6 @@
 
 	<!-- jsp파일들 -->
 	<jsp:include page="footerjs.jsp" />
+	<script src="${ pageContext.servletContext.contextPath }/resources/js/mainDashBoard.js"></script>
 </body>
 </html>

@@ -102,14 +102,14 @@
 																	팀장
 																</c:when>
 																<c:otherwise>
-																	관장
+																	대표
 																</c:otherwise>
 															</c:choose>
 														</label>
 														<select name="trainerGrade" id="gradeVal">
 															<option value="B">사원</option>
 															<option value="E">팀장</option>
-															<option value="M">관장</option>
+															<option value="M">대표</option>
 														</select>
 														<button type="button" style="margin-left:2%; border:0px; background:none" onclick="changeGrade(${ t.trainerNo })">변경</button>
 													</div>
@@ -288,7 +288,7 @@
 					}else{
 						$("#profileGrade").val(t.trainerGrade);
 						console.log($("#profileGrade").val(t.trainerGrade))
-						$("#profileGrade").text('관장');
+						$("#profileGrade").text('대표');
 					}
 				},
 				error:function(){

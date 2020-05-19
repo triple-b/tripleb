@@ -527,7 +527,7 @@
     	location.href="insert.mcm?mcno="+machinecheckID;
     }
     function trouble1() {
-    	location.href="trouble1.mcm?mcno="+machinecheckNo;
+    	location.href="trouble1.mcm?mano="+machinecheckNo;
     }
     
     function updateSelect(){
@@ -558,21 +558,21 @@
 	<script>
 		function trouble(){
 			var value2 = machinecheckNo;
+			
+			location.href="trouble.mcm?mano="+value2;
 
-	    	$.ajax({
+	    	/* $.ajax({
 	    		url:"trouble.mcm",
 	    		data:{mano:value2},
 	    		type:"post",
 	    		success:function(m){
-	    			console.log(m);
-	    			var value = "";
 	    				
 	    			
 	    		},
 	    		error:function(){
 	    			console.log("머신 상세정보 통신실패");
 	    		}
-	    	});
+	    	}); */
 }
 	</script>
 	<script>

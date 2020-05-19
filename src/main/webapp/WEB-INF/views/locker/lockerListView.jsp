@@ -89,14 +89,6 @@
 					<!-- start: page -->
 					<div class="inner-toolbar clearfix locker-header" style="margin-top: 4px; height:70px; margin-bottom: 10px;">
 						<ul>
-								<li style="padding: 0px;">
-									<select id="LockerCategory" onclick="send5();">
-										<option value="">락커선택</option>
-										<option value="all">공용락커</option>
-										<option value="M">남자</option>
-										<option value="F">여자</option>
-									</select>
-								</li>
 							
 								<li class="right" data-sort-source data-sort-id="media-gallery"  style="margin-top: 10px;">
 									<ul class="nav nav-pills nav-pills-primary">
@@ -129,7 +121,7 @@
 
 							<h1 class="panel-title">락커관리</h1>
 						</header>
-						<div class="panel-body">
+						<div class="panel-body" style="background=#f6f6f6;">
 							<div class="row mg-files" data-sort-destination data-sort-id="media-gallery">
 								<table class="LockerPos-table" id="LockerPos-list">
 									<c:forEach items="${list}" var="L" >
@@ -168,7 +160,7 @@
 																					<c:when test="${ m.lockerStatus eq 'Y' }">
 																						<c:if test="${ L.lockerPosNo eq m.lockerPosNo}">
 																						<span style="font-variant:normal;">${ m.memberName }</span>
-																						<span style="font-variant:normal;">[${ m.lockerRegistDate}]</span>
+																						<span style="font-variant:normal;">[${ m.lockerEndDate} 까지]</span>
 																						</c:if>
 																					</c:when>
 																					<c:when test="${ m.lockerStatus eq 'R' }">
@@ -445,8 +437,17 @@
 			    			
 			    			var value = "";
 			    				$("#lockerPosNo").val(lp.lockerPosNo);
-			    				$("#lockerPosType").val(lp.lockerPosType);	
-			    				$("#lockerPosStatus").val(lp.lockerPosStatus);
+			    				$("#lockerPosType").val(lp.lockerPosType);
+								if(lp.lockerPosStatus == 'X'){
+			    					$("#lockerPosStatus").val("미사용");
+								}else if(lp.lockerPosStatus == 'Y'){
+									$("#lockerPosStatus").val("사용");
+								}else if(lp.lockerPosStatus == 'M'){
+									$("#lockerPosStatus").val("만기");
+								}else{
+									$("#lockerPosStatus").val("고장");
+								}
+									
 			    				$("#memberName").val(lp.memberName);
 			    				$("#lockerStartDate").val(lp.lockerStartDate);
 			    				$("#lockerEndDate").val(lp.lockerEndDate);

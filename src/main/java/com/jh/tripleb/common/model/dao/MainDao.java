@@ -49,5 +49,33 @@ public class MainDao {
 	public String product3(SqlSessionTemplate sqlSession, int tno) {
 		return sqlSession.selectOne("mainMapper.product3", tno);
 	}
+	
+	public String productAvg1(SqlSessionTemplate sqlSession, int tCount) {
+		return sqlSession.selectOne("mainMapper.productAvg1", tCount);
+	}
+	
+	public String productAvg2(SqlSessionTemplate sqlSession, int tCount) {
+		return sqlSession.selectOne("mainMapper.productAvg2", tCount);
+	}
+	
+	public String productAvg3(SqlSessionTemplate sqlSession, int tCount) {
+		return sqlSession.selectOne("mainMapper.productAvg3", tCount);
+	}
+	
+	public String trainerCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("mainMapper.trainerCount");
+	}
+	
+	public String productName1(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("mainMapper.productName1");
+	}
+	
+	public String productName2(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("mainMapper.productName2");
+	}
+	
+	public String productName3(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("mainMapper.productName3");
+	}
 
 }

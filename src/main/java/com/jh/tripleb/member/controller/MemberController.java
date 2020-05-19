@@ -37,26 +37,9 @@ public class MemberController {
 		ArrayList<MemberDtoU> blist = mService.blackSelectListMember(); // 블랙리스트회원
 		
 
-		Date date = new Date(); // 오늘 날짜
-		
-		Date yesterday = new Date ( date.getTime ( ) - (long) ( 1000 * 60 * 60 * 24 ) ); // 어제날짜
-
-
 		
 		if(list != null) { // 조회 성공
 			mv.addObject("list", list).addObject("plist", plist).addObject("elist", elist).addObject("blist", blist).setViewName("member/memberListView");
-			
-			for(MemberDtoU p : plist) {
-				
-				if(p.getPauseEnd() != null) { // 일시정지된 회원인 경우
-
-					int compare = p.getPauseEnd().compareTo(yesterday);
-					
-					if(compare < 0) { // 일시정지 지난 회원
-						int result = mService.pauseLate(p.getMemberNo());
-					}
-				}
-			}
 			
 		}else {	// 조회 실패
 			mv.addObject("msg", "회원 전체 조회 실패").setViewName("common/errorPage");
@@ -207,6 +190,7 @@ public class MemberController {
 		MemberDtoU mem = mService.detailMember(m.getMemberNo()); // 상세정보 조회
 		
 		long sub = mem.getPauseEnd().getTime() - m.getPauseCancelDate().getTime(); // 날짜간 빼기
+		
 		
 		int pauseDate = (int)sub / ( 24*60*60*1000); // 일시정지 변경되는 기간
 		

@@ -52,7 +52,7 @@
 	 </select>
  
  	 <select id="selectLList" resultType="LockerDtou">
- 		select Locker_registdate, member_name, locker_Status, LockerPos_No
+ 		select Locker_registdate, member_name, locker_Status, LockerPos_No, locker_endDate
 		from Locker
 		join member using(member_no)
 		where LOCKER_STATUS='Y'

@@ -67,7 +67,7 @@
         full outer JOIN MEMBER USING (MEMBER_NO)
         full outer JOIN STUDENT USING (MEMBER_NO)
         full outer JOIN CLASSINFO C USING (CLASS_NO)
-        full outer JOIN TRAINER USING (TRAINER_NO)   
+        full outer JOIN TRAINER USING (TRAINER_NO)
 	    where Pay_Date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
 	    <choose>
 		   	<when test="searchProduct != ''">

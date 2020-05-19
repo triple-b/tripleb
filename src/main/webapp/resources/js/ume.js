@@ -182,7 +182,11 @@ $(function(){
 				$('#memTrainer').text(trainer);
 				$('.pName').attr("value", member.productName);
 				$('.mBirth').attr("value", member.memberBirth);
-				$('.lNo').attr("value", member.lockerNo);
+				if(member.memberLockerno == null){
+					
+				}else{
+					$('.lNo').attr("value", member.memberLockerno);
+				}
 				
 
 				$('#memPStart').text(startDate);

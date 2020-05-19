@@ -37,7 +37,7 @@ public class MemberDtoU {
 	private String productName;			// 회원 보유 상품명
 	private Date memProductStart;		// 회원권 시작일
 	private Date memProductEnd;			// 회원권 종료일
-	private int lockerNo;				// 락커 번호
+	private int memberLockerno;				// 락커 번호
 	
 	private int pauseDate;				// 일시정지 일자
 	private Date pauseCancelDate;		// 일시정지 해제 시작일

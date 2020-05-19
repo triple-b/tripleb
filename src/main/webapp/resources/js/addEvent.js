@@ -74,7 +74,6 @@ var newEvent = function (start, end, eventType) {
         eventModal.find('input, textarea').val('');
         editAllDay.prop('checked', false);
         eventModal.modal('hide');
-        console.log(eventData);
         //새로운 일정 저장
         $.ajax({
             type: "post",

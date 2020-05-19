@@ -45,11 +45,10 @@
 	<select id="detailMember" parameterType="_int" resultType="MemberDtoU">
 		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_GENDER, MEMBER_PHONE, MEMBER_EMAIL, MEMBER_ADDRESS, MEMBER_HEIGHT, 
 			   MEMBER_WEIGHT, MEMBER_NOTE, MEMBER_TRAINER, MEMBER_BIRTH, PAUSE_START, PAUSE_END,
-			   PRODUCT_NAME, MEMPRODUCT_START, MEMPRODUCT_END, LOCKER_NO
+			   PRODUCT_NAME, MEMPRODUCT_START, MEMPRODUCT_END, MEMBER_LOCKERNO
 		FROM MEMBER
 		LEFT JOIN MPRODUCT USING (MEMBER_NO)
 		LEFT JOIN PRODUCT USING (PRODUCT_NO)
-		LEFT JOIN LOCKER USING (MEMBER_NO)
 		WHERE MEMBER_NO=#{mno}
 	</select>
 	
@@ -70,7 +69,7 @@
 		insert into member
 		values (seq_memno.nextval, #{memberName}, #{memberGender}, #{memberEmail}, #{memberPhone},
 				#{memberAddress}, #{memberHeight}, #{memberWeight}, #{memberImage}, default,
-				#{memberNote}, default, null, null, default, null, #{memberBirth}, null, null)
+				#{memberNote}, default, null, null, default, null, #{memberBirth}, null, null, null)
 	</insert>
 	<update id="blackMember" parameterType="memberDtoU">
 		update member

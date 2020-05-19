@@ -20,7 +20,20 @@ public interface MainService {
 	
 	ArrayList<Calendar> todayCal(int tno);
 	
+	// 나의 pt권
 	String product1(int tno);
 	String product2(int tno);
 	String product3(int tno);
+	
+	// 전체 pt권
+	String productAvg1(int tCount);
+	String productAvg2(int tCount);
+	String productAvg3(int tCount);
+	
+	String trainerCount();
+	
+	// 전체 pt권이름
+	String productName1();
+	String productName2();
+	String productName3();
 }

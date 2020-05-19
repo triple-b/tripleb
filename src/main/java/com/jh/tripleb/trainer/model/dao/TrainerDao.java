@@ -85,4 +85,8 @@ public class TrainerDao {
 	public int updateSCheck(SqlSessionTemplate sqlSession, Trainer t) {
 		return sqlSession.update("trainerMapper.updateSCheck", t);
 	}
+	
+	public Trainer calendarDetail(SqlSessionTemplate sqlSession, String tname) {
+		return sqlSession.selectOne("trainerMapper.calendarDetail", tname);
+	}
 }

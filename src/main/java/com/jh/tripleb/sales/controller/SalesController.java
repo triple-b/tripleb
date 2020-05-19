@@ -154,6 +154,10 @@ public class SalesController {
 	
 	@RequestMapping("saerch.msl")
 	public String selectList(SalesSearchDto s, Model model) {	
+		
+		 String searchStr = s.getSearchStr();
+	     String searchProduct = s.getSearchProduct();
+	     String searchTrainer = s.getSearchTrainer();
 
 		// 상품 리스트 
 		ArrayList<Product>  plist = msService.selectListProduct();	
@@ -192,6 +196,9 @@ public class SalesController {
 		dmap.put("cardPrice", strCardPrice);
 		dmap.put("cashPrice", strCashPrice);
 		dmap.put("totalPrice", strTotalPrice);
+	    dmap.put("searchStr", searchStr);
+	    dmap.put("searchProduct", searchProduct);
+	    dmap.put("searchTrainer", searchTrainer);
 		model.addAttribute("dmap", dmap);	
 		
 		return "sales/salesListView";		

@@ -100,6 +100,12 @@ public class CalendarController {
 		c.setCalStart(startDate);
 		c.setCalEnd(endDate);
 		
+		Trainer t = tService.calendarDetail(c.getTrainerName());
+		c.setTrainerNo(t.getTrainerNo());
+		
+		System.out.println("트레이너번호 :" +t);
+		System.out.println(c);
+		
 		int result = ucService.updateCalendar(c);
 		
 		if(result > 0) { // allDay false 일 때 

@@ -15,7 +15,7 @@
 	<update id="updateCalendar" parameterType="Calendar">
 		UPDATE CALENDAR
 		SET CAL_TITLE=#{calTitle}, CAL_CONTENT=#{calContent}, CAL_START=#{calStart}, 
-			CAL_END=#{calEnd}, CAL_TYPE=#{calType}, CAL_COLOR=#{calColor}
+			CAL_END=#{calEnd}, CAL_TYPE=#{calType}, CAL_COLOR=#{calColor}, TRAINER_NO=#{trainerNo}
 		WHERE CAL_NO=#{calNo}
 	</update>
 	

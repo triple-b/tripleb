@@ -110,7 +110,6 @@
 														<tr>
 															<th></th>
 															<th>비품점검번호</th>
-															<th>비품명</th>
 															<th>분실</th>
 															<th>파손</th>
 															<th class="hidden-phone">총재고</th>
@@ -122,7 +121,6 @@
 															<tr>
 																<td><input type="checkbox" value="${ec.eqcheckNo}" name="equipcheck1" onclick="oneCheckbox1(this)"></td>
 																<td>${ec.eqcheckNo}</td>
-																<td>${ec.equipmentName}</td>
 																<td>${ec.lost}</td>
 																<td>${ec.broken}</td>
 																<td class="center hidden-phone">${ec.equipmentStock}</td>

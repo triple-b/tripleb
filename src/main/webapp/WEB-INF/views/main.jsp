@@ -43,16 +43,16 @@
 									<div class="chart chart-md" id="morrisBar"></div>
 									<script type="text/javascript">
 										var morrisBarData = [{
-											y: '1:1 PT',
-											a: 50,
+											y: '${ pn1 }',
+											a: ${ avg1 },
 											b: ${ product1 }
 										}, {
-											y: '1:3 PT',
-											a: 70,
+											y: '${ pn2 }',
+											a: ${ avg2 },
 											b: ${ product2 }
 										}, {
-											y: '1:5 PT',
-											a: 30,
+											y: '${ pn3 }',
+											a: ${ avg3 },
 											b: ${ product3 }
 										}];
 									</script>

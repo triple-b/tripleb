@@ -103,4 +103,7 @@ public interface TrainerService {
 	
 	// 트레이너 수정 화면 이동
 	Trainer selectTr(int trainerNo);
+	
+	// 트레이너 이름으로 번호 가져오기
+	Trainer calendarDetail(String tname);
 }

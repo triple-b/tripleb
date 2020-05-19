@@ -106,4 +106,9 @@ public class TrainerServiceImpl implements TrainerService{
 		return tDao.updateSCheck(sqlSession, t);
 	}
 
+	@Override
+	public Trainer calendarDetail(String tname) {
+		return tDao.calendarDetail(sqlSession, tname);
+	}
+
 }

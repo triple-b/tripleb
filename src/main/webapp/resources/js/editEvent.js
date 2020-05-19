@@ -23,7 +23,7 @@ var editEvent = function (event, element, view) {
     } else {
         editEnd.val(event.end.format('YYYY-MM-DD HH:mm'));
     }
-
+    
     modalTitle.html('일정 수정');
     editTitle.val(event.title);
     editStart.val(event.start.format('YYYY-MM-DD HH:mm'));
@@ -91,6 +91,7 @@ var editEvent = function (event, element, view) {
                 calType : event.type,
                 calColor : event.backgroundColor,
                 trainerName : event.username
+                
             },
             success: function (response) {
 

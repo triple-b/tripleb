@@ -59,9 +59,10 @@
 								</td>									
 								<td width="300px">
 									<div class="input-group">
-										<input type="text" name="searchStr" class="form-control">
-										<input type="hidden" name="searchProduct">
-										<input type="hidden" name="searchTrainer">
+										<input type="text" name="searchStr" value="${ dmap.searchStr }" class="form-control">
+										<input type="hidden" name="searchProduct" value="${ dmap.searchProduct }">
+										<input type="hidden" name="searchTrainer" value="${ dmap.searchTrainer }">
+										
 										<div class="input-group-btn">
 												<button tabindex="-1" class="btn btn-primary" type="button" onclick="actionProcess('search')">검색</button>
 												<button tabindex="-1" data-toggle="dropdown" class="btn btn-primary dropdown-toggle mr-sm" type="button" aria-expanded="false">
@@ -184,13 +185,13 @@
 	  		if(searchStr.substring(0,10) == "product : ") {	  			
 	  			var idxStr = searchStr.substring(10);
 	  			$('input[name="searchProduct"]').val(idxStr);
-	  			$('input[name="searchStr"]').val("");
+	  			//$('input[name="searchStr"]').val("");
 	  		}
 	  		
 	  		if(searchStr.substring(0,10) == "trainer : ") {
 	  			var idxStr = searchStr.substring(10);
 	  			$('input[name="searchTrainer"]').val(idxStr);
-	  			$('input[name="searchStr"]').val("");
+	  			//$('input[name="searchStr"]').val("");
 	  		}
 	  		
 	  		var searchProduct = $('input[name="searchProduct"]').val();

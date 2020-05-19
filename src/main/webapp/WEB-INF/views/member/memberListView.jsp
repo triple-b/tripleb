@@ -820,7 +820,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label"> 사용 락커</label>
 										<div class="col-sm-9">
-											<input type="text" name="lockerNo lNo" class="form-control" value=""/>
+											<input type="text" name="lockerNo" class="form-control lNo" value=""/>
 										</div>
 									</div>
 

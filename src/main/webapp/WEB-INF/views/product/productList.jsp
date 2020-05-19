@@ -98,11 +98,7 @@
                                                    <c:if test="${ p.productCategory eq '회원권' }">
                                                        <div class="col-lg-2 col-sm-6">
                                                            <div class="plan">
-<<<<<<< HEAD
-                                                               <h3 style="background: mistyrose;"><input type="checkbox"  data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<span>${ p.productPrice }￦</span></h3>
-=======
-                                                               <h3 style="background: ;"><input type="checkbox"  data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<span>${ p.productPrice }￦</span></h3>
->>>>>>> branch 'master' of https://github.com/triple-b/tripleb.git
+                                                               <h3 style="background: cornflowerblue; font-size:18px; font-weight:bold;"><input type="checkbox"  data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<span style="font-size:20px;">${ p.productPrice }￦</span></h3>
                                                                <button id="payMentNm1" class="btn btn-lg btn-primary" onclick="payment2Fn(${p.productNo})">결제</button>
                                                            </div>
                                                        </div>
@@ -116,12 +112,12 @@
                                                    <c:if test="${ p.productCategory eq 'PT권' }">
                                                        <div class="col-lg-2">
                                                            <div class="plan">
-                                                               <h3 style="background: lightblue;"><input type="checkbox" data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<br>(${ p.productDays }  일)<span id="productPrice1">${ p.productPrice }￦</span></h3>
+                                                               <h3 style="background: gold; font-size:18px; font-weight:bold;"><input type="checkbox" data-proNum="${ p.productNo }" style="float: left;" name="checkPro">${ p.productName }<br>(${ p.productDays }  일)<span id="productPrice1" style="font-size:20px;">${ p.productPrice }￦</span></h3>
                                                                <button id="payListBtn1" class="btn btn-lg btn-primary modal-with-form" href="#modalFormCList" onclick="paymentFn(${p.productNo})">결제</button>
                                                                <ul>
-                                                                   <li><b>${ p.weekDay }</b></li>
-                                                                   <li><b>${ p.morAfter }</b></li>
-                                                                   <li><b>${ p.times }</b></li>
+                                                                   <li><b style="font-size:14px;">${ p.weekDay }</b></li>
+                                                                   <li><b style="font-size:14px;">${ p.morAfter }</b></li>
+                                                                   <li><b style="font-size:14px;">${ p.times }</b></li>
                                                                </ul>
                                                            </div>
                                                        </div>
@@ -400,7 +396,7 @@
 							success:function(data){
 								var value = "";
 								console.log(data);
-								value += '<img src="resources/assets/images/' + data.memberImage + '" width="130px" height="130px" class="img-responsive" alt="Project">';
+								value += '<img src="resources/upload_files/' + data.memberImage + '" width="130px" height="130px" class="img-responsive" alt="Project">';
 								
 								$("#memImg").html(value);
 							},
@@ -497,6 +493,7 @@
 							type:"post",
 							success:function(data){
 								var memVal = data;		// 성공시 결제 api 실행
+
 								var IMP = window.IMP;
 								IMP.init('imp45214918');
 								
@@ -571,7 +568,7 @@
 							type:"post",
 							success:function(data){ // 성공시 결제 api 실행
 								var memInfo = data;
-								
+
 								var IMP = window.IMP;
 								IMP.init('imp45214918');
 								
@@ -606,6 +603,7 @@
 								    }
 								    alert(msg);
 								});
+	
 							},
 							error:function(){
 								console.log("통신실패");
