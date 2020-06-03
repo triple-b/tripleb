@@ -3,7 +3,7 @@
 Fitness Management Program
 
 ## API
-Full Calendar
+Full Calendar (https://github.com/SaintSilver/FullCalendar-Example 사용)
 
 i'mport
 
